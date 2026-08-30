@@ -1,0 +1,790 @@
+/* ======================================================
+   LP GESTÃO WEB — Raizys Web
+   Cores: Azul vibrante (#0066FF / #0052CC) + Dark Navy (#040914)
+   Fontes: Plus Jakarta Sans (títulos) + Manrope / Inter (corpo)
+   ====================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-blue: #0066FF;
+  --primary-blue-hover: #0052CC;
+  --primary-blue-glow: rgba(0, 102, 255, 0.35);
+  --primary-blue-light: #388BFF;
+  --bg-dark: #040914;
+  --bg-dark-card: #081226;
+  --bg-dark-elevated: #0d1b38;
+  --text-white: #FFFFFF;
+  --text-muted: rgba(255, 255, 255, 0.78);
+  --text-dim: rgba(255, 255, 255, 0.50);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-blue: rgba(0, 102, 255, 0.35);
+  --font-heading: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Work Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================================
+   HEADER — Minimalista idêntico ao Sankhya (apenas Logo à esquerda)
+   ============================================================ */
+.lp-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 28px 56px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.lp-header.scrolled {
+  position: fixed;
+  background: rgba(4, 9, 20, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 14px 56px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.lp-header-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.lp-header-logo img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.lp-header-logo:hover img {
+  transform: scale(1.02);
+}
+
+/* ============================================================
+   HERO SECTION — Estilo Sankhya (Vídeo + Sombra Escura na Esquerda)
+   ============================================================ */
+.lp-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 130px 64px 80px;
+}
+
+.lp-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Sombra e vinheta escura profunda na esquerda (estilo Sankhya) */
+.lp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: 
+    linear-gradient(
+      to right,
+      rgba(4, 9, 20, 0.94) 0%,
+      rgba(4, 9, 20, 0.88) 32%,
+      rgba(4, 9, 20, 0.60) 55%,
+      rgba(4, 9, 20, 0.20) 80%,
+      rgba(4, 9, 20, 0.05) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(4, 9, 20, 0.92) 0%,
+      rgba(4, 9, 20, 0.35) 25%,
+      transparent 50%
+    );
+}
+
+.lp-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Título estilo Sankhya Exato: Work Sans, 48px (text-5xl), font-medium (500/600), leading 53px, uppercase */
+.lp-hero-title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 53px;
+  color: var(--text-white);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+}
+
+.lp-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 540px;
+  margin-bottom: 34px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Botão único principal do Hero — Sólido, azul vibrante, retangular estilo Sankhya */
+.lp-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-blue);
+  color: var(--text-white);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 15px 32px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px var(--primary-blue-glow);
+}
+
+.lp-hero-btn:hover {
+  background-color: var(--primary-blue-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 102, 255, 0.55);
+}
+
+/* ============================================================
+   SEÇÕES GERAIS
+   ============================================================ */
+.lp-section {
+  padding: 100px 56px;
+  position: relative;
+}
+
+.lp-section-alt {
+  background-color: #060d1d;
+}
+
+.lp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lp-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--primary-blue-light);
+  margin-bottom: 16px;
+}
+
+.lp-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 3.8vw, 48px);
+  font-weight: 800;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  color: var(--text-white);
+  margin-bottom: 16px;
+}
+
+.lp-section-desc {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 620px;
+  line-height: 1.7;
+  margin-bottom: 56px;
+}
+
+.lp-section-desc strong {
+  color: var(--text-white);
+}
+
+/* ============================================================
+   STATS BAR
+   ============================================================ */
+.lp-stats {
+  background: var(--bg-dark-card);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 48px 56px;
+}
+
+.lp-stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.lp-stat-box {
+  text-align: left;
+  border-left: 3px solid var(--primary-blue);
+  padding-left: 20px;
+}
+
+.lp-stat-num {
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 900;
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.lp-stat-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   PROBLEMAS / DORES
+   ============================================================ */
+.lp-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.lp-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 36px 30px;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lp-card:hover {
+  border-color: var(--border-blue);
+  transform: translateY(-4px);
+  background: var(--bg-dark-elevated);
+}
+
+.lp-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background: rgba(0, 102, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue-light);
+  font-size: 20px;
+  margin-bottom: 22px;
+}
+
+.lp-card h3 {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 12px;
+  letter-spacing: -0.2px;
+}
+
+.lp-card p {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ============================================================
+   SOLUÇÃO
+   ============================================================ */
+.lp-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.lp-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lp-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.lp-check-item:hover {
+  border-color: var(--border-blue);
+  background: var(--bg-dark-elevated);
+}
+
+.lp-check-icon {
+  color: var(--primary-blue-light);
+  font-size: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.lp-check-content h4 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 4px;
+}
+
+.lp-check-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.lp-brand-box {
+  background: linear-gradient(145deg, #0d1b38 0%, #060d1d 100%);
+  border: 1px solid var(--border-blue);
+  border-radius: 8px;
+  padding: 56px 40px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.lp-brand-box img {
+  height: 90px;
+  width: auto;
+  margin: 0 auto 24px;
+  filter: drop-shadow(0 0 24px var(--primary-blue-glow));
+}
+
+.lp-brand-box h3 {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.lp-brand-box p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   MÓDULOS
+   ============================================================ */
+.lp-module-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.lp-module-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding-bottom: 8px;
+}
+
+.lp-module-list li:last-child {
+  border-bottom: none;
+}
+
+.lp-module-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   IMPLANTAÇÃO
+   ============================================================ */
+.lp-steps-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lp-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px;
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.lp-step-row:hover {
+  border-color: var(--border-blue);
+}
+
+.lp-step-badge {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--primary-blue-light);
+  line-height: 1;
+  min-width: 44px;
+}
+
+.lp-step-info h4 {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 4px;
+}
+
+.lp-step-info p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   FORMULÁRIO DE CONVERSÃO
+   ============================================================ */
+.lp-form-section {
+  background: #030710;
+  border-top: 1px solid var(--border-subtle);
+  padding: 100px 56px;
+}
+
+.lp-form-layout {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.lp-form-card {
+  background: var(--bg-dark-card);
+  border: 1px solid var(--border-subtle);
+  border-top: 4px solid var(--primary-blue);
+  border-radius: 6px;
+  padding: 44px 36px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.lp-form-card-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-white);
+  margin-bottom: 6px;
+}
+
+.lp-form-card-sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+
+.lp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lp-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.lp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lp-form-group label {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.lp-form-group input,
+.lp-form-group select,
+.lp-form-group textarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 13px 16px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--text-white);
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.lp-form-group input:focus,
+.lp-form-group select:focus,
+.lp-form-group textarea:focus {
+  border-color: var(--primary-blue);
+  background: rgba(0, 102, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+}
+
+.lp-form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230066FF' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.lp-form-group select option {
+  background: #081226;
+  color: #fff;
+}
+
+.lp-form-submit {
+  width: 100%;
+  background: var(--primary-blue);
+  color: var(--text-white);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 8px;
+  box-shadow: 0 4px 18px var(--primary-blue-glow);
+}
+
+.lp-form-submit:hover {
+  background: var(--primary-blue-hover);
+  transform: translateY(-2px);
+}
+
+.lp-form-submit.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.lp-form-privacy {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 10px;
+}
+
+.lp-form-success, .lp-form-error {
+  display: none;
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 14.5px;
+  font-weight: 600;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.lp-form-success {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.lp-form-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+/* ============================================================
+   FOOTER MÍNIMO
+   ============================================================ */
+.lp-footer {
+  background: #02050b;
+  border-top: 1px solid var(--border-subtle);
+  padding: 32px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.lp-footer-copy {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.lp-footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.lp-footer-links a {
+  font-size: 13px;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+
+.lp-footer-links a:hover {
+  color: var(--text-white);
+}
+
+/* WhatsApp Flutuante */
+.lp-whatsapp {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  transition: transform 0.2s ease;
+}
+
+.lp-whatsapp:hover {
+  transform: scale(1.1);
+}
+
+.lp-whatsapp img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 1024px) {
+  .lp-split {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .lp-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lp-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lp-form-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .lp-header {
+    padding: 16px 20px;
+  }
+  .lp-header.scrolled {
+    padding: 12px 20px;
+  }
+  .lp-header-logo img {
+    height: 40px;
+  }
+  .lp-hero {
+    padding: 110px 24px 60px;
+  }
+  .lp-hero-title {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 40px;
+  }
+}

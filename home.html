@@ -1,0 +1,729 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Raizys — Inteligência Corporativa & Gestão</title>
+    <meta name="description"
+        content="A Raizys ajuda negócios a ganhar organização, reduzir desperdícios e tomar decisões com mais segurança. Consultoria em sistemas empresariais e SAP.">
+    <link rel="icon" type="image/png"
+        href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
+    <link rel="stylesheet" href="style.css?v=7.0">
+    <link rel="stylesheet" href="header.css?v=5.0">
+    <link rel="stylesheet" href="home-page.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preload" as="image" href="assets/hero-slide-1.jpg">
+</head>
+
+<body class="home-page theme-dark-hero">
+        <!-- ===== TOPBAR ===== -->
+    <div class="rz-topbar">
+        <div class="rz-topbar-inner">
+            <div class="rz-topbar-socials">
+                <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn" class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube" class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING GLASS HEADER (Sankhya Style) ===== -->
+    <div class="rz-header-wrapper">
+        <header class="rz-header" id="rz-header">
+            <div class="rz-header-inner">
+                <a href="home" class="rz-logo">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys Logo">
+                </a>
+                <nav class="rz-nav">
+                    <div class="rz-nav-link rz-nav-solutions-trigger">
+                        <span>Solu&#231;&#245;es</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="sobre-nos" class="rz-nav-link" data-page="sobre-nos">Sobre</a>
+                    <a href="contato" class="rz-nav-link" data-page="contato">Contato</a>
+                    <div class="rz-nav-link rz-nav-partners-trigger">
+                        <span>Parceiros</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="trabalhe-conosco" class="rz-nav-link" data-page="trabalhe-conosco">Trabalhe Conosco</a>
+                </nav>
+                <a href="contato" class="rz-header-cta">VAMOS CONVERSAR</a>
+                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+
+            <!-- MEGA-MENU SOLUÇÕES (Dropdown with Sector Raizys Logos) -->
+            <div class="rz-solutions-mega">
+                <div class="rz-mega-title">Nossas Solu&#231;&#245;es Corporativas</div>
+                <div class="rz-mega-grid">
+                    <a href="web" class="rz-mega-card" data-solution="web">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Web" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Web Empresarial</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o completa de processos e ERP para m&#233;dias empresas.</div>
+                        </div>
+                    </a>
+                    <a href="agro" class="rz-mega-card" data-solution="agro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="Agro" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agro &amp; Campo</div>
+                            <div class="rz-mega-card-desc">Controle de safra, insumos e rastreabilidade no campo.</div>
+                        </div>
+                    </a>
+                    <a href="food" class="rz-mega-card" data-solution="food">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-orange.png" alt="Food" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Food Service</div>
+                            <div class="rz-mega-card-desc">Automa&#231;&#227;o de restaurantes, cozinhas e franquias.</div>
+                        </div>
+                    </a>
+                    <a href="clinicas" class="rz-mega-card" data-solution="clinicas">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Cl&#237;nicas" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cl&#237;nicas &amp; Sa&#250;de</div>
+                            <div class="rz-mega-card-desc">Agendamento, prontu&#225;rio e gest&#227;o m&#233;dica integrada.</div>
+                        </div>
+                    </a>
+                    <a href="pet" class="rz-mega-card" data-solution="pet">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-yellow.png" alt="Pet" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Pet &amp; Vet</div>
+                            <div class="rz-mega-card-desc">Controle de banho e tosa, veterin&#225;ria e pet shop.</div>
+                        </div>
+                    </a>
+                    <a href="agenda" class="rz-mega-card" data-solution="agenda">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-dark.png" alt="Agenda" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agenda Inteligente</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o de hor&#225;rios, servi&#231;os e lembretes autom&#225;ticos.</div>
+                        </div>
+                    </a>
+                    <a href="sap" class="rz-mega-card" data-solution="sap">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="SAP" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Consultoria SAP</div>
+                            <div class="rz-mega-card-desc">Implanta&#231;&#227;o, migra&#231;&#227;o e governan&#231;a SAP B1 / S4 HANA.</div>
+                        </div>
+                    </a>
+                    <a href="izys" class="rz-mega-card" data-solution="izys">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="fotos/Isys - Logo 1.png" alt="IZYS AI CRM" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">IZYS AI CRM</div>
+                            <div class="rz-mega-card-desc">Atendimento, CRM, automa&#231;&#245;es e Agentes de IA em um &#250;nico lugar.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- MEGA-MENU PARCEIROS (Dropdown) -->
+            <div class="rz-partners-mega">
+                <div class="rz-mega-title">Programa de Parceiros</div>
+                <div class="rz-partners-grid">
+                    <a href="indicacao" class="rz-mega-card" data-partner="indicacao">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Indicação" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cadastrar Indica&#231;&#227;o</div>
+                            <div class="rz-mega-card-desc">Indique uma empresa e acompanhe o status da sua indica&#231;&#227;o.</div>
+                        </div>
+                    </a>
+                    <a href="parceiro-indicador" class="rz-mega-card" data-partner="parceiro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Parceiro Indicador" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Parceiro Indicador</div>
+                            <div class="rz-mega-card-desc">Seja um parceiro indicador oficial e amplie seus ganhos.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="rz-mega-overlay"></div>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="rz-mobile-overlay"></div>
+    <div class="rz-mobile-drawer">
+        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Navega&#231;&#227;o</div>
+            <a href="sobre-nos" class="rz-mobile-link" data-page="sobre-nos"><i class="fas fa-info-circle"></i> Sobre N&#243;s</a>
+            <a href="contato" class="rz-mobile-link" data-page="contato"><i class="fas fa-envelope"></i> Contato</a>
+            <a href="indicacao" class="rz-mobile-link" data-page="indicacao"><i class="fas fa-user-plus"></i> Cadastrar Indica&#231;&#227;o</a>
+            <a href="parceiro-indicador" class="rz-mobile-link" data-page="parceiro-indicador"><i class="fas fa-handshake"></i> Parceiro Indicador</a>
+            <a href="trabalhe-conosco" class="rz-mobile-link" data-page="trabalhe-conosco"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Solu&#231;&#245;es Corporativas</div>
+            <a href="web" class="rz-mobile-link" data-page="web"><img src="assets/shield-blue.png" alt="Raizys"> Web Empresarial</a>
+            <a href="agro" class="rz-mobile-link" data-page="agro"><img src="assets/shield-green.png" alt="Raizys"> Agro &amp; Campo</a>
+            <a href="food" class="rz-mobile-link" data-page="food"><img src="assets/shield-orange.png" alt="Raizys"> Food Service</a>
+            <a href="clinicas" class="rz-mobile-link" data-page="clinicas"><img src="assets/shield-blue.png" alt="Raizys"> Cl&#237;nicas &amp; Sa&#250;de</a>
+            <a href="pet" class="rz-mobile-link" data-page="pet"><img src="assets/shield-yellow.png" alt="Raizys"> Pet &amp; Vet</a>
+            <a href="agenda" class="rz-mobile-link" data-page="agenda"><img src="assets/shield-dark.png" alt="Raizys"> Agenda Inteligente</a>
+            <a href="sap" class="rz-mobile-link" data-page="sap"><img src="assets/shield-green.png" alt="Raizys"> Consultoria SAP</a>
+            <a href="izys" class="rz-mobile-link" data-page="izys"><img src="fotos/Isys - Logo 1.png" alt="IZYS" style="height:18px;width:auto;"> IZYS AI CRM</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <a href="contato" class="rz-header-cta" style="width:100%;justify-content:center;margin:0;margin-top:8px;">VAMOS CONVERSAR</a>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
+    <main>
+        <!-- ===== HERO SECTION (Image 3 Copy & Design Match) ===== -->
+        <section class="hp-hero" id="hp-hero">
+            <!-- BACKGROUND SLIDESHOW LAYER -->
+            <div class="hp-hero-slideshow">
+                <div class="hp-hero-slide active" style="background-image: url('assets/hero-slide-1.jpg');"></div>
+                <div class="hp-hero-slide" style="background-image: url('assets/hero-slide-2.jpg');"></div>
+                <div class="hp-hero-slide" style="background-image: url('assets/hero-slide-3.jpg');"></div>
+                <div class="hp-hero-slide" style="background-image: url('assets/hero-slide-4.jpg');"></div>
+                <div class="hp-hero-slide-overlay"></div>
+            </div>
+
+            <!-- AMBIENT GREEN LIGHTS & SHADOWS -->
+            <div class="hp-hero-ambient-lights">
+                <div class="hp-glow-orb orb-1"></div>
+                <div class="hp-glow-orb orb-2"></div>
+                <div class="hp-glow-orb orb-3"></div>
+            </div>
+
+            <div class="hp-container">
+                <div class="hp-hero-split">
+                    
+                    <!-- LEFT COPY -->
+                    <div class="hp-hero-copy">
+                        <h1 class="hp-hero-title">
+                            TODO NEG&#211;CIO<br>
+                            TEM POTENCIAL<br>
+                            PARA <span class="hp-highlight-green">CRESCER.</span>
+                        </h1>
+                        <div class="hp-hero-title-accent"></div>
+                        <p class="hp-hero-subtitle">
+                            A Raizys ajuda neg&#243;cios a ganhar <span class="hp-sub-highlight">organiza&#231;&#227;o</span>, <span class="hp-sub-highlight">reduzir desperd&#237;cios</span> e <span class="hp-sub-highlight">tomar decis&#245;es</span> com mais seguran&#231;a.
+                        </p>
+                        <a href="contato" class="hp-hero-cta-btn">
+                            Vamos conversar <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- RIGHT VISUAL -->
+                    <div class="hp-hero-visual">
+                        <div class="hp-shield-glow"></div>
+                        <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Escudo Raizys" class="hp-shield-hero-img">
+                    </div>
+
+                <!-- SLIDESHOW INDICATOR DOTS (Fileira de Bolinhas com Progresso) -->
+                </div>
+            </div>
+
+            <!-- SLIDESHOW DOTS — Direct child of .hp-hero for absolute bottom positioning -->
+            <div class="hp-slideshow-dots">
+                <button class="hp-dot active" data-slide="0" aria-label="Slide 1"><span class="hp-dot-progress"></span></button>
+                <button class="hp-dot" data-slide="1" aria-label="Slide 2"><span class="hp-dot-progress"></span></button>
+                <button class="hp-dot" data-slide="2" aria-label="Slide 3"><span class="hp-dot-progress"></span></button>
+                <button class="hp-dot" data-slide="3" aria-label="Slide 4"><span class="hp-dot-progress"></span></button>
+            </div>
+        </section>
+
+        <!-- ===== COMPROMISSO ===== -->
+        <section class="hp-commitment" id="hp-compromisso">
+            <div class="hp-container">
+                <div class="hp-commitment-grid">
+                    <div class="hp-commitment-left">
+                        
+                        <div class="hp-commitment-tagline hp-reveal hp-delay-1">
+                            Não entregamos apenas sistemas.<br>
+                            <span class="hp-highlight-green">Entregamos evolução.</span>
+                        </div>
+                        <p class="hp-commitment-desc hp-reveal hp-delay-2">
+                            Tecnologia, processos bem desenhados e pessoas capacitadas trabalhando juntas para impulsionar os seus resultados.
+                        </p>
+                    </div>
+                    <div class="hp-commitment-list">
+                        <div class="hp-commitment-item hp-reveal hp-delay-1">
+                            <div class="hp-commitment-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span><strong>Entender o seu negócio</strong> detalhadamente antes de propor qualquer sistema</span>
+                        </div>
+                        <div class="hp-commitment-item hp-reveal hp-delay-2">
+                            <div class="hp-commitment-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Aplicar <strong>inteligência corporativa</strong> para selecionar a melhor arquitetura</span>
+                        </div>
+                        <div class="hp-commitment-item hp-reveal hp-delay-3">
+                            <div class="hp-commitment-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Respeitar a rotina e o <strong>tempo da sua equipe</strong> durante toda a implementação</span>
+                        </div>
+                        <div class="hp-commitment-item hp-reveal hp-delay-3">
+                            <div class="hp-commitment-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Gerar <strong>resultados sustentáveis</strong>, produtividade e qualidade de vida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COMO AJUDAMOS ===== -->
+        <section class="hp-how-section" id="hp-como-ajudamos">
+            <div class="hp-container">
+                <div class="hp-section-header">
+                    <span class="hp-section-label hp-reveal">NOSSO MÉTODO</span>
+                    <h2 class="hp-section-title hp-reveal hp-delay-1">Como <span class="hp-highlight">ajudamos</span> a sua empresa?</h2>
+                    <p class="hp-section-desc hp-reveal hp-delay-2">Atuamos em cada pilar essencial da gestão para que sua empresa funcione com clareza, eficiência e resultados reais.</p>
+                </div>
+
+                <div class="hp-how-grid">
+                    <div class="hp-how-card hp-reveal hp-delay-1">
+                        <div class="hp-how-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        </div>
+                        <h3>Organizamos processos</h3>
+                        <p>Cada área no lugar certo, com fluxos estruturados e responsabilidades definidas.</p>
+                    </div>
+                    <div class="hp-how-card hp-reveal hp-delay-2">
+                        <div class="hp-how-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <h3>Centralizamos informações</h3>
+                        <p>Fim dos dados isolados. Tudo o que você precisa reunido em um ecossistema integrado.</p>
+                    </div>
+                    <div class="hp-how-card hp-reveal hp-delay-3">
+                        <div class="hp-how-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                        </div>
+                        <h3>Automatizamos tarefas</h3>
+                        <p>Menos retrabalho manual, zero falha operacional e mais agilidade no dia a dia.</p>
+                    </div>
+                    <div class="hp-how-card hp-reveal hp-delay-1">
+                        <div class="hp-how-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <h3>Facilitamos a rotina</h3>
+                        <p>Ferramentas intuitivas e modernas que devolvem tempo para a sua equipe produzir mais.</p>
+                    </div>
+                    <div class="hp-how-card hp-reveal hp-delay-2">
+                        <div class="hp-how-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        </div>
+                        <h3>Números transparentes</h3>
+                        <p>Dashboards estratégicos em tempo real para visualizar o desempenho real da operação.</p>
+                    </div>
+                    <div class="hp-how-card hp-reveal hp-delay-3">
+                        <div class="hp-how-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                        </div>
+                        <h3>Decisões com segurança</h3>
+                        <p>Apoio especialista para escolher os melhores caminhos de expansão e lucratividade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BENEFITS STRIP (CURVED OVERLAY) ===== -->
+        <section class="hp-benefits-strip">
+            <div class="hp-container">
+                <div class="hp-benefits-grid">
+                    <div class="hp-benefit-item hp-reveal hp-delay-1">
+                        <div class="hp-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="hp-benefit-text"><strong>MENOS TEMPO</strong><br>APAGANDO INCÊNDIOS</div>
+                    </div>
+                    <div class="hp-benefit-item hp-reveal hp-delay-2">
+                        <div class="hp-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="hp-benefit-text"><strong>MAIS CONTROLE</strong><br>E DADOS CONFIÁVEIS</div>
+                    </div>
+                    <div class="hp-benefit-item hp-reveal hp-delay-3">
+                        <div class="hp-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="hp-benefit-text"><strong>EQUIPE</strong> MAIS<br>PRODUTIVA E FOCADA</div>
+                    </div>
+                    <div class="hp-benefit-item hp-reveal hp-delay-1">
+                        <div class="hp-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div class="hp-benefit-text"><strong>DECISÕES</strong> MELHORES<br>E COM SEGURANÇA</div>
+                    </div>
+                    <div class="hp-benefit-item hp-reveal hp-delay-2">
+                        <div class="hp-benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <div class="hp-benefit-text"><strong>MAIS TEMPO</strong><br>PARA EXPANDIR O NEGÓCIO</div>
+                    </div>
+                </div>
+            </div>
+        </section>">
+            </div>
+        </section>
+
+        <!-- ===== SOLUÇÕES COMPLETAS ===== -->
+        <section class="hp-solutions" id="hp-solucoes">
+            <div class="hp-container">
+                <div class="hp-section-header">
+                    <span class="hp-section-label hp-reveal">ÁREAS DE ATUAÇÃO</span>
+                    <h2 class="hp-section-title hp-reveal hp-delay-1">Soluções completas para <span class="hp-highlight">organizar</span> e escalar.</h2>
+                </div>
+
+                <div class="hp-solutions-grid">
+                    <div class="hp-solution-card hp-reveal hp-delay-1">
+                        <span class="hp-solution-number">01</span>
+                        <h3>Vendas</h3>
+                        <ul>
+                            <li>Gestão completa do funil de vendas</li>
+                            <li>Acompanhamento de metas em tempo real</li>
+                        </ul>
+                    </div>
+                    <div class="hp-solution-card hp-reveal hp-delay-2">
+                        <span class="hp-solution-number">02</span>
+                        <h3>Financeiro</h3>
+                        <ul>
+                            <li>Contas a pagar e receber automatizados</li>
+                            <li>Fluxo de caixa e conciliação bancária</li>
+                        </ul>
+                    </div>
+                    <div class="hp-solution-card hp-reveal hp-delay-3">
+                        <span class="hp-solution-number">03</span>
+                        <h3>Estoque</h3>
+                        <ul>
+                            <li>Rastreabilidade e inventário preciso</li>
+                            <li>Prevenção de perdas e ruptura de estoque</li>
+                        </ul>
+                    </div>
+                    <div class="hp-solution-card hp-reveal hp-delay-1">
+                        <span class="hp-solution-number">04</span>
+                        <h3>Produção</h3>
+                        <ul>
+                            <li>PCP e controle de ordens de produção</li>
+                            <li>Eficiência operacional maximizada</li>
+                        </ul>
+                    </div>
+                    <div class="hp-solution-card hp-reveal hp-delay-2">
+                        <span class="hp-solution-number">05</span>
+                        <h3>Comercial</h3>
+                        <ul>
+                            <li>Propostas e contratos centralizados</li>
+                            <li>Agilidade no relacionamento com clientes</li>
+                        </ul>
+                    </div>
+                    <div class="hp-solution-card hp-reveal hp-delay-3">
+                        <span class="hp-solution-number">06</span>
+                        <h3>Indicadores</h3>
+                        <ul>
+                            <li>Dashboards executivos dinâmicos</li>
+                            <li>Visão 360° do desempenho empresarial</li>
+                        </ul>
+                    </div>
+                    <div class="hp-solution-card hp-reveal hp-delay-1">
+                        <span class="hp-solution-number">07</span>
+                        <h3>Equipe</h3>
+                        <ul>
+                            <li>Alocação clara de responsabilidades</li>
+                            <li>Aumento significativo de produtividade</li>
+                        </ul>
+                    </div>
+                    <div class="hp-solution-card hp-reveal hp-delay-2">
+                        <span class="hp-solution-number">08</span>
+                        <h3>Processos</h3>
+                        <ul>
+                            <li>Padronização e melhoria contínua</li>
+                            <li>Governança e segurança operacional</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== UNIQUE INFO CALLOUT ===== -->
+        <section class="hp-unique-info">
+            <div class="hp-container">
+                <div class="hp-unique-info-inner hp-reveal">
+                    <div class="hp-unique-info-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <p>Cada negócio possui uma identidade <strong>única</strong>. Nossas metodologias <em>se adaptam</em> à realidade e aos desafios específicos da sua empresa para trazer o máximo retorno.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ANTES x DEPOIS ===== -->
+        <section class="hp-comparison" id="hp-antes-depois">
+            <div class="hp-container">
+                <div class="hp-section-header">
+                    <span class="hp-section-label hp-reveal">TRANSFORMAÇÃO</span>
+                    <h2 class="hp-section-title hp-reveal hp-delay-1">O que muda <span class="hp-highlight">depois da Raizys</span>?</h2>
+                </div>
+
+                <div class="hp-comparison-grid hp-reveal hp-delay-2">
+                    <div class="hp-comparison-col hp-comparison-col--before">
+                        <span class="hp-comparison-badge">Antes</span>
+                        <ul class="hp-comparison-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Informações espalhadas em planilhas desencontradas
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Retrabalho excessivo e digitação manual repetitiva
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Sensação constante de sobrecarga e falta de tempo
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Decisões importantes tomadas baseadas em suposições
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                Dependência total de pessoas-chave para tarefas simples
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hp-comparison-divider">
+                        <div class="hp-comparison-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="hp-comparison-col hp-comparison-col--after">
+                        <span class="hp-comparison-badge">Depois</span>
+                        <ul class="hp-comparison-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                Informações centralizadas e acessíveis em tempo real
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                Processos automatizados com padronização rigorosa
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                Mais produtividade, rotinas leves e previsibilidade
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                Decisões embasadas em relatórios e dados seguros
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                                Time com autonomia e negócio pronto para acelerar
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEGMENTOS ===== -->
+        <section class="hp-segments" id="hp-segmentos">
+            <div class="hp-container">
+                <div class="hp-section-header">
+                    <span class="hp-section-label hp-reveal">SEGMENTOS</span>
+                    <h2 class="hp-section-title hp-reveal hp-delay-1">Soluções para <span class="hp-highlight">diversos setores</span></h2>
+                </div>
+
+                <div class="hp-segments-grid">
+                    <div class="hp-segment-card hp-reveal hp-delay-1">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Indústria</div>
+                    </div>
+                    <div class="hp-segment-card hp-reveal hp-delay-2">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Comércio</div>
+                    </div>
+                    <div class="hp-segment-card hp-reveal hp-delay-3">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Serviços</div>
+                    </div>
+                    <div class="hp-segment-card hp-reveal hp-delay-1">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Alimentação</div>
+                    </div>
+                    <div class="hp-segment-card hp-reveal hp-delay-2">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Saúde</div>
+                    </div>
+                    <div class="hp-segment-card hp-reveal hp-delay-3">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c-4.97 0-9-2.69-9-6v-4c0-3.31 4.03-6 9-6s9 2.69 9 6v4c0 3.31-4.03 6-9 6z"/><path d="M12 6V2"/><path d="M8 6l-2-3"/><path d="M16 6l2-3"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Agronegócio</div>
+                    </div>
+                    <div class="hp-segment-card hp-reveal hp-delay-1">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Distribuição</div>
+                    </div>
+                    <div class="hp-segment-card hp-reveal hp-delay-2">
+                        <div class="hp-segment-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        </div>
+                        <div class="hp-segment-name">Prestadores de Serviço</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== WHATSAPP FLOAT ===== -->
+    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h3>Inscreva-se na nossa newsletter</h3>
+                <p>Assine a nossa newsletter e receba as novidades e conteúdos exclusivos da Raizys.</p>
+            </div>
+            <div class="newsletter-form-wrapper">
+                <form class="newsletter-form" action="https://formsubmit.co/ajax/diego.caselato@raizys.com.br"
+                    method="POST">
+                    <input type="hidden" name="_subject" value="Nova Inscrição Newsletter - RAIZYS">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+                    <input type="hidden" name="_autoresponse" value="Olá! Confirmamos sua inscrição com sucesso. Em breve você receberá conteúdos e novidades exclusivas da Raizys em seu e-mail. Atenciosamente, Equipe Raizys.">
+                    <div class="input-group">
+                        <input type="text" name="nome" placeholder="Digite seu nome" required>
+                        <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                        <button type="submit">INSCREVER</button>
+                    </div>
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="terms" name="termos" required>
+                        <label for="terms">Aceito os termos e condições</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="home">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
+                </a>
+                <p>Consultoria especializada em implantação de sistemas empresariais.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
+                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11 5026-4939</a></p>
+                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
+                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt" style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83 - Vila Rica, Guaxupé - MG, 37800-000</span></p>
+                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i> <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves, 759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="sobre-nos">Sobre Nós</a></li>
+                    <li><a href="trabalhe-conosco">Trabalhe conosco</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Termos</h4>
+                <ul>
+                    <li><a href="termos-condicoes">Termos e Condições</a></li>
+                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
+                    <li><a href="indicacao">Cadastrar Indicação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="contato">Fale Conosco</a></li>
+                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="script.js"></script>
+    <script src="header.js?v=5.0"></script>
+    <script>
+        // Scroll reveal
+        (function() {
+            const revealEls = document.querySelectorAll('.hp-reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('hp-visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            revealEls.forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+
+</html>

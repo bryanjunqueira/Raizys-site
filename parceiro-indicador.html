@@ -1,0 +1,1154 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parceiro Indicador - Raizys</title>
+    <meta name="description"
+        content="Cadastre-se como Parceiro Indicador Raizys e faça parte do nosso ecossistema de parceiros SAP.">
+    <link rel="icon" type="image/png"
+        href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
+    <link rel="stylesheet" href="style.css?v=7.0">
+    <link rel="stylesheet" href="header.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .partner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4a6d3c, #6a9a5a);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .partner-form-section {
+            padding: 60px 20px;
+            background: #f8faf7;
+            min-height: 60vh;
+        }
+
+        .partner-form-container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 50px 50px;
+            box-shadow: 0 4px 30px rgba(74, 109, 60, 0.08);
+            border: 1px solid rgba(74, 109, 60, 0.1);
+        }
+
+        .partner-form-container h2 {
+            font-size: 1.8rem;
+            color: #1a3c25;
+            margin-bottom: 8px;
+        }
+
+        .partner-form-container p.sub {
+            color: #666;
+            margin-bottom: 36px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-field label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #2d4a20;
+            letter-spacing: 0.3px;
+        }
+
+        .form-field label span.req {
+            color: #c0392b;
+            margin-left: 2px;
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            padding: 13px 16px;
+            border: 1.5px solid #d8e8d0;
+            border-radius: 10px;
+            font-size: 0.97rem;
+            color: #333;
+            font-family: 'Outfit', sans-serif;
+            background: #fafff8;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-color: #4a6d3c;
+            box-shadow: 0 0 0 3px rgba(74, 109, 60, 0.12);
+            background: white;
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .submit-partner-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4a6d3c, #3a5a2f);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .submit-partner-btn:hover {
+            background: linear-gradient(135deg, #3a5a2f, #2d4822);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(74, 109, 60, 0.3);
+        }
+
+        .submit-partner-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-box {
+            display: none;
+            text-align: center;
+            padding: 50px 30px;
+        }
+
+        .success-box .success-icon-big {
+            font-size: 4rem;
+            color: #4a6d3c;
+            margin-bottom: 20px;
+        }
+
+        .success-box h3 {
+            font-size: 1.6rem;
+            color: #1a3c25;
+            margin-bottom: 12px;
+        }
+
+        .success-box p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .success-box .email-highlight {
+            font-weight: 700;
+            color: #4a6d3c;
+        }
+
+        .benefits-strip {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a6d3c;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .benefit-item i {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .partner-form-container {
+                padding: 30px 20px;
+            }
+        }
+
+        
+        body.no-scroll {
+            overflow: hidden !important;
+            height: 100vh;
+        }
+
+        
+        .terms-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            overscroll-behavior: contain;
+        }
+
+        .terms-overlay.hidden {
+            display: none;
+        }
+
+        .terms-card {
+            background: white;
+            border-radius: 14px;
+            max-width: 900px;
+            width: 100%;
+            height: 95vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .terms-card-header {
+            position: relative;
+            padding: 16px 32px 12px;
+            border-bottom: 1px solid #e8f0e4;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .terms-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .terms-close-btn:hover {
+            color: #1a3c25;
+        }
+
+        .terms-card-header .terms-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4a6d3c, #6a9a5a);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .terms-card-header h2 {
+            font-size: 1.25rem;
+            color: #1a3c25;
+            margin: 0 0 2px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .terms-card-header p {
+            color: #888;
+            font-size: 0.82rem;
+            margin: 0;
+        }
+
+        .terms-scroll-wrapper {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .terms-content {
+            padding: 20px 32px;
+            overflow-y: scroll;
+            height: 100%;
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: #444;
+            font-family: 'Outfit', sans-serif;
+            overscroll-behavior: contain;
+        }
+
+        
+        .terms-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .terms-content::-webkit-scrollbar-track {
+            background: #e8e8e8;
+        }
+
+        .terms-content::-webkit-scrollbar-thumb {
+            background: #4a6d3c;
+            border-radius: 5px;
+            border: 2px solid #e8e8e8;
+        }
+
+        .terms-content::-webkit-scrollbar-thumb:hover {
+            background: #3a5a2f;
+        }
+
+        
+        .terms-content {
+            scrollbar-width: auto;
+            scrollbar-color: #4a6d3c #e8e8e8;
+        }
+
+        .terms-content h3 {
+            font-size: 1.05rem;
+            color: #1a3c25;
+            margin: 22px 0 6px;
+            font-weight: 700;
+        }
+
+        .terms-content h4 {
+            font-size: 0.95rem;
+            color: #2d4a20;
+            margin: 18px 0 8px;
+            font-weight: 600;
+        }
+
+        .terms-content p {
+            margin: 0 0 10px;
+        }
+
+        .terms-content strong {
+            color: #1a3c25;
+        }
+
+        .terms-content .highlight-box {
+            background: linear-gradient(135deg, #f0f7ec, #e8f2e3);
+            border-left: 4px solid #4a6d3c;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-weight: 500;
+            color: #2d4a20;
+            font-style: italic;
+        }
+
+
+
+        
+        .terms-card-footer {
+            padding: 18px 32px 24px;
+            border-top: 1px solid #e8f0e4;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .terms-checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .terms-checkbox-row input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #4a6d3c;
+            cursor: pointer;
+        }
+
+        .terms-checkbox-row input[type="checkbox"]:disabled {
+            cursor: not-allowed;
+            opacity: 0.4;
+        }
+
+        .terms-checkbox-row label {
+            font-size: 0.88rem;
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .terms-checkbox-row input[type="checkbox"]:disabled+label {
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .terms-continue-btn {
+            width: 100%;
+            max-width: 400px;
+            padding: 14px;
+            background: linear-gradient(135deg, #4a6d3c, #3a5a2f);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .terms-continue-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #3a5a2f, #2d4822);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(74, 109, 60, 0.3);
+        }
+
+        .terms-continue-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .terms-scroll-notice {
+            font-size: 0.78rem;
+            color: #999;
+            text-align: center;
+            transition: opacity 0.3s;
+        }
+
+        .terms-scroll-notice.hidden {
+            opacity: 0;
+        }
+
+        @media (max-width: 600px) {
+            .terms-card {
+                max-height: 95vh;
+            }
+
+            .terms-card-header {
+                padding: 20px 20px 14px;
+            }
+
+            .terms-card-header h2 {
+                font-size: 1.15rem;
+            }
+
+            .terms-content {
+                padding: 18px 20px;
+                font-size: 0.85rem;
+            }
+
+            .terms-card-footer {
+                padding: 14px 20px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body class="theme-light-hero">
+        <!-- ===== TOPBAR ===== -->
+    <div class="rz-topbar">
+        <div class="rz-topbar-inner">
+            <div class="rz-topbar-socials">
+                <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn" class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube" class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING GLASS HEADER (Sankhya Style) ===== -->
+    <div class="rz-header-wrapper">
+        <header class="rz-header" id="rz-header">
+            <div class="rz-header-inner">
+                <a href="home" class="rz-logo">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys Logo">
+                </a>
+                <nav class="rz-nav">
+                    <div class="rz-nav-link rz-nav-solutions-trigger">
+                        <span>Solu&#231;&#245;es</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="sobre-nos" class="rz-nav-link" data-page="sobre-nos">Sobre</a>
+                    <a href="contato" class="rz-nav-link" data-page="contato">Contato</a>
+                    <div class="rz-nav-link rz-nav-partners-trigger">
+                        <span>Parceiros</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="trabalhe-conosco" class="rz-nav-link" data-page="trabalhe-conosco">Trabalhe Conosco</a>
+                </nav>
+                <a href="contato" class="rz-header-cta">VAMOS CONVERSAR</a>
+                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+
+            <!-- MEGA-MENU SOLUÃ‡Ã•ES (Dropdown with Sector Raizys Logos) -->
+            <div class="rz-solutions-mega">
+                <div class="rz-mega-title">Nossas Solu&#231;&#245;es Corporativas</div>
+                <div class="rz-mega-grid">
+                    <a href="web" class="rz-mega-card" data-solution="web">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Web" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Web Empresarial</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o completa de processos e ERP para m&#233;dias empresas.</div>
+                        </div>
+                    </a>
+                    <a href="agro" class="rz-mega-card" data-solution="agro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="Agro" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agro &amp; Campo</div>
+                            <div class="rz-mega-card-desc">Controle de safra, insumos e rastreabilidade no campo.</div>
+                        </div>
+                    </a>
+                    <a href="food" class="rz-mega-card" data-solution="food">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-orange.png" alt="Food" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Food Service</div>
+                            <div class="rz-mega-card-desc">Automa&#231;&#227;o de restaurantes, cozinhas e franquias.</div>
+                        </div>
+                    </a>
+                    <a href="clinicas" class="rz-mega-card" data-solution="clinicas">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Cl&#237;nicas" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cl&#237;nicas &amp; Sa&#250;de</div>
+                            <div class="rz-mega-card-desc">Agendamento, prontu&#225;rio e gest&#227;o m&#233;dica integrada.</div>
+                        </div>
+                    </a>
+                    <a href="pet" class="rz-mega-card" data-solution="pet">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-yellow.png" alt="Pet" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Pet &amp; Vet</div>
+                            <div class="rz-mega-card-desc">Controle de banho e tosa, veterin&#225;ria e pet shop.</div>
+                        </div>
+                    </a>
+                    <a href="agenda" class="rz-mega-card" data-solution="agenda">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-dark.png" alt="Agenda" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agenda Inteligente</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o de hor&#225;rios, servi&#231;os e lembretes autom&#225;ticos.</div>
+                        </div>
+                    </a>
+                    <a href="sap" class="rz-mega-card" data-solution="sap">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="SAP" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Consultoria SAP</div>
+                            <div class="rz-mega-card-desc">Implanta&#231;&#227;o, migra&#231;&#227;o e governan&#231;a SAP B1 / S4 HANA.</div>
+                        </div>
+                    </a>
+                    <a href="izys" class="rz-mega-card" data-solution="izys">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="fotos/Isys - Logo 3.png" alt="IZYS AI CRM" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">IZYS AI CRM</div>
+                            <div class="rz-mega-card-desc">Atendimento, CRM, automa&#231;&#245;es e Agentes de IA em um &#250;nico lugar.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- MEGA-MENU PARCEIROS (Dropdown) -->
+            <div class="rz-partners-mega">
+                <div class="rz-mega-title">Programa de Parceiros</div>
+                <div class="rz-partners-grid">
+                    <a href="indicacao" class="rz-mega-card" data-partner="indicacao">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Indicação" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cadastrar Indica&#231;&#227;o</div>
+                            <div class="rz-mega-card-desc">Indique uma empresa e acompanhe o status da sua indica&#231;&#227;o.</div>
+                        </div>
+                    </a>
+                    <a href="parceiro-indicador" class="rz-mega-card" data-partner="parceiro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Parceiro Indicador" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Parceiro Indicador</div>
+                            <div class="rz-mega-card-desc">Seja um parceiro indicador oficial e amplie seus ganhos.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="rz-mega-overlay"></div>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="rz-mobile-overlay"></div>
+    <div class="rz-mobile-drawer">
+        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Navega&#231;&#227;o</div>
+            <a href="sobre-nos" class="rz-mobile-link" data-page="sobre-nos"><i class="fas fa-info-circle"></i> Sobre N&#243;s</a>
+            <a href="contato" class="rz-mobile-link" data-page="contato"><i class="fas fa-envelope"></i> Contato</a>
+            <a href="indicacao" class="rz-mobile-link" data-page="indicacao"><i class="fas fa-user-plus"></i> Cadastrar Indica&#231;&#227;o</a>
+            <a href="parceiro-indicador" class="rz-mobile-link" data-page="parceiro-indicador"><i class="fas fa-handshake"></i> Parceiro Indicador</a>
+            <a href="trabalhe-conosco" class="rz-mobile-link" data-page="trabalhe-conosco"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Solu&#231;&#245;es Corporativas</div>
+            <a href="web" class="rz-mobile-link" data-page="web"><img src="assets/shield-blue.png" alt="Raizys"> Web Empresarial</a>
+            <a href="agro" class="rz-mobile-link" data-page="agro"><img src="assets/shield-green.png" alt="Raizys"> Agro &amp; Campo</a>
+            <a href="food" class="rz-mobile-link" data-page="food"><img src="assets/shield-orange.png" alt="Raizys"> Food Service</a>
+            <a href="clinicas" class="rz-mobile-link" data-page="clinicas"><img src="assets/shield-blue.png" alt="Raizys"> Cl&#237;nicas &amp; Sa&#250;de</a>
+            <a href="pet" class="rz-mobile-link" data-page="pet"><img src="assets/shield-yellow.png" alt="Raizys"> Pet &amp; Vet</a>
+            <a href="agenda" class="rz-mobile-link" data-page="agenda"><img src="assets/shield-dark.png" alt="Raizys"> Agenda Inteligente</a>
+            <a href="sap" class="rz-mobile-link" data-page="sap"><img src="assets/shield-green.png" alt="Raizys"> Consultoria SAP</a>
+            <a href="izys" class="rz-mobile-link" data-page="izys"><img src="fotos/Isys - Logo 3.png" alt="IZYS" style="height:18px;width:auto;"> IZYS AI CRM</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <a href="contato" class="rz-header-cta" style="width:100%;justify-content:center;margin:0;margin-top:8px;">VAMOS CONVERSAR</a>
+        </div>
+    </div>
+    
+    
+    <div class="terms-overlay" id="termsOverlay">
+        <div class="terms-card">
+            <div class="terms-card-header">
+                <button type="button" class="terms-close-btn" id="termsCloseBtn" aria-label="Fechar e voltar"><i
+                        class="fas fa-times"></i></button>
+                <div class="terms-badge"><i class="fas fa-file-contract"></i> Regulamento Oficial</div>
+                <h2>Programa de Parceiros Indicadores</h2>
+                <p>Raizys Sistemas e Tecnologia</p>
+            </div>
+            <div class="terms-scroll-wrapper">
+                <div class="terms-content" id="termsContent">
+                    <h3>BOAS-VINDAS AO PROGRAMA DE PARCEIROS INDICADORES RAIZYS</h3>
+                    <p>Seja bem-vindo ao Programa de Parceiros Indicadores da Raizys Sistemas e Tecnologia.</p>
+                    <p>Criamos este programa com o objetivo de aproximar empresas que precisam evoluir em sua gestão de
+                        soluções tecnológicas capazes de melhorar sua organização, produtividade e tomada de decisão.
+                    </p>
+                    <p>Muitas empresas ainda enfrentam desafios como falta de controle de processos, dificuldade de
+                        gestão financeira, baixa integração entre setores e ausência de informações estratégicas para
+                        tomada de decisões. Através das indicações realizadas pelos nossos parceiros, conseguimos chegar
+                        até essas empresas e apresentar soluções que contribuem diretamente para seu crescimento,
+                        eficiência operacional e competitividade no mercado.</p>
+                    <p>Ao participar do programa, você se torna parte desse processo de transformação, ajudando empresas
+                        a alcançarem um melhor desempenho através da tecnologia e da gestão inteligente.</p>
+                    <p>Como forma de reconhecimento e valorização dessa contribuição, a Raizys Sistemas e Tecnologia
+                        retribui financeiramente cada indicação que se converta em cliente, criando uma relação de
+                        parceria transparente, sustentável e vantajosa para todos os envolvidos.</p>
+                    <p>Acreditamos que boas conexões geram grandes oportunidades, e é justamente através dessas conexões
+                        que nosso ecossistema de parceiros cresce e se fortalece.</p>
+                    <div class="highlight-box">
+                        Você indica. A Raizys apresenta a solução. A empresa evolui.<br>
+                        E você é recompensado por isso.
+                    </div>
+
+                    <h3>COMO FUNCIONA O PROGRAMA</h3>
+                    <p>O funcionamento do programa é simples:</p>
+                    <p>- O parceiro realiza o cadastro no programa através do formulário oficial.</p>
+                    <p>- Após validação das informações, a Raizys envia um ID de Indicador, que identifica oficialmente o
+                        parceiro no programa.</p>
+                    <p>- O parceiro poderá indicar empresas interessadas em melhorar sua gestão através do ERP Raizys.</p>
+                    <p>- Caso a empresa indicada contrate os serviços da Raizys, o parceiro recebe comissões conforme as
+                        regras deste regulamento.</p>
+
+                    <h3>REGULAMENTO DO PROGRAMA DE PARCEIROS INDICADORES</h3>
+                    <h4>RAIZYS SISTEMAS E TECNOLOGIA</h4>
+                    <p>Este Regulamento estabelece os termos e condições do Programa de Parceria por Indicação da
+                        empresa Raizys Sistemas e Tecnologia, destinado a pessoas físicas ou jurídicas interessadas em
+                        indicar potenciais clientes para contratação de seus softwares de gestão do tipo ERP.</p>
+                    <p>Ao aderir ao programa, o PARCEIRO INDICADOR declara ter lido, compreendido e aceitado
+                        integralmente as condições abaixo.</p>
+
+                    <h3>1. DAS PARTES</h3>
+                    <p>RAIZYS SISTEMAS E TECNOLOGIA, doravante denominada simplesmente RAIZYS, empresa desenvolvedora e
+                        comercializadora de software de gestão empresarial (ERP).</p>
+                    <p>E, de outro lado,</p>
+                    <p>PARCEIRO INDICADOR, pessoa física ou jurídica que aderir ao presente regulamento com a finalidade
+                        de indicar potenciais clientes à RAIZYS.</p>
+
+                    <h3>2. DO OBJETO</h3>
+                    <p>O presente regulamento tem por objeto estabelecer as condições para participação no Programa de
+                        Parceiros Indicadores da RAIZYS, mediante o qual o PARCEIRO INDICADOR poderá indicar potenciais
+                        clientes interessados na contratação do software ERP comercializado pela empresa.</p>
+                    <p>Caso a indicação resulte na efetiva contratação do serviço pelo cliente indicado, o PARCEIRO
+                        INDICADOR fará jus ao recebimento de comissão, nos termos previstos neste regulamento.</p>
+
+                    <h3>3. DA NATUREZA DA PARCERIA</h3>
+                    <p>3.1 A relação estabelecida entre a RAIZYS e o PARCEIRO INDICADOR possui natureza estritamente
+                        comercial, não gerando qualquer vínculo:</p>
+                    <p>- empregatício;</p>
+                    <p>- societário;</p>
+                    <p>- de representação comercial;</p>
+                    <p>- de franquia;</p>
+                    <p>- ou de exclusividade.</p>
+                    <p>3.2 O PARCEIRO INDICADOR atua exclusivamente como intermediador de indicação, não possuindo
+                        poderes para:</p>
+                    <p>- representar a empresa;</p>
+                    <p>- negociar valores;</p>
+                    <p>- firmar contratos em nome da RAIZYS;</p>
+                    <p>- assumir compromisos comerciais.</p>
+                    <p>3.3 Toda negociação comercial será conduzida exclusivamente pela RAIZYS.</p>
+
+                    <h3>4. DO PROCESSO DE INDICAÇÃO</h3>
+                    <p>4.1 A indicação deverá ser realizada por meio dos canais oficiais definidos pela RAIZYS.</p>
+                    <p>4.2 Considera-se válida a indicação quando:</p>
+                    <p>- o potencial cliente não estiver previamente cadastrado na base da empresa;</p>
+                    <p>- não estiver em negociação ativa com a RAIZYS;</p>
+                    <p>- e a indicação for formalizada antes do início da negociação comercial.</p>
+                    <p>4.3 A validação da indicação será realizada exclusivamente pela RAIZYS.</p>
+
+                    <h3>5. DAS COMISSÕES</h3>
+                    <p>Caso a indicação resulte em contratação do software ERP pela empresa indicada, o PARCEIRO
+                        INDICADOR terá direito às seguintes comissões:</p>
+                    <p><strong>5.1 Comissão sobre implantação</strong></p>
+                    <p>O PARCEIRO INDICADOR receberá 10% (dez por cento) sobre o valor cobrado pela RAIZYS referente à
+                        implantação do sistema.</p>
+                    <p><strong>5.2 Comissão sobre mensalidade</strong></p>
+                    <p>O PARCEIRO INDICADOR receberá 20% (vinte por cento) sobre o valor da mensalidade do contrato do
+                        cliente indicado, por tempo indeterminado, até eventual finalização do mesmo, com comunicação
+                        formal pela parte que deu causa, com 30 (trinta) dias de antecedência.</p>
+                    <p><strong>5.3 Comissão sobre pacotes adicionais</strong></p>
+                    <p>Caso o cliente indicado contrate pacotes adicionais ou serviços complementares, o PARCEIRO
+                        INDICADOR terá direito a 10% (dez por cento) sobre o valor da mensalidade referente a tais
+                        pacotes adicionais, conforme tabela oficial de pacotes adicionais atualizada.</p>
+                    <p>5.4 Os dados bancários para repasse das comissões deverão ser disponibilizados pelo PARCEIRO
+                        INDICADOR tão logo seja fechado contrato com o cliente indicado.</p>
+
+                    <h3>6. DAS CONDIÇÕES PARA PAGAMENTO DAS COMISSÕES</h3>
+                    <p>6.1 As comissões serão devidas somente após o efetivo pagamento realizado pelo cliente indicado à
+                        RAIZYS.</p>
+                    <p>6.2 Em caso de inadimplência do cliente indicado, a comissão correspondente não será devida ao
+                        PARCEIRO INDICADOR enquanto perdurar a inadimplência.</p>
+                    <p>6.3 Caso o cliente regularize o pagamento posteriormente, a comissão voltará a ser devida conforme
+                        as regras deste regulamento.</p>
+
+                    <h3>7. DO PRAZO DE REPASSE</h3>
+                    <p>7.1 Os valores devidos ao PARCEIRO INDICADOR serão pagos pela RAIZYS no prazo de até 10 (dez) dias
+                        úteis após o recebimento dos valores pagos pelo cliente indicado.</p>
+                    <p>7.2 Os pagamentos serão realizados por meio de:</p>
+                    <p>- transferência bancária;</p>
+                    <p>- PIX;</p>
+                    <p>- ou outro meio definido pela empresa.</p>
+
+                    <h3>8. DO ENCERRAMENTO DO CONTRATO DO CLIENTE INDICADO</h3>
+                    <p>8.1 Caso o contrato entre a RAIZYS e o cliente indicado seja encerrado por qualquer motivo,
+                        incluindo, mas não se limitando a:</p>
+                    <p>- cancelamento voluntário;</p>
+                    <p>- rescisão contratual;</p>
+                    <p>- inadimplência;</p>
+                    <p>- término de contrato;</p>
+                    <p>cessará imediatamente qualquer direito de comissão ao PARCEIRO INDICADOR.</p>
+                    <p>8.2 Após o encerramento do contrato com o cliente indicado, nenhum valor adicional será devido
+                        pela RAIZYS ao PARCEIRO INDICADOR.</p>
+
+                    <h3>9. DAS OBRIGAÇÕES DO PARCEIRO INDICADOR</h3>
+                    <p>O PARCEIRO INDICADOR compromete-se a:</p>
+                    <p>- I – realizar indicações de forma ética e transparente;</p>
+                    <p>- II – não prestar informações falsas ou enganosas sobre o software da RAIZYS;</p>
+                    <p>- III – não utilizar a marca da empresa sem autorização prévia;</p>
+                    <p>- IV – respeitar a legislação vigente aplicável às relações comerciais;</p>
+                    <p>- V – utilizar o painel de indicação através do portal www.raizys.com.br/indicacao , preenchendo
+                        todos os campos respectivos;</p>
+                    <p>- VI – seguir os perfis oficiais da RAIZYS nas redes sociais, onde poderão ser divulgadas
+                        informações atualizadas e materiais comerciais, sendo:</p>
+                    <p>- @raizyssistemas</p>
+                    <p>- @raizysempresarial</p>
+                    <p>- @raizysagro</p>
+                    <p>- @raizysparceiros</p>
+
+                    <h3>10. DO USO DE MARCA</h3>
+                    <p>10.1 O PARCEIRO INDICADOR não poderá utilizar a:</p>
+                    <p>- marca;</p>
+                    <p>- logotipo;</p>
+                    <p>- identidade visual;</p>
+                    <p>- material institucional;</p>
+                    <p>da RAIZYS sem autorização prévia e expressa.</p>
+
+                    <h3>11. DA CONFIDENCIALIDADE</h3>
+                    <p>O PARCEIRO INDICADOR compromete-se a manter sigilo sobre:</p>
+                    <p>- estratégias comerciais;</p>
+                    <p>- dados de clientes;</p>
+                    <p>- informações técnicas;</p>
+                    <p>- políticas internas da empresa.</p>
+                    <p>Esta obrigação permanece válida mesmo após o término da parceria.</p>
+
+                    <h3>12. DA PROTEÇÃO DE DADOS (LGPD)</h3>
+                    <p>12.1 As partes comprometem-se a cumprir integralmente a Lei nº 13.709/2018 – Lei Geral de
+                        Proteção de Dados (LGPD).</p>
+                    <p>12.2 O PARCEIRO INDICADOR declara que possui autorização para compartilhar os dados do cliente
+                        indicado.</p>
+
+                    <h3>13. DA VIGÊNCIA E RESCISÃO</h3>
+                    <p>13.1 Este regulamento entra em vigor na data da adesão do PARCEIRO INDICADOR.</p>
+                    <p>13.2 O não cumprimento do acordo poderá encerrar a parceria mediante comunicação prévia.</p>
+                    <p>13.3 A RAIZYS poderá, mediante comunicação prévia, suspender ou encerrar total ou parcialmente o
+                        Programa de Indicação em caso de força maior ou caso fortuito, bem como diante de situações que
+                        impactem a continuidade operacional, a estabilidade financeira ou o modelo de negócios da
+                        empresa.</p>
+                    <p>Nessa hipótese, serão devidas ao PARCEIRO INDICADOR exclusivamente as comissões relativas a
+                        valores efetivamente recebidos pela RAIZYS até a data da comunicação de encerramento, não sendo
+                        devidos pagamentos futuros, expectativas de ganho, indenizações, compensações ou multas.</p>
+
+                    <h3>14. DAS ALTERAÇÕES DO REGULAMENTO</h3>
+                    <p>A RAIZYS poderá alterar este regulamento a qualquer momento, mediante comunicação aos parceiros
+                        participantes.</p>
+
+                    <h3>15. DAS DISPOSIÇÕES GERAIS</h3>
+                    <p>15.1 A participação no programa implica aceitação integral deste regulamento.</p>
+                    <p>15.2 Eventuais omissões serão resolvidas pela RAIZYS com base na legislação vigente.</p>
+
+                    <h3>16. DO FORO</h3>
+                    <p>Fica eleito o foro da comarca da sede da RAIZYS, com renúncia de qualquer outro, por mais
+                        privilegiado que seja, para dirimir eventuais controvérsias decorrentes deste regulamento.</p>
+                </div>
+            </div>
+            <div class="terms-card-footer">
+                <p class="terms-scroll-notice" id="scrollNotice"><i class="fas fa-info-circle"></i> Leia todo o
+                    regulamento para habilitar o aceite</p>
+                <div class="terms-checkbox-row">
+                    <input type="checkbox" id="termsCheckbox" disabled>
+                    <label for="termsCheckbox">Declaro que li e concordo integralmente com o Regulamento do Programa de
+                        Parceiros Indicadores da RAIZYS Sistemas e Tecnologia.</label>
+                </div>
+                <button class="terms-continue-btn" id="termsContinueBtn" disabled>
+                    <i class="fas fa-arrow-right"></i> Continuar para o Cadastro
+                </button>
+            </div>
+        </div>
+    </div>
+    <main>
+        <section class="page-hero">
+            <div class="hero-content-center">
+                <h1>Parceiro Indicador</h1>
+                <p>Faça parte do ecossistema de parceiros Raizys e indique empresas para o SAP</p>
+            </div>
+        </section>
+        <section class="partner-form-section">
+            <div class="partner-form-container">
+                <div id="formWrapper">
+                    <div class="partner-badge">
+                        <i class="fas fa-handshake"></i> Programa de Parceiros Raizys
+                    </div>
+                    <h2>Cadastro de Parceiro Indicador</h2>
+                    <p class="sub">Preencha os dados abaixo para se cadastrar no nosso programa. Após o envio, você
+                        receberá um e-mail de confirmação com suas informações.</p>
+
+                    <div class="benefits-strip">
+                        <div class="benefit-item"><i class="fas fa-check-circle"></i> Indicações Remuneradas</div>
+                        <div class="benefit-item"><i class="fas fa-check-circle"></i> Suporte Dedicado</div>
+                        <div class="benefit-item"><i class="fas fa-check-circle"></i> Parceria SAP</div>
+                    </div>
+
+                    <form id="partnerForm" action="send_mail.php" method="POST">
+                        <input type="hidden" name="_subject" value="Novo Cadastro de Parceiro Indicador - Raizys">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+                        <input type="hidden" name="_autoresponse"
+                            value="Olá! Confirmamos que recebemos seu cadastro de Parceiro Indicador com sucesso. Seus dados já estão em análise por nossa equipe. Em breve entraremos em contato. Atenciosamente, Equipe Raizys.">
+
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="nome_razao">Nome Completo / Razão Social <span class="req">*</span></label>
+                                <input type="text" id="nome_razao" name="nome_razao_social"
+                                    placeholder="Ex: João Silva ou Empresa Ltda." required>
+                            </div>
+                            <div class="form-field">
+                                <label for="cpf_cnpj">CPF / CNPJ <span class="req">*</span></label>
+                                <input type="text" id="cpf_cnpj" name="cpf_cnpj"
+                                    placeholder="000.000.000-00 ou 00.000.000/0000-00" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="email_contato">E-mail de Contato <span class="req">*</span></label>
+                                <input type="email" id="email_contato" name="email" placeholder="seu@email.com.br"
+                                    required>
+                            </div>
+                            <div class="form-field">
+                                <label for="telefone">Telefone / WhatsApp <span class="req">*</span></label>
+                                <input type="tel" id="telefone" name="telefone_whatsapp" placeholder="(11) 99999-9999"
+                                    required>
+                            </div>
+                            <div class="form-field">
+                                <label for="endereco">Endereço Completo <span class="req">*</span></label>
+                                <textarea id="endereco" name="endereco_completo"
+                                    placeholder="Rua, número, bairro, cidade, estado, CEP" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-partner-btn" id="partnerSubmitBtn">
+                            <i class="fas fa-paper-plane"></i> Enviar Cadastro
+                        </button>
+                    </form>
+                </div>
+
+                <div class="success-box" id="successBox">
+                    <div class="success-icon-big"><i class="fas fa-check-circle"></i></div>
+                    <h3>Cadastro Enviado com Sucesso!</h3>
+                    <p>Seu cadastro como Parceiro Indicador foi recebido pela equipe Raizys.</p>
+                    <p>Um e-mail de confirmação foi enviado para <span class="email-highlight"
+                            id="confirmedEmail"></span>. Verifique também sua caixa de spam.</p>
+                    <p style="margin-top: 20px; color: #888; font-size: 0.9rem;">Nossa equipe entrará em contato em
+                        breve para dar continuidade ao seu cadastro.</p>
+                    <a href="home" class="cta-button" style="display:inline-block; margin-top: 30px;">Voltar ao
+                        Início</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="home">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
+                </a>
+                <p>Consultoria especializada em implantação de sistemas empresariais.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
+                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11 5026-4939</a></p>
+                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
+                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt" style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83 - Vila Rica, Guaxupé - MG, 37800-000</span></p>
+                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i> <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves, 759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="sobre-nos">Sobre Nós</a></li>
+                    <li><a href="trabalhe-conosco">Trabalhe conosco</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Termos</h4>
+                <ul>
+                    <li><a href="termos-condicoes">Termos e Condições</a></li>
+                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
+                    <li><a href="indicacao">Cadastrar Indicação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="contato">Fale Conosco</a></li>
+                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        
+        (function () {
+            const overlay = document.getElementById('termsOverlay');
+            const content = document.getElementById('termsContent');
+            const scrollNotice = document.getElementById('scrollNotice');
+            const checkbox = document.getElementById('termsCheckbox');
+            const continueBtn = document.getElementById('termsContinueBtn');
+            const formWrapper = document.getElementById('formWrapper');
+
+            
+            formWrapper.style.display = 'none';
+            document.body.classList.add('no-scroll');
+
+            
+            overlay.addEventListener('wheel', function (e) {
+                
+                if (!content.contains(e.target) && e.target !== content) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            
+            let hasReachedBottom = false;
+            content.addEventListener('scroll', function () {
+                const threshold = 50;
+                const atBottom = (content.scrollHeight - content.scrollTop - content.clientHeight) < threshold;
+                if (atBottom && !hasReachedBottom) {
+                    hasReachedBottom = true;
+                    checkbox.disabled = false;
+                    scrollNotice.classList.add('hidden');
+                }
+            });
+
+            
+            checkbox.addEventListener('change', function () {
+                continueBtn.disabled = !this.checked;
+            });
+
+            
+            continueBtn.addEventListener('click', function () {
+                overlay.classList.add('hidden');
+                formWrapper.style.display = 'block';
+                document.body.classList.remove('no-scroll');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            
+            const closeBtn = document.getElementById('termsCloseBtn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    window.location.href = 'home';
+                });
+            }
+        })();
+
+        
+        const phoneInput = document.getElementById('telefone');
+        phoneInput.addEventListener('input', function (e) {
+            let val = e.target.value.replace(/\D/g, ''); 
+            if (val.length > 11) val = val.substring(0, 11);
+
+            let formatted = val;
+            if (val.length > 2) {
+                formatted = '(' + val.substring(0, 2) + ') ' + val.substring(2);
+            }
+            if (val.length > 6) {
+                if (val.length === 11) {
+                    formatted = '(' + val.substring(0, 2) + ') ' + val.substring(2, 7) + '-' + val.substring(7);
+                } else {
+                    formatted = '(' + val.substring(0, 2) + ') ' + val.substring(2, 6) + '-' + val.substring(6);
+                }
+            }
+            e.target.value = formatted;
+        });
+
+        
+        const partnerForm = document.getElementById('partnerForm');
+        const partnerSubmitBtn = document.getElementById('partnerSubmitBtn');
+        const formWrapper = document.getElementById('formWrapper');
+        const successBox = document.getElementById('successBox');
+        const confirmedEmail = document.getElementById('confirmedEmail');
+
+        partnerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            
+            const phoneVal = phoneInput.value.replace(/\D/g, '');
+            if (phoneVal.length < 10) {
+                alert('Por favor, insira um número de telefone válido com DDD (mínimo 10 dígitos).');
+                phoneInput.focus();
+                return;
+            }
+
+            const emailVal = document.getElementById('email_contato').value;
+            const originalText = partnerSubmitBtn.innerHTML;
+            partnerSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            partnerSubmitBtn.disabled = true;
+
+            
+            const replyToInput = document.createElement('input');
+            replyToInput.type = 'hidden';
+            replyToInput.name = 'replyto';
+            replyToInput.value = emailVal;
+            partnerForm.appendChild(replyToInput);
+
+            const formData = new FormData(partnerForm);
+            const maxRetries = 2;
+            let attempt = 0;
+            let success = false;
+
+            while (attempt <= maxRetries && !success) {
+                try {
+                    if (attempt > 0) {
+                        partnerSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Tentativa ' + (attempt + 1) + '...';
+                        await new Promise(r => setTimeout(r, 2000));
+                    }
+                    let response = await fetch(partnerForm.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let result = await response.json().catch(() => ({}));
+                    if (!result.success || result.success === 'false') {
+                        response = await fetch('https://formsubmit.co/ajax/diego.caselato@raizys.com.br', {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        result = await response.json().catch(() => ({}));
+                    }
+                    if (result.success === true || result.success === 'true') {
+                        success = true;
+                        confirmedEmail.textContent = emailVal;
+                        formWrapper.style.display = 'none';
+                        successBox.style.display = 'block';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        setTimeout(() => { window.location.href = 'home'; }, 30000);
+                    } else {
+                        attempt++;
+                        if (attempt > maxRetries) {
+                            alert(result.message || 'O serviço de envio está temporariamente indisponível. Tente novamente em alguns minutos ou entre em contato via WhatsApp: (11) 5026-4939');
+                            partnerSubmitBtn.innerHTML = originalText;
+                            partnerSubmitBtn.disabled = false;
+                        }
+                    }
+                } catch (err) {
+                    attempt++;
+                    if (attempt > maxRetries) {
+                        alert('Não foi possível conectar ao servidor de envio. O serviço pode estar temporariamente fora do ar. Tente novamente em alguns minutos ou entre em contato via WhatsApp: (11) 5026-4939');
+                        partnerSubmitBtn.innerHTML = originalText;
+                        partnerSubmitBtn.disabled = false;
+                    }
+                }
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+    <script src="header.js?v=5.0"></script>
+</body>
+
+</html>
+

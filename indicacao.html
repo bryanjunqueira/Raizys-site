@@ -1,0 +1,635 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Indicação - Raizys</title>
+    <meta name="description"
+        content="Cadastre uma indicação de empresa para o ecossistema SAP Raizys e acompanhe seu protocolo.">
+    <link rel="icon" type="image/png"
+        href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
+    <link rel="stylesheet" href="style.css?v=7.0">
+    <link rel="stylesheet" href="header.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .indicacao-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #2c5f8a, #3a7bbf);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .indicacao-form-section {
+            padding: 60px 20px;
+            background: #f8faf7;
+            min-height: 60vh;
+        }
+
+        .indicacao-form-container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 4px 30px rgba(74, 109, 60, 0.08);
+            border: 1px solid rgba(74, 109, 60, 0.1);
+        }
+
+        .indicacao-form-container h2 {
+            font-size: 1.8rem;
+            color: #1a3c25;
+            margin-bottom: 8px;
+        }
+
+        .indicacao-form-container p.sub {
+            color: #666;
+            margin-bottom: 36px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .form-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-grid-1col {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-field label {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #2d4a20;
+            letter-spacing: 0.3px;
+        }
+
+        .form-field label span.req {
+            color: #c0392b;
+            margin-left: 2px;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            padding: 13px 16px;
+            border: 1.5px solid #d8e8d0;
+            border-radius: 10px;
+            font-size: 0.97rem;
+            color: #333;
+            font-family: 'Outfit', sans-serif;
+            background: #fafff8;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus {
+            border-color: #4a6d3c;
+            box-shadow: 0 0 0 3px rgba(74, 109, 60, 0.12);
+            background: white;
+        }
+
+        .form-field select {
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a6d3c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        .submit-indicacao-btn {
+            margin-top: 30px;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4a6d3c, #3a5a2f);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .submit-indicacao-btn:hover {
+            background: linear-gradient(135deg, #3a5a2f, #2d4822);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(74, 109, 60, 0.3);
+        }
+
+        .submit-indicacao-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        
+        .success-protocolo-box {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-protocolo-box .success-icon-big {
+            font-size: 3.5rem;
+            color: #4a6d3c;
+            margin-bottom: 16px;
+        }
+
+        .success-protocolo-box h3 {
+            font-size: 1.5rem;
+            color: #1a3c25;
+            margin-bottom: 10px;
+        }
+
+        .protocolo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a3c25, #4a6d3c);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 16px;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin: 20px 0 30px;
+            box-shadow: 0 8px 30px rgba(74, 109, 60, 0.3);
+            font-family: 'Outfit', monospace;
+        }
+
+        .protocolo-badge small {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+
+        .success-protocolo-box p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 10px;
+        }
+
+        .loading-overlay {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            padding: 12px;
+            background: #f0f8f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            color: #4a6d3c;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        @media (max-width: 640px) {
+            .indicacao-form-container {
+                padding: 30px 20px;
+            }
+
+            .form-grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="theme-light-hero">
+        <!-- ===== TOPBAR ===== -->
+    <div class="rz-topbar">
+        <div class="rz-topbar-inner">
+            <div class="rz-topbar-socials">
+                <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn" class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube" class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING GLASS HEADER (Sankhya Style) ===== -->
+    <div class="rz-header-wrapper">
+        <header class="rz-header" id="rz-header">
+            <div class="rz-header-inner">
+                <a href="home" class="rz-logo">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys Logo">
+                </a>
+                <nav class="rz-nav">
+                    <div class="rz-nav-link rz-nav-solutions-trigger">
+                        <span>Solu&#231;&#245;es</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="sobre-nos" class="rz-nav-link" data-page="sobre-nos">Sobre</a>
+                    <a href="contato" class="rz-nav-link" data-page="contato">Contato</a>
+                    <div class="rz-nav-link rz-nav-partners-trigger">
+                        <span>Parceiros</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="trabalhe-conosco" class="rz-nav-link" data-page="trabalhe-conosco">Trabalhe Conosco</a>
+                </nav>
+                <a href="contato" class="rz-header-cta">VAMOS CONVERSAR</a>
+                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+
+            <!-- MEGA-MENU SOLUÃ‡Ã•ES (Dropdown with Sector Raizys Logos) -->
+            <div class="rz-solutions-mega">
+                <div class="rz-mega-title">Nossas Solu&#231;&#245;es Corporativas</div>
+                <div class="rz-mega-grid">
+                    <a href="web" class="rz-mega-card" data-solution="web">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Web" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Web Empresarial</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o completa de processos e ERP para m&#233;dias empresas.</div>
+                        </div>
+                    </a>
+                    <a href="agro" class="rz-mega-card" data-solution="agro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="Agro" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agro &amp; Campo</div>
+                            <div class="rz-mega-card-desc">Controle de safra, insumos e rastreabilidade no campo.</div>
+                        </div>
+                    </a>
+                    <a href="food" class="rz-mega-card" data-solution="food">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-orange.png" alt="Food" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Food Service</div>
+                            <div class="rz-mega-card-desc">Automa&#231;&#227;o de restaurantes, cozinhas e franquias.</div>
+                        </div>
+                    </a>
+                    <a href="clinicas" class="rz-mega-card" data-solution="clinicas">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Cl&#237;nicas" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cl&#237;nicas &amp; Sa&#250;de</div>
+                            <div class="rz-mega-card-desc">Agendamento, prontu&#225;rio e gest&#227;o m&#233;dica integrada.</div>
+                        </div>
+                    </a>
+                    <a href="pet" class="rz-mega-card" data-solution="pet">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-yellow.png" alt="Pet" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Pet &amp; Vet</div>
+                            <div class="rz-mega-card-desc">Controle de banho e tosa, veterin&#225;ria e pet shop.</div>
+                        </div>
+                    </a>
+                    <a href="agenda" class="rz-mega-card" data-solution="agenda">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-dark.png" alt="Agenda" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agenda Inteligente</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o de hor&#225;rios, servi&#231;os e lembretes autom&#225;ticos.</div>
+                        </div>
+                    </a>
+                    <a href="sap" class="rz-mega-card" data-solution="sap">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="SAP" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Consultoria SAP</div>
+                            <div class="rz-mega-card-desc">Implanta&#231;&#227;o, migra&#231;&#227;o e governan&#231;a SAP B1 / S4 HANA.</div>
+                        </div>
+                    </a>
+                    <a href="izys" class="rz-mega-card" data-solution="izys">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="fotos/Isys - Logo 3.png" alt="IZYS AI CRM" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">IZYS AI CRM</div>
+                            <div class="rz-mega-card-desc">Atendimento, CRM, automa&#231;&#245;es e Agentes de IA em um &#250;nico lugar.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- MEGA-MENU PARCEIROS (Dropdown) -->
+            <div class="rz-partners-mega">
+                <div class="rz-mega-title">Programa de Parceiros</div>
+                <div class="rz-partners-grid">
+                    <a href="indicacao" class="rz-mega-card" data-partner="indicacao">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Indicação" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cadastrar Indica&#231;&#227;o</div>
+                            <div class="rz-mega-card-desc">Indique uma empresa e acompanhe o status da sua indica&#231;&#227;o.</div>
+                        </div>
+                    </a>
+                    <a href="parceiro-indicador" class="rz-mega-card" data-partner="parceiro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Parceiro Indicador" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Parceiro Indicador</div>
+                            <div class="rz-mega-card-desc">Seja um parceiro indicador oficial e amplie seus ganhos.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="rz-mega-overlay"></div>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="rz-mobile-overlay"></div>
+    <div class="rz-mobile-drawer">
+        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Navega&#231;&#227;o</div>
+            <a href="sobre-nos" class="rz-mobile-link" data-page="sobre-nos"><i class="fas fa-info-circle"></i> Sobre N&#243;s</a>
+            <a href="contato" class="rz-mobile-link" data-page="contato"><i class="fas fa-envelope"></i> Contato</a>
+            <a href="indicacao" class="rz-mobile-link" data-page="indicacao"><i class="fas fa-user-plus"></i> Cadastrar Indica&#231;&#227;o</a>
+            <a href="parceiro-indicador" class="rz-mobile-link" data-page="parceiro-indicador"><i class="fas fa-handshake"></i> Parceiro Indicador</a>
+            <a href="trabalhe-conosco" class="rz-mobile-link" data-page="trabalhe-conosco"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Solu&#231;&#245;es Corporativas</div>
+            <a href="web" class="rz-mobile-link" data-page="web"><img src="assets/shield-blue.png" alt="Raizys"> Web Empresarial</a>
+            <a href="agro" class="rz-mobile-link" data-page="agro"><img src="assets/shield-green.png" alt="Raizys"> Agro &amp; Campo</a>
+            <a href="food" class="rz-mobile-link" data-page="food"><img src="assets/shield-orange.png" alt="Raizys"> Food Service</a>
+            <a href="clinicas" class="rz-mobile-link" data-page="clinicas"><img src="assets/shield-blue.png" alt="Raizys"> Cl&#237;nicas &amp; Sa&#250;de</a>
+            <a href="pet" class="rz-mobile-link" data-page="pet"><img src="assets/shield-yellow.png" alt="Raizys"> Pet &amp; Vet</a>
+            <a href="agenda" class="rz-mobile-link" data-page="agenda"><img src="assets/shield-dark.png" alt="Raizys"> Agenda Inteligente</a>
+            <a href="sap" class="rz-mobile-link" data-page="sap"><img src="assets/shield-green.png" alt="Raizys"> Consultoria SAP</a>
+            <a href="izys" class="rz-mobile-link" data-page="izys"><img src="fotos/Isys - Logo 3.png" alt="IZYS" style="height:18px;width:auto;"> IZYS AI CRM</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <a href="contato" class="rz-header-cta" style="width:100%;justify-content:center;margin:0;margin-top:8px;">VAMOS CONVERSAR</a>
+        </div>
+    </div>
+    
+    <main>
+        <section class="page-hero">
+            <div class="hero-content-center">
+                <h1>Cadastrar Indicação</h1>
+                <p>Indique uma empresa para o ecossistema SAP e acompanhe seu protocolo de indicação</p>
+            </div>
+        </section>
+        <section class="indicacao-form-section">
+            <div class="indicacao-form-container">
+                <div id="formWrapperIndicacao">
+                    <div class="indicacao-badge">
+                        <i class="fas fa-share-alt"></i> Indicação de Parceiro
+                    </div>
+                    <h2>Formulário de Cadastro de Indicação</h2>
+                    <p class="sub">Preencha os dados da empresa que você está indicando. Ao finalizar, você receberá um
+                        número de protocolo único para acompanhamento.</p>
+
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <i class="fas fa-spinner fa-spin"></i> Processando sua indicação...
+                    </div>
+
+                    <form id="indicacaoForm" action="send_mail.php" method="POST">
+                        <input type="hidden" name="_subject" value="Nova Indicação de Parceiro - Raizys">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+                        <input type="hidden" name="_autoresponse" value="Olá! Confirmamos que sua indicação foi recebida com sucesso. Seu protocolo de indicação já está em análise pela nossa equipe. Em breve entraremos em contato. Atenciosamente, Equipe Raizys.">
+                        <input type="hidden" name="numero_protocolo" id="hiddenProtocolo" value="">
+
+                        <div class="form-grid-2col">
+                            <div class="form-field">
+                                <label for="id_parceiro">ID de Parceiro <span class="req">*</span></label>
+                                <input type="text" id="id_parceiro" name="id_parceiro" placeholder="Seu ID de Parceiro"
+                                    required>
+                            </div>
+                            <div class="form-field">
+                                <label for="cnpj_cpf_indicacao">CNPJ / CPF da Indicação <span
+                                        class="req">*</span></label>
+                                <input type="text" id="cnpj_cpf_indicacao" name="cnpj_cpf_indicacao"
+                                    placeholder="00.000.000/0000-00" required>
+                            </div>
+                            <div class="form-field full-width">
+                                <label for="nome_indicacao">Nome / Razão Social da Indicação <span
+                                        class="req">*</span></label>
+                                <input type="text" id="nome_indicacao" name="nome_razao_indicacao"
+                                    placeholder="Nome completo ou razão social da empresa indicada" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="email_indicacao">E-mail <span class="req">*</span></label>
+                                <input type="email" id="email_indicacao" name="email"
+                                    placeholder="email@empresa.com.br" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="telefone_indicacao">Telefone / WhatsApp <span class="req">*</span></label>
+                                <input type="tel" id="telefone_indicacao" name="telefone_whatsapp_indicacao"
+                                    placeholder="(11) 99999-9999" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="nome_decisor">Nome do Contato ou Decisor <span class="req">*</span></label>
+                                <input type="text" id="nome_decisor" name="nome_contato_decisor"
+                                    placeholder="Nome do responsável pela decisão" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="ferramenta_interesse">Qual ferramenta tem interesse? <span
+                                        class="req">*</span></label>
+                                <select id="ferramenta_interesse" name="ferramenta_interesse" required>
+                                    <option value="" disabled selected>Selecione uma ferramenta...</option>
+                                    <option value="IZYS AI CRM">IZYS AI CRM &amp; Atendimento IA</option>
+                                    <option value="RAIZYS EMPRESARIAL">RAIZYS WEB</option>
+                                    <option value="RAIZYS AGRO">RAIZYS AGRO</option>
+                                    <option value="RAIZYS CLÍNICAS">RAIZYS CLÍNICAS</option>
+                                    <option value="SAP">CONSULTORIA SAP</option>
+                                    <option value="Outro / Ainda não sei">Outro / Ainda não sei</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-indicacao-btn" id="indicacaoSubmitBtn">
+                            <i class="fas fa-share-alt"></i> Enviar Indicação
+                        </button>
+                    </form>
+                </div>
+
+                
+                <div class="success-protocolo-box" id="successProtocoloBox">
+                    <div class="success-icon-big"><i class="fas fa-check-circle"></i></div>
+                    <h3>Indicação Enviada com Sucesso!</h3>
+                    <div class="protocolo-badge">
+                        <small>SEU PROTOCOLO</small>
+                        <span id="protocoloNumero">#1</span>
+                    </div>
+                    <p>Guarde este número! Ele identifica sua indicação em nosso sistema e é necessário para qualquer
+                        consulta futura.</p>
+                    <p style="color:#888; font-size:0.88rem; margin-top: 10px;">Nossa equipe entrará em contato com a
+                        empresa indicada em breve.</p>
+                    <a href="home" class="cta-button" style="display:inline-block; margin-top: 30px;">Voltar ao
+                        Início</a>
+                    <a href="indicacao" class="cta-button"
+                        style="display:inline-block; margin-top: 10px; background: transparent; border: 2px solid #4a6d3c; color: #4a6d3c;">Nova
+                        Indicação</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="home">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
+                </a>
+                <p>Consultoria especializada em implantação de sistemas empresariais.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
+                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11 5026-4939</a></p>
+                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
+                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt" style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83 - Vila Rica, Guaxupé - MG, 37800-000</span></p>
+                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i> <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves, 759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="sobre-nos">Sobre Nós</a></li>
+                    <li><a href="trabalhe-conosco">Trabalhe conosco</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Termos</h4>
+                <ul>
+                    <li><a href="termos-condicoes">Termos e Condições</a></li>
+                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
+                    <li><a href="indicacao">Cadastrar Indicação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="contato">Fale Conosco</a></li>
+                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        const indicacaoForm = document.getElementById('indicacaoForm');
+        const indicacaoSubmitBtn = document.getElementById('indicacaoSubmitBtn');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const successProtocoloBox = document.getElementById('successProtocoloBox');
+        const formWrapperIndicacao = document.getElementById('formWrapperIndicacao');
+        const protocoloNumero = document.getElementById('protocoloNumero');
+        const hiddenProtocolo = document.getElementById('hiddenProtocolo');
+
+        // Generate Protocol Number
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const protocolStr = '#RZ-' + randomNum;
+        if (hiddenProtocolo) hiddenProtocolo.value = protocolStr;
+
+        if (indicacaoForm) {
+            indicacaoForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const originalText = indicacaoSubmitBtn.innerHTML;
+                indicacaoSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                indicacaoSubmitBtn.disabled = true;
+                if (loadingOverlay) loadingOverlay.classList.add('active');
+
+                const formData = new FormData(indicacaoForm);
+                try {
+                    let response = await fetch(indicacaoForm.action, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let result = await response.json().catch(() => ({}));
+                    if (!result.success || result.success === 'false') {
+                        response = await fetch('https://formsubmit.co/ajax/diego.caselato@raizys.com.br', {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        result = await response.json().catch(() => ({}));
+                    }
+                    if (result.success === true || result.success === 'true') {
+                        if (protocoloNumero) protocoloNumero.textContent = protocolStr;
+                        if (formWrapperIndicacao) formWrapperIndicacao.style.display = 'none';
+                        if (loadingOverlay) loadingOverlay.classList.remove('active');
+                        if (successProtocoloBox) successProtocoloBox.style.display = 'block';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                        setTimeout(() => {
+                            window.location.href = 'home';
+                        }, 30000);
+                    } else {
+                        throw new Error(result.message || 'Form submission failed');
+                    }
+                } catch (err) {
+                    console.error('Error:', err);
+                    if (loadingOverlay) loadingOverlay.classList.remove('active');
+                    alert('Ocorreu um erro ao enviar. Por favor, tente novamente ou entre em contato via WhatsApp.');
+                    indicacaoSubmitBtn.innerHTML = originalText;
+                    indicacaoSubmitBtn.disabled = false;
+                }
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+    <script src="header.js?v=5.0"></script>
+</body>
+
+</html>
+

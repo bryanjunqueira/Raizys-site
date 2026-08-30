@@ -1,0 +1,669 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Estratégico - Raizys</title>
+    <meta name="description"
+        content="Raizys: Diagnóstico Estratégico de Gestão para empresas que buscam crescimento estruturado com SAP.">
+    <link rel="icon" type="image/png"
+        href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
+    <link rel="stylesheet" href="style.css?v=7.0">
+    <link rel="stylesheet" href="header.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="contact-page theme-light-hero">
+        <!-- ===== TOPBAR ===== -->
+    <div class="rz-topbar">
+        <div class="rz-topbar-inner">
+            <div class="rz-topbar-socials">
+                <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn" class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube" class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING GLASS HEADER (Sankhya Style) ===== -->
+    <div class="rz-header-wrapper">
+        <header class="rz-header" id="rz-header">
+            <div class="rz-header-inner">
+                <a href="home" class="rz-logo">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys Logo">
+                </a>
+                <nav class="rz-nav">
+                    <div class="rz-nav-link rz-nav-solutions-trigger">
+                        <span>Solu&#231;&#245;es</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="sobre-nos" class="rz-nav-link" data-page="sobre-nos">Sobre</a>
+                    <a href="contato" class="rz-nav-link" data-page="contato">Contato</a>
+                    <div class="rz-nav-link rz-nav-partners-trigger">
+                        <span>Parceiros</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="trabalhe-conosco" class="rz-nav-link" data-page="trabalhe-conosco">Trabalhe Conosco</a>
+                </nav>
+                <a href="contato" class="rz-header-cta">VAMOS CONVERSAR</a>
+                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+
+            <!-- MEGA-MENU SOLUÃ‡Ã•ES (Dropdown with Sector Raizys Logos) -->
+            <div class="rz-solutions-mega">
+                <div class="rz-mega-title">Nossas Solu&#231;&#245;es Corporativas</div>
+                <div class="rz-mega-grid">
+                    <a href="web" class="rz-mega-card" data-solution="web">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Web" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Web Empresarial</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o completa de processos e ERP para m&#233;dias empresas.</div>
+                        </div>
+                    </a>
+                    <a href="agro" class="rz-mega-card" data-solution="agro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="Agro" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agro &amp; Campo</div>
+                            <div class="rz-mega-card-desc">Controle de safra, insumos e rastreabilidade no campo.</div>
+                        </div>
+                    </a>
+                    <a href="food" class="rz-mega-card" data-solution="food">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-orange.png" alt="Food" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Food Service</div>
+                            <div class="rz-mega-card-desc">Automa&#231;&#227;o de restaurantes, cozinhas e franquias.</div>
+                        </div>
+                    </a>
+                    <a href="clinicas" class="rz-mega-card" data-solution="clinicas">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Cl&#237;nicas" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cl&#237;nicas &amp; Sa&#250;de</div>
+                            <div class="rz-mega-card-desc">Agendamento, prontu&#225;rio e gest&#227;o m&#233;dica integrada.</div>
+                        </div>
+                    </a>
+                    <a href="pet" class="rz-mega-card" data-solution="pet">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-yellow.png" alt="Pet" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Pet &amp; Vet</div>
+                            <div class="rz-mega-card-desc">Controle de banho e tosa, veterin&#225;ria e pet shop.</div>
+                        </div>
+                    </a>
+                    <a href="agenda" class="rz-mega-card" data-solution="agenda">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-dark.png" alt="Agenda" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agenda Inteligente</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o de hor&#225;rios, servi&#231;os e lembretes autom&#225;ticos.</div>
+                        </div>
+                    </a>
+                    <a href="sap" class="rz-mega-card" data-solution="sap">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="SAP" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Consultoria SAP</div>
+                            <div class="rz-mega-card-desc">Implanta&#231;&#227;o, migra&#231;&#227;o e governan&#231;a SAP B1 / S4 HANA.</div>
+                        </div>
+                    </a>
+                    <a href="izys" class="rz-mega-card" data-solution="izys">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="fotos/Isys - Logo 3.png" alt="IZYS AI CRM" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">IZYS AI CRM</div>
+                            <div class="rz-mega-card-desc">Atendimento, CRM, automa&#231;&#245;es e Agentes de IA em um &#250;nico lugar.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- MEGA-MENU PARCEIROS (Dropdown) -->
+            <div class="rz-partners-mega">
+                <div class="rz-mega-title">Programa de Parceiros</div>
+                <div class="rz-partners-grid">
+                    <a href="indicacao" class="rz-mega-card" data-partner="indicacao">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Indicação" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cadastrar Indica&#231;&#227;o</div>
+                            <div class="rz-mega-card-desc">Indique uma empresa e acompanhe o status da sua indica&#231;&#227;o.</div>
+                        </div>
+                    </a>
+                    <a href="parceiro-indicador" class="rz-mega-card" data-partner="parceiro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Parceiro Indicador" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Parceiro Indicador</div>
+                            <div class="rz-mega-card-desc">Seja um parceiro indicador oficial e amplie seus ganhos.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="rz-mega-overlay"></div>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="rz-mobile-overlay"></div>
+    <div class="rz-mobile-drawer">
+        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Navega&#231;&#227;o</div>
+            <a href="sobre-nos" class="rz-mobile-link" data-page="sobre-nos"><i class="fas fa-info-circle"></i> Sobre N&#243;s</a>
+            <a href="contato" class="rz-mobile-link" data-page="contato"><i class="fas fa-envelope"></i> Contato</a>
+            <a href="indicacao" class="rz-mobile-link" data-page="indicacao"><i class="fas fa-user-plus"></i> Cadastrar Indica&#231;&#227;o</a>
+            <a href="parceiro-indicador" class="rz-mobile-link" data-page="parceiro-indicador"><i class="fas fa-handshake"></i> Parceiro Indicador</a>
+            <a href="trabalhe-conosco" class="rz-mobile-link" data-page="trabalhe-conosco"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Solu&#231;&#245;es Corporativas</div>
+            <a href="web" class="rz-mobile-link" data-page="web"><img src="assets/shield-blue.png" alt="Raizys"> Web Empresarial</a>
+            <a href="agro" class="rz-mobile-link" data-page="agro"><img src="assets/shield-green.png" alt="Raizys"> Agro &amp; Campo</a>
+            <a href="food" class="rz-mobile-link" data-page="food"><img src="assets/shield-orange.png" alt="Raizys"> Food Service</a>
+            <a href="clinicas" class="rz-mobile-link" data-page="clinicas"><img src="assets/shield-blue.png" alt="Raizys"> Cl&#237;nicas &amp; Sa&#250;de</a>
+            <a href="pet" class="rz-mobile-link" data-page="pet"><img src="assets/shield-yellow.png" alt="Raizys"> Pet &amp; Vet</a>
+            <a href="agenda" class="rz-mobile-link" data-page="agenda"><img src="assets/shield-dark.png" alt="Raizys"> Agenda Inteligente</a>
+            <a href="sap" class="rz-mobile-link" data-page="sap"><img src="assets/shield-green.png" alt="Raizys"> Consultoria SAP</a>
+            <a href="izys" class="rz-mobile-link" data-page="izys"><img src="fotos/Isys - Logo 3.png" alt="IZYS" style="height:18px;width:auto;"> IZYS AI CRM</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <a href="contato" class="rz-header-cta" style="width:100%;justify-content:center;margin:0;margin-top:8px;">VAMOS CONVERSAR</a>
+        </div>
+    </div>
+    
+    <main>
+        <section class="diagnostic-section">
+            <div class="diagnostic-container">
+                <div class="diagnostic-header">
+                    <span class="lead"><i class="fas fa-chart-line"></i> Diagnóstico Estratégico de Gestão</span>
+                    
+                </div>
+                <div class="diagnostic-wizard">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <form id="diagnosticForm" action="send_mail.php" method="POST">
+                        <input type="hidden" name="_next" value="https://raizys.com/obrigado">
+                        <input type="hidden" name="_subject" value="Novo Diagnóstico de Contato - RAIZYS">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+                        <input type="hidden" name="_autoresponse" value="Olá! Confirmamos que recebemos suas informações com sucesso. Seu formulário foi recebido pela equipe da Raizys e já está em análise. Em breve um de nossos consultores entrará em contato. Atenciosamente, Equipe Raizys.">
+
+                        <!-- INTRO / STEP 1 -->
+                        <div class="form-step active" data-step="1">
+                            <div class="step-info" style="text-align: center; padding: 20px 0;">
+                                <div class="info-icon" style="font-size: 3rem; color: #4a6d3c; margin-bottom: 20px;">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: #1a3c25; font-weight: 700;">Leva menos de 2 minutos</h3>
+                                <p style="font-size: 1.15rem; line-height: 1.6; color: #475569; max-width: 680px; margin: 0 auto 30px auto;">
+                                    Responda algumas perguntas rápidas para entendermos como sua empresa opera hoje e identificar oportunidades para tornar sua gestão mais eficiente. Com essas informações, um especialista da Raizys poderá indicar a solução mais adequada para o seu negócio.
+                                </p>
+                                <div class="step-nav" style="justify-content: center;">
+                                    <button type="button" class="next-btn cta-button" style="padding: 14px 36px; font-size: 1rem; border-radius: 8px;">Começar Agora <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 1 / STEP 2 -->
+                        <div class="form-step" data-step="2">
+                            <h3 style="margin-bottom: 4px;">1. Qual solução você procura?</h3>
+                            <p style="color: #d97706; font-size: 0.95rem; font-weight: 600; margin-bottom: 20px;">(Obrigatória)</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="ERP para minha empresa" required>
+                                    <span>ERP para minha empresa</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="Sistema para restaurante">
+                                    <span>Sistema para restaurante</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="Sistema para agronegócio">
+                                    <span>Sistema para agronegócio</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="Sistema para clínica">
+                                    <span>Sistema para clínica</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="Sistema para pet shop">
+                                    <span>Sistema para pet shop</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="Sistema para agendamentos">
+                                    <span>Sistema para agendamentos</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="SAP">
+                                    <span>SAP</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="IZYS AI CRM &amp; Atendimento IA">
+                                    <span>IZYS AI CRM &amp; Atendimento IA</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="solucao_procurada" value="Ainda não sei qual solução preciso">
+                                    <span>Ainda não sei qual solução preciso</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 2 / STEP 3 -->
+                        <div class="form-step" data-step="3">
+                            <h3>2. Sua empresa já está em funcionamento?</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Selecione a situação atual da sua empresa</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="empresa_funcionamento" value="Sim" required>
+                                    <span>Sim</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="empresa_funcionamento" value="Está em fase de abertura">
+                                    <span>Está em fase de abertura</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 3 / STEP 4 -->
+                        <div class="form-step" data-step="4">
+                            <h3>3. Há quanto tempo sua empresa opera?</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Tempo total de atuação no mercado</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="tempo_operacao" value="Menos de 6 meses" required>
+                                    <span>Menos de 6 meses</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="tempo_operacao" value="6 meses a 2 anos">
+                                    <span>6 meses a 2 anos</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="tempo_operacao" value="2 a 5 anos">
+                                    <span>2 a 5 anos</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="tempo_operacao" value="Mais de 5 anos">
+                                    <span>Mais de 5 anos</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 4 / STEP 5 -->
+                        <div class="form-step" data-step="5">
+                            <h3>4. Como vocês controlam a empresa hoje?</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Método ou ferramentas utilizadas no dia a dia</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="controle_atual" value="Não utilizamos sistema" required>
+                                    <span>Não utilizamos sistema</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="controle_atual" value="Planilhas (Excel/Google Sheets)">
+                                    <span>Planilhas (Excel/Google Sheets)</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="controle_atual" value="Cadernos ou controles manuais">
+                                    <span>Cadernos ou controles manuais</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="controle_atual" value="Possuímos um sistema, mas ele não atende bem">
+                                    <span>Possuímos um sistema, mas ele não atende bem</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="controle_atual" value="Possuímos um sistema e estamos pesquisando alternativas">
+                                    <span>Possuímos um sistema e estamos pesquisando alternativas</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 5 / STEP 6 -->
+                        <div class="form-step" data-step="6">
+                            <h3 style="margin-bottom: 4px;">5. Qual é o maior desafio da sua empresa hoje?</h3>
+                            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 20px;">(Permitir múltipla escolha - marque todos que se aplicam)</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Controle financeiro">
+                                    <span>Controle financeiro</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Estoque">
+                                    <span>Estoque</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Emissão de notas fiscais">
+                                    <span>Emissão de notas fiscais</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Compras">
+                                    <span>Compras</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Vendas">
+                                    <span>Vendas</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Atendimento ao cliente">
+                                    <span>Atendimento ao cliente</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Relatórios e indicadores">
+                                    <span>Relatórios e indicadores</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Integrações entre sistemas">
+                                    <span>Integrações entre sistemas</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Retrabalho">
+                                    <span>Retrabalho</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Organização dos processos">
+                                    <span>Organização dos processos</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="checkbox" name="desafios[]" value="Outro">
+                                    <span>Outro</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 6 / STEP 7 -->
+                        <div class="form-step" data-step="7">
+                            <h3>6. Quantas pessoas trabalham na empresa?</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Tamanho atual da equipe</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="tamanho_equipe" value="Apenas eu" required>
+                                    <span>Apenas eu</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="tamanho_equipe" value="2 a 5">
+                                    <span>2 a 5</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="tamanho_equipe" value="6 a 20">
+                                    <span>6 a 20</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="tamanho_equipe" value="21 a 50">
+                                    <span>21 a 50</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="tamanho_equipe" value="Mais de 50">
+                                    <span>Mais de 50</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 7 / STEP 8 -->
+                        <div class="form-step" data-step="8">
+                            <h3>7. Você participa da decisão de compra de um sistema?</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Seu papel na escolha das soluções tecnológicas</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="papel_decisao" value="Sim, sou o proprietário" required>
+                                    <span>Sim, sou o proprietário</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="papel_decisao" value="Sim, sou sócio">
+                                    <span>Sim, sou sócio</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="papel_decisao" value="Sim, sou gestor">
+                                    <span>Sim, sou gestor</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="papel_decisao" value="Não, apenas estou pesquisando">
+                                    <span>Não, apenas estou pesquisando</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 8 / STEP 9 -->
+                        <div class="form-step" data-step="9">
+                            <h3>8. Quando pretende implantar uma solução?</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Expectativa de prazo para início</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="prazo_implantacao" value="O quanto antes" required>
+                                    <span>O quanto antes</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="prazo_implantacao" value="Nos próximos 30 dias">
+                                    <span>Nos próximos 30 dias</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="prazo_implantacao" value="Nos próximos 3 meses">
+                                    <span>Nos próximos 3 meses</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="prazo_implantacao" value="Apenas pesquisando">
+                                    <span>Apenas pesquisando</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- QUESTION 9 / STEP 10 -->
+                        <div class="form-step" data-step="10">
+                            <h3>9. O que motivou sua busca pela Raizys?</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Principal motivo de contato conosco</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Quero organizar melhor a empresa" required>
+                                    <span>Quero organizar melhor a empresa</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Meu sistema atual não atende">
+                                    <span>Meu sistema atual não atende</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Estou trocando de sistema">
+                                    <span>Estou trocando de sistema</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Minha empresa cresceu">
+                                    <span>Minha empresa cresceu</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Indicação">
+                                    <span>Indicação</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Pesquisa no Google">
+                                    <span>Pesquisa no Google</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Redes sociais">
+                                    <span>Redes sociais</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="motivo_busca" value="Outro">
+                                    <span>Outro</span>
+                                </label>
+                            </div>
+                            <div class="step-nav">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="button" class="next-btn">Próximo <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- CONTACT INFO / STEP 11 -->
+                        <div class="form-step" data-step="11">
+                            <h3>10. Informações de contato</h3>
+                            <p style="margin-bottom: 20px; color: #64748b;">Preencha seus dados para que um especialista da Raizys entre em contato com a melhor recomendação para seu negócio.</p>
+                            <div class="final-fields" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label style="font-size: 0.9rem; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">Nome *</label>
+                                    <input type="text" name="nome" placeholder="Seu nome completo" required class="input-field">
+                                </div>
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label style="font-size: 0.9rem; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">Empresa *</label>
+                                    <input type="text" name="empresa" placeholder="Nome da sua empresa" required class="input-field">
+                                </div>
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label style="font-size: 0.9rem; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">CNPJ</label>
+                                    <input type="text" name="cnpj" placeholder="00.000.000/0000-00" class="input-field">
+                                </div>
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label style="font-size: 0.9rem; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">Cidade</label>
+                                    <input type="text" name="cidade" placeholder="Sua cidade / UF" class="input-field">
+                                </div>
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label style="font-size: 0.9rem; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">WhatsApp *</label>
+                                    <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required class="input-field">
+                                </div>
+                                <div class="form-group" style="grid-column: span 1;">
+                                    <label style="font-size: 0.9rem; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">E-mail *</label>
+                                    <input type="email" name="email" placeholder="seuemail@empresa.com.br" required class="input-field">
+                                </div>
+                            </div>
+                            <div class="step-nav" style="margin-top: 24px;">
+                                <button type="button" class="prev-btn">Voltar</button>
+                                <button type="submit" class="submit-btn final" style="background: linear-gradient(135deg, #16a34a, #15803d); padding: 14px 28px; font-size: 1rem; border-radius: 8px;">Enviar e Receber Diagnóstico</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="successMessage" style="display: none; text-align: center; padding: 40px;">
+                        <div class="success-icon" style="font-size: 4rem; color: #4a6d3c; margin-bottom: 20px;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Obrigado pela sua iniciativa!</h2>
+                        <p style="font-size: 1.1rem; color: #555; margin: 20px 0;">
+                            Parabéns por dar esse passo. Reconhecer os desafios da operação e buscar resolvê-los de
+                            forma estruturada já coloca sua empresa à à frente da maioria.
+                        </p>
+                        <p style="font-size: 1.1rem; color: #555; margin: 20px 0;">
+                            Ficamos muito satisfeitos em receber suas informações. Em breve, um especialista da Raizys
+                            entrará em contato para dar continuidade a esse movimento, entendendo seu cenário e
+                            avaliando como o SAP pode resolver esses gargalos na raiz.
+                        </p>
+                        <p style="font-weight: bold; color: #1a3c25;">
+                            Esse é um excelente ponto de partida — e teremos prazer em seguir com você.
+                        </p>
+                        <p style="margin-top: 30px; color: #888;">Equipe Raizys</p>
+                        <a href="home" class="cta-button mt-20" style="display: inline-block;">Voltar ao
+                            Início</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="home">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
+                </a>
+                <p>Consultoria especializada em implantação de sistemas empresariais.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
+                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11 5026-4939</a></p>
+                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
+                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt" style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83 - Vila Rica, Guaxupé - MG, 37800-000</span></p>
+                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i> <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves, 759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="sobre-nos">Sobre Nós</a></li>
+                    <li><a href="trabalhe-conosco">Trabalhe conosco</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Termos</h4>
+                <ul>
+                    <li><a href="termos-condicoes">Termos e Condições</a></li>
+                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
+                    <li><a href="indicacao">Cadastrar Indicação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="contato">Fale Conosco</a></li>
+                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="diagnostic.js"></script>
+    <script src="header.js?v=5.0"></script>
+</body>
+
+</html>
+

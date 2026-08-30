@@ -1,0 +1,3258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>IZYS — Atendimento, CRM e Agentes de IA | Ecossistema Raizys</title>
+    <meta name="description"
+        content="A IZYS centraliza seus canais de atendimento, organiza o funil de vendas e coloca Agentes de Inteligência Artificial para agir na sua operação comercial.">
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="IZYS — Atendimento, CRM e Agentes de IA | Raizys">
+    <meta property="og:description"
+        content="Atendimento omnichannel, CRM visual e Agentes de Inteligência Artificial que agem de verdade pela sua empresa.">
+    <meta property="og:image" content="fotos/Isys - Logo 1.png">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="icon" type="image/png"
+        href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
+    <link rel="stylesheet" href="style.css?v=8.0">
+    <link rel="stylesheet" href="header.css?v=6.0">
+
+    <!-- Fonts: Plus Jakarta Sans (Display) + Space Grotesk (Display 2) + Archivo (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Archivo:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- GSAP & ScrollTrigger for Scroll-Scrubbed Cinematic Robot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* =====================================================
+           IZYS DESIGN SYSTEM — PURPLE, EDITORIAL, QUIET
+        ===================================================== */
+        :root {
+            --iz-purple: #7c3aed;
+            --iz-purple-deep: #5b21b6;
+            --iz-violet: #8b5cf6;
+            --iz-lilac: #a78bfa;
+            --iz-lavender: #ddd6fe;
+
+            --iz-bg-dark: #080614;
+            --iz-bg-dark-2: #0e0920;
+            --iz-surface-dark: rgba(255, 255, 255, 0.04);
+
+            --iz-bg-light: #ffffff;
+            --iz-bg-lav: #f5f2fb;
+
+            --iz-ink: #171126;
+            --iz-ink-soft: #4c4562;
+            --iz-muted: #8b84a3;
+
+            --iz-white-90: rgba(255, 255, 255, 0.94);
+            --iz-body-dark: #c2bcd8;
+            --iz-muted-dark: #7d7695;
+
+            --iz-line-dark: rgba(167, 139, 250, 0.14);
+            --iz-line-light: #ece8f6;
+
+            /* Primary font: Plus Jakarta Sans (same family as Raizys) */
+            --iz-font-display: 'Plus Jakarta Sans', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            --iz-font-body: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body.izys-page {
+            background-color: var(--iz-bg-dark);
+            color: var(--iz-body-dark);
+            font-family: var(--iz-font-body);
+            overflow-x: clip;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::selection {
+            background: rgba(124, 58, 237, 0.85);
+            color: #fff;
+        }
+
+        /* =====================================================
+           HEADER — PURPLE IDENTITY — SAME PILL LAYOUT AS RAIZYS
+           Glass pill centered at top → compact glass bar on scroll
+        ===================================================== */
+        /* Suppress any inherited whitish beams */
+        .izys-page .rz-header-inner::before,
+        .izys-page .rz-header::before,
+        .izys-page .rz-header-wrapper::before {
+            display: none !important;
+            content: none !important;
+            opacity: 0 !important;
+        }
+
+        /* =============================================
+           TOPBAR — Transparent strip
+        ============================================= */
+        .izys-page .rz-topbar {
+            background: transparent !important;
+            border-bottom: none !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+        }
+
+        .izys-page .rz-topbar-social-link {
+            color: rgba(255, 255, 255, 0.7) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+        }
+
+        .izys-page .rz-topbar-social-link:hover {
+            color: #ffffff !important;
+            background: var(--iz-purple) !important;
+            border-color: var(--iz-violet);
+        }
+
+        /* =============================================
+           HEADER WRAPPER — same behavior as Raizys
+        ============================================= */
+        .izys-page .rz-header-wrapper {
+            background: transparent !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .izys-page .rz-header-wrapper.rz-header-wrapper--scrolled {
+            top: 0;
+            background: rgba(8, 6, 20, 0.96) !important;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(124, 58, 237, 0.1);
+        }
+
+        /* =============================================
+           HEADER PILL — glass dark, same radius as Raizys
+        ============================================= */
+        .izys-page .rz-header {
+            width: calc(100% - 64px);
+            max-width: 1240px;
+            margin: 20px auto;
+            background: rgba(10, 7, 20, 0.8) !important;
+            border: 1px solid rgba(139, 92, 246, 0.28) !important;
+            backdrop-filter: blur(22px) saturate(1.4) !important;
+            -webkit-backdrop-filter: blur(22px) saturate(1.4) !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 58, 237, 0.1) !important;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .izys-page .rz-header-wrapper--scrolled .rz-header {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 0;
+            border: none !important;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.1) !important;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: none !important;
+        }
+
+        /* =============================================
+           HEADER INNER — matches Raizys 76px height
+        ============================================= */
+        .izys-page .rz-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+            padding: 0 32px;
+            position: relative;
+            transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .izys-page .rz-header-wrapper--scrolled .rz-header-inner {
+            padding: 0 48px;
+        }
+
+        .izys-page .rz-logo {
+            display: flex;
+            align-items: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin-right: 24px;
+            flex-shrink: 0;
+            text-decoration: none;
+            gap: 6px;
+        }
+
+        /* Mascote (Logo 1) — menor no header */
+        .izys-page .rz-logo .iz-logo-mascot {
+            height: 40px;
+            width: auto;
+            display: block;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+
+        /* Texto (Logo 4) — alinhado à direita da mascote */
+        .izys-page .rz-logo .iz-logo-text {
+            height: 30px;
+            width: auto;
+            display: block;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+
+        .izys-page .rz-logo:hover .iz-logo-mascot,
+        .izys-page .rz-logo:hover .iz-logo-text {
+            transform: scale(1.03);
+        }
+
+        /* NAV LINKS — same style as Raizys but purple accent */
+        .izys-page .rz-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            justify-content: center;
+            margin: 0 24px;
+        }
+
+        .izys-page .rz-nav-link {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-weight: 500;
+            font-size: 14px;
+            color: rgba(200, 193, 225, 0.9) !important;
+            letter-spacing: -0.01em;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            padding: 8px 13px;
+            border-radius: 8px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .izys-page .rz-nav-link:hover {
+            color: #ffffff !important;
+            background: rgba(124, 58, 237, 0.12);
+        }
+
+        /* ← Voltar RAIZYS pill — matches Raizys CTA look */
+        .izys-page .rz-nav-link--raizys {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--iz-purple), var(--iz-purple-deep)) !important;
+            color: #ffffff !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: none !important;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.55), 0 4px 14px rgba(91, 33, 182, 0.4);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+        }
+
+        .izys-page .rz-nav-link--raizys i {
+            font-size: 11px;
+        }
+
+        .izys-page .rz-nav-link--raizys:hover {
+            background: linear-gradient(135deg, var(--iz-purple-deep), #4c1d95) !important;
+            box-shadow: 0 0 32px rgba(139, 92, 246, 0.9), 0 6px 24px rgba(91, 33, 182, 0.7);
+            transform: translateY(-1px);
+            color: #ffffff !important;
+        }
+
+        /* CTA button — same as Raizys green CTA but purple */
+        .izys-page .rz-header-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffffff !important;
+            background: linear-gradient(135deg, var(--iz-violet), var(--iz-purple)) !important;
+            text-decoration: none !important;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none !important;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+            white-space: nowrap;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 4px 14px rgba(124, 58, 237, 0.4);
+        }
+
+        .izys-page .rz-header-cta:hover {
+            background: linear-gradient(135deg, var(--iz-purple), var(--iz-purple-deep)) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 0 32px rgba(139, 92, 246, 0.9), 0 6px 24px rgba(124, 58, 237, 0.7) !important;
+            color: #ffffff !important;
+        }
+
+        /* Mobile */
+        .izys-page .rz-mobile-toggle span {
+            background-color: #ffffff;
+            width: 22px;
+        }
+
+        .izys-page .rz-mobile-drawer {
+            background: #080614 !important;
+            border-left: 1px solid var(--iz-line-dark);
+        }
+
+        .izys-page .rz-mobile-section-title {
+            color: var(--iz-lilac) !important;
+        }
+
+        .izys-page .rz-mobile-link {
+            color: #e2deee !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+        }
+
+        .izys-page .rz-mobile-link:hover {
+            color: var(--iz-lavender) !important;
+            background: rgba(124, 58, 237, 0.12);
+        }
+
+        .izys-page .rz-drawer-close {
+            background: rgba(124, 58, 237, 0.12);
+            color: #fff;
+        }
+
+        .izys-page .rz-drawer-close:hover {
+            background: rgba(124, 58, 237, 0.25);
+            color: var(--iz-lavender);
+        }
+
+        /* =====================================================
+           CORE TYPOGRAPHY & UTILITIES
+        ===================================================== */
+        .iz-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 36px;
+            width: 100%;
+        }
+
+        .iz-section {
+            padding: 130px 0;
+            position: relative;
+        }
+
+        .iz-section--light {
+            background-color: var(--iz-bg-light);
+            color: var(--iz-ink-soft);
+        }
+
+        .iz-section--lav {
+            background-color: var(--iz-bg-lav);
+            color: var(--iz-ink-soft);
+        }
+
+        .iz-section--dark {
+            background-color: var(--iz-bg-dark);
+            color: var(--iz-body-dark);
+        }
+
+        .iz-section--dark-2 {
+            background-color: var(--iz-bg-dark-2);
+            color: var(--iz-body-dark);
+        }
+
+        /* Badges/pills are now hidden — removed per design cleanup */
+        .iz-badge {
+            display: none;
+        }
+
+        /* Hero and pain inline badges also hidden */
+        .iz-hero-badge {
+            display: none !important;
+        }
+
+        .iz-hero-pills {
+            display: none !important;
+        }
+
+        .iz-pain-badge {
+            display: none !important;
+        }
+
+        .iz-title-display {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+            margin-bottom: 22px;
+        }
+
+        .iz-section--dark .iz-title-display,
+        .iz-section--dark-2 .iz-title-display {
+            color: var(--iz-white-90);
+        }
+
+        .iz-section--light .iz-title-display,
+        .iz-section--lav .iz-title-display {
+            color: var(--iz-ink);
+        }
+
+        .iz-title-h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.75rem, 2.9vw, 2.6rem);
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            margin-bottom: 18px;
+        }
+
+        .iz-section--dark .iz-title-h2,
+        .iz-section--dark-2 .iz-title-h2 {
+            color: var(--iz-white-90);
+        }
+
+        .iz-section--light .iz-title-h2,
+        .iz-section--lav .iz-title-h2 {
+            color: var(--iz-ink);
+        }
+
+        .iz-lead {
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+            line-height: 1.72;
+            font-weight: 400;
+            max-width: 620px;
+        }
+
+        .iz-gradient-text {
+            background: linear-gradient(110deg, #c084fc 0%, #a78bfa 45%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .iz-section--light .iz-gradient-text,
+        .iz-section--lav .iz-gradient-text {
+            background: linear-gradient(110deg, var(--iz-purple) 0%, var(--iz-violet) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .iz-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--iz-purple);
+            color: #ffffff !important;
+            padding: 15px 32px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: var(--iz-font-body);
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 8px 24px rgba(91, 33, 182, 0.35);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .iz-btn-primary:hover {
+            background: var(--iz-purple-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(91, 33, 182, 0.45);
+        }
+
+        .iz-btn-ghost-dark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: transparent;
+            color: #e2deee !important;
+            padding: 15px 30px;
+            border-radius: 999px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            font-family: var(--iz-font-body);
+            text-decoration: none;
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .iz-btn-ghost-dark:hover {
+            background: rgba(124, 58, 237, 0.14);
+            border-color: var(--iz-violet);
+            transform: translateY(-2px);
+        }
+
+        .iz-btn-ghost-light {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #ffffff;
+            color: var(--iz-ink) !important;
+            padding: 15px 30px;
+            border-radius: 999px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            font-family: var(--iz-font-body);
+            text-decoration: none;
+            border: 1px solid var(--iz-line-light);
+            transition: all 0.3s ease;
+        }
+
+        .iz-btn-ghost-light:hover {
+            border-color: var(--iz-purple);
+            color: var(--iz-purple) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(124, 58, 237, 0.1);
+        }
+
+        /* =====================================================
+           CINEMATIC STAGE TRACK — holds the sticky stage
+           Track height = 100vh (stage) + 210vh (animation scroll) = 310vh
+           #izCinematic sticks to top while track scrolls past
+        ===================================================== */
+        #izCinematicTrack {
+            position: relative;
+            height: 280vh;
+        }
+
+        .iz-cinematic {
+            position: sticky;
+            top: 0;
+            background: var(--iz-bg-dark);
+            height: 100vh;
+            height: 100svh;
+            min-height: 620px;
+            width: 100%;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .iz-cinematic-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 70% 60% at 20% 60%, rgba(91, 33, 182, 0.1) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 90%, rgba(67, 20, 140, 0.08) 0%, transparent 65%),
+                linear-gradient(170deg, #0c0820 0%, #090615 40%, #080514 100%);
+        }
+
+        .iz-cinematic-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.025) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse 80% 70% at 40% 50%, black 10%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 40% 50%, black 10%, transparent 100%);
+        }
+
+        .iz-stage {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .iz-stage-inner {
+            position: relative;
+            max-width: 1320px;
+            margin: 0 auto;
+            height: 100%;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Hero Content — Impactful typography with header clearance */
+        .iz-hero-content {
+            position: absolute;
+            left: 40px;
+            top: 55%;
+            transform: translateY(-50%);
+            width: 52%;
+            max-width: 640px;
+            z-index: 4;
+            padding-top: 36px;
+        }
+
+        .iz-hero-title {
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.3rem, 3.8vw, 3.5rem);
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+            margin-bottom: 20px;
+        }
+
+        .iz-hero-highlight {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
+            color: #ffffff;
+            padding: 4px 18px 6px;
+            border-radius: 10px;
+            box-shadow: 0 0 28px rgba(124, 58, 237, 0.45);
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .iz-hero-content .iz-lead {
+            color: #cec7e2;
+            font-size: clamp(1.02rem, 1.25vw, 1.15rem);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            max-width: 550px;
+            font-weight: 400;
+        }
+
+        .iz-hero-ctas {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .iz-hero-ctas .iz-btn-primary {
+            padding: 15px 32px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .iz-hero-ctas .iz-btn-ghost-dark {
+            padding: 15px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .iz-hero-stats {
+            display: flex;
+            gap: 34px;
+            margin-top: 30px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(167, 139, 250, 0.16);
+        }
+
+        .iz-hero-stat-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .iz-hero-stat-num {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 30%, var(--iz-lilac) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
+        }
+
+        .iz-hero-stat-label {
+            font-size: 0.78rem;
+            color: #9d96b8;
+            margin-top: 5px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Hero Logo — travels right -> left, scrubbed smoothly with scroll */
+        .iz-robot {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 520px;
+            z-index: 3;
+            will-change: transform;
+            pointer-events: none;
+        }
+
+        .iz-robot-inner {
+            position: relative;
+            width: 100%;
+            will-change: transform;
+        }
+
+        .iz-robot-canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            aspect-ratio: 744 / 720;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            user-select: none;
+            pointer-events: none;
+            background: transparent !important;
+            filter: drop-shadow(0 15px 35px rgba(124, 58, 237, 0.75)) drop-shadow(0 0 45px rgba(139, 92, 246, 0.55));
+        }
+
+        /* Halo de sombra roxa suave e viva atrás da robô */
+        .iz-robot-purple-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.42) 0%, rgba(124, 58, 237, 0.18) 45%, transparent 70%);
+            pointer-events: none;
+            filter: blur(45px);
+            animation: iz-glow-pulse 4s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes iz-glow-pulse {
+            0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.55; }
+            100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.85; }
+        }
+
+        /* Chips/balloons hidden — cleaner presentation */
+        .iz-chip {
+            display: none;
+        }
+
+        .iz-scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--iz-muted-dark);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 500;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .iz-scroll-hint i {
+            color: var(--iz-lilac);
+            font-size: 0.85rem;
+            animation: izHintBounce 1.8s ease-in-out infinite;
+        }
+
+        @keyframes izHintBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(6px);
+                opacity: 1;
+            }
+        }
+
+        /* Pain content — Seção de Dores Ampliada, Arejada e Visualmente Rica */
+        .iz-pain-content {
+            position: absolute;
+            right: 40px;
+            top: 52%;
+            transform: translateY(-50%);
+            width: 55%;
+            max-width: 660px;
+            z-index: 4;
+        }
+
+        .iz-pain-badge {
+            display: none;
+        }
+
+        .iz-pain-content .iz-title-h2 {
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: var(--iz-white-90);
+        }
+
+        .iz-pain-content .iz-lead {
+            font-size: clamp(0.88rem, 1vw, 0.98rem);
+            margin-bottom: 20px;
+            color: #c4bece;
+            line-height: 1.55;
+        }
+
+        .iz-pain-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .iz-pain-card {
+            padding: 20px 20px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(124, 58, 237, 0.04) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.18);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .iz-pain-card:hover {
+            border-color: rgba(167, 139, 250, 0.5);
+            background: linear-gradient(145deg, rgba(124, 58, 237, 0.12) 0%, rgba(20, 14, 35, 0.7) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(124, 58, 237, 0.18);
+        }
+
+        .iz-pain-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .iz-pain-card-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(124, 58, 237, 0.16);
+            border: 1px solid rgba(167, 139, 250, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--iz-lilac);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .iz-pain-card:hover .iz-pain-card-icon {
+            background: var(--iz-purple);
+            color: #ffffff;
+            box-shadow: 0 0 14px rgba(124, 58, 237, 0.6);
+        }
+
+        .iz-pain-card-title {
+            font-family: var(--iz-font-display);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+        }
+
+        .iz-pain-card-desc {
+            font-size: 0.81rem;
+            color: #b3acc7;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .iz-pain-note {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: linear-gradient(90deg, rgba(124, 58, 237, 0.16) 0%, rgba(91, 33, 182, 0.08) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 14px;
+            font-size: 0.86rem;
+            color: #f1edfa;
+            line-height: 1.5;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .iz-pain-note i {
+            color: var(--iz-lilac);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* =====================================================
+           SECTION: COMO A IZYS RESOLVE (WHITE, EDITORIAL)
+           Natural curtain effect: #como-funciona slides UP over
+           the sticky stage because z-index: 30 > z-index: 5
+        ===================================================== */
+        .iz-curtain-layer {
+            position: relative;
+            z-index: 30;
+            background: var(--iz-bg-light);
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            box-shadow: 0 -24px 70px rgba(0, 0, 0, 0.6), 0 -4px 20px rgba(0, 0, 0, 0.3);
+            margin-top: -100vh;
+        }
+
+        .iz-editorial-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 70px;
+            align-items: start;
+        }
+
+        .iz-editorial-left {
+            position: sticky;
+            top: 130px;
+            align-self: start;
+        }
+
+        .iz-editorial-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 28px;
+            color: var(--iz-purple);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .iz-editorial-link:hover {
+            gap: 14px;
+        }
+
+        .iz-editorial-foot {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--iz-line-light);
+            font-size: 0.8rem;
+            color: var(--iz-muted);
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .iz-step-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .iz-step-row {
+            display: grid;
+            grid-template-columns: 58px 1fr;
+            gap: 22px;
+            padding: 26px 4px;
+            border-top: 1px solid var(--iz-line-light);
+        }
+
+        .iz-step-row:last-child {
+            border-bottom: 1px solid var(--iz-line-light);
+        }
+
+        .iz-step-num {
+            font-family: var(--iz-font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--iz-purple);
+            padding-top: 3px;
+        }
+
+        .iz-step-row h3 {
+            font-family: var(--iz-font-display);
+            font-size: 1.12rem;
+            font-weight: 600;
+            color: var(--iz-ink);
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .iz-step-row p {
+            font-size: 0.9rem;
+            color: var(--iz-ink-soft);
+            line-height: 1.65;
+            max-width: 480px;
+        }
+
+        /* =====================================================
+           SECTION: AGENTES AUTÔNOMOS & IZYS CORE TERMINAL
+        ===================================================== */
+        .iz-agents-split {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .iz-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .iz-action-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(167, 139, 250, 0.16);
+            border-radius: 14px;
+            font-size: 0.88rem;
+            color: #e2deee;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .iz-action-item:hover {
+            background: rgba(124, 58, 237, 0.15);
+            border-color: var(--iz-violet);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .iz-action-item i {
+            color: var(--iz-lilac);
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+
+        /* High-End Glassmorphic AI Engine Terminal */
+        .iz-core-showcase {
+            position: relative;
+            width: 100%;
+        }
+
+        .iz-core-terminal {
+            background: linear-gradient(165deg, rgba(17, 11, 35, 0.96) 0%, rgba(8, 5, 18, 0.98) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            border-radius: 24px;
+            padding: 26px 28px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(124, 58, 237, 0.12);
+        }
+
+        .iz-core-terminal::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.22) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Terminal Header Bar */
+        .iz-term-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.18);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .iz-term-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .iz-term-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .iz-term-dot--red {
+            background: #ff5f56;
+        }
+
+        .iz-term-dot--yellow {
+            background: #ffbd2e;
+        }
+
+        .iz-term-dot--green {
+            background: #27c93f;
+        }
+
+        .iz-term-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .iz-term-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 999px;
+            font-size: 0.68rem;
+            color: #4ade80;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .iz-term-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.9);
+            animation: izPulse 2s ease infinite;
+        }
+
+        /* 3-Step Flow Pipeline */
+        .iz-flow-pipeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .iz-flow-card {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(139, 92, 246, 0.18);
+            border-radius: 14px;
+            padding: 14px 12px;
+            transition: all 0.25s ease;
+        }
+
+        .iz-flow-card:hover {
+            background: rgba(124, 58, 237, 0.12);
+            border-color: rgba(139, 92, 246, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .iz-flow-card-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .iz-flow-card-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            flex-shrink: 0;
+        }
+
+        .iz-flow-card-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .iz-flow-card-desc {
+            font-size: 0.68rem;
+            color: #b3acc8;
+            line-height: 1.35;
+        }
+
+        /* Hover scale for iz-core video poster */
+        .iz-video-poster:hover { filter: brightness(0.8); }
+        .iz-video-poster:hover .iz-video-play-btn { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 40px rgba(139, 92, 246, 0.7); }
+
+        /* Terminal Footer Stats */
+        .iz-term-foot {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(139, 92, 246, 0.18);
+            position: relative;
+            z-index: 2;
+        }
+
+        .iz-term-metric {
+            text-align: center;
+        }
+
+        .iz-term-metric-num {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 20%, var(--iz-lilac) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .iz-term-metric-label {
+            font-size: 0.68rem;
+            color: #9d96b8;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* =====================================================
+           SECTION: MÓDULOS (LAVENDER LIGHT)
+        ===================================================== */
+        .iz-section-head-center {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 64px;
+        }
+
+        .iz-section-head-center .iz-lead {
+            margin: 0 auto;
+        }
+
+        .iz-modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .iz-module-card {
+            background: var(--iz-bg-light);
+            border: 1px solid var(--iz-line-light);
+            border-radius: 16px;
+            padding: 30px 26px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .iz-module-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 58, 237, 0.4);
+            box-shadow: 0 18px 38px rgba(91, 33, 182, 0.1);
+        }
+
+        .iz-module-num {
+            position: absolute;
+            top: 22px;
+            right: 24px;
+            font-family: var(--iz-font-display);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--iz-lavender);
+        }
+
+        .iz-module-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            margin-bottom: 22px;
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--iz-purple);
+        }
+
+        .iz-module-card h3 {
+            font-family: var(--iz-font-display);
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: var(--iz-ink);
+            margin-bottom: 9px;
+            letter-spacing: -0.01em;
+        }
+
+        .iz-module-card p {
+            font-size: 0.86rem;
+            color: var(--iz-ink-soft);
+            line-height: 1.62;
+        }
+
+        /* =====================================================
+           SECTION: CRM VISUAL (WHITE)
+        ===================================================== */
+        .iz-crm-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            margin-bottom: 56px;
+        }
+
+        .iz-kanban-board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .iz-kanban-col {
+            background: var(--iz-bg-lav);
+            border: 1px solid var(--iz-line-light);
+            border-radius: 14px;
+            padding: 16px 13px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 190px;
+        }
+
+        .iz-kanban-col-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--iz-ink);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--iz-line-light);
+        }
+
+        .iz-kanban-card {
+            background: #ffffff;
+            border: 1px solid var(--iz-line-light);
+            border-radius: 11px;
+            padding: 13px;
+            box-shadow: 0 2px 8px rgba(23, 17, 38, 0.04);
+            transition: all 0.25s ease;
+        }
+
+        .iz-kanban-card:hover {
+            border-color: var(--iz-purple);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .iz-kanban-card-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--iz-ink);
+            margin-bottom: 5px;
+        }
+
+        .iz-kanban-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: var(--iz-muted);
+        }
+
+        .iz-kanban-card-val {
+            font-weight: 600;
+            color: var(--iz-purple);
+        }
+
+        .iz-metrics-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 46px;
+        }
+
+        .iz-metric-box {
+            background: var(--iz-bg-light);
+            border: 1px solid var(--iz-line-light);
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .iz-metric-num {
+            font-family: var(--iz-font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--iz-purple);
+            line-height: 1.1;
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+
+        .iz-metric-lbl {
+            font-size: 0.8rem;
+            color: var(--iz-muted);
+            font-weight: 500;
+        }
+
+        /* =====================================================
+           SECTION: INTEGRAÇÕES (DARK)
+        ===================================================== */
+        .iz-integrations-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 48px;
+            max-width: 920px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .iz-int-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 11px 20px;
+            background: var(--iz-surface-dark);
+            border: 1px solid var(--iz-line-dark);
+            border-radius: 999px;
+            color: #e6e1f2;
+            font-size: 0.83rem;
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        .iz-int-pill:hover {
+            background: rgba(124, 58, 237, 0.16);
+            border-color: var(--iz-violet);
+            transform: translateY(-2px);
+        }
+
+        .iz-int-pill i {
+            font-size: 1rem;
+        }
+
+        /* =====================================================
+           SECTION: PARA QUEM + IMPLANTAÇÃO (WHITE LAV)
+        ===================================================== */
+        .iz-who-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 48px;
+        }
+
+        .iz-who-card {
+            background: var(--iz-bg-light);
+            border: 1px solid var(--iz-line-light);
+            border-radius: 16px;
+            padding: 30px 26px;
+            transition: all 0.3s ease;
+        }
+
+        .iz-who-card:hover {
+            border-color: rgba(124, 58, 237, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 34px rgba(91, 33, 182, 0.08);
+        }
+
+        .iz-who-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(124, 58, 237, 0.08);
+            color: var(--iz-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .iz-who-card h3 {
+            font-family: var(--iz-font-display);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--iz-ink);
+            margin-bottom: 9px;
+        }
+
+        .iz-who-card p {
+            font-size: 0.86rem;
+            color: var(--iz-ink-soft);
+            line-height: 1.62;
+        }
+
+        .iz-roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 46px;
+        }
+
+        .iz-roadmap-card {
+            background: var(--iz-bg-light);
+            border: 1px solid var(--iz-line-light);
+            border-radius: 14px;
+            padding: 26px 22px;
+            position: relative;
+        }
+
+        .iz-roadmap-step-num {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--iz-purple);
+            color: #ffffff;
+            font-family: var(--iz-font-display);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .iz-roadmap-card h4 {
+            font-family: var(--iz-font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--iz-ink);
+            margin-bottom: 7px;
+        }
+
+        .iz-roadmap-card p {
+            font-size: 0.82rem;
+            color: var(--iz-ink-soft);
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           SECTION: FORMULÁRIO (DARK)
+        ===================================================== */
+        .iz-form-section {
+            background: var(--iz-bg-dark);
+            border-top: 1px solid var(--iz-line-dark);
+            padding: 130px 0;
+        }
+
+        .iz-form-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+            background: rgba(13, 9, 24, 0.7);
+            border: 1px solid var(--iz-line-dark);
+            border-radius: 20px;
+            padding: 54px 48px;
+            box-shadow: 0 34px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .iz-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .iz-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .iz-form-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #e2deee;
+            letter-spacing: 0.02em;
+        }
+
+        .iz-form-group input,
+        .iz-form-group select,
+        .iz-form-group textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--iz-line-dark);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: #ffffff;
+            font-family: var(--iz-font-body);
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        .iz-form-group input:focus,
+        .iz-form-group select:focus,
+        .iz-form-group textarea:focus {
+            border-color: var(--iz-violet);
+            background: rgba(124, 58, 237, 0.08);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+        }
+
+        .iz-form-group input::placeholder {
+            color: var(--iz-muted-dark);
+        }
+
+        .iz-checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .iz-custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--iz-line-dark);
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 0.84rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+            color: #c9c4da;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .iz-custom-checkbox:hover {
+            background: rgba(124, 58, 237, 0.1);
+            border-color: var(--iz-violet);
+            transform: translateY(-1px);
+        }
+
+        /* Hide default checkbox — replace with custom icon badge */
+        .iz-custom-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .iz-cb-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .iz-cb-check {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            border-radius: 5px;
+            flex-shrink: 0;
+            margin-left: auto;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .iz-custom-checkbox input:checked~.iz-cb-check {
+            background: var(--iz-purple);
+            border-color: var(--iz-purple);
+        }
+
+        .iz-custom-checkbox input:checked~.iz-cb-check::after {
+            content: '';
+            width: 5px;
+            height: 9px;
+            border: 2px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg) translate(-1px, -1px);
+            display: block;
+        }
+
+        .iz-custom-checkbox:has(input:checked) {
+            background: rgba(124, 58, 237, 0.12);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .iz-trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid var(--iz-line-dark);
+            flex-wrap: wrap;
+        }
+
+        .iz-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.82rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+            color: var(--iz-body-dark);
+        }
+
+        .iz-trust-item-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #4ade80;
+            flex-shrink: 0;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+        @media (max-width: 1100px) {
+            .izys-page .rz-nav {
+                display: none;
+            }
+
+            .izys-page .rz-header-cta {
+                display: none;
+            }
+
+            .iz-crm-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .iz-core-metrics {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 991px) {
+            #izCinematicTrack {
+                height: auto;
+            }
+            .iz-cinematic {
+                position: relative;
+                top: auto;
+                height: auto;
+                min-height: 100svh;
+            }
+            .iz-curtain-layer {
+                margin-top: 0;
+            }
+
+            .iz-stage {
+                height: auto;
+                min-height: 100svh;
+                overflow: visible;
+            }
+
+            .iz-stage-inner {
+                height: auto;
+                padding: 140px 24px 90px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .iz-hero-content {
+                position: static;
+                transform: none;
+                width: 100%;
+                max-width: 560px;
+                padding-top: 0;
+                text-align: center;
+            }
+
+            .iz-hero-ctas {
+                justify-content: center;
+            }
+
+            .iz-hero-stats {
+                justify-content: center;
+            }
+
+            .iz-hero-pills {
+                justify-content: center;
+            }
+
+            .iz-robot {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 320px;
+                margin: 64px auto 72px;
+            }
+
+            .iz-pain-content {
+                position: static;
+                transform: none;
+                width: 100%;
+                max-width: 560px;
+                text-align: left;
+            }
+
+            .iz-scroll-hint {
+                display: none;
+            }
+
+            .iz-editorial-grid,
+            .iz-agents-split {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            /* Centraliza texto no mobile para a colão de texto do agentes */
+            .iz-agents-split > div:first-child {
+                text-align: center;
+            }
+
+            .iz-agents-split > div:first-child .iz-lead {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 480px;
+            }
+
+            .iz-actions-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .iz-core-terminal {
+                padding: 16px 14px;
+                border-radius: 18px;
+            }
+
+            .iz-flow-pipeline {
+                gap: 6px;
+            }
+
+            .iz-flow-card {
+                padding: 10px 8px;
+            }
+
+            .iz-flow-card-title {
+                font-size: 0.72rem;
+            }
+
+            .iz-flow-card-desc {
+                font-size: 0.62rem;
+            }
+
+            .iz-editorial-left {
+                position: static;
+            }
+
+            .iz-modules-grid,
+            .iz-who-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .iz-roadmap-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .iz-kanban-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .iz-metrics-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .iz-container {
+                padding: 0 20px;
+            }
+
+            .iz-section {
+                padding: 90px 0;
+            }
+
+            .iz-form-section {
+                padding: 90px 0;
+            }
+
+            .iz-modules-grid,
+            .iz-who-grid,
+            .iz-roadmap-grid,
+            .iz-metrics-row,
+            .iz-kanban-board {
+                grid-template-columns: 1fr;
+            }
+
+            .iz-form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .iz-checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .iz-form-wrapper {
+                padding: 34px 20px;
+            }
+
+            .iz-actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .iz-pain-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .iz-core-metrics {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .iz-core-photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .iz-core-photo-slot--featured {
+                grid-column: span 1;
+            }
+
+            .iz-robot {
+                width: 260px;
+                margin: 56px auto 64px;
+            }
+        }
+
+        @media (max-height: 820px) and (min-width: 992px) {
+            .iz-pain-card {
+                padding: 15px 15px;
+            }
+
+            .iz-pain-card-desc {
+                font-size: 0.76rem;
+            }
+
+            .iz-pain-content .iz-lead {
+                margin-bottom: 16px;
+            }
+
+            .iz-pain-note {
+                margin-top: 14px;
+                padding: 11px 14px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="izys-page">
+
+    <!-- ===== TOPBAR (RAIZYS TRANSPARENT SOCIAL STRIP) ===== -->
+    <div class="rz-topbar">
+        <div class="rz-topbar-inner">
+            <div class="rz-topbar-socials">
+                <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank"
+                    aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"
+                    class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"
+                    class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HEADER (PURPLE IDENTITY, CLEAN GLASS) ===== -->
+    <div class="rz-header-wrapper">
+        <header class="rz-header" id="rz-header">
+            <div class="rz-header-inner">
+                <a href="home" class="rz-logo">
+                    <img src="fotos/Isys - Logo 1.png" alt="IZYS" class="iz-logo-mascot">
+                    <img src="fotos/Isys - Logo 4.png" alt="IZYS" class="iz-logo-text">
+                </a>
+
+                <nav class="rz-nav">
+                    <a href="home" class="rz-nav-link rz-nav-link--raizys">
+                        <i class="fas fa-arrow-left"></i> RAIZYS
+                    </a>
+                    <a href="#por-que-izys" class="rz-nav-link">Por que a IZYS</a>
+                    <a href="#como-funciona" class="rz-nav-link">Como Funciona</a>
+                    <a href="#agentes" class="rz-nav-link">Agentes IA</a>
+                    <a href="#modulos" class="rz-nav-link">Módulos</a>
+                    <a href="#crm" class="rz-nav-link">CRM</a>
+                </nav>
+
+                <a href="#formulario" class="rz-header-cta">FALE COM A IZYS</a>
+                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </header>
+    </div>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="rz-mobile-overlay"></div>
+    <div class="rz-mobile-drawer">
+        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Ecossistema</div>
+            <a href="home" class="rz-mobile-link" style="color:var(--iz-lavender)!important;font-weight:700;"><i
+                    class="fas fa-arrow-left"></i> Voltar para a RAIZYS</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Navegação IZYS</div>
+            <a href="#por-que-izys" class="rz-mobile-link"><i class="fas fa-exclamation-circle"></i> Por que a IZYS</a>
+            <a href="#como-funciona" class="rz-mobile-link"><i class="fas fa-bolt"></i> Como Funciona</a>
+            <a href="#agentes" class="rz-mobile-link"><i class="fas fa-robot"></i> Agentes de IA</a>
+            <a href="#modulos" class="rz-mobile-link"><i class="fas fa-cubes"></i> Módulos</a>
+            <a href="#crm" class="rz-mobile-link"><i class="fas fa-chart-line"></i> CRM Visual</a>
+            <a href="#para-quem" class="rz-mobile-link"><i class="fas fa-users"></i> Para Quem É</a>
+            <a href="#implantacao" class="rz-mobile-link"><i class="fas fa-rocket"></i> Implantação</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <a href="#formulario" class="rz-header-cta"
+                style="width:100%;justify-content:center;margin:0;margin-top:8px;">FALE COM A IZYS</a>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         CINEMATIC STAGE TRACK — 320vh scroll track
+         #izCinematic sticks at top while user scrolls through it.
+         #como-funciona (z-index: 30) slides OVER it naturally.
+    ===================================================== -->
+    <div id="izCinematicTrack">
+        <div class="iz-cinematic" id="izCinematic">
+            <div class="iz-cinematic-bg"></div>
+
+            <div class="iz-stage" id="izStage">
+                <div class="iz-stage-inner" id="izStageInner">
+
+                    <!-- Hero content (left) — Impactful, clear of header -->
+                    <div class="iz-hero-content" id="izHeroContent">
+                    <h1 class="iz-hero-title">
+                        <span class="iz-hero-highlight">Atendimento, CRM &amp; IA</span><br>
+                        trabalhando juntos pelo seu <span class="iz-gradient-text">negócio.</span>
+                    </h1>
+
+                    <p class="iz-lead">
+                        A IZYS centraliza seus canais de vendas, qualifica leads em menos de 5 segundos e potencializa
+                        sua equipe com Inteligência Artificial autônoma.
+                    </p>
+
+                    <div class="iz-hero-ctas">
+                        <a href="#formulario" class="iz-btn-primary">
+                            <i class="fas fa-comments"></i> Quero Conhecer a IZYS
+                        </a>
+                        <a href="#como-funciona" class="iz-btn-ghost-dark">
+                            <i class="fas fa-play"></i> Ver Como Funciona
+                        </a>
+                    </div>
+
+                    <div class="iz-hero-stats">
+                        <div class="iz-hero-stat-card">
+                            <div class="iz-hero-stat-num" data-count="100" data-suffix="%" data-prefix="">100%</div>
+                            <div class="iz-hero-stat-label">Canais Integrados</div>
+                        </div>
+                        <div class="iz-hero-stat-card">
+                            <div class="iz-hero-stat-num" data-count="5" data-suffix="s" data-prefix="&lt; ">&lt; 5s
+                            </div>
+                            <div class="iz-hero-stat-label">1ª Resposta</div>
+                        </div>
+                        <div class="iz-hero-stat-card">
+                            <div class="iz-hero-stat-num" data-count="40" data-suffix="%" data-prefix="+">+40%</div>
+                            <div class="iz-hero-stat-label">Conversão Comercial</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Character: IZYS robot canvas, moves right -> left on scroll -->
+                <div class="iz-robot" id="izRobot">
+                    <div class="iz-robot-inner" id="izRobotInner">
+                        <div class="iz-robot-purple-glow"></div>
+                        <canvas
+                            id="izRobotCanvas"
+                            class="iz-robot-canvas"
+                            width="744"
+                            height="720"
+                            aria-label="Mascote IZYS animada"
+                        ></canvas>
+                    </div>
+                </div>
+
+                <!-- Section 2: "Por que isso acontece na maioria das empresas" (right, fades in) -->
+                <div class="iz-pain-content" id="por-que-izys">
+                    <h2 class="iz-title-h2">
+                        Por que isso acontece na <span class="iz-gradient-text">maioria das empresas?</span>
+                    </h2>
+
+                    <p class="iz-lead">
+                        A oportunidade não morre por preço ou produto — morre por minutos de atraso, mensagens
+                        esquecidas e canais desconectados.
+                    </p>
+
+                    <div class="iz-pain-grid">
+                        <div class="iz-pain-card">
+                            <div class="iz-pain-card-header">
+                                <div class="iz-pain-card-icon"><i class="fas fa-hourglass-half"></i></div>
+                                <div class="iz-pain-card-title">O abismo dos primeiros 5 min</div>
+                            </div>
+                            <p class="iz-pain-card-desc">Leads atendidos em até 5 minutos convertem até 7x mais. Depois
+                                disso, o cliente busca concorrentes.</p>
+                        </div>
+                        <div class="iz-pain-card">
+                            <div class="iz-pain-card-header">
+                                <div class="iz-pain-card-icon"><i class="fas fa-network-wired"></i></div>
+                                <div class="iz-pain-card-title">Canais dispersos e isolados</div>
+                            </div>
+                            <p class="iz-pain-card-desc">WhatsApp no celular de um vendedor, Direct no outro. Sem
+                                histórico unificado, o gestor fica no escuro.</p>
+                        </div>
+                        <div class="iz-pain-card">
+                            <div class="iz-pain-card-header">
+                                <div class="iz-pain-card-icon"><i class="fas fa-user-clock"></i></div>
+                                <div class="iz-pain-card-title">Follow-ups esquecidos</div>
+                            </div>
+                            <p class="iz-pain-card-desc">A proposta é enviada, o cliente silencia e ninguém retoma. Sem
+                                automação contínua, o negócio esfria.</p>
+                        </div>
+                        <div class="iz-pain-card">
+                            <div class="iz-pain-card-header">
+                                <div class="iz-pain-card-icon"><i class="fas fa-copy"></i></div>
+                                <div class="iz-pain-card-title">Trabalho braçal repetido</div>
+                            </div>
+                            <p class="iz-pain-card-desc">Copiar contatos, alimentar planilhas e responder as mesmas
+                                dúvidas drena o tempo nobre de vendas.</p>
+                        </div>
+                    </div>
+
+                    <div class="iz-pain-note">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>A IZYS foi criada para eliminar exatamente esse atrito — do primeiro minuto ao fechamento
+                            comercial.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- =====================================================
+         3. SEÇÃO: COMO A IZYS RESOLVE (BRANCO, EDITORIAL)
+         Slides naturally OVER #izCinematic (z-index: 30 > 5)
+         because margin-top: -80vh places it inside track zone
+    ===================================================== -->
+    <section class="iz-section iz-section--light iz-curtain-layer" id="como-funciona">
+        <div class="iz-container">
+            <div class="iz-editorial-grid">
+
+                <div class="iz-editorial-left">
+                    <h2 class="iz-title-h2">
+                        Do primeiro contato ao fechamento,<br>cada etapa <span
+                            class="iz-gradient-text">automatizada.</span>
+                    </h2>
+                    <p class="iz-lead">
+                        Desde a primeira mensagem até a cobrança, a IZYS organiza e automatiza o processo comercial. Sem
+                        gargalos, sem atrasos, sem leads perdidos.
+                    </p>
+                    <a href="#formulario" class="iz-editorial-link">
+                        Quero isso na minha operação <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <div class="iz-editorial-foot">
+                        Todos os passos acontecem dentro de um único ambiente — sem ferramentas desconectadas.
+                    </div>
+                </div>
+
+                <ol class="iz-step-list">
+                    <li class="iz-step-row">
+                        <div class="iz-step-num">01</div>
+                        <div>
+                            <h3>Atrai &amp; Centraliza</h3>
+                            <p>Leads de Meta, Google, WhatsApp e Instagram entram em um painel único — nenhuma conversa
+                                fica perdida.</p>
+                        </div>
+                    </li>
+                    <li class="iz-step-row">
+                        <div class="iz-step-num">02</div>
+                        <div>
+                            <h3>Atende em segundos</h3>
+                            <p>Os Agentes de IA respondem instantaneamente em linguagem natural, no tom da sua marca,
+                                sem fila de espera.</p>
+                        </div>
+                    </li>
+                    <li class="iz-step-row">
+                        <div class="iz-step-num">03</div>
+                        <div>
+                            <h3>Qualifica antes de direcionar</h3>
+                            <p>A IA identifica perfil, porte, orçamento e intenção de compra antes de transferir a
+                                conversa.</p>
+                        </div>
+                    </li>
+                    <li class="iz-step-row">
+                        <div class="iz-step-num">04</div>
+                        <div>
+                            <h3>Cria no CRM &amp; distribui</h3>
+                            <p>O lead entra no funil automaticamente e vai para o vendedor certo, com todo o histórico
+                                mapeado.</p>
+                        </div>
+                    </li>
+                    <li class="iz-step-row">
+                        <div class="iz-step-num">05</div>
+                        <div>
+                            <h3>Follow-ups automáticos</h3>
+                            <p>Sequências de acompanhamento mantêm o negócio aquecido sem depender da memória do
+                                vendedor.</p>
+                        </div>
+                    </li>
+                    <li class="iz-step-row">
+                        <div class="iz-step-num">06</div>
+                        <div>
+                            <h3>Fecha &amp; cobra</h3>
+                            <p>Cobrança via Pix e boleto direto na conversa do WhatsApp, com baixa automática no CRM.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         4. SEÇÃO: AGENTES AUTÔNOMOS (ESCURO)
+    ===================================================== -->
+    <!-- =====================================================
+         4. SEÇÃO: AGENTES AUTÔNOMOS & IZYS CORE
+    ===================================================== -->
+    <section class="iz-section iz-section--dark" id="agentes">
+        <div class="iz-container">
+            <div class="iz-agents-split">
+
+                <div>
+                    <h2 class="iz-title-h2">
+                        IA que executa,<br>não apenas <span class="iz-gradient-text">responde.</span>
+                    </h2>
+                    <p class="iz-lead">
+                        Os Agentes Autônomos da IZYS detectam intenção de compra, realizam atendimento imediato e
+                        executam tarefas reais no seu funil comercial — 24 horas por dia.
+                    </p>
+
+                    <div class="iz-actions-grid">
+                        <div class="iz-action-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Triagem em tempo real</span>
+                        </div>
+                        <div class="iz-action-item">
+                            <i class="fas fa-tag"></i>
+                            <span>Etiquetas automáticas</span>
+                        </div>
+                        <div class="iz-action-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Criação de negócio no CRM</span>
+                        </div>
+                        <div class="iz-action-item">
+                            <i class="fas fa-user-check"></i>
+                            <span>Distribuição inteligente</span>
+                        </div>
+                        <div class="iz-action-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Agendamento de reuniões</span>
+                        </div>
+                        <div class="iz-action-item">
+                            <i class="fas fa-plug"></i>
+                            <span>Conexão via Webhooks &amp; API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IZYS CORE — State-of-the-Art AI Engine Terminal -->
+                <div class="iz-core-showcase">
+                    <div class="iz-core-terminal">
+                        <!-- Terminal Top Bar -->
+                        <div class="iz-term-head">
+                            <div class="iz-term-controls">
+                                <div class="iz-term-dot iz-term-dot--red"></div>
+                                <div class="iz-term-dot iz-term-dot--yellow"></div>
+                                <div class="iz-term-dot iz-term-dot--green"></div>
+                            </div>
+                            <div class="iz-term-title">
+                                <i class="fas fa-microchip" style="color:var(--iz-lilac);"></i>
+                                IZYS CORE &bull; Engine v4.2
+                            </div>
+                            <div class="iz-term-status-badge">
+                                <div class="iz-term-status-dot"></div>
+                                Online 24/7
+                            </div>
+                        </div>
+
+                        <!-- 3-Step Automation Pipeline -->
+                        <div class="iz-flow-pipeline">
+                            <div class="iz-flow-card">
+                                <div class="iz-flow-card-head">
+                                    <div class="iz-flow-card-icon"
+                                        style="background:rgba(34,197,94,0.12);color:#22c55e;">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <div class="iz-flow-card-title">1. Entrada</div>
+                                </div>
+                                <div class="iz-flow-card-desc">Lead entra via WhatsApp ou Instagram</div>
+                            </div>
+
+                            <div class="iz-flow-card"
+                                style="border-color:rgba(167,139,250,0.35);background:rgba(124,58,237,0.08);">
+                                <div class="iz-flow-card-head">
+                                    <div class="iz-flow-card-icon"
+                                        style="background:rgba(167,139,250,0.18);color:var(--iz-lilac);">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="iz-flow-card-title">2. Cérebro IA</div>
+                                </div>
+                                <div class="iz-flow-card-desc">Qualificação instantânea e triagem</div>
+                            </div>
+
+                            <div class="iz-flow-card">
+                                <div class="iz-flow-card-head">
+                                    <div class="iz-flow-card-icon"
+                                        style="background:rgba(56,189,248,0.12);color:#38bdf8;">
+                                        <i class="fas fa-check-double"></i>
+                                    </div>
+                                    <div class="iz-flow-card-title">3. Execução</div>
+                                </div>
+                                <div class="iz-flow-card-desc">Lead qualificado e negócio no CRM</div>
+                            </div>
+                        </div>
+
+                        <!-- Video: IZYS Core em Ação -->
+                        <a href="https://www.youtube.com/watch?v=LSUCGt9wAkM" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none; margin-bottom: 16px; position: relative; z-index: 2;">
+                            <div class="iz-video-poster" style="position: relative; width: 100%; padding-bottom: 56.25%; border-radius: 16px; overflow: hidden; background-image: url('https://img.youtube.com/vi/LSUCGt9wAkM/hqdefault.jpg'); background-size: cover; background-position: center; box-shadow: 0 16px 40px rgba(0,0,0,0.65), 0 0 0 1px rgba(139,92,246,0.3); background-color: #0a0516; transition: filter 0.3s ease;">
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.38); transition: background 0.3s ease;"></div>
+                                <div class="iz-video-play-btn" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #a855f7); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px rgba(139,92,246,0.2), 0 8px 30px rgba(124,58,237,0.6); transition: transform 0.3s ease, box-shadow 0.3s ease; z-index: 3;">
+                                    <i class="fas fa-play" style="color: #fff; font-size: 1.4rem; margin-left: 4px;"></i>
+                                </div>
+                                <div style="position: absolute; bottom: 14px; left: 14px; z-index: 3;">
+                                    <span style="background: rgba(124,58,237,0.85); padding: 5px 13px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase; letter-spacing: 0.04em;"><i class="fab fa-youtube" style="margin-right: 5px;"></i>Assistir no YouTube</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Terminal Bottom Metrics -->
+                        <div class="iz-term-foot">
+                            <div class="iz-term-metric">
+                                <div class="iz-term-metric-num">&lt; 5s</div>
+                                <div class="iz-term-metric-label">Tempo de Resposta</div>
+                            </div>
+                            <div class="iz-term-metric">
+                                <div class="iz-term-metric-num">99.8%</div>
+                                <div class="iz-term-metric-label">Precisão Cognitiva</div>
+                            </div>
+                            <div class="iz-term-metric">
+                                <div class="iz-term-metric-num">+40%</div>
+                                <div class="iz-term-metric-label">Taxa de Conversão</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         5. SEÇÃO: MÓDULOS DA PLATAFORMA (LAVANDA CLARO)
+    ===================================================== -->
+    <section class="iz-section iz-section--lav" id="modulos">
+        <div class="iz-container">
+            <div class="iz-section-head-center">
+                <h2 class="iz-title-h2">
+                    Seis módulos integrados.<br>Uma <span class="iz-gradient-text">plataforma única.</span>
+                </h2>
+                <p class="iz-lead">
+                    Atendimento, CRM, automações e Agentes de IA em um único ambiente — sem complexidade de ferramentas
+                    desconectadas.
+                </p>
+            </div>
+
+            <div class="iz-modules-grid">
+
+                <div class="iz-module-card">
+                    <div class="iz-module-num">01</div>
+                    <div class="iz-module-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Central Omnichannel</h3>
+                    <p>WhatsApp, Instagram Direct e Messenger em uma única tela, com filas, setores, SLA e permissões
+                        por equipe.</p>
+                </div>
+
+                <div class="iz-module-card">
+                    <div class="iz-module-num">02</div>
+                    <div class="iz-module-icon"><i class="fas fa-chart-column"></i></div>
+                    <h3>CRM &amp; Gestão Visual</h3>
+                    <p>Funil em Kanban, ciclo de fechamento, motivos de perda e conversão por vendedor em tempo real.
+                    </p>
+                </div>
+
+                <div class="iz-module-card">
+                    <div class="iz-module-num">03</div>
+                    <div class="iz-module-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Agentes de IA Treinados</h3>
+                    <p>Inteligência Artificial calibrada para o seu segmento: produto, tom de voz, regras e políticas
+                        comerciais.</p>
+                </div>
+
+                <div class="iz-module-card">
+                    <div class="iz-module-num">04</div>
+                    <div class="iz-module-icon"><i class="fas fa-sitemap"></i></div>
+                    <h3>Automações No-Code</h3>
+                    <p>Árvores de atendimento, fluxos condicionais e disparos automáticos configurados sem programar.
+                    </p>
+                </div>
+
+                <div class="iz-module-card">
+                    <div class="iz-module-num">05</div>
+                    <div class="iz-module-icon"><i class="fas fa-bullhorn"></i></div>
+                    <h3>Campanhas &amp; Reativação</h3>
+                    <p>Segmente contatos inativos e dispare campanhas para resgatar clientes antigos e acelerar vendas
+                        recorrentes.</p>
+                </div>
+
+                <div class="iz-module-card">
+                    <div class="iz-module-num">06</div>
+                    <div class="iz-module-icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>Cobranças Integradas</h3>
+                    <p>Pix e boleto direto na tela da conversa, com baixa automática no CRM após confirmação do
+                        pagamento.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         6. SEÇÃO: CRM VISUAL & RESULTADOS (BRANCO)
+    ===================================================== -->
+    <section class="iz-section iz-section--light" id="crm">
+        <div class="iz-container">
+            <div class="iz-crm-head">
+                <div style="max-width: 560px;">
+                    <h2 class="iz-title-h2">
+                        Vendas, funil e time<br>em <span class="iz-gradient-text">um só lugar.</span>
+                    </h2>
+                    <p class="iz-lead">
+                        Com a IZYS, sua equipe vende mais em menos tempo, responde em minutos e enxerga o funil inteiro
+                        — tudo integrado em uma única plataforma.
+                    </p>
+                </div>
+            </div>
+
+            <div class="iz-kanban-board">
+
+                <div class="iz-kanban-col">
+                    <div class="iz-kanban-col-head">
+                        <span><i class="fas fa-circle" style="color:#38bdf8;font-size:0.55rem;margin-right:6px;"></i>
+                            Novo Lead</span>
+                        <span style="color:var(--iz-muted);">3</span>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Agroindústria Regional</div>
+                        <div class="iz-kanban-card-meta"><span>Instagram Ads</span><span class="iz-kanban-card-val">R$
+                                18.000</span></div>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Distribuidora Atacadista</div>
+                        <div class="iz-kanban-card-meta"><span>Google Ads</span><span class="iz-kanban-card-val">R$
+                                34.000</span></div>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Rede de Farmácias</div>
+                        <div class="iz-kanban-card-meta"><span>Site / Inbound</span><span class="iz-kanban-card-val">R$
+                                12.500</span></div>
+                    </div>
+                </div>
+
+                <div class="iz-kanban-col">
+                    <div class="iz-kanban-col-head">
+                        <span><i class="fas fa-circle"
+                                style="color:var(--iz-lilac);font-size:0.55rem;margin-right:6px;"></i> Qualificado /
+                            IA</span>
+                        <span style="color:var(--iz-muted);">2</span>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Empresa de Logística</div>
+                        <div class="iz-kanban-card-meta"><span>WhatsApp</span><span class="iz-kanban-card-val">R$
+                                22.000</span></div>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Grupo Hospitalar</div>
+                        <div class="iz-kanban-card-meta"><span>Indicação</span><span class="iz-kanban-card-val">R$
+                                48.000</span></div>
+                    </div>
+                </div>
+
+                <div class="iz-kanban-col">
+                    <div class="iz-kanban-col-head">
+                        <span><i class="fas fa-circle" style="color:#fb923c;font-size:0.55rem;margin-right:6px;"></i>
+                            Proposta Enviada</span>
+                        <span style="color:var(--iz-muted);">2</span>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Rede de Supermercados</div>
+                        <div class="iz-kanban-card-meta"><span>Proposta Comercial</span><span class="iz-kanban-card-val">R$
+                                56.000</span></div>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Indústria Metalúrgica</div>
+                        <div class="iz-kanban-card-meta"><span>Proposta Comercial</span><span class="iz-kanban-card-val">R$
+                                38.000</span></div>
+                    </div>
+                </div>
+
+                <div class="iz-kanban-col">
+                    <div class="iz-kanban-col-head">
+                        <span><i class="fas fa-circle" style="color:#f472b6;font-size:0.55rem;margin-right:6px;"></i>
+                            Negociação</span>
+                        <span style="color:var(--iz-muted);">1</span>
+                    </div>
+                    <div class="iz-kanban-card">
+                        <div class="iz-kanban-card-title">Rede de Franquias</div>
+                        <div class="iz-kanban-card-meta"><span>Contrato em análise</span><span
+                                class="iz-kanban-card-val">R$ 72.000</span></div>
+                    </div>
+                </div>
+
+                <div class="iz-kanban-col" style="background:#f3fbf5;border-color:rgba(34,197,94,0.25);">
+                    <div class="iz-kanban-col-head" style="color:#16a34a;border-color:rgba(34,197,94,0.18);">
+                        <span><i class="fas fa-circle" style="color:#22c55e;font-size:0.55rem;margin-right:6px;"></i>
+                            Fechado / Ganho</span>
+                        <span style="color:#16a34a;font-weight:700;">2</span>
+                    </div>
+                    <div class="iz-kanban-card" style="border-color:rgba(34,197,94,0.25);background:#ffffff;">
+                        <div class="iz-kanban-card-title">Clínica Médica Integrada</div>
+                        <div class="iz-kanban-card-meta"><span style="color:#16a34a;">Pix Confirmado</span><span
+                                class="iz-kanban-card-val" style="color:#16a34a;">R$ 29.000</span></div>
+                    </div>
+                    <div class="iz-kanban-card" style="border-color:rgba(34,197,94,0.25);background:#ffffff;">
+                        <div class="iz-kanban-card-title">Indústria de Alimentos</div>
+                        <div class="iz-kanban-card-meta"><span style="color:#16a34a;">Contrato Assinado</span><span
+                                class="iz-kanban-card-val" style="color:#16a34a;">R$ 64.000</span></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="iz-metrics-row">
+                <div class="iz-metric-box">
+                    <div class="iz-metric-num">34%</div>
+                    <div class="iz-metric-lbl">Taxa de Conversão Média</div>
+                </div>
+                <div class="iz-metric-box">
+                    <div class="iz-metric-num">&lt; 1 min</div>
+                    <div class="iz-metric-lbl">Tempo de Resposta com IA</div>
+                </div>
+                <div class="iz-metric-box">
+                    <div class="iz-metric-num">0%</div>
+                    <div class="iz-metric-lbl">Leads Perdidos sem Resposta</div>
+                </div>
+                <div class="iz-metric-box">
+                    <div class="iz-metric-num">2.4x</div>
+                    <div class="iz-metric-lbl">Volume de Atendimentos</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =====================================================
+         7. SEÇÃO: CONECTIVIDADE & INTEGRAÇÕES (ESCURO)
+    ===================================================== -->
+    <section class="iz-section iz-section--dark" id="integracoes">
+        <div class="iz-container">
+            <div class="iz-section-head-center">
+                <h2 class="iz-title-h2">
+                    Funciona com o que sua empresa<br><span class="iz-gradient-text">já usa todos os dias.</span>
+                </h2>
+                <p class="iz-lead">
+                    Conecte a IZYS aos seus canais, ERPs, gateways de pagamento e ferramentas de automação com
+                    estabilidade e segurança.
+                </p>
+            </div>
+
+            <div class="iz-integrations-cloud">
+                <div class="iz-int-pill"><i class="fab fa-whatsapp" style="color:#22c55e;"></i> WhatsApp Cloud API
+                    Oficial</div>
+                <div class="iz-int-pill"><i class="fab fa-instagram" style="color:#e1306c;"></i> Instagram Direct API
+                </div>
+                <div class="iz-int-pill"><i class="fab fa-facebook-messenger" style="color:#38bdf8;"></i> Messenger
+                </div>
+                <div class="iz-int-pill"><i class="fas fa-building" style="color:var(--iz-lilac);"></i> ERP SAP B1 &amp;
+                    S/4HANA</div>
+                <div class="iz-int-pill"><i class="fas fa-database" style="color:#fb923c;"></i> Web Empresarial Raizys
+                </div>
+                <div class="iz-int-pill"><i class="fas fa-code-branch" style="color:#38bdf8;"></i> APIs REST &amp;
+                    Webhooks</div>
+                <div class="iz-int-pill"><i class="fas fa-project-diagram" style="color:var(--iz-violet);"></i> Make
+                    (Integromat)</div>
+                <div class="iz-int-pill"><i class="fas fa-sitemap" style="color:#22c55e;"></i> n8n Workflows</div>
+                <div class="iz-int-pill"><i class="fas fa-qrcode" style="color:#f472b6;"></i> Gateways Pix &amp; Boleto
+                </div>
+                <div class="iz-int-pill"><i class="fas fa-credit-card" style="color:#10b981;"></i> Asaas &amp;
+                    Pagamentos</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         8. SEÇÃO: PARA QUEM É + IMPLANTAÇÃO (BRANCO LAVANDA)
+    ===================================================== -->
+    <section class="iz-section iz-section--lav" id="para-quem">
+        <div class="iz-container">
+
+            <div class="iz-section-head-center">
+                <h2 class="iz-title-h2">
+                    Desenhada para quem atua com <span class="iz-gradient-text">volume e precisão.</span>
+                </h2>
+            </div>
+
+            <div class="iz-who-grid">
+                <div class="iz-who-card">
+                    <div class="iz-who-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Equipes Comerciais Ativas</h3>
+                    <p>Vendedores com visibilidade de funil, métricas de fechamento e distribuição justa de leads.</p>
+                </div>
+                <div class="iz-who-card">
+                    <div class="iz-who-icon"><i class="fas fa-comments-dollar"></i></div>
+                    <h3>Alto Volume de Mensagens</h3>
+                    <p>Operações que recebem dezenas ou centenas de contatos por dia e não respondem a tempo
+                        manualmente.</p>
+                </div>
+                <div class="iz-who-card">
+                    <div class="iz-who-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Investidores em Tráfego Pago</h3>
+                    <p>Negócios que investem em Google e Meta Ads e precisam de qualificação instantânea para maximizar
+                        o ROI.</p>
+                </div>
+            </div>
+
+            <div class="iz-section-head-center" id="implantacao" style="margin-top: 100px;">
+                <h2 class="iz-title-h2">
+                    Você não implanta sozinho.<br>A consultoria <span class="iz-gradient-text">Raizys vai junto.</span>
+                </h2>
+                <p class="iz-lead">
+                    Nossos especialistas mapeiam seus processos, configuram os canais, treinam os Agentes de IA e
+                    capacitam seu time antes da virada de chave.
+                </p>
+            </div>
+
+            <div class="iz-roadmap-grid">
+                <div class="iz-roadmap-card">
+                    <div class="iz-roadmap-step-num">01</div>
+                    <h4>Diagnóstico</h4>
+                    <p>Entendemos sua rotina de atendimento, gargalos, canais prioritários e critérios de qualificação
+                        de leads.</p>
+                </div>
+                <div class="iz-roadmap-card">
+                    <div class="iz-roadmap-step-num">02</div>
+                    <h4>Configuração</h4>
+                    <p>Parametrizamos canais, funil do CRM, automações e a base de conhecimento dos Agentes de IA.</p>
+                </div>
+                <div class="iz-roadmap-card">
+                    <div class="iz-roadmap-step-num">03</div>
+                    <h4>Treinamento</h4>
+                    <p>Capacitamos atendentes, vendedores e gestores para operarem a plataforma com produtividade.</p>
+                </div>
+                <div class="iz-roadmap-card">
+                    <div class="iz-roadmap-step-num">04</div>
+                    <h4>Go Live Acompanhado</h4>
+                    <p>Entramos em operação juntos, monitorando as primeiras conversas e ajustando a IA em tempo real.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =====================================================
+         9. SEÇÃO: CTA FINAL & FORMULÁRIO (ESCURO)
+    ===================================================== -->
+    <section class="iz-section iz-form-section" id="formulario">
+        <div class="iz-container">
+            <div class="iz-form-wrapper">
+
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h2 class="iz-title-h2" style="margin-bottom: 12px;">
+                        Descubra como a IZYS pode <span class="iz-gradient-text">transformar suas vendas.</span>
+                    </h2>
+                    <p class="iz-lead" style="margin: 0 auto; font-size: 0.96rem;">
+                        Preencha o formulário abaixo e um especialista do Ecossistema Raizys entrará em contato para uma
+                        demonstração personalizada.
+                    </p>
+                </div>
+
+                <form id="izysLeadForm" action="send_mail.php" method="POST">
+                    <input type="hidden" name="_subject" value="Novo Lead IZYS AI CRM — Site Raizys">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+                    <input type="hidden" name="_autoresponse"
+                        value="Olá! Confirmamos que recebemos seu interesse na solução IZYS AI CRM com sucesso. Nossa equipe especializada entrará em contato em breve. Atenciosamente, Equipe Raizys.">
+
+                    <div class="iz-form-row">
+                        <div class="iz-form-group">
+                            <label for="iz_nome">Nome Completo *</label>
+                            <input type="text" id="iz_nome" name="nome" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="iz-form-group">
+                            <label for="iz_empresa">Nome da Empresa *</label>
+                            <input type="text" id="iz_empresa" name="empresa" placeholder="Sua empresa ou negócio"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="iz-form-row">
+                        <div class="iz-form-group">
+                            <label for="iz_wpp">WhatsApp Corporativo *</label>
+                            <input type="tel" id="iz_wpp" name="whatsapp" placeholder="(11) 99999-9999" required>
+                        </div>
+                        <div class="iz-form-group">
+                            <label for="iz_email">E-mail Profissional *</label>
+                            <input type="email" id="iz_email" name="email" placeholder="seu@empresa.com.br" required>
+                        </div>
+                    </div>
+
+                    <div class="iz-form-group">
+                        <label>Qual a prioridade da sua empresa hoje?</label>
+                        <div class="iz-checkbox-grid">
+                            <label class="iz-custom-checkbox">
+                                <input type="checkbox" name="prioridade[]" value="Atendimento Imediato">
+                                <div class="iz-cb-icon" style="background:rgba(167,139,250,0.12);">
+                                    <i class="fas fa-headset" style="color:var(--iz-lilac);"></i>
+                                </div>
+                                <span>Agilizar atendimento</span>
+                                <div class="iz-cb-check"></div>
+                            </label>
+                            <label class="iz-custom-checkbox">
+                                <input type="checkbox" name="prioridade[]" value="Organizar Funil de Vendas">
+                                <div class="iz-cb-icon" style="background:rgba(56,189,248,0.1);">
+                                    <i class="fas fa-chart-line" style="color:#38bdf8;"></i>
+                                </div>
+                                <span>Organizar CRM &amp; Vendas</span>
+                                <div class="iz-cb-check"></div>
+                            </label>
+                            <label class="iz-custom-checkbox">
+                                <input type="checkbox" name="prioridade[]" value="Implantar Agentes de IA">
+                                <div class="iz-cb-icon" style="background:rgba(244,114,182,0.1);">
+                                    <i class="fas fa-brain" style="color:#f472b6;"></i>
+                                </div>
+                                <span>Agentes de IA Autônomos</span>
+                                <div class="iz-cb-check"></div>
+                            </label>
+                            <label class="iz-custom-checkbox">
+                                <input type="checkbox" name="prioridade[]" value="Reativar Base de Clientes">
+                                <div class="iz-cb-icon" style="background:rgba(251,146,60,0.1);">
+                                    <i class="fas fa-rocket" style="color:#fb923c;"></i>
+                                </div>
+                                <span>Reativação de Contatos</span>
+                                <div class="iz-cb-check"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="iz-btn-primary" id="izSubmitBtn"
+                        style="width:100%;margin-top:16px;padding:17px;font-size:0.98rem;">
+                        <i class="fas fa-paper-plane"></i> Solicitar Demonstração da IZYS
+                    </button>
+                </form>
+
+                <div class="iz-trust-bar">
+                    <div class="iz-trust-item">
+                        <div class="iz-trust-item-icon"><i class="fas fa-check"></i></div>
+                        Demonstração personalizável
+                    </div>
+                    <div class="iz-trust-item">
+                        <div class="iz-trust-item-icon"><i class="fas fa-shield-halved"></i></div>
+                        Implantação guiada pela Raizys
+                    </div>
+                    <div class="iz-trust-item">
+                        <div class="iz-trust-item-icon"><i class="fas fa-handshake"></i></div>
+                        Sem fidelidade forçada
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         NEWSLETTER + FOOTER (PADRÃO RAIZYS)
+    ===================================================== -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h3>Inscreva-se na nossa newsletter</h3>
+                <p>Assine a nossa newsletter e receba as novidades e conteúdos exclusivos da Raizys.</p>
+            </div>
+            <div class="newsletter-form-wrapper">
+                <form class="newsletter-form" action="https://formsubmit.co/ajax/diego.caselato@raizys.com.br"
+                    method="POST">
+                    <input type="hidden" name="_subject" value="Nova Inscrição Newsletter - RAIZYS">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+                    <input type="hidden" name="_autoresponse"
+                        value="Olá! Confirmamos sua inscrição com sucesso. Em breve você receberá novidades exclusivas da Raizys.">
+                    <div class="input-group">
+                        <input type="text" name="nome" placeholder="Digite seu nome" required>
+                        <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                        <button type="submit">INSCREVER</button>
+                    </div>
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="nl_terms" name="termos" required>
+                        <label for="nl_terms">Aceito os termos e condições</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="home">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
+                </a>
+                <p>Consultoria especializada em implantação de sistemas empresariais e inteligência de negócios.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i
+                                class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
+                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11
+                            5026-4939</a></p>
+                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i
+                                class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
+                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt"
+                                    style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83
+                                - Vila Rica, Guaxupé - MG, 37800-000</span></p>
+                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i>
+                                <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves,
+                                759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i
+                            class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="sobre-nos">Sobre Nós</a></li>
+                    <li><a href="trabalhe-conosco">Trabalhe Conosco</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Termos</h4>
+                <ul>
+                    <li><a href="termos-condicoes">Termos e Condições</a></li>
+                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
+                    <li><a href="indicacao">Cadastrar Indicação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="contato">Fale Conosco</a></li>
+                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Action Button -->
+    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank" aria-label="Atendimento via WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="header.js?v=5.0"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        var robot = document.getElementById('izRobot');
+        var robotInner = document.getElementById('izRobotInner');
+        var robotCanvas = document.getElementById('izRobotCanvas');
+        var robotCtx = robotCanvas ? robotCanvas.getContext('2d', { alpha: true, desynchronized: true }) : null;
+        var stageInner = document.getElementById('izStageInner');
+        var heroContent = document.getElementById('izHeroContent');
+        var painContent = document.getElementById('por-que-izys');
+
+        // =========================================================================
+        // MOTOR DE RENDERIZAÇÃO DE FRAMES (CANVAS 60FPS / 120FPS ZERO-LAG)
+        // =========================================================================
+        var FRAME_COUNT = 122;
+        var FRAME_VERSION = 'v=5.0';
+        var FRAME_BASE_PATH = 'assets/robot-frames/frame_';
+        var frames = new Array(FRAME_COUNT);
+        var lastRenderedFrame = -1;
+
+        function drawFrame(idx) {
+            if (!robotCtx || !robotCanvas) return;
+            var targetImg = frames[idx];
+            if (!targetImg || !targetImg.complete) {
+                for (var j = idx - 1; j >= 0; j--) {
+                    if (frames[j] && frames[j].complete) { targetImg = frames[j]; break; }
+                }
+                if (!targetImg && frames[0] && frames[0].complete) targetImg = frames[0];
+            }
+            if (targetImg && targetImg.complete && targetImg.naturalWidth > 0) {
+                robotCtx.clearRect(0, 0, robotCanvas.width, robotCanvas.height);
+                robotCtx.drawImage(targetImg, 0, 0, robotCanvas.width, robotCanvas.height);
+                lastRenderedFrame = idx;
+            }
+        }
+
+        // Pré-carregamento imediato de todos os frames com cache-busting
+        for (var i = 0; i < FRAME_COUNT; i++) {
+            (function (index) {
+                var img = new Image();
+                var pad = String(index).padStart(3, '0');
+                img.src = FRAME_BASE_PATH + pad + '.webp?' + FRAME_VERSION;
+                img.onload = function () {
+                    frames[index] = img;
+                    if (index === 0 && lastRenderedFrame === -1) drawFrame(0);
+                    if (img.decode) img.decode().catch(function () {});
+                };
+            })(i);
+        }
+
+        // =========================================================================
+        // ROBOT FRAME ENGINE — RAF lerp para fluidez máxima
+        // =========================================================================
+        var targetProgress = 0;
+        var currentProgress = 0;
+        var rafId = null;
+        var LERP_SPEED = 0.09;
+
+        function lerpRobotRAF() {
+            var diff = targetProgress - currentProgress;
+            if (Math.abs(diff) > 0.0001) {
+                currentProgress += diff * LERP_SPEED;
+                var frameIdx = Math.round(currentProgress * (FRAME_COUNT - 1));
+                if (frameIdx !== lastRenderedFrame) drawFrame(frameIdx);
+                rafId = requestAnimationFrame(lerpRobotRAF);
+            } else {
+                currentProgress = targetProgress;
+                var frameIdx = Math.round(currentProgress * (FRAME_COUNT - 1));
+                if (frameIdx !== lastRenderedFrame) drawFrame(frameIdx);
+                rafId = null;
+            }
+        }
+
+        function setRobotProgress(p) {
+            targetProgress = Math.max(0, Math.min(1, p));
+            if (!rafId) rafId = requestAnimationFrame(lerpRobotRAF);
+        }
+
+        // Idle levitation
+        if (robotInner) {
+            gsap.to(robotInner, {
+                y: 12,
+                rotation: 0.4,
+                duration: 3.2,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+        }
+
+        function getRobotPath() {
+            if (!stageInner || !robot) return { s: 0, e: 0 };
+            var W = stageInner.clientWidth;
+            var rw = robot.offsetWidth;
+            return { s: W - rw - 10, e: W * 0.10 - rw / 2 };
+        }
+
+        // Posição inicial no desktop
+        if (robot && window.innerWidth > 991) {
+            var initPath = getRobotPath();
+            gsap.set(robot, { yPercent: -50, x: initPath.s });
+        }
+
+        var tlDesktop = null;
+        var stMobile = null;
+        var robotX = { current: 0, target: 0 };
+        var xRafId = null;
+
+        function lerpRobotX() {
+            var diff = robotX.target - robotX.current;
+            if (Math.abs(diff) > 0.3) {
+                robotX.current += diff * 0.08;
+                if (robot) gsap.set(robot, { x: robotX.current });
+                xRafId = requestAnimationFrame(lerpRobotX);
+            } else {
+                robotX.current = robotX.target;
+                if (robot) gsap.set(robot, { x: robotX.current });
+                xRafId = null;
+            }
+        }
+
+        function setRobotX(x) {
+            robotX.target = x;
+            if (!xRafId) xRafId = requestAnimationFrame(lerpRobotX);
+        }
+
+        function initScrollAnimations() {
+            if (tlDesktop) tlDesktop.kill();
+            if (stMobile) stMobile.kill();
+
+            var isDesktop = window.innerWidth > 991;
+
+            if (isDesktop) {
+                var path = getRobotPath();
+                robotX.current = path.s;
+                robotX.target = path.s;
+                if (robot) gsap.set(robot, { yPercent: -50, x: path.s });
+                if (heroContent) gsap.set(heroContent, { opacity: 1, y: 0, pointerEvents: 'auto' });
+                if (painContent) gsap.set(painContent, { opacity: 0, y: 30, pointerEvents: 'none' });
+                gsap.set('#como-funciona', { clearProps: 'all' });
+
+                tlDesktop = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '#izCinematicTrack',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.8,
+                        invalidateOnRefresh: true
+                    }
+                });
+
+                // FASE 1 (0 → 0.75): robô viaja direita → esquerda, anima frames
+                var scrubObj = { p: 0 };
+                tlDesktop.to(scrubObj, {
+                    p: 1,
+                    duration: 0.75,
+                    ease: 'none',
+                    onUpdate: function () {
+                        var val = scrubObj.p;
+                        var curPath = getRobotPath();
+                        setRobotX(curPath.s + (curPath.e - curPath.s) * val);
+                        setRobotProgress(val);
+                    }
+                }, 0);
+
+                tlDesktop.to(heroContent, {
+                    opacity: 0,
+                    y: -50,
+                    duration: 0.4,
+                    ease: 'power2.out',
+                    onComplete: function () { gsap.set(heroContent, { pointerEvents: 'none' }); },
+                    onReverseComplete: function () { gsap.set(heroContent, { pointerEvents: 'auto' }); }
+                }, 0);
+
+                tlDesktop.fromTo(painContent,
+                    { opacity: 0, y: 28 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        ease: 'power2.out',
+                        onStart: function () { gsap.set(painContent, { pointerEvents: 'auto' }); }
+                    },
+                    0.18
+                );
+
+                // FASE 2 (0.75 → 1.8): seção de dor legível
+                tlDesktop.to(painContent, { opacity: 1, duration: 1.05, ease: 'none' }, 0.75);
+
+            } else {
+                // Mobile: mascote gira conforme o usuário rola a tela
+                if (robot) gsap.set(robot, { clearProps: 'all' });
+                if (heroContent) gsap.set(heroContent, { clearProps: 'all' });
+                if (painContent) gsap.set(painContent, { opacity: 1, y: 0, pointerEvents: 'auto' });
+                gsap.set('#como-funciona', { clearProps: 'all' });
+
+                stMobile = ScrollTrigger.create({
+                    trigger: '#izRobot',
+                    start: 'top 92%',
+                    end: 'bottom 8%',
+                    scrub: true,
+                    onUpdate: function (self) {
+                        setRobotProgress(self.progress);
+                    }
+                });
+            }
+        }
+
+        initScrollAnimations();
+
+        window.addEventListener('resize', function () {
+            initScrollAnimations();
+        });
+    </script>
+    <script>
+        var izLeadForm = document.getElementById('izysLeadForm');
+        var izSubmitBtn = document.getElementById('izSubmitBtn');
+
+        if (izLeadForm && izSubmitBtn) {
+            izLeadForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                var originalText = izSubmitBtn.innerHTML;
+                izSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                izSubmitBtn.disabled = true;
+
+                try {
+                    var formData = new FormData(izLeadForm);
+                    var res = await fetch(izLeadForm.action, { method: 'POST', body: formData });
+                    var json = await res.json().catch(function () { return {}; });
+
+                    if (!json.success || json.success === 'false') {
+                        res = await fetch('https://formsubmit.co/ajax/diego.caselato@raizys.com.br', {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        json = await res.json().catch(function () { return {}; });
+                    }
+
+                    if (json.success === true || json.success === 'true') {
+                        izSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Solicitação enviada com sucesso!';
+                        izSubmitBtn.style.background = '#16a34a';
+                        
+                        // Display confirmation banner
+                        var existingAlert = document.getElementById('izFormSuccessAlert');
+                        if (!existingAlert) {
+                            var alertDiv = document.createElement('div');
+                            alertDiv.id = 'izFormSuccessAlert';
+                            alertDiv.style.cssText = 'background:rgba(34,197,94,0.12);border:1px solid #22c55e;border-radius:14px;padding:20px;margin-top:20px;text-align:center;color:#15803d;font-family:var(--iz-font-body);';
+                            alertDiv.innerHTML = '<div style="font-size:1.1rem;font-weight:700;margin-bottom:6px;"><i class="fas fa-check-circle" style="color:#22c55e;margin-right:8px;"></i>Demonstração Solicitada!</div><p style="margin:0;font-size:0.92rem;color:#166534;line-height:1.5;">Recebemos seus dados e uma confirmação foi enviada para o seu e-mail. Nossa equipe entrará em contato em breve.</p>';
+                            izLeadForm.appendChild(alertDiv);
+                        }
+                        izLeadForm.reset();
+                    } else {
+                        throw new Error();
+                    }
+                } catch (err) {
+                    izSubmitBtn.innerHTML = originalText;
+                    izSubmitBtn.disabled = false;
+                    alert('Recebemos sua mensagem ou você pode falar conosco diretamente no WhatsApp: (11) 91897-0770');
+                }
+            });
+        }
+    </script>
+    <script>
+        /* =====================================================
+           COUNTER ANIMATION — numbers count up on first view
+        ===================================================== */
+        (function () {
+            var counters = document.querySelectorAll('.iz-hero-stat-num[data-count]');
+            if (!counters.length) return;
+
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            function animateCounter(el) {
+                var target = parseInt(el.getAttribute('data-count'), 10);
+                var prefix = el.getAttribute('data-prefix') || '';
+                var suffix = el.getAttribute('data-suffix') || '';
+                var duration = 1600;
+                var startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    var elapsed = timestamp - startTime;
+                    var progress = Math.min(elapsed / duration, 1);
+                    var eased = easeOutCubic(progress);
+                    var current = Math.round(eased * target);
+                    el.innerHTML = prefix + current + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.innerHTML = prefix + target + suffix;
+                    }
+                }
+                requestAnimationFrame(step);
+            }
+
+            var observed = false;
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting && !observed) {
+                        observed = true;
+                        counters.forEach(function (el) { animateCounter(el); });
+                        io.disconnect();
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            var statsContainer = document.querySelector('.iz-hero-stats');
+            if (statsContainer) io.observe(statsContainer);
+        })();
+    </script>
+</body>
+
+</html>

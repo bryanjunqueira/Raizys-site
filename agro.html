@@ -1,0 +1,611 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Raizys Agro - Gestão Rural Inteligente</title>
+    <meta name="description"
+        content="Raizys Agro: Sistema de gestão rural para produtores rurais e cafeicultores. Controle real de custos por safra, talhão e propriedade.">
+    <link rel="icon" type="image/png"
+        href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
+    <link rel="stylesheet" href="style.css?v=7.0">
+    <link rel="stylesheet" href="header.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="agro-page-theme theme-dark-hero">
+        <!-- ===== TOPBAR ===== -->
+    <div class="rz-topbar">
+        <div class="rz-topbar-inner">
+            <div class="rz-topbar-socials">
+                <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn" class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube" class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING GLASS HEADER (Sankhya Style) ===== -->
+    <div class="rz-header-wrapper">
+        <header class="rz-header" id="rz-header">
+            <div class="rz-header-inner">
+                <a href="home" class="rz-logo">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys Logo">
+                </a>
+                <nav class="rz-nav">
+                    <div class="rz-nav-link rz-nav-solutions-trigger">
+                        <span>Solu&#231;&#245;es</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="sobre-nos" class="rz-nav-link" data-page="sobre-nos">Sobre</a>
+                    <a href="contato" class="rz-nav-link" data-page="contato">Contato</a>
+                    <div class="rz-nav-link rz-nav-partners-trigger">
+                        <span>Parceiros</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="trabalhe-conosco" class="rz-nav-link" data-page="trabalhe-conosco">Trabalhe Conosco</a>
+                </nav>
+                <a href="contato" class="rz-header-cta">VAMOS CONVERSAR</a>
+                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+
+            <!-- MEGA-MENU SOLUÃ‡Ã•ES (Dropdown with Sector Raizys Logos) -->
+            <div class="rz-solutions-mega">
+                <div class="rz-mega-title">Nossas Solu&#231;&#245;es Corporativas</div>
+                <div class="rz-mega-grid">
+                    <a href="web" class="rz-mega-card" data-solution="web">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Web" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Web Empresarial</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o completa de processos e ERP para m&#233;dias empresas.</div>
+                        </div>
+                    </a>
+                    <a href="agro" class="rz-mega-card" data-solution="agro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="Agro" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agro &amp; Campo</div>
+                            <div class="rz-mega-card-desc">Controle de safra, insumos e rastreabilidade no campo.</div>
+                        </div>
+                    </a>
+                    <a href="food" class="rz-mega-card" data-solution="food">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-orange.png" alt="Food" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Food Service</div>
+                            <div class="rz-mega-card-desc">Automa&#231;&#227;o de restaurantes, cozinhas e franquias.</div>
+                        </div>
+                    </a>
+                    <a href="clinicas" class="rz-mega-card" data-solution="clinicas">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Cl&#237;nicas" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cl&#237;nicas &amp; Sa&#250;de</div>
+                            <div class="rz-mega-card-desc">Agendamento, prontu&#225;rio e gest&#227;o m&#233;dica integrada.</div>
+                        </div>
+                    </a>
+                    <a href="pet" class="rz-mega-card" data-solution="pet">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-yellow.png" alt="Pet" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Pet &amp; Vet</div>
+                            <div class="rz-mega-card-desc">Controle de banho e tosa, veterin&#225;ria e pet shop.</div>
+                        </div>
+                    </a>
+                    <a href="agenda" class="rz-mega-card" data-solution="agenda">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-dark.png" alt="Agenda" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agenda Inteligente</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o de hor&#225;rios, servi&#231;os e lembretes autom&#225;ticos.</div>
+                        </div>
+                    </a>
+                    <a href="sap" class="rz-mega-card" data-solution="sap">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="SAP" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Consultoria SAP</div>
+                            <div class="rz-mega-card-desc">Implanta&#231;&#227;o, migra&#231;&#227;o e governan&#231;a SAP B1 / S4 HANA.</div>
+                        </div>
+                    </a>
+                    <a href="izys" class="rz-mega-card" data-solution="izys">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="fotos/Isys - Logo 3.png" alt="IZYS AI CRM" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">IZYS AI CRM</div>
+                            <div class="rz-mega-card-desc">Atendimento, CRM, automa&#231;&#245;es e Agentes de IA em um &#250;nico lugar.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- MEGA-MENU PARCEIROS (Dropdown) -->
+            <div class="rz-partners-mega">
+                <div class="rz-mega-title">Programa de Parceiros</div>
+                <div class="rz-partners-grid">
+                    <a href="indicacao" class="rz-mega-card" data-partner="indicacao">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Indicação" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cadastrar Indica&#231;&#227;o</div>
+                            <div class="rz-mega-card-desc">Indique uma empresa e acompanhe o status da sua indica&#231;&#227;o.</div>
+                        </div>
+                    </a>
+                    <a href="parceiro-indicador" class="rz-mega-card" data-partner="parceiro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Parceiro Indicador" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Parceiro Indicador</div>
+                            <div class="rz-mega-card-desc">Seja um parceiro indicador oficial e amplie seus ganhos.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="rz-mega-overlay"></div>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="rz-mobile-overlay"></div>
+    <div class="rz-mobile-drawer">
+        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Navega&#231;&#227;o</div>
+            <a href="sobre-nos" class="rz-mobile-link" data-page="sobre-nos"><i class="fas fa-info-circle"></i> Sobre N&#243;s</a>
+            <a href="contato" class="rz-mobile-link" data-page="contato"><i class="fas fa-envelope"></i> Contato</a>
+            <a href="indicacao" class="rz-mobile-link" data-page="indicacao"><i class="fas fa-user-plus"></i> Cadastrar Indica&#231;&#227;o</a>
+            <a href="parceiro-indicador" class="rz-mobile-link" data-page="parceiro-indicador"><i class="fas fa-handshake"></i> Parceiro Indicador</a>
+            <a href="trabalhe-conosco" class="rz-mobile-link" data-page="trabalhe-conosco"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Solu&#231;&#245;es Corporativas</div>
+            <a href="web" class="rz-mobile-link" data-page="web"><img src="assets/shield-blue.png" alt="Raizys"> Web Empresarial</a>
+            <a href="agro" class="rz-mobile-link" data-page="agro"><img src="assets/shield-green.png" alt="Raizys"> Agro &amp; Campo</a>
+            <a href="food" class="rz-mobile-link" data-page="food"><img src="assets/shield-orange.png" alt="Raizys"> Food Service</a>
+            <a href="clinicas" class="rz-mobile-link" data-page="clinicas"><img src="assets/shield-blue.png" alt="Raizys"> Cl&#237;nicas &amp; Sa&#250;de</a>
+            <a href="pet" class="rz-mobile-link" data-page="pet"><img src="assets/shield-yellow.png" alt="Raizys"> Pet &amp; Vet</a>
+            <a href="agenda" class="rz-mobile-link" data-page="agenda"><img src="assets/shield-dark.png" alt="Raizys"> Agenda Inteligente</a>
+            <a href="sap" class="rz-mobile-link" data-page="sap"><img src="assets/shield-green.png" alt="Raizys"> Consultoria SAP</a>
+            <a href="izys" class="rz-mobile-link" data-page="izys"><img src="fotos/Isys - Logo 3.png" alt="IZYS" style="height:18px;width:auto;"> IZYS AI CRM</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <a href="contato" class="rz-header-cta" style="width:100%;justify-content:center;margin:0;margin-top:8px;">VAMOS CONVERSAR</a>
+        </div>
+    </div>
+    
+
+    <main>
+        
+        <section class="agro-hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title"><strong>Raizys Agro</strong>: Plataforma de gestão rural inteligente</h1>
+                    <div class="hero-body">
+                        <p>Controle real de <strong>custos por safra, talhão e propriedade</strong>.</p>
+                        <p>Um sistema desenvolvido para <strong>produtores rurais e cafeicultores</strong> que querem transformar sua propriedade em um negócio estruturado e lucrativo.</p>
+                    </div>
+                    <p class="hero-footer">
+                        O Raizys Agro entrega a clareza financeira que o produtor precisa para tomar decisões seguras e ampliar os resultados da safra.
+                    </p>
+                </div>
+                <div class="hero-visual">
+                    <img src="assets/Raizys - Logo 10 (1).png" alt="Raizys Agro Shield"
+                        class="hero-logo-img agro-hero-logo">
+                    <a href="https://wa.me/5511918970770" target="_blank" class="cta-button agro-cta-button">Fale com um consultor</a>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="agro-section agro-problems-section">
+            <div class="content-container">
+                <h2 class="section-title agro-title reveal-item">Sua propriedade está realmente organizada?</h2>
+                <div class="agro-intro-text reveal-item">
+                    <p>Muitos produtores acreditam ter controle da fazenda, mas operam sem <strong>visibilidade real dos custos</strong>. Sem um sistema integrado, os problemas se acumulam safra após safra — e o prejuízo só aparece depois.</p>
+                </div>
+                <div class="emp-problems-grid">
+                    <div class="emp-problem-card agro-problem-card reveal-item">
+                        <div class="emp-problem-icon agro-problem-icon"><i class="fas fa-question-circle"></i></div>
+                        <h4>Custo real por safra desconhecido</h4>
+                        <p>Sem saber quanto custa produzir cada saca, é impossível decidir com segurança.</p>
+                    </div>
+                    <div class="emp-problem-card agro-problem-card reveal-item">
+                        <div class="emp-problem-icon agro-problem-icon"><i class="fas fa-map-marked-alt"></i></div>
+                        <h4>Sem controle por talhão</h4>
+                        <p>Cada área tem produtividade e custo diferente — sem isso, você gerencia no escuro.</p>
+                    </div>
+                    <div class="emp-problem-card agro-problem-card reveal-item">
+                        <div class="emp-problem-icon agro-problem-icon"><i class="fas fa-boxes"></i></div>
+                        <h4>Compra de insumos sem estratégia</h4>
+                        <p>Compras por intuição geram estoque parado, excessos ou falta na hora certa.</p>
+                    </div>
+                    <div class="emp-problem-card agro-problem-card reveal-item">
+                        <div class="emp-problem-icon agro-problem-icon"><i class="fas fa-random"></i></div>
+                        <h4>Despesas pessoais e rurais misturadas</h4>
+                        <p>Sem separação clara, a gestão financeira fica comprometida e o cálculo do lucro é impreciso.</p>
+                    </div>
+                    <div class="emp-problem-card agro-problem-card reveal-item">
+                        <div class="emp-problem-icon agro-problem-icon"><i class="fas fa-calendar-times"></i></div>
+                        <h4>Falta de planejamento financeiro</h4>
+                        <p>Sem visão de fluxo de caixa futuro, o produtor fica vulnerável a imprevistos.</p>
+                    </div>
+                    <div class="emp-problem-card agro-problem-card reveal-item">
+                        <div class="emp-problem-icon agro-problem-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h4>Prejuízo descoberto após a safra</h4>
+                        <p>Quando os números aparecem, já é tarde demais para corrigir a rota desta colheita.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="agro-section agro-solution-section">
+            <div class="content-container">
+                <h2 class="section-title agro-title reveal-item">Como o Raizys Agro organiza sua propriedade</h2>
+                <div class="agro-intro-text reveal-item">
+                    <p>O sistema <strong>organiza a gestão rural de ponta a ponta</strong> e transforma sua propriedade em um negócio estruturado. Cada clique no sistema gera dados que viram decisões e decisões que viram lucro.</p>
+                </div>
+                <div class="emp-solution-grid">
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-leaf"></i></div>
+                        <span>Controle de custo por safra</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-seedling"></i></div>
+                        <span>Controle por talhão</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-hard-hat"></i></div>
+                        <span>Controle de mão de obra</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-warehouse"></i></div>
+                        <span>Controle de estoque de insumos</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-home"></i></div>
+                        <span>Organização financeira da propriedade</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-calculator"></i></div>
+                        <span>Integração com contador</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="agro-section agro-modules-section">
+            <div class="content-container">
+                <h2 class="section-title agro-title centered reveal-item">Módulos do Sistema</h2>
+                <div class="emp-modules-grid">
+                    
+                    <div class="emp-module-card agro-module-card reveal-item">
+                        <div class="emp-module-header agro-module-header">
+                            <div class="emp-module-icon agro-module-icon"><i class="fas fa-dollar-sign"></i></div>
+                            <h3>Financeiro Rural</h3>
+                        </div>
+                        <ul>
+                            <li>Contas a pagar e receber</li>
+                            <li>Conciliação bancária</li>
+                            <li>Fluxo de caixa por propriedade</li>
+                            <li>DRE da fazenda</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emp-module-card agro-module-card reveal-item">
+                        <div class="emp-module-header agro-module-header">
+                            <div class="emp-module-icon agro-module-icon"><i class="fas fa-file-alt"></i></div>
+                            <h3>Fiscal Rural</h3>
+                        </div>
+                        <ul>
+                            <li>Emissão de notas fiscais do produtor</li>
+                            <li>SPED fiscal</li>
+                            <li>Livro caixa digital</li>
+                            <li>Integração com contador</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emp-module-card agro-module-card reveal-item">
+                        <div class="emp-module-header agro-module-header">
+                            <div class="emp-module-icon agro-module-icon"><i class="fas fa-flask"></i></div>
+                            <h3>Estoque de Insumos</h3>
+                        </div>
+                        <ul>
+                            <li>Controle de fertilizantes</li>
+                            <li>Controle de defensivos</li>
+                            <li>Giro de estoque</li>
+                            <li>Custo médio automático</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emp-module-card agro-module-card reveal-item">
+                        <div class="emp-module-header agro-module-header">
+                            <div class="emp-module-icon agro-module-icon"><i class="fas fa-tractor"></i></div>
+                            <h3>Produção Agrícola</h3>
+                        </div>
+                        <ul>
+                            <li>Controle de colheita</li>
+                            <li>Baixa automática na produção</li>
+                            <li>Rastreabilidade da produção</li>
+                            <li>Controle por tipo de café</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emp-module-card agro-module-card reveal-item">
+                        <div class="emp-module-header agro-module-header">
+                            <div class="emp-module-icon agro-module-icon"><i class="fas fa-hard-hat"></i></div>
+                            <h3>Gestão de Mão de Obra</h3>
+                        </div>
+                        <ul>
+                            <li>Controle de funcionários fixos e temporários</li>
+                            <li>Folha de pagamento rural</li>
+                            <li>Apontamento de horas por tarefa</li>
+                            <li>Custo de mão de obra por talhão</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emp-module-card agro-module-card reveal-item">
+                        <div class="emp-module-header agro-module-header">
+                            <div class="emp-module-icon agro-module-icon"><i class="fas fa-chart-bar"></i></div>
+                            <h3>Relatórios Gerenciais</h3>
+                        </div>
+                        <ul>
+                            <li>Dashboard de desempenho por safra</li>
+                            <li>Comparativo entre propriedades</li>
+                            <li>Indicadores de produtividade por área</li>
+                            <li>Exportação para planilhas e PDF</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="agro-section agro-multi-section">
+            <div class="content-container">
+                <h2 class="section-title agro-title reveal-item">Gestão de múltiplas propriedades</h2>
+                <div class="agro-intro-text reveal-item">
+                    <p>O Raizys Agro foi pensado para <strong>famílias produtoras com várias propriedades</strong>. Gerencie tudo em uma única plataforma com consolidação financeira familiar completa.</p>
+                </div>
+                <div class="emp-solution-grid agro-multi-grid">
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-id-card"></i></div>
+                        <span>Controle de múltiplos CPF</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-building"></i></div>
+                        <span>Múltiplos CNPJ</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-globe"></i></div>
+                        <span>Gestão de várias propriedades</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-users"></i></div>
+                        <span>Consolidação financeira familiar</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-tasks"></i></div>
+                        <span>Gestão de múltiplas prioridades por safra</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-layer-group"></i></div>
+                        <span>Centros de custo separados por propriedade</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-chart-pie"></i></div>
+                        <span>Visão consolidada do patrimônio rural</span>
+                    </div>
+                    <div class="emp-solution-item agro-solution-item reveal-item">
+                        <div class="emp-solution-icon agro-solution-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <span>Transferências entre propriedades</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="agro-section agro-tech-section">
+            <div class="content-container">
+                <h2 class="section-title agro-title reveal-item">Tecnologia e Segurança</h2>
+                <div class="agro-intro-text reveal-item">
+                    <p>O Raizys Agro possui <strong>infraestrutura corporativa de alto nível</strong>, garantindo performance, estabilidade e segurança absoluta para os dados da sua produção.</p>
+                </div>
+                <div class="emp-tech-grid">
+                    <div class="emp-tech-item agro-tech-item reveal-item">
+                        <i class="fas fa-cloud"></i>
+                        <h4>100% em nuvem</h4>
+                        <p>Acesse de qualquer lugar, a qualquer momento</p>
+                    </div>
+                    <div class="emp-tech-item agro-tech-item reveal-item">
+                        <i class="fab fa-aws"></i>
+                        <h4>Servidores AWS</h4>
+                        <p>Infraestrutura Amazon de classe mundial</p>
+                    </div>
+                    <div class="emp-tech-item agro-tech-item reveal-item">
+                        <i class="fas fa-database"></i>
+                        <h4>Banco Oracle</h4>
+                        <p>Banco de dados corporativo robusto e confiável</p>
+                    </div>
+                    <div class="emp-tech-item agro-tech-item reveal-item">
+                        <i class="fab fa-java"></i>
+                        <h4>Desenvolvido em Java</h4>
+                        <p>Linguagem empresarial estável e segura</p>
+                    </div>
+                    <div class="emp-tech-item agro-tech-item reveal-item">
+                        <i class="fas fa-hdd"></i>
+                        <h4>Backup automático</h4>
+                        <p>Seus dados protegidos continuamente</p>
+                    </div>
+                    <div class="emp-tech-item agro-tech-item reveal-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h4>Auditoria de logs</h4>
+                        <p>Rastreabilidade completa de todas as operações</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="agro-section agro-deploy-section">
+            <div class="content-container">
+                <h2 class="section-title agro-title reveal-item">Implantação especializada</h2>
+                <div class="agro-intro-text reveal-item">
+                    <p>O Raizys Agro precisa de <strong>implantação profissional</strong> para gerar resultados reais. Nossa equipe especializada conduz todo o processo de forma estruturada para que o sistema opere com máxima eficiência desde o início.</p>
+                </div>
+                <div class="emp-deploy-steps">
+                    <div class="emp-deploy-step agro-deploy-step reveal-item">
+                        <div class="emp-deploy-number agro-deploy-number">01</div>
+                        <div class="emp-deploy-info">
+                            <h4>Organização de custos rurais</h4>
+                            <p>Estruturação de categorias de custo adequadas à realidade da propriedade.</p>
+                        </div>
+                    </div>
+                    <div class="emp-deploy-step agro-deploy-step reveal-item">
+                        <div class="emp-deploy-number agro-deploy-number">02</div>
+                        <div class="emp-deploy-info">
+                            <h4>Configuração do Livro Caixa</h4>
+                            <p>Setup completo para conformidade fiscal do produtor rural.</p>
+                        </div>
+                    </div>
+                    <div class="emp-deploy-step agro-deploy-step reveal-item">
+                        <div class="emp-deploy-number agro-deploy-number">03</div>
+                        <div class="emp-deploy-info">
+                            <h4>Parametrização do DRE por safra</h4>
+                            <p>Configuração do demonstrativo de resultados segmentado por ciclo produtivo.</p>
+                        </div>
+                    </div>
+                    <div class="emp-deploy-step agro-deploy-step reveal-item">
+                        <div class="emp-deploy-number agro-deploy-number">04</div>
+                        <div class="emp-deploy-info">
+                            <h4>Treinamento dos usuários</h4>
+                            <p>Capacitação completa do produtor e equipe para uso eficiente do sistema.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="agro-section agro-results-section">
+            <div class="content-container">
+                <h2 class="section-title agro-title centered reveal-item">Resultado para o produtor</h2>
+                <div class="emp-results-grid">
+                    <div class="emp-result-card agro-result-card reveal-item">
+                        <div class="emp-result-icon agro-result-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Controle real do custo da produção</h4>
+                        <p>Saiba exatamente quanto custa cada saca produzida por talhão e safra.</p>
+                    </div>
+                    <div class="emp-result-card agro-result-card reveal-item">
+                        <div class="emp-result-icon agro-result-icon"><i class="fas fa-cut"></i></div>
+                        <h4>Redução de desperdícios</h4>
+                        <p>Controle de insumos e mão de obra elimina gastos desnecessários.</p>
+                    </div>
+                    <div class="emp-result-card agro-result-card reveal-item">
+                        <div class="emp-result-icon agro-result-icon"><i class="fas fa-home"></i></div>
+                        <h4>Organização financeira da propriedade</h4>
+                        <p>Separação total entre despesas pessoais e rurais com visão clara do patrimônio.</p>
+                    </div>
+                    <div class="emp-result-card agro-result-card reveal-item">
+                        <div class="emp-result-icon agro-result-icon"><i class="fas fa-balance-scale"></i></div>
+                        <h4>Conformidade fiscal</h4>
+                        <p>Obrigações fiscais em dia com o menor esforço e máxima segurança.</p>
+                    </div>
+                    <div class="emp-result-card agro-result-card reveal-item">
+                        <div class="emp-result-icon agro-result-icon"><i class="fas fa-arrow-up"></i></div>
+                        <h4>Aumento da lucratividade da safra</h4>
+                        <p>Decisões baseadas em dados reais geram safras mais rentáveis a cada ciclo.</p>
+                    </div>
+                </div>
+                <div class="section-cta-container reveal-item">
+                    <a href="https://wa.me/5511918970770" target="_blank" class="cta-button agro-cta-button">Fale com um consultor</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="home">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
+                </a>
+                <p>Consultoria especializada em implantação de sistemas empresariais.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
+                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11 5026-4939</a></p>
+                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
+                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt" style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83 - Vila Rica, Guaxupé - MG, 37800-000</span></p>
+                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i> <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves, 759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="sobre-nos">Sobre Nós</a></li>
+                    <li><a href="trabalhe-conosco">Trabalhe conosco</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Termos</h4>
+                <ul>
+                    <li><a href="termos-condicoes">Termos e Condições</a></li>
+                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
+                    <li><a href="indicacao">Cadastrar Indicação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="contato">Fale Conosco</a></li>
+                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="header.js?v=5.0"></script>
+</body>
+
+</html>
+

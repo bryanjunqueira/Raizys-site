@@ -1,0 +1,618 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Raizys - Sistemas e Tecnologia</title>
+    <meta name="description"
+        content="Raizys: Consultoria especializada em implantação de sistemas empresariais e parceira integradora no ecossistema SAP.">
+    <link rel="icon" type="image/png"
+        href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
+    <link rel="stylesheet" href="style.css?v=7.0">
+    <link rel="stylesheet" href="header.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="theme-dark-hero">
+        <!-- ===== TOPBAR ===== -->
+    <div class="rz-topbar">
+        <div class="rz-topbar-inner">
+            <div class="rz-topbar-socials">
+                <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn" class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube" class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FLOATING GLASS HEADER (Sankhya Style) ===== -->
+    <div class="rz-header-wrapper">
+        <header class="rz-header" id="rz-header">
+            <div class="rz-header-inner">
+                <a href="home" class="rz-logo">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys Logo">
+                </a>
+                <nav class="rz-nav">
+                    <div class="rz-nav-link rz-nav-solutions-trigger">
+                        <span>Solu&#231;&#245;es</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="sobre-nos" class="rz-nav-link" data-page="sobre-nos">Sobre</a>
+                    <a href="contato" class="rz-nav-link" data-page="contato">Contato</a>
+                    <div class="rz-nav-link rz-nav-partners-trigger">
+                        <span>Parceiros</span>
+                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
+                    </div>
+                    <a href="trabalhe-conosco" class="rz-nav-link" data-page="trabalhe-conosco">Trabalhe Conosco</a>
+                </nav>
+                <a href="contato" class="rz-header-cta">VAMOS CONVERSAR</a>
+                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+
+            <!-- MEGA-MENU SOLUÃ‡Ã•ES (Dropdown with Sector Raizys Logos) -->
+            <div class="rz-solutions-mega">
+                <div class="rz-mega-title">Nossas Solu&#231;&#245;es Corporativas</div>
+                <div class="rz-mega-grid">
+                    <a href="web" class="rz-mega-card" data-solution="web">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Web" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Web Empresarial</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o completa de processos e ERP para m&#233;dias empresas.</div>
+                        </div>
+                    </a>
+                    <a href="agro" class="rz-mega-card" data-solution="agro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="Agro" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agro &amp; Campo</div>
+                            <div class="rz-mega-card-desc">Controle de safra, insumos e rastreabilidade no campo.</div>
+                        </div>
+                    </a>
+                    <a href="food" class="rz-mega-card" data-solution="food">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-orange.png" alt="Food" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Food Service</div>
+                            <div class="rz-mega-card-desc">Automa&#231;&#227;o de restaurantes, cozinhas e franquias.</div>
+                        </div>
+                    </a>
+                    <a href="clinicas" class="rz-mega-card" data-solution="clinicas">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-blue.png" alt="Cl&#237;nicas" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cl&#237;nicas &amp; Sa&#250;de</div>
+                            <div class="rz-mega-card-desc">Agendamento, prontu&#225;rio e gest&#227;o m&#233;dica integrada.</div>
+                        </div>
+                    </a>
+                    <a href="pet" class="rz-mega-card" data-solution="pet">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-yellow.png" alt="Pet" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Pet &amp; Vet</div>
+                            <div class="rz-mega-card-desc">Controle de banho e tosa, veterin&#225;ria e pet shop.</div>
+                        </div>
+                    </a>
+                    <a href="agenda" class="rz-mega-card" data-solution="agenda">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-dark.png" alt="Agenda" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Agenda Inteligente</div>
+                            <div class="rz-mega-card-desc">Gest&#227;o de hor&#225;rios, servi&#231;os e lembretes autom&#225;ticos.</div>
+                        </div>
+                    </a>
+                    <a href="sap" class="rz-mega-card" data-solution="sap">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/shield-green.png" alt="SAP" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Consultoria SAP</div>
+                            <div class="rz-mega-card-desc">Implanta&#231;&#227;o, migra&#231;&#227;o e governan&#231;a SAP B1 / S4 HANA.</div>
+                        </div>
+                    </a>
+                    <a href="izys" class="rz-mega-card" data-solution="izys">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="fotos/Isys - Logo 3.png" alt="IZYS AI CRM" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">IZYS AI CRM</div>
+                            <div class="rz-mega-card-desc">Atendimento, CRM, automa&#231;&#245;es e Agentes de IA em um &#250;nico lugar.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- MEGA-MENU PARCEIROS (Dropdown) -->
+            <div class="rz-partners-mega">
+                <div class="rz-mega-title">Programa de Parceiros</div>
+                <div class="rz-partners-grid">
+                    <a href="indicacao" class="rz-mega-card" data-partner="indicacao">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Indicação" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Cadastrar Indica&#231;&#227;o</div>
+                            <div class="rz-mega-card-desc">Indique uma empresa e acompanhe o status da sua indica&#231;&#227;o.</div>
+                        </div>
+                    </a>
+                    <a href="parceiro-indicador" class="rz-mega-card" data-partner="parceiro">
+                        <div class="rz-mega-card-logo-wrap">
+                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Parceiro Indicador" class="rz-mega-card-logo-img">
+                        </div>
+                        <div class="rz-mega-card-info">
+                            <div class="rz-mega-card-name">Parceiro Indicador</div>
+                            <div class="rz-mega-card-desc">Seja um parceiro indicador oficial e amplie seus ganhos.</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="rz-mega-overlay"></div>
+
+    <!-- ===== MOBILE DRAWER ===== -->
+    <div class="rz-mobile-overlay"></div>
+    <div class="rz-mobile-drawer">
+        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Navega&#231;&#227;o</div>
+            <a href="sobre-nos" class="rz-mobile-link" data-page="sobre-nos"><i class="fas fa-info-circle"></i> Sobre N&#243;s</a>
+            <a href="contato" class="rz-mobile-link" data-page="contato"><i class="fas fa-envelope"></i> Contato</a>
+            <a href="indicacao" class="rz-mobile-link" data-page="indicacao"><i class="fas fa-user-plus"></i> Cadastrar Indica&#231;&#227;o</a>
+            <a href="parceiro-indicador" class="rz-mobile-link" data-page="parceiro-indicador"><i class="fas fa-handshake"></i> Parceiro Indicador</a>
+            <a href="trabalhe-conosco" class="rz-mobile-link" data-page="trabalhe-conosco"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <div class="rz-mobile-section-title">Solu&#231;&#245;es Corporativas</div>
+            <a href="web" class="rz-mobile-link" data-page="web"><img src="assets/shield-blue.png" alt="Raizys"> Web Empresarial</a>
+            <a href="agro" class="rz-mobile-link" data-page="agro"><img src="assets/shield-green.png" alt="Raizys"> Agro &amp; Campo</a>
+            <a href="food" class="rz-mobile-link" data-page="food"><img src="assets/shield-orange.png" alt="Raizys"> Food Service</a>
+            <a href="clinicas" class="rz-mobile-link" data-page="clinicas"><img src="assets/shield-blue.png" alt="Raizys"> Cl&#237;nicas &amp; Sa&#250;de</a>
+            <a href="pet" class="rz-mobile-link" data-page="pet"><img src="assets/shield-yellow.png" alt="Raizys"> Pet &amp; Vet</a>
+            <a href="agenda" class="rz-mobile-link" data-page="agenda"><img src="assets/shield-dark.png" alt="Raizys"> Agenda Inteligente</a>
+            <a href="sap" class="rz-mobile-link" data-page="sap"><img src="assets/shield-green.png" alt="Raizys"> Consultoria SAP</a>
+            <a href="izys" class="rz-mobile-link" data-page="izys"><img src="fotos/Isys - Logo 3.png" alt="IZYS" style="height:18px;width:auto;"> IZYS AI CRM</a>
+        </div>
+        <div class="rz-mobile-divider"></div>
+        <div class="rz-mobile-section">
+            <a href="contato" class="rz-header-cta" style="width:100%;justify-content:center;margin:0;margin-top:8px;">VAMOS CONVERSAR</a>
+        </div>
+    </div>
+    
+    <main>
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Sistemas que <strong>sustentam</strong> operações essenciais</h1>
+                    <div class="hero-body">
+                        <p>Se o <strong>Agro falha, todo o resto falha</strong>.</p>
+                        <p>O <strong>Varejo</strong> transforma produção em consumo.</p>
+                        <p>O <strong>Transporte</strong> é o <strong>sistema circulatório</strong> que mantém tudo em
+                            <strong>movimento</strong>.
+                        </p>
+                    </div>
+                    <p class="hero-footer">
+                        A RAIZYS implanta sistemas empresariais robustos para empresas onde a operação não pode parar.
+                    </p>
+                </div>
+                <div class="hero-visual">
+                    <a href="home">
+                        <img src="assets/Raizys - Logo 10 (1).png" alt="Raizys Shield" class="hero-logo-img">
+                    </a>
+                    <a href="contato" class="cta-button">Solicite uma demonstração</a>
+                </div>
+            </div>
+        </section>
+        <section class="about-section">
+            <div class="content-container">
+                <h2 class="section-title reveal-item">Quem Somos</h2>
+                <div class="about-text">
+                    <p class="reveal-item">A <strong>RAIZYS</strong> é uma consultoria especializada em
+                        <strong>implantação de sistemas
+                            empresariais</strong>, com foco em operações críticas dos segmentos <strong>Agro, Varejo e
+                            Transporte</strong>.
+                    </p>
+                    <p class="reveal-item">Atuamos conectando o <strong>chão da operação à tecnologia</strong>,
+                        garantindo controle,
+                        previsibilidade e continuidade para negócios que sustentam a economia
+                        <strong>brasileira</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="shared-bg-wrapper">
+            
+            <section class="pillars-section">
+                <div class="content-container">
+                    <h2 class="section-title">Nossos Pilares de Atuação</h2>
+                    <div class="pillars-grid">
+                        
+                        <a href="#agro-detail" class="pillar-card-link">
+                            <div class="pillar-card">
+                                <div class="pillar-header">
+                                    <img src="assets/agro-icon.png" alt="Agro Icon" class="pillar-icon-img">
+                                    <div class="pillar-titles">
+                                        <h3>Agro</h3>
+                                        <p class="pillar-subtitle">Onde tudo começa</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="pillar-desc">O <strong>Agronegócio</strong> é a base da economia. É onde o
+                                    risco
+                                    aparece primeiro e onde decisões erradas custam caro. A RAIZYS atua no Agro com
+                                    <strong>respeito à operação</strong>, implantando sistemas que garantem gestão
+                                    financeira,
+                                    controle produtivo e governança.
+                                </p>
+                            </div>
+                        </a>
+                        
+                        <a href="#varejo-detail" class="pillar-card-link">
+                            <div class="pillar-card">
+                                <div class="pillar-header">
+                                    <img src="assets/varejo-icon.png" alt="Varejo Icon" class="pillar-icon-img">
+                                    <div class="pillar-titles">
+                                        <h3>Varejo</h3>
+                                        <p class="pillar-subtitle">Onde o valor concretiza</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="pillar-desc">O <strong>Varejo</strong> transforma produção em consumo. Aqui,
+                                    margens e
+                                    estoques equilibram o momento. Com a especialidade setorial da
+                                    <strong>ALFA</strong>, a
+                                    RAIZYS entrega soluções que garantem <strong>integração, precisão</strong> e
+                                    finanças de
+                                    toda a cadeia em <strong>tempo real</strong>.
+                                </p>
+                            </div>
+                        </a>
+                        
+                        <a href="#transporte-detail" class="pillar-card-link">
+                            <div class="pillar-card">
+                                <div class="pillar-header">
+                                    <img src="assets/transporte-icon.png" alt="Transporte Icon" class="pillar-icon-img">
+                                    <div class="pillar-titles">
+                                        <h3>Transporte</h3>
+                                        <p class="pillar-subtitle">O sistema circulatório</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="pillar-desc">Nada se move sem logística. Nada chega sem transporte. A RAIZYS
+                                    implanta
+                                    sistemas que conectam contratos, custos, faturamento e operação logística,
+                                    garantindo
+                                    que o
+                                    fluxo entre o Agro e Varejo nunca pare.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="tech-section">
+                <div class="content-container">
+                    <h2 class="section-title reveal-item">Tecnologia que sustenta</h2>
+                    <div class="tech-intro reveal-item">
+                        <p>A <strong>RAIZYS</strong> atua como parceira integradora no » <strong>ecossistema
+                                SAP</strong>,
+                            utilizando
+                            tecnologias líderes de mercado para sustentar operações complexas.</p>
+                    </div>
+                    <div class="tech-grid">
+                        
+                        <div class="tech-card reveal-item">
+                            <img src="assets/S4_Hana-removebg-preview.png" alt="SAP S/4HANA">
+                        </div>
+                        
+                        <div class="tech-card reveal-item">
+                            <img src="assets/B1-removebg-preview.png" alt="SAP Business One">
+                        </div>
+                        
+                        <div class="tech-card reveal-item">
+                            <img src="assets/Analytics_Cloud-removebg-preview.png" alt="SAP Analytics Cloud">
+                        </div>
+                        
+                        <div class="tech-card reveal-item">
+                            <img src="assets/signavio-removebg-preview.png" alt="SAP Signavio">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        
+        <section class="pillar-detail-section agro-detail" id="agro-detail">
+            <div class="content-container">
+                <div class="detail-header reveal-item">
+                    <h2>SAP para <strong>Agro</strong></h2>
+                    <p>A <strong>RAIZYS</strong> domina as nuances do campo, implantando soluções que conectam a terra à
+                        tecnologia com precisão e robustez técnica.</p>
+                </div>
+                <div class="detail-grid">
+                    <a href="agro-gestao-rural" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Gestão Rural Integrada</h3>
+                            <p>Controle total da produção, desde o plantio até a colheita, com dados em tempo real para
+                                decisões estratégicas.</p>
+                        </div>
+                    </a>
+                    <a href="agro-rastreabilidade" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                </svg>
+                            </div>
+                            <h3>Rastreabilidade e Proteção</h3>
+                            <p>Segurança absoluta e histórico completo de cada processo, garantindo conformidade e valor
+                                agregado ao produto.</p>
+                        </div>
+                    </a>
+                    <a href="agro-eficiencia" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M12 2v2"></path>
+                                    <path d="M12 20v2"></path>
+                                    <path d="m4.93 4.93 1.41 1.41"></path>
+                                    <path d="m17.66 17.66 1.41 1.41"></path>
+                                    <path d="M2 12h2"></path>
+                                    <path d="M20 12h2"></path>
+                                    <path d="m6.34 17.66-1.41 1.41"></path>
+                                    <path d="m19.07 4.93-1.41 1.41"></path>
+                                </svg>
+                            </div>
+                            <h3>Eficiência Operacional</h3>
+                            <p>Redução de perdas e otimização de recursos através de processos automatizados e
+                                inteligentes
+                                no campo.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="section-cta-container reveal-item">
+                    <a href="contato" class="cta-button">Solicite uma demonstração</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="pillar-detail-section varejo-detail" id="varejo-detail">
+            <div class="content-container">
+                <div class="detail-header reveal-item">
+                    <h2>SAP para <strong>Varejo</strong></h2>
+                    <p>Transformamos a complexidade do consumo em operações fluidas, garantindo que o produto certo
+                        chegue ao cliente no momento exato.</p>
+                </div>
+                <div class="detail-grid">
+                    <a href="varejo-estoque" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <path
+                                        d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+                                    </path>
+                                    <path d="m3.3 7 8.7 5 8.7-5"></path>
+                                    <path d="M12 22V12"></path>
+                                </svg>
+                            </div>
+                            <h3>Precisão de Estoque</h3>
+                            <p>Visibilidade total da cadeia de suprimentos, eliminando rupturas e excessos através de
+                                inteligência preditiva.</p>
+                        </div>
+                    </a>
+                    <a href="varejo-omnichannel" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h3>Integração Multicanal</h3>
+                            <p>Conectividade absoluta entre lojas físicas, e-commerce e centros de distribuição para uma
+                                experiência única.</p>
+                        </div>
+                    </a>
+                    <a href="varejo-consumo" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <path d="M12 20V10"></path>
+                                    <path d="M18 20V4"></path>
+                                    <path d="M6 20v-4"></path>
+                                </svg>
+                            </div>
+                            <h3>Análise de Consumo</h3>
+                            <p>Insights profundos sobre o comportamento do cliente para potencializar margens e
+                                estratégias
+                                de venda.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="section-cta-container reveal-item">
+                    <a href="contato" class="cta-button">Solicite uma demonstração</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="pillar-detail-section transporte-detail" id="transporte-detail">
+            <div class="content-container">
+                <div class="detail-header reveal-item">
+                    <h2>SAP para <strong>Transporte</strong></h2>
+                    <p>Otimizamos o sistema circulatório da economia, conectando modais e rotas com máxima eficiência e
+                        controle de custos.</p>
+                </div>
+                <div class="detail-grid">
+                    <a href="transporte-logistica" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                            </div>
+                            <h3>Logística de Precisão</h3>
+                            <p>Planejamento de rotas e gestão de frota em tempo real para maximizar a produtividade e
+                                reduzir o tempo de trânsito.</p>
+                        </div>
+                    </a>
+                    <a href="transporte-frete" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
+                            <h3>Controle de Fretes</h3>
+                            <p>Auditoria rigorosa e gestão financeira de contratos para garantir a rentabilidade de cada
+                                quilômetro rodado.</p>
+                        </div>
+                    </a>
+                    <a href="transporte-visibilidade" class="detail-card-link">
+                        <div class="detail-card reveal-item">
+                            <div class="shield-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#4a6d3c" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="custom-icon">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </div>
+                            <h3>Visibilidade Operacional</h3>
+                            <p>Monitoramento ponta a ponta da carga, garantindo segurança e transparência em toda a
+                                jornada
+                                logística.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="section-cta-container reveal-item">
+                    <a href="contato" class="cta-button">Solicite uma demonstração</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+    <script src="script.js"></script>
+    
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h3>Inscreva-se na nossa newsletter</h3>
+                <p>Assine a nossa newsletter e receba as novidades e conteúdos exclusivos da Raizys.</p>
+            </div>
+            <div class="newsletter-form-wrapper">
+                <form class="newsletter-form" action="https://formsubmit.co/ajax/diego.caselato@raizys.com.br"
+                    method="POST">
+                    <input type="hidden" name="_subject" value="Nova Inscrição Newsletter - RAIZYS">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+                    <input type="hidden" name="_autoresponse" value="Olá! Confirmamos sua inscrição com sucesso. Em breve você receberá conteúdos e novidades exclusivas da Raizys em seu e-mail. Atenciosamente, Equipe Raizys.">
+                    <div class="input-group">
+                        <input type="text" name="nome" placeholder="Digite seu nome" required>
+                        <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                        <button type="submit">INSCREVER</button>
+                    </div>
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="terms" name="termos" required>
+                        <label for="terms">Aceito os termos e condições</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="home">
+                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
+                </a>
+                <p>Consultoria especializada em implantação de sistemas empresariais.</p>
+                <div class="contact-info">
+                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
+                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11 5026-4939</a></p>
+                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
+                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt" style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83 - Vila Rica, Guaxupé - MG, 37800-000</span></p>
+                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i> <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves, 759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/raizysconsultoria?igsh=MXNwcmx1OWllamdpaA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="sobre-nos">Sobre Nós</a></li>
+                    <li><a href="trabalhe-conosco">Trabalhe conosco</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Termos</h4>
+                <ul>
+                    <li><a href="termos-condicoes">Termos e Condições</a></li>
+                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Parceiros</h4>
+                <ul>
+                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
+                    <li><a href="indicacao">Cadastrar Indicação</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="contato">Fale Conosco</a></li>
+                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="header.js?v=5.0"></script>
+</body>
+
+</html>
