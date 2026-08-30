@@ -14,8 +14,8 @@ RewriteRule ^empresarial/?$ /web [R=301,L,NC]
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.html [NC]
 RewriteRule ^ %1 [R=301,L]
 
-# 3. Rota específica para a LP de conversão: /web/gestao-web -> gestao-web.html
-RewriteRule ^web/gestao-web/?$ gestao-web.html [NC,L]
+# 3. Redirecionamento 301 de legado: /web/gestao-web -> /gestao-web
+RewriteRule ^web/gestao-web/?$ /gestao-web [R=301,L,NC]
 
 # 4. Rota específica para a solução Web: /web ou /web/ -> web.html
 RewriteRule ^web/?$ web.html [NC,L]

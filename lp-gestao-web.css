@@ -1,10 +1,10 @@
 /* ======================================================
    LP GESTÃO WEB — Raizys Web
    Cores: Azul vibrante (#0066FF / #0052CC) + Dark Navy (#040914)
-   Fontes: Plus Jakarta Sans (títulos) + Manrope / Inter (corpo)
+   Fontes: Poppins (estilo Omie para títulos e destaques) + Inter (corpo)
    ====================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* ---- Reset & Base ---- */
 *, *::before, *::after {
@@ -26,8 +26,8 @@
   --text-dim: rgba(255, 255, 255, 0.50);
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-blue: rgba(0, 102, 255, 0.35);
-  --font-heading: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Work Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html {
@@ -99,16 +99,16 @@ img {
 }
 
 /* ============================================================
-   HERO SECTION — Estilo Sankhya (Vídeo + Sombra Escura na Esquerda)
+   HERO SECTION — 2 Colunas (Conteúdo à esquerda + Formulário à direita)
    ============================================================ */
 .lp-hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   overflow: hidden;
-  padding: 130px 64px 80px;
+  padding: 70px 48px 30px;
 }
 
 .lp-hero-video {
@@ -122,7 +122,7 @@ img {
   pointer-events: none;
 }
 
-/* Sombra e vinheta escura profunda na esquerda (estilo Sankhya) */
+/* Sombra e vinheta suave permitindo boa visibilidade do vídeo e alta legibilidade dos textos */
 .lp-hero-overlay {
   position: absolute;
   inset: 0;
@@ -132,39 +132,47 @@ img {
     linear-gradient(
       to right,
       rgba(4, 9, 20, 0.94) 0%,
-      rgba(4, 9, 20, 0.88) 32%,
-      rgba(4, 9, 20, 0.60) 55%,
-      rgba(4, 9, 20, 0.20) 80%,
-      rgba(4, 9, 20, 0.05) 100%
+      rgba(4, 9, 20, 0.85) 45%,
+      rgba(4, 9, 20, 0.78) 75%,
+      rgba(4, 9, 20, 0.65) 100%
     ),
     linear-gradient(
       to top,
-      rgba(4, 9, 20, 0.92) 0%,
-      rgba(4, 9, 20, 0.35) 25%,
-      transparent 50%
+      rgba(4, 9, 20, 0.90) 0%,
+      transparent 55%
     );
 }
 
-.lp-hero-content {
+.lp-hero-container {
   position: relative;
   z-index: 2;
-  max-width: 600px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.lp-hero-content {
+  max-width: 560px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
 }
 
-/* Título estilo Sankhya Exato: Work Sans, 48px (text-5xl), font-medium (500/600), leading 53px, uppercase */
+/* Título estilo Omie: Poppins, font-bold (700), leading-tight */
 .lp-hero-title {
   font-family: var(--font-heading);
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 53px;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.25;
   color: var(--text-white);
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  margin-bottom: 22px;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
 }
 
@@ -174,12 +182,11 @@ img {
   font-weight: 400;
   color: var(--text-muted);
   line-height: 1.65;
-  max-width: 540px;
-  margin-bottom: 34px;
+  max-width: 520px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Botão único principal do Hero — Sólido, azul vibrante, retangular estilo Sankhya */
+/* Botão da esquerda — Conheça o ERP Raizys */
 .lp-hero-btn {
   display: inline-flex;
   align-items: center;
@@ -187,14 +194,15 @@ img {
   background-color: var(--primary-blue);
   color: var(--text-white);
   font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 15px 32px;
-  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.2px;
+  padding: 14px 28px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
+  margin-top: 24px;
   transition: all 0.25s ease;
   box-shadow: 0 4px 20px var(--primary-blue-glow);
 }
@@ -203,6 +211,178 @@ img {
   background-color: var(--primary-blue-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0, 102, 255, 0.55);
+}
+
+/* ============================================================
+   CARD FORMULÁRIO HERO (Lado Direito — Transparente com Contorno Branco)
+   ============================================================ */
+.lp-hero-form-wrapper {
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+}
+
+.lp-hero-form-card {
+  background: rgba(4, 9, 20, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  padding: 26px 28px 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.lp-form-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-white);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+.lp-hero-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lp-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.lp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lp-form-group label {
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: none;
+}
+
+.lp-form-group label .req,
+.lp-form-consent .req {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: bold;
+}
+
+.lp-form-group input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--text-white);
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  width: 100%;
+}
+
+.lp-form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+}
+
+.lp-form-group input:focus {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Consentimento Checkbox */
+.lp-form-consent {
+  margin-top: 2px;
+}
+
+.lp-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  cursor: pointer;
+  text-transform: none;
+}
+
+.lp-checkbox-label input[type="checkbox"] {
+  accent-color: var(--primary-blue);
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Botão Submit */
+.lp-hero-form-submit {
+  width: 100%;
+  background: var(--primary-blue);
+  color: var(--text-white);
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.2px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: all 0.2s ease;
+}
+
+.lp-hero-form-submit:hover {
+  background: var(--primary-blue-hover);
+  transform: translateY(-1px);
+}
+
+.lp-hero-form-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Caixa de Sucesso */
+.lp-hero-form-success {
+  text-align: center;
+  padding: 24px 12px;
+  color: var(--text-white);
+}
+
+.lp-success-icon {
+  font-size: 38px;
+  color: #4ade80;
+  margin-bottom: 10px;
+}
+
+.lp-hero-form-success h3 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-white);
+  text-transform: none;
+  margin-bottom: 6px;
+}
+
+.lp-hero-form-success p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.lp-success-detail {
+  font-size: 12.5px !important;
+  color: var(--text-dim) !important;
+  margin-top: 8px;
 }
 
 /* ============================================================
@@ -754,6 +934,13 @@ img {
    RESPONSIVO
    ============================================================ */
 @media (max-width: 1024px) {
+  .lp-hero-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .lp-hero-title {
+    font-size: 32px;
+  }
   .lp-split {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -769,6 +956,26 @@ img {
   }
 }
 
+@media (max-width: 900px) {
+  .lp-hero {
+    padding: 100px 20px 50px;
+    min-height: auto;
+  }
+  .lp-hero-container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .lp-hero-content {
+    max-width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .lp-hero-form-wrapper {
+    max-width: 100%;
+    justify-self: stretch;
+  }
+}
+
 @media (max-width: 768px) {
   .lp-header {
     padding: 16px 20px;
@@ -779,12 +986,19 @@ img {
   .lp-header-logo img {
     height: 40px;
   }
-  .lp-hero {
-    padding: 110px 24px 60px;
-  }
   .lp-hero-title {
-    font-size: 30px;
-    font-weight: 400;
-    line-height: 40px;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .lp-hero-subtitle {
+    font-size: 15px;
+  }
+  .lp-hero-form-card {
+    padding: 20px 18px;
+  }
+  .lp-form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }

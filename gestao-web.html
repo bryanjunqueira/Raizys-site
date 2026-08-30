@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <base href="/">
   
   <!-- ============================================================
        SEO PRINCIPAL — Otimizado para Busca Orgânica no Google
@@ -14,7 +13,7 @@
   <meta name="keywords" content="sistema erp, erp em nuvem, gestão empresarial, software erp, gestão financeira, controle de estoque erp, emissão de nota fiscal, erp raizys, raizys gestão web, automação comercial">
   <meta name="author" content="Raizys Consultoria & Tecnologia">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="https://raizys.com.br/web/gestao-web">
+  <link rel="canonical" href="https://raizys.com.br/gestao-web">
 
   <!-- ============================================================
        FAVICON & ICONS
@@ -30,7 +29,7 @@
   <meta property="og:site_name" content="Raizys">
   <meta property="og:title" content="Raizys Gestão Web | Sistema ERP em Nuvem para Gestão Empresarial">
   <meta property="og:description" content="Sistema ERP completo em nuvem: controle financeiro, fiscal, comercial e estoque integrados para acelerar os resultados da sua empresa.">
-  <meta property="og:url" content="https://raizys.com.br/web/gestao-web">
+  <meta property="og:url" content="https://raizys.com.br/gestao-web">
   <meta property="og:image" content="https://raizys.com.br/fotos/logo-azul-raizys.png">
   <meta property="og:image:secure_url" content="https://raizys.com.br/fotos/logo-azul-raizys.png">
   <meta property="og:image:type" content="image/png">
@@ -43,7 +42,7 @@
   <meta name="twitter:title" content="Raizys Gestão Web | Sistema ERP em Nuvem">
   <meta name="twitter:description" content="Sistema ERP completo para gestão financeira, fiscal, comercial e estoque integrados.">
   <meta name="twitter:image" content="https://raizys.com.br/fotos/logo-azul-raizys.png">
-  <meta name="twitter:url" content="https://raizys.com.br/web/gestao-web">
+  <meta name="twitter:url" content="https://raizys.com.br/gestao-web">
 
   <!-- ============================================================
        STRUCTURED DATA (JSON-LD Schema.org) — Reconhecimento Google
@@ -73,7 +72,7 @@
       },
       {
         "@type": "SoftwareApplication",
-        "@id": "https://raizys.com.br/web/gestao-web#software",
+        "@id": "https://raizys.com.br/gestao-web#software",
         "name": "Raizys Gestão Web",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All, Cloud, Web-based",
@@ -91,7 +90,7 @@
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://raizys.com.br/web/gestao-web#breadcrumb",
+        "@id": "https://raizys.com.br/gestao-web#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -109,7 +108,7 @@
             "@type": "ListItem",
             "position": 3,
             "name": "Gestão Web",
-            "item": "https://raizys.com.br/web/gestao-web"
+            "item": "https://raizys.com.br/gestao-web"
           }
         ]
       }
@@ -125,11 +124,11 @@
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <!-- LP CSS -->
-  <link rel="stylesheet" href="lp-gestao-web.css?v=6.0">
+  <link rel="stylesheet" href="lp-gestao-web.css?v=7.0">
 </head>
 
 <body>
@@ -143,25 +142,89 @@
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
-    <!-- ===== HERO SECTION (Estilo Sankhya — Vídeo Background + Sombra na Esquerda) ===== -->
+    <!-- ===== HERO SECTION (Vídeo Background + Grid 2 Colunas) ===== -->
     <section class="lp-hero" id="hero" aria-label="Apresentação Raizys Gestão Web">
       <video class="lp-hero-video" id="lp-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
-        <source src="video/video-gestao-web.mp4" type="video/mp4">
+        <source src="video/videogestaoweb.mp4" type="video/mp4">
       </video>
       <div class="lp-hero-overlay" aria-hidden="true"></div>
 
-      <div class="lp-hero-content">
-        <h1 class="lp-hero-title">
-          GESTÃO EMPRESARIAL<br>
-          INTELIGENTE PARA<br>
-          O SEU NEGÓCIO
-        </h1>
-        <p class="lp-hero-subtitle">
-          Controle <strong>financeiro, fiscal e operacional real</strong> para a sua empresa. Um sistema ERP completo na nuvem que conecta todos os setores e entrega dados confiáveis para você decidir e lucrar mais.
-        </p>
-        <a href="https://wa.me/5511918970770" target="_blank" rel="noopener" class="lp-hero-btn" id="hero-cta-btn" aria-label="Solicitar demonstração gratuita via WhatsApp" title="Falar com especialista Raizys">
-          SOLICITAR DEMONSTRAÇÃO
-        </a>
+      <div class="lp-hero-container">
+        <!-- Coluna Esquerda: Mensagem Principal + Botão -->
+        <div class="lp-hero-content">
+          <h1 class="lp-hero-title">Conheça o sistema de gestão que simplifica sua empresa</h1>
+          <p class="lp-hero-subtitle">
+            Tenha tudo o que sua empresa precisa para organizar, controlar e acompanhar o negócio em um único sistema, acessível de qualquer lugar.
+          </p>
+          <a href="https://wa.me/5511918970770" target="_blank" rel="noopener" class="lp-hero-btn" id="hero-cta-btn" aria-label="Conheça o ERP Raizys via WhatsApp" title="Conheça o ERP Raizys">
+            Conheça o ERP Raizys
+          </a>
+        </div>
+
+        <!-- Coluna Direita: Formulário Corporativo Simples -->
+        <div class="lp-hero-form-wrapper" id="formWrapper">
+          <div class="lp-hero-form-card">
+            <h2 class="lp-form-title">Solicite uma demonstração</h2>
+
+            <form id="heroLeadForm" action="send_mail.php" method="POST" class="lp-hero-form">
+              <input type="hidden" name="_subject" value="Nova Solicitação de Demonstração - Raizys Gestão Web">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+              <input type="hidden" name="_autoresponse" value="Olá! Confirmamos que recebemos sua solicitação de demonstração do Raizys Gestão Web. Nossa equipe entrará em contato em breve para apresentar a solução ideal para o seu negócio. Atenciosamente, Equipe Raizys.">
+
+              <div class="lp-form-group">
+                <label for="lp-nome">Nome completo <span class="req">*</span></label>
+                <input type="text" id="lp-nome" name="nome" placeholder="Ex.: João da Silva" required autocomplete="name">
+              </div>
+
+              <div class="lp-form-row">
+                <div class="lp-form-group">
+                  <label for="lp-telefone">Telefone / whatsapp <span class="req">*</span></label>
+                  <input type="tel" id="lp-telefone" name="telefone_whatsapp" placeholder="Ex.: (11) 99999-9999" required autocomplete="tel">
+                </div>
+                <div class="lp-form-group">
+                  <label for="lp-email">E-mail corporativo <span class="req">*</span></label>
+                  <input type="email" id="lp-email" name="email" placeholder="Ex.: joao@email.com.br" required autocomplete="email">
+                </div>
+              </div>
+
+              <div class="lp-form-row">
+                <div class="lp-form-group">
+                  <label for="lp-funcionarios">Número de funcionários <span class="req">*</span></label>
+                  <input type="text" id="lp-funcionarios" name="numero_funcionarios" placeholder="Ex.: 100" required>
+                </div>
+                <div class="lp-form-group">
+                  <label for="lp-cnpj">Cnpj</label>
+                  <input type="text" id="lp-cnpj" name="cnpj" placeholder="Ex.: 12.345.789/0001-00">
+                </div>
+              </div>
+
+              <div class="lp-form-group">
+                <label for="lp-expectativa">O que você procura em um erp?</label>
+                <input type="text" id="lp-expectativa" name="expectativa_erp" placeholder="Descreva sua expectativa">
+              </div>
+
+              <div class="lp-form-consent">
+                <label class="lp-checkbox-label">
+                  <input type="checkbox" id="lp-consentimento" name="consentimento" value="Sim, aceito contato" required checked>
+                  <span>Aceito ser contatado para falar sobre as soluções Raizys <span class="req">*</span></span>
+                </label>
+              </div>
+
+              <button type="submit" class="lp-hero-form-submit" id="heroSubmitBtn">
+                Solicitar demonstração
+              </button>
+            </form>
+
+            <div class="lp-hero-form-success" id="heroSuccessBox" style="display: none;">
+              <div class="lp-success-icon"><i class="fas fa-check-circle"></i></div>
+              <h3>Solicitação enviada com sucesso!</h3>
+              <p>Recebemos suas informações.</p>
+              <p class="lp-success-detail">Um especialista da Raizys entrará em contato em breve.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -171,14 +234,13 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Ícone WhatsApp" width="30" height="30" loading="lazy">
   </a>
 
-  <!-- Script Header Scroll & Video Autoplay Force -->
+  <!-- Script Header Scroll, Mascaras & Envio do Form -->
   <script>
     // Forçar início do vídeo sem bloqueio do navegador
     const v = document.getElementById('lp-hero-video');
     if (v) {
       v.muted = true;
       v.play().catch(() => {
-        // Fallback no primeiro toque/clique caso o navegador restrinja
         const startPlay = () => {
           v.play();
           window.removeEventListener('click', startPlay);
@@ -198,6 +260,120 @@
         header.classList.remove('scrolled');
       }
     }, { passive: true });
+
+    // Máscara Telefone
+    const phoneInput = document.getElementById('lp-telefone');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function(e) {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val.length > 11) val = val.substring(0, 11);
+        let formatted = val;
+        if (val.length > 2) {
+          formatted = '(' + val.substring(0, 2) + ') ' + val.substring(2);
+        }
+        if (val.length > 6) {
+          if (val.length === 11) {
+            formatted = '(' + val.substring(0, 2) + ') ' + val.substring(2, 7) + '-' + val.substring(7);
+          } else {
+            formatted = '(' + val.substring(0, 2) + ') ' + val.substring(2, 6) + '-' + val.substring(6);
+          }
+        }
+        e.target.value = formatted;
+      });
+    }
+
+    // Máscara CNPJ
+    const cnpjInput = document.getElementById('lp-cnpj');
+    if (cnpjInput) {
+      cnpjInput.addEventListener('input', function(e) {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val.length > 14) val = val.substring(0, 14);
+        let formatted = val;
+        if (val.length > 2) formatted = val.substring(0, 2) + '.' + val.substring(2);
+        if (val.length > 5) formatted = val.substring(0, 2) + '.' + val.substring(2, 5) + '.' + val.substring(5);
+        if (val.length > 8) formatted = val.substring(0, 2) + '.' + val.substring(2, 5) + '.' + val.substring(5, 8) + '/' + val.substring(8);
+        if (val.length > 12) formatted = val.substring(0, 2) + '.' + val.substring(2, 5) + '.' + val.substring(5, 8) + '/' + val.substring(8, 12) + '-' + val.substring(12);
+        e.target.value = formatted;
+      });
+    }
+
+    // Envio do Formulário via AJAX
+    const heroForm = document.getElementById('heroLeadForm');
+    const heroSubmitBtn = document.getElementById('heroSubmitBtn');
+    const heroSuccessBox = document.getElementById('heroSuccessBox');
+
+    if (heroForm) {
+      heroForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Validação telefone
+        const rawPhone = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+        if (rawPhone.length < 10) {
+          alert('Por favor, informe um telefone válido com DDD (ex: 11 99999-9999).');
+          if (phoneInput) phoneInput.focus();
+          return;
+        }
+
+        const originalBtnHtml = heroSubmitBtn.innerHTML;
+        heroSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        heroSubmitBtn.disabled = true;
+
+        const emailVal = document.getElementById('lp-email').value;
+        const replyToInput = document.createElement('input');
+        replyToInput.type = 'hidden';
+        replyToInput.name = 'replyto';
+        replyToInput.value = emailVal;
+        heroForm.appendChild(replyToInput);
+
+        const formData = new FormData(heroForm);
+
+        try {
+          let response = await fetch(heroForm.action, {
+            method: 'POST',
+            body: formData
+          });
+          let result = await response.json().catch(() => ({}));
+
+          // Fallback se necessário
+          if (!result.success || result.success === 'false') {
+            response = await fetch('https://formsubmit.co/ajax/diego.caselato@raizys.com.br', {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+            result = await response.json().catch(() => ({}));
+          }
+
+          if (result.success === true || result.success === 'true') {
+            heroForm.style.display = 'none';
+            heroSuccessBox.style.display = 'block';
+          } else {
+            alert(result.message || 'Ocorreu um erro no envio. Por favor, tente novamente ou fale conosco pelo WhatsApp.');
+            heroSubmitBtn.innerHTML = originalBtnHtml;
+            heroSubmitBtn.disabled = false;
+          }
+        } catch (err) {
+          // Fallback FormSubmit direto se servidor PHP local não rodar mail()
+          try {
+            const fallbackRes = await fetch('https://formsubmit.co/ajax/diego.caselato@raizys.com.br', {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+            const fallbackJson = await fallbackRes.json().catch(() => ({}));
+            if (fallbackJson.success === true || fallbackJson.success === 'true') {
+              heroForm.style.display = 'none';
+              heroSuccessBox.style.display = 'block';
+              return;
+            }
+          } catch(e) {}
+
+          alert('Não foi possível enviar no momento. Por favor, entre em contato diretamente pelo WhatsApp: (11) 91897-0770');
+          heroSubmitBtn.innerHTML = originalBtnHtml;
+          heroSubmitBtn.disabled = false;
+        }
+      });
+    }
   </script>
 </body>
 </html>
