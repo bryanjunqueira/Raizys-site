@@ -10,17 +10,28 @@ RewriteBase /
 # 1. Redirecionamento 301 de legado: /empresarial -> /web
 RewriteRule ^empresarial/?$ /web [R=301,L,NC]
 
-# 2. Forçar remoção de .html da URL (301 para SEO Canônico)
+# 2. Redirecionamento 301 de legado: /web/gestao-web -> /gestao-web
+RewriteRule ^web/gestao-web/?$ /gestao-web [R=301,L,NC]
+
+# 3. Forçar remoção de barra final para evitar caminhos relativos quebrados (ex: /web/ -> /web)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# 4. Forçar remoção de .html da URL (301 para SEO Canônico)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.html [NC]
 RewriteRule ^ %1 [R=301,L]
 
-# 3. Redirecionamento 301 de legado: /web/gestao-web -> /gestao-web
-RewriteRule ^web/gestao-web/?$ /gestao-web [R=301,L,NC]
+# 5. Fallback para assets requisitados com prefixo de rota (ex: /web/style.css -> /style.css)
+RewriteCond %{REQUEST_URI} ^/(web|gestao-web)/(.+\.(css|js|png|jpg|jpeg|gif|webp|svg|woff2|woff|mp4|ico))$ [NC]
+RewriteRule ^(web|gestao-web)/(.+)$ /$2 [L,NC]
 
-# 4. Rota específica para a solução Web: /web ou /web/ -> web.html
+# 6. Rota para a LP Gestão Web: /gestao-web -> gestao-web.html
+RewriteRule ^gestao-web/?$ gestao-web.html [NC,L]
+
+# 7. Rota específica para a solução Web: /web -> web.html
 RewriteRule ^web/?$ web.html [NC,L]
 
-# 5. Roteamento automático de URLs limpas na raiz (ex: /sobre-nos -> sobre-nos.html)
+# 8. Roteamento automático de URLs limpas na raiz (ex: /sobre-nos -> sobre-nos.html)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^([^/]+)/?$ $1.html [NC,L]
