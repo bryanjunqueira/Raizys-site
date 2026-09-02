@@ -1,0 +1,128 @@
+<!-- ============================================================
+     TEMPLATE / BACKUP — SEÇÃO DE FORMULÁRIO GESTÃO WEB
+     Criado para reaproveitamento futuro em qualquer página.
+     ============================================================ -->
+
+<section class="lp-form-section" id="solicitar-demonstracao" aria-label="Solicite uma Demonstração">
+  <div class="lp-form-section-container">
+    <div class="lp-form-section-grid">
+      <!-- Coluna Esquerda: Apresentação & Proposta de Valor -->
+      <div class="lp-form-info-col">
+        <span class="lp-tag">Demonstração Exclusiva</span>
+        <h2 class="lp-form-main-title">Pronto para transformar a gestão do seu negócio?</h2>
+        <p class="lp-form-main-desc">
+          Preencha o formulário e nossos especialistas entrarão em contato para apresentar uma visão completa e personalizada do <strong>Raizys Gestão Web</strong>, desenhada para a realidade da sua empresa.
+        </p>
+
+        <div class="lp-form-benefits">
+          <div class="lp-form-benefit-item">
+            <div class="lp-benefit-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <div>
+              <h4>Financeiro &amp; Fiscal Completo</h4>
+              <p>Fluxo de caixa, DRE em tempo real, emissão simplificada de notas fiscais e conciliação bancária.</p>
+            </div>
+          </div>
+
+          <div class="lp-form-benefit-item">
+            <div class="lp-benefit-icon">
+              <i class="fas fa-boxes-stacked"></i>
+            </div>
+            <div>
+              <h4>Estoque, Compras &amp; Vendas</h4>
+              <p>Controle preciso de mercadorias, ordens de serviço, precificação inteligente e histórico de vendas.</p>
+            </div>
+          </div>
+
+          <div class="lp-form-benefit-item">
+            <div class="lp-benefit-icon">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <div>
+              <h4>Segurança e Acesso 100% em Nuvem</h4>
+              <p>Acesse indicadores e relatórios estratégicos a qualquer hora e de qualquer dispositivo com máxima proteção.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lp-form-direct-contact">
+          <p>Prefere atendimento imediato?</p>
+          <a href="https://wa.me/5511918970770?text=Ol%C3%A1!%20Gostaria%20de%20ajuda%20para%20encontrar%20o%20sistema%20de%20gest%C3%A3o%20ideal%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener" class="lp-direct-wa-btn" title="Falar no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>Chamar no WhatsApp: (11) 91897-0770</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Coluna Direita: Formulário Corporativo -->
+      <div class="lp-form-card-col">
+        <div class="lp-hero-form-card lp-form-card-elevated">
+          <div class="lp-form-header-card">
+            <h3 class="lp-form-title">Solicite uma demonstração</h3>
+            <p class="lp-form-subtitle-card">Um especialista apresentará o sistema ideal para seu modelo de negócio.</p>
+          </div>
+
+          <form id="heroLeadForm" action="send_mail.php" method="POST" class="lp-hero-form">
+            <input type="hidden" name="_subject" value="Nova Solicitação de Demonstração - Raizys Gestão Web">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_cc" value="expansao@raizys.com.br,luciano.jacob@raizys.com.br">
+            <input type="hidden" name="_autoresponse" value="Olá! Confirmamos que recebemos sua solicitação de demonstração do Raizys Gestão Web. Nossa equipe entrará em contato em breve para apresentar a solução ideal para o seu negócio. Atenciosamente, Equipe Raizys.">
+
+            <div class="lp-form-group">
+              <label for="lp-nome">Nome completo <span class="req">*</span></label>
+              <input type="text" id="lp-nome" name="nome" placeholder="Ex.: João da Silva" required autocomplete="name">
+            </div>
+
+            <div class="lp-form-row">
+              <div class="lp-form-group">
+                <label for="lp-telefone">Telefone / WhatsApp <span class="req">*</span></label>
+                <input type="tel" id="lp-telefone" name="telefone_whatsapp" placeholder="Ex.: (11) 99999-9999" required autocomplete="tel">
+              </div>
+              <div class="lp-form-group">
+                <label for="lp-email">E-mail corporativo <span class="req">*</span></label>
+                <input type="email" id="lp-email" name="email" placeholder="Ex.: joao@empresa.com.br" required autocomplete="email">
+              </div>
+            </div>
+
+            <div class="lp-form-row">
+              <div class="lp-form-group">
+                <label for="lp-funcionarios">Número de funcionários <span class="req">*</span></label>
+                <input type="text" id="lp-funcionarios" name="numero_funcionarios" placeholder="Ex.: 10 a 50" required>
+              </div>
+              <div class="lp-form-group">
+                <label for="lp-cnpj">CNPJ</label>
+                <input type="text" id="lp-cnpj" name="cnpj" placeholder="Ex.: 12.345.789/0001-00">
+              </div>
+            </div>
+
+            <div class="lp-form-group">
+              <label for="lp-expectativa">O que você procura em um ERP?</label>
+              <input type="text" id="lp-expectativa" name="expectativa_erp" placeholder="Descreva sua expectativa ou desafio atual">
+            </div>
+
+            <div class="lp-form-consent">
+              <label class="lp-checkbox-label">
+                <input type="checkbox" id="lp-consentimento" name="consentimento" value="Sim, aceito contato" required checked>
+                <span>Aceito ser contatado para falar sobre as soluções Raizys <span class="req">*</span></span>
+              </label>
+            </div>
+
+            <button type="submit" class="lp-hero-form-submit" id="heroSubmitBtn">
+              <span>Solicitar demonstração gratuita</span>
+              <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+            </button>
+          </form>
+
+          <div class="lp-hero-form-success" id="heroSuccessBox" style="display: none;">
+            <div class="lp-success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Solicitação enviada com sucesso!</h3>
+            <p>Recebemos suas informações.</p>
+            <p class="lp-success-detail">Um especialista da Raizys entrará em contato em breve pelo WhatsApp ou e-mail.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

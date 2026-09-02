@@ -55,7 +55,8 @@ img {
 }
 
 /* ============================================================
-   HEADER — Minimalista idêntico ao Sankhya (apenas Logo à esquerda)
+/* ============================================================
+   HEADER — Minimalista com Logo Raizys Ampliada (Fixo no topo da página)
    ============================================================ */
 .lp-header {
   position: absolute;
@@ -66,18 +67,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 28px 56px;
+  padding: 30px 56px;
   background: transparent;
-  transition: all 0.3s ease;
-}
-
-.lp-header.scrolled {
-  position: fixed;
-  background: rgba(4, 9, 20, 0.95);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 14px 56px;
-  border-bottom: 1px solid var(--border-subtle);
 }
 
 .lp-header-logo {
@@ -88,27 +79,28 @@ img {
 }
 
 .lp-header-logo img {
-  height: 48px;
+  height: 76px; /* Aumentado consideravelmente */
   width: auto;
   object-fit: contain;
   transition: transform 0.25s ease;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
 }
 
 .lp-header-logo:hover img {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 /* ============================================================
-   HERO SECTION — 2 Colunas (Conteúdo à esquerda + Formulário à direita)
+   HERO SECTION — Destaque na Mensagem à Esquerda & Ilustração à Direita
    ============================================================ */
 .lp-hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
-  padding: 70px 48px 30px;
+  padding: 130px 56px 60px;
 }
 
 .lp-hero-video {
@@ -117,12 +109,13 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center right;
   z-index: 0;
   pointer-events: none;
 }
 
-/* Sombra e vinheta suave permitindo boa visibilidade do vídeo e alta legibilidade dos textos */
+/* Overlay inteligente: Escuridão focal na esquerda para máxima legibilidade 
+   e claridade/transparência total na direita para evidenciar o vídeo/ilustração */
 .lp-hero-overlay {
   position: absolute;
   inset: 0;
@@ -131,15 +124,23 @@ img {
   background: 
     linear-gradient(
       to right,
-      rgba(4, 9, 20, 0.94) 0%,
-      rgba(4, 9, 20, 0.85) 45%,
-      rgba(4, 9, 20, 0.78) 75%,
-      rgba(4, 9, 20, 0.65) 100%
+      rgba(4, 9, 20, 0.98) 0%,
+      rgba(4, 9, 20, 0.94) 25%,
+      rgba(4, 9, 20, 0.78) 42%,
+      rgba(4, 9, 20, 0.35) 60%,
+      rgba(4, 9, 20, 0.08) 78%,
+      rgba(4, 9, 20, 0.0) 95%,
+      rgba(4, 9, 20, 0.0) 100%
     ),
     linear-gradient(
       to top,
-      rgba(4, 9, 20, 0.90) 0%,
-      transparent 55%
+      rgba(4, 9, 20, 0.85) 0%,
+      transparent 22%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(4, 9, 20, 0.65) 0%,
+      transparent 18%
     );
 }
 
@@ -147,11 +148,10 @@ img {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -161,6 +161,7 @@ img {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  transform: translateY(-35px);
 }
 
 /* Título estilo Omie: Poppins, font-bold (700), leading-tight */
@@ -205,6 +206,7 @@ img {
   margin-top: 24px;
   transition: all 0.25s ease;
   box-shadow: 0 4px 20px var(--primary-blue-glow);
+  text-decoration: none;
 }
 
 .lp-hero-btn:hover {
@@ -213,51 +215,202 @@ img {
   box-shadow: 0 6px 24px rgba(0, 102, 255, 0.55);
 }
 
+.lp-hero-feature-item i {
+  color: #38bdf8;
+  font-size: 14px;
+}
+
 /* ============================================================
-   CARD FORMULÁRIO HERO (Lado Direito — Transparente com Contorno Branco)
+   SEÇÃO DE FORMULÁRIO DEDICADA (Abaixo do Hero)
    ============================================================ */
-.lp-hero-form-wrapper {
-  width: 100%;
-  max-width: 480px;
-  justify-self: end;
+.lp-form-section {
+  background: linear-gradient(180deg, #040914 0%, #060e22 100%);
+  border-top: 1px solid var(--border-subtle);
+  padding: 100px 56px;
+  position: relative;
 }
 
-.lp-hero-form-card {
-  background: rgba(4, 9, 20, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 8px;
-  padding: 26px 28px 22px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+.lp-form-section-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.lp-form-title {
+.lp-form-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.lp-form-info-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lp-form-main-title {
   font-family: var(--font-heading);
-  font-size: 20px;
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-white);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.lp-form-main-desc {
+  font-size: 16.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+.lp-form-main-desc strong {
+  color: var(--primary-blue-light);
+}
+
+.lp-form-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.lp-form-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(8, 18, 38, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 18px 20px;
+  transition: all 0.25s ease;
+}
+
+.lp-form-benefit-item:hover {
+  border-color: var(--border-blue);
+  background: rgba(13, 27, 56, 0.85);
+  transform: translateX(4px);
+}
+
+.lp-benefit-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(0, 102, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue-light);
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.lp-form-benefit-item h4 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 4px;
+}
+
+.lp-form-benefit-item p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.lp-form-direct-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding-top: 6px;
+}
+
+.lp-form-direct-contact p {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.lp-direct-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  color: #25d366;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.lp-direct-wa-btn:hover {
+  background: #25d366;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+}
+
+/* Coluna Direita do Formulário */
+.lp-form-card-col {
+  width: 100%;
+}
+
+.lp-form-card-elevated {
+  background: rgba(8, 18, 38, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 32px 32px 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+
+.lp-form-header-card {
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 14px;
+}
+
+.lp-form-header-card .lp-form-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-white);
   text-transform: none;
   letter-spacing: -0.01em;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
+}
+
+.lp-form-subtitle-card {
+  font-size: 13.5px;
+  color: var(--text-muted);
 }
 
 .lp-hero-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .lp-form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .lp-form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .lp-form-group label {
@@ -276,14 +429,14 @@ img {
 
 .lp-form-group input {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 6px;
-  padding: 9px 12px;
+  padding: 10px 14px;
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text-white);
   outline: none;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
 }
 
@@ -294,30 +447,30 @@ img {
 
 .lp-form-group input:focus {
   border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
 
 /* Consentimento Checkbox */
 .lp-form-consent {
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .lp-checkbox-label {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-  font-size: 11.5px;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.4;
+  gap: 9px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.45;
   cursor: pointer;
   text-transform: none;
 }
 
 .lp-checkbox-label input[type="checkbox"] {
   accent-color: var(--primary-blue);
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   margin-top: 2px;
   cursor: pointer;
   flex-shrink: 0;
@@ -329,21 +482,26 @@ img {
   background: var(--primary-blue);
   color: var(--text-white);
   font-family: var(--font-heading);
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 600;
   text-transform: none;
   letter-spacing: 0.2px;
-  padding: 12px 20px;
+  padding: 14px 20px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  margin-top: 4px;
+  margin-top: 6px;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px var(--primary-blue-glow);
 }
 
 .lp-hero-form-submit:hover {
   background: var(--primary-blue-hover);
   transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0, 102, 255, 0.55);
 }
 
 .lp-hero-form-submit:disabled {
@@ -354,35 +512,35 @@ img {
 /* Caixa de Sucesso */
 .lp-hero-form-success {
   text-align: center;
-  padding: 24px 12px;
+  padding: 28px 16px;
   color: var(--text-white);
 }
 
 .lp-success-icon {
-  font-size: 38px;
+  font-size: 42px;
   color: #4ade80;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .lp-hero-form-success h3 {
   font-family: var(--font-heading);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-white);
   text-transform: none;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .lp-hero-form-success p {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .lp-success-detail {
-  font-size: 12.5px !important;
+  font-size: 13px !important;
   color: var(--text-dim) !important;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 /* ============================================================
@@ -697,165 +855,187 @@ img {
 }
 
 /* ============================================================
-   FORMULÁRIO DE CONVERSÃO
+   WHATSAPP FLUTUANTE COM BALÃO DE FALA INTERATIVO
    ============================================================ */
-.lp-form-section {
-  background: #030710;
-  border-top: 1px solid var(--border-subtle);
-  padding: 100px 56px;
-}
-
-.lp-form-layout {
-  max-width: 1140px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 64px;
-  align-items: start;
-}
-
-.lp-form-card {
-  background: var(--bg-dark-card);
-  border: 1px solid var(--border-subtle);
-  border-top: 4px solid var(--primary-blue);
-  border-radius: 6px;
-  padding: 44px 36px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-}
-
-.lp-form-card-title {
-  font-family: var(--font-heading);
-  font-size: 24px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--text-white);
-  margin-bottom: 6px;
-}
-
-.lp-form-card-sub {
-  font-size: 14px;
-  color: var(--text-dim);
-  margin-bottom: 28px;
-}
-
-.lp-form {
+.lp-wa-wrapper {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
   display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.lp-form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.lp-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.lp-form-group label {
-  font-family: var(--font-heading);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--text-muted);
-}
-
-.lp-form-group input,
-.lp-form-group select,
-.lp-form-group textarea {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  padding: 13px 16px;
-  font-family: var(--font-body);
-  font-size: 14.5px;
-  color: var(--text-white);
-  outline: none;
-  transition: all 0.2s ease;
-  width: 100%;
-}
-
-.lp-form-group input:focus,
-.lp-form-group select:focus,
-.lp-form-group textarea:focus {
-  border-color: var(--primary-blue);
-  background: rgba(0, 102, 255, 0.06);
-  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
-}
-
-.lp-form-group select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230066FF' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-}
-
-.lp-form-group select option {
-  background: #081226;
-  color: #fff;
-}
-
-.lp-form-submit {
-  width: 100%;
-  background: var(--primary-blue);
-  color: var(--text-white);
-  font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 16px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  margin-top: 8px;
-  box-shadow: 0 4px 18px var(--primary-blue-glow);
-}
-
-.lp-form-submit:hover {
-  background: var(--primary-blue-hover);
-  transform: translateY(-2px);
-}
-
-.lp-form-submit.loading {
-  opacity: 0.7;
+  align-items: center;
+  gap: 14px;
   pointer-events: none;
 }
 
-.lp-form-privacy {
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-dim);
-  margin-top: 10px;
+/* Balão de Fala Branco (Conforme Exemplo) */
+.lp-wa-bubble {
+  position: relative;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 14px 18px 14px 16px;
+  max-width: 290px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.12);
+  pointer-events: auto;
+  animation: waBubbleSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
-.lp-form-success, .lp-form-error {
-  display: none;
-  padding: 16px;
-  border-radius: 4px;
-  font-size: 14.5px;
+.lp-wa-bubble.hidden {
+  opacity: 0;
+  transform: translateX(14px) scale(0.92);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+@keyframes waBubbleSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(24px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Botão Fechar (X) no topo esquerdo do balão */
+.lp-wa-bubble-close {
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(30, 41, 59, 0.88);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  z-index: 10;
+  padding: 0;
+  line-height: 1;
+}
+
+.lp-wa-bubble-close:hover {
+  background: #0f172a;
+  transform: scale(1.15);
+}
+
+/* Link e Conteúdo do Balão */
+.lp-wa-bubble-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.lp-wa-bubble-wave {
+  font-size: 18px;
+  line-height: 1.3;
+  flex-shrink: 0;
+  display: inline-block;
+  animation: waveHand 2.4s infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes waveHand {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(14deg); }
+  20%, 40% { transform: rotate(-14deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.lp-wa-bubble-text {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #1e293b;
+  line-height: 1.45;
+}
+
+.lp-wa-bubble-text strong {
   font-weight: 600;
-  margin-top: 12px;
-  text-align: center;
+  color: #0f172a;
 }
 
-.lp-form-success {
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #4ade80;
+.lp-wa-bubble-content:hover .lp-wa-bubble-text {
+  color: #0052cc;
 }
 
-.lp-form-error {
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #f87171;
+/* Seta do balão apontando para o botão verde */
+.lp-wa-bubble-arrow {
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #ffffff;
+}
+
+/* Botão WhatsApp Flutuante com Badge */
+.lp-whatsapp {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  pointer-events: auto;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.lp-whatsapp:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+}
+
+.lp-whatsapp img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Badge de Notificação "1" */
+.lp-wa-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #e53e3e;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
 }
 
 /* ============================================================
@@ -892,32 +1072,6 @@ img {
   color: var(--text-white);
 }
 
-/* WhatsApp Flutuante */
-.lp-whatsapp {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 999;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #25d366;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
-  transition: transform 0.2s ease;
-}
-
-.lp-whatsapp:hover {
-  transform: scale(1.1);
-}
-
-.lp-whatsapp img {
-  width: 30px;
-  height: 30px;
-}
-
 /* Reveal Animations */
 .reveal {
   opacity: 0;
@@ -934,12 +1088,27 @@ img {
    RESPONSIVO
    ============================================================ */
 @media (max-width: 1024px) {
-  .lp-hero-container {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+  .lp-header {
+    padding: 24px 36px;
   }
-  .lp-hero-title {
-    font-size: 32px;
+  .lp-header.scrolled {
+    padding: 14px 36px;
+  }
+  .lp-header-logo img {
+    height: 64px;
+  }
+  .lp-header.scrolled .lp-header-logo img {
+    height: 48px;
+  }
+  .lp-hero {
+    padding: 120px 36px 50px;
+  }
+  .lp-form-section {
+    padding: 80px 36px;
+  }
+  .lp-form-section-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
   .lp-split {
     grid-template-columns: 1fr;
@@ -951,54 +1120,98 @@ img {
   .lp-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .lp-form-layout {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 900px) {
   .lp-hero {
-    padding: 100px 20px 50px;
+    padding: 110px 24px 50px;
     min-height: auto;
   }
-  .lp-hero-container {
-    grid-template-columns: 1fr;
-    gap: 36px;
+  .lp-hero-overlay {
+    background: 
+      linear-gradient(
+        to bottom,
+        rgba(4, 9, 20, 0.94) 0%,
+        rgba(4, 9, 20, 0.82) 50%,
+        rgba(4, 9, 20, 0.60) 80%,
+        rgba(4, 9, 20, 0.90) 100%
+      );
   }
   .lp-hero-content {
     max-width: 100%;
-    align-items: flex-start;
-    text-align: left;
   }
-  .lp-hero-form-wrapper {
-    max-width: 100%;
-    justify-self: stretch;
+  .lp-hero-title {
+    font-size: 32px;
   }
 }
 
 @media (max-width: 768px) {
   .lp-header {
-    padding: 16px 20px;
+    padding: 18px 20px;
   }
   .lp-header.scrolled {
     padding: 12px 20px;
   }
   .lp-header-logo img {
-    height: 40px;
+    height: 56px;
+  }
+  .lp-header.scrolled .lp-header-logo img {
+    height: 44px;
+  }
+  .lp-hero {
+    padding: 100px 20px 48px;
+  }
+  .lp-hero-content {
+    transform: translateY(0);
   }
   .lp-hero-title {
     font-size: 28px;
-    font-weight: 700;
     line-height: 1.25;
   }
   .lp-hero-subtitle {
     font-size: 15px;
+    margin-bottom: 24px;
   }
-  .lp-hero-form-card {
-    padding: 20px 18px;
+  .lp-form-section {
+    padding: 60px 20px;
+  }
+  .lp-form-card-elevated {
+    padding: 24px 18px;
   }
   .lp-form-row {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .lp-footer {
+    padding: 24px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+  .lp-footer-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .lp-wa-wrapper {
+    bottom: 20px;
+    right: 16px;
     gap: 10px;
+  }
+  .lp-wa-bubble {
+    max-width: 210px;
+    padding: 11px 13px;
+  }
+  .lp-wa-bubble-text {
+    font-size: 12px;
+  }
+  .lp-whatsapp {
+    width: 52px;
+    height: 52px;
+  }
+  .lp-whatsapp img {
+    width: 28px;
+    height: 28px;
   }
 }
