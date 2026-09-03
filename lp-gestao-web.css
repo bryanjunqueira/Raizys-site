@@ -1,7 +1,7 @@
 /* ======================================================
    LP GESTÃO WEB — Raizys Web
    Cores: Azul vibrante (#0066FF / #0052CC) + Dark Navy (#040914)
-   Fontes: Poppins (estilo Omie para títulos e destaques) + Inter (corpo)
+   Fontes: Poppins (estilo títulos e destaques) + Inter (corpo)
    ====================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -21,11 +21,15 @@
   --bg-dark: #040914;
   --bg-dark-card: #081226;
   --bg-dark-elevated: #0d1b38;
+  --bg-light: #f8fafc;
+  --bg-light-alt: #f1f5f9;
   --text-white: #FFFFFF;
-  --text-muted: rgba(255, 255, 255, 0.78);
-  --text-dim: rgba(255, 255, 255, 0.50);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-blue: rgba(0, 102, 255, 0.35);
+  --text-muted: rgba(255, 255, 255, 0.88);
+  --text-dim: rgba(255, 255, 255, 0.55);
+  --text-dark: #0a1428;
+  --text-dark-muted: #475569;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-light: rgba(0, 0, 0, 0.08);
   --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -55,8 +59,7 @@ img {
 }
 
 /* ============================================================
-/* ============================================================
-   HEADER — Minimalista com Logo Raizys Ampliada (Fixo no topo da página)
+   HEADER — Logo Branca Estática (Fixo no topo da página)
    ============================================================ */
 .lp-header {
   position: absolute;
@@ -74,20 +77,16 @@ img {
 .lp-header-logo {
   display: inline-flex;
   align-items: center;
-  text-decoration: none;
-  cursor: pointer;
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
 }
 
 .lp-header-logo img {
-  height: 76px; /* Aumentado consideravelmente */
+  height: 76px;
   width: auto;
   object-fit: contain;
-  transition: transform 0.25s ease;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
-}
-
-.lp-header-logo:hover img {
-  transform: scale(1.03);
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.7));
 }
 
 /* ============================================================
@@ -114,8 +113,7 @@ img {
   pointer-events: none;
 }
 
-/* Overlay inteligente: Escuridão focal na esquerda para máxima legibilidade 
-   e claridade/transparência total na direita para evidenciar o vídeo/ilustração */
+/* Overlay de Iluminação Hero: Esquerda escura p/ texto e Direita aberta/translúcida p/ vídeo */
 .lp-hero-overlay {
   position: absolute;
   inset: 0;
@@ -125,22 +123,21 @@ img {
     linear-gradient(
       to right,
       rgba(4, 9, 20, 0.98) 0%,
-      rgba(4, 9, 20, 0.94) 25%,
-      rgba(4, 9, 20, 0.78) 42%,
-      rgba(4, 9, 20, 0.35) 60%,
-      rgba(4, 9, 20, 0.08) 78%,
-      rgba(4, 9, 20, 0.0) 95%,
+      rgba(4, 9, 20, 0.92) 26%,
+      rgba(4, 9, 20, 0.60) 45%,
+      rgba(4, 9, 20, 0.15) 60%,
+      rgba(4, 9, 20, 0.0) 75%,
       rgba(4, 9, 20, 0.0) 100%
     ),
     linear-gradient(
       to top,
-      rgba(4, 9, 20, 0.85) 0%,
-      transparent 22%
+      rgba(4, 9, 20, 0.70) 0%,
+      transparent 18%
     ),
     linear-gradient(
       to bottom,
-      rgba(4, 9, 20, 0.65) 0%,
-      transparent 18%
+      rgba(4, 9, 20, 0.50) 0%,
+      transparent 14%
     );
 }
 
@@ -156,7 +153,7 @@ img {
 }
 
 .lp-hero-content {
-  max-width: 560px;
+  max-width: 580px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -164,7 +161,6 @@ img {
   transform: translateY(-35px);
 }
 
-/* Título estilo Omie: Poppins, font-bold (700), leading-tight */
 .lp-hero-title {
   font-family: var(--font-heading);
   font-size: 38px;
@@ -183,11 +179,10 @@ img {
   font-weight: 400;
   color: var(--text-muted);
   line-height: 1.65;
-  max-width: 520px;
+  max-width: 530px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Botão da esquerda — Conheça o ERP Raizys */
 .lp-hero-btn {
   display: inline-flex;
   align-items: center;
@@ -199,11 +194,11 @@ img {
   font-weight: 600;
   text-transform: none;
   letter-spacing: 0.2px;
-  padding: 14px 28px;
+  padding: 15px 32px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  margin-top: 24px;
+  margin-top: 26px;
   transition: all 0.25s ease;
   box-shadow: 0 4px 20px var(--primary-blue-glow);
   text-decoration: none;
@@ -215,18 +210,579 @@ img {
   box-shadow: 0 6px 24px rgba(0, 102, 255, 0.55);
 }
 
-.lp-hero-feature-item i {
-  color: #38bdf8;
-  font-size: 14px;
+/* ============================================================
+   SEÇÃO SEGMENTOS — CARDS INTERATIVOS COM HOVER SLIDE-UP
+   (Sem botão/link de ação ao clicar — Apenas texto explicativo no hover)
+   ============================================================ */
+.lp-segments-section {
+  background: #f8fafc;
+  color: var(--text-dark);
+  padding: 100px 56px 90px;
+  position: relative;
+  z-index: 5;
+}
+
+.lp-segments-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.lp-section-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 56px;
+}
+
+.lp-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 800;
+  color: #0b192e;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.lp-section-subtitle {
+  font-size: 16.5px;
+  color: var(--text-dark-muted);
+  line-height: 1.6;
 }
 
 /* ============================================================
-   SEÇÃO DE FORMULÁRIO DEDICADA (Abaixo do Hero)
+   CARROSSEL DE SEGMENTOS — REFERÊNCIA EXATA OMIE
+   ============================================================ */
+.lp-segments-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.lp-segments-carousel {
+  overflow: hidden;
+  border-radius: 20px;
+  width: 100%;
+}
+
+/* Track deslizante arrastável */
+.lp-segments-track {
+  display: flex;
+  gap: 22px;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  cursor: grab;
+  user-select: none;
+}
+
+.lp-segments-track.is-dragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+/* Card Individual — Estilo Omie */
+.lp-segment-card {
+  position: relative;
+  height: 430px;
+  min-width: calc((100% - 44px) / 3);
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #091326;
+  cursor: default;
+  user-select: none;
+  box-shadow: 0 10px 30px rgba(11, 25, 46, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lp-segment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(11, 25, 46, 0.20);
+}
+
+/* Foto de Fundo do Card */
+.lp-segment-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.lp-segment-card:hover .lp-segment-img {
+  transform: scale(1.05);
+  filter: brightness(0.65);
+}
+
+/* Card Agenda — Ilustração do Hero com fundo dark tech */
+.lp-card-agenda {
+  background: radial-gradient(circle at 50% 28%, #11254a 0%, #081226 65%, #040914 100%) !important;
+}
+
+.lp-segment-img-illustration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 255px;
+  object-fit: contain;
+  object-position: center top;
+  padding: 16px 16px 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  filter: drop-shadow(0 10px 24px rgba(0, 102, 255, 0.3));
+}
+
+.lp-segment-card:hover .lp-segment-img-illustration {
+  transform: scale(1.06) translateY(-4px);
+  filter: drop-shadow(0 14px 30px rgba(0, 102, 255, 0.45));
+}
+
+/* Card Izys — Mascote "Menina Rosa" com fundo roxo/neon */
+.lp-card-izys {
+  background: radial-gradient(circle at 50% 30%, #291254 0%, #120826 65%, #070312 100%) !important;
+}
+
+.lp-segment-mascot-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 255px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 16px;
+  z-index: 1;
+}
+
+.lp-segment-mascot-img {
+  max-width: 185px;
+  max-height: 185px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(168, 85, 247, 0.6));
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.lp-segment-card:hover .lp-segment-mascot-img {
+  transform: scale(1.08) translateY(-4px);
+  filter: drop-shadow(0 16px 36px rgba(168, 85, 247, 0.85));
+}
+
+.lp-card-izys .lp-segment-initial {
+  background: linear-gradient(
+    to top,
+    rgba(7, 3, 18, 0.98) 0%,
+    rgba(7, 3, 18, 0.88) 38%,
+    rgba(7, 3, 18, 0.35) 65%,
+    transparent 100%
+  );
+}
+
+.lp-card-izys .lp-segment-hover {
+  background: rgba(15, 8, 32, 0.95);
+}
+
+/* Estado Padrão com gradiente na base */
+.lp-segment-initial {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px 24px;
+  background: linear-gradient(
+    to top,
+    rgba(4, 12, 26, 0.96) 0%,
+    rgba(4, 12, 26, 0.85) 38%,
+    rgba(4, 12, 26, 0.40) 65%,
+    transparent 100%
+  );
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.lp-segment-card:hover .lp-segment-initial {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+/* Linha inferior: textos à esquerda + botão circular à direita */
+.lp-segment-bottom-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+}
+
+.lp-segment-info {
+  flex: 1;
+}
+
+.lp-segment-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.lp-segment-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.lp-segment-list li {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.lp-segment-list li::before {
+  content: "•";
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Seta Circular Branca no canto inferior direito — Referência Exata Omie */
+.lp-segment-circle-btn {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0b192e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.lp-segment-card:hover .lp-segment-circle-btn {
+  transform: scale(1.08);
+}
+
+/* Estado Hover (Slide-up informativo com fundo escuro e mesma seta no rodapé) */
+.lp-segment-hover {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px 24px;
+  background: rgba(6, 17, 34, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lp-segment-card:hover .lp-segment-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lp-segment-hover-info {
+  flex: 1;
+}
+
+.lp-segment-hover-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.lp-segment-hover-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.6;
+}
+
+/* Botões de Setas Laterais de Navegação do Carrossel */
+.lp-carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #0b192e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
+
+.lp-carousel-nav-btn.prev {
+  left: -23px;
+}
+
+.lp-carousel-nav-btn.next {
+  right: -23px;
+}
+
+.lp-carousel-nav-btn:hover {
+  background: var(--primary-blue);
+  color: #ffffff;
+  border-color: var(--primary-blue);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
+}
+
+.lp-carousel-nav-btn:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Dots Centralizados no Estilo Omie (Pill alongada escura + bolinhas) */
+.lp-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 36px;
+}
+
+.lp-carousel-dot {
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.lp-carousel-dot.active {
+  width: 40px;
+  border-radius: 999px;
+  background: #0b192e;
+}
+
+/* ============================================================
+   SEÇÃO VANTAGENS / POR QUE A RAIZYS — DIDÁTICA E CLARA
+   ============================================================ */
+.lp-why-section {
+  background: #ffffff;
+  color: var(--text-dark);
+  padding: 90px 56px 100px;
+  border-top: 1px solid var(--border-light);
+  position: relative;
+  z-index: 5;
+}
+
+.lp-why-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.lp-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.lp-why-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lp-why-card:hover {
+  border-color: #93c5fd;
+  background: #f0f7ff;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 102, 255, 0.08);
+}
+
+.lp-why-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(0, 102, 255, 0.12);
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.lp-why-card h3 {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  color: #0b192e;
+  margin-bottom: 10px;
+}
+
+.lp-why-card p {
+  font-size: 14.5px;
+  color: var(--text-dark-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   WRAPPER ESCURO COM VÍDEO EXATAMENTE IGUAL AO HERO
+   (Fixo na tela enquanto rola pelas seções inferiores com enquadramento e iluminação idênticos)
+   ============================================================ */
+.lp-dark-video-wrapper {
+  position: relative;
+  background: #040914;
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
+  overflow: hidden;
+}
+
+.lp-dark-video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center right;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Overlay 100% IDÊNTICO AO HERO */
+.lp-dark-video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  background: 
+    linear-gradient(
+      to right,
+      rgba(4, 9, 20, 0.98) 0%,
+      rgba(4, 9, 20, 0.92) 26%,
+      rgba(4, 9, 20, 0.60) 45%,
+      rgba(4, 9, 20, 0.15) 60%,
+      rgba(4, 9, 20, 0.0) 75%,
+      rgba(4, 9, 20, 0.0) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(4, 9, 20, 0.70) 0%,
+      transparent 18%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(4, 9, 20, 0.50) 0%,
+      transparent 14%
+    );
+}
+
+.lp-dark-video-wrapper > section,
+.lp-dark-video-wrapper > footer {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+/* ============================================================
+   SEÇÃO COMO FUNCIONA (PASSO A PASSO)
+   ============================================================ */
+.lp-steps-section {
+  color: var(--text-white);
+  padding: 110px 56px 80px;
+  position: relative;
+}
+
+.lp-steps-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.lp-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.lp-step-card {
+  background: rgba(8, 18, 38, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 30px 24px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.lp-step-card:hover {
+  border-color: var(--primary-blue-light);
+  background: rgba(13, 27, 56, 0.95);
+  transform: translateY(-4px);
+}
+
+.lp-step-num {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary-blue-light);
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.lp-step-card h3 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 10px;
+}
+
+.lp-step-card p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   SEÇÃO FORMULÁRIO DEDICADA (Demonstração Corporativa)
+   (Ícones removidos — Textos diretos e limpos)
    ============================================================ */
 .lp-form-section {
-  background: linear-gradient(180deg, #040914 0%, #060e22 100%);
-  border-top: 1px solid var(--border-subtle);
-  padding: 100px 56px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 90px 56px 110px;
   position: relative;
 }
 
@@ -250,61 +806,53 @@ img {
 
 .lp-form-main-title {
   font-family: var(--font-heading);
-  font-size: clamp(28px, 3.2vw, 40px);
+  font-size: clamp(28px, 3.2vw, 38px);
   font-weight: 800;
   line-height: 1.2;
   color: var(--text-white);
   letter-spacing: -0.02em;
   margin-bottom: 16px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
 }
 
 .lp-form-main-desc {
-  font-size: 16.5px;
+  font-size: 16px;
   color: var(--text-muted);
   line-height: 1.65;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
 .lp-form-main-desc strong {
   color: var(--primary-blue-light);
 }
 
+/* Cards de Benefícios Limpos (Sem ícones) */
 .lp-form-benefits {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   width: 100%;
-  margin-bottom: 32px;
 }
 
 .lp-form-benefit-item {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  background: rgba(8, 18, 38, 0.65);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 18px 20px;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(8, 18, 38, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 18px 22px;
   transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
 .lp-form-benefit-item:hover {
-  border-color: var(--border-blue);
-  background: rgba(13, 27, 56, 0.85);
+  border-color: rgba(0, 102, 255, 0.45);
+  background: rgba(13, 27, 56, 0.95);
   transform: translateX(4px);
-}
-
-.lp-benefit-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  background: rgba(0, 102, 255, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-blue-light);
-  font-size: 19px;
-  flex-shrink: 0;
 }
 
 .lp-form-benefit-item h4 {
@@ -312,51 +860,14 @@ img {
   font-size: 16px;
   font-weight: 700;
   color: var(--text-white);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .lp-form-benefit-item p {
   font-size: 13.5px;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
-}
-
-.lp-form-direct-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  padding-top: 6px;
-}
-
-.lp-form-direct-contact p {
-  font-size: 14px;
-  color: var(--text-dim);
-}
-
-.lp-direct-wa-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid rgba(37, 211, 102, 0.35);
-  color: #25d366;
-  font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 20px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  width: fit-content;
-  text-decoration: none;
-}
-
-.lp-direct-wa-btn:hover {
-  background: #25d366;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
 }
 
 /* Coluna Direita do Formulário */
@@ -364,14 +875,14 @@ img {
   width: 100%;
 }
 
-.lp-form-card-elevated {
-  background: rgba(8, 18, 38, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+.lp-hero-form-card {
+  background: rgba(8, 18, 38, 0.90);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-  padding: 32px 32px 28px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  border-radius: 12px;
+  padding: 32px 30px 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
 }
 
 .lp-form-header-card {
@@ -398,7 +909,7 @@ img {
 .lp-hero-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .lp-form-row {
@@ -410,48 +921,38 @@ img {
 .lp-form-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  text-align: left;
 }
 
 .lp-form-group label {
-  font-family: var(--font-heading);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-  text-transform: none;
+  color: var(--text-muted);
 }
 
-.lp-form-group label .req,
-.lp-form-consent .req {
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: bold;
+.lp-form-group label .req {
+  color: #ff5252;
 }
 
 .lp-form-group input {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(4, 9, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 6px;
-  padding: 10px 14px;
+  padding: 12px 14px;
+  color: var(--text-white);
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--text-white);
   outline: none;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  width: 100%;
-}
-
-.lp-form-group input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 13px;
+  transition: all 0.2s ease;
 }
 
 .lp-form-group input:focus {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.09);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.25);
+  background: rgba(4, 9, 20, 0.9);
 }
 
-/* Consentimento Checkbox */
 .lp-form-consent {
   margin-top: 4px;
 }
@@ -459,67 +960,52 @@ img {
 .lp-checkbox-label {
   display: flex;
   align-items: flex-start;
-  gap: 9px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.45;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-dim);
   cursor: pointer;
-  text-transform: none;
+  line-height: 1.4;
 }
 
 .lp-checkbox-label input[type="checkbox"] {
+  margin-top: 3px;
   accent-color: var(--primary-blue);
-  width: 15px;
-  height: 15px;
-  margin-top: 2px;
-  cursor: pointer;
-  flex-shrink: 0;
 }
 
-/* Botão Submit */
 .lp-hero-form-submit {
-  width: 100%;
   background: var(--primary-blue);
   color: var(--text-white);
+  border: none;
+  border-radius: 6px;
+  padding: 14px 20px;
   font-family: var(--font-heading);
   font-size: 15px;
   font-weight: 600;
-  text-transform: none;
-  letter-spacing: 0.2px;
-  padding: 14px 20px;
-  border-radius: 6px;
-  border: none;
   cursor: pointer;
-  margin-top: 6px;
-  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 18px var(--primary-blue-glow);
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px var(--primary-blue-glow);
+  margin-top: 6px;
 }
 
 .lp-hero-form-submit:hover {
   background: var(--primary-blue-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(0, 102, 255, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
 }
 
-.lp-hero-form-submit:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-/* Caixa de Sucesso */
 .lp-hero-form-success {
   text-align: center;
-  padding: 28px 16px;
-  color: var(--text-white);
+  padding: 30px 10px;
 }
 
 .lp-success-icon {
-  font-size: 42px;
-  color: #4ade80;
-  margin-bottom: 12px;
+  font-size: 48px;
+  color: #25d366;
+  margin-bottom: 14px;
 }
 
 .lp-hero-form-success h3 {
@@ -527,335 +1013,49 @@ img {
   font-size: 20px;
   font-weight: 700;
   color: var(--text-white);
-  text-transform: none;
   margin-bottom: 8px;
 }
 
 .lp-hero-form-success p {
   font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.55;
-}
-
-.lp-success-detail {
-  font-size: 13px !important;
-  color: var(--text-dim) !important;
-  margin-top: 10px;
 }
 
 /* ============================================================
-   SEÇÕES GERAIS
+   FOOTER MÍNIMO
    ============================================================ */
-.lp-section {
-  padding: 100px 56px;
-  position: relative;
-}
-
-.lp-section-alt {
-  background-color: #060d1d;
-}
-
-.lp-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.lp-tag {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--primary-blue-light);
-  margin-bottom: 16px;
-}
-
-.lp-section-title {
-  font-family: var(--font-heading);
-  font-size: clamp(30px, 3.8vw, 48px);
-  font-weight: 800;
-  line-height: 1.15;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  color: var(--text-white);
-  margin-bottom: 16px;
-}
-
-.lp-section-desc {
-  font-size: 17px;
-  color: var(--text-muted);
-  max-width: 620px;
-  line-height: 1.7;
-  margin-bottom: 56px;
-}
-
-.lp-section-desc strong {
-  color: var(--text-white);
-}
-
-/* ============================================================
-   STATS BAR
-   ============================================================ */
-.lp-stats {
-  background: var(--bg-dark-card);
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 48px 56px;
-}
-
-.lp-stats-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-
-.lp-stat-box {
-  text-align: left;
-  border-left: 3px solid var(--primary-blue);
-  padding-left: 20px;
-}
-
-.lp-stat-num {
-  font-family: var(--font-heading);
-  font-size: clamp(38px, 4vw, 54px);
-  font-weight: 900;
-  color: var(--text-white);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.lp-stat-label {
-  font-size: 14px;
-  color: var(--text-muted);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* ============================================================
-   PROBLEMAS / DORES
-   ============================================================ */
-.lp-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.lp-card {
-  background: var(--bg-dark-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  padding: 36px 30px;
-  transition: all 0.25s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.lp-card:hover {
-  border-color: var(--border-blue);
-  transform: translateY(-4px);
-  background: var(--bg-dark-elevated);
-}
-
-.lp-card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 4px;
-  background: rgba(0, 102, 255, 0.12);
+.lp-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 32px 56px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--primary-blue-light);
-  font-size: 20px;
-  margin-bottom: 22px;
-}
-
-.lp-card h3 {
-  font-family: var(--font-heading);
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--text-white);
-  margin-bottom: 12px;
-  letter-spacing: -0.2px;
-}
-
-.lp-card p {
-  font-size: 14.5px;
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
-/* ============================================================
-   SOLUÇÃO
-   ============================================================ */
-.lp-split {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.lp-checklist {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.lp-check-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px 20px;
-  background: var(--bg-dark-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-
-.lp-check-item:hover {
-  border-color: var(--border-blue);
-  background: var(--bg-dark-elevated);
-}
-
-.lp-check-icon {
-  color: var(--primary-blue-light);
-  font-size: 18px;
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.lp-check-content h4 {
-  font-family: var(--font-heading);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-white);
-  margin-bottom: 4px;
-}
-
-.lp-check-content p {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.lp-brand-box {
-  background: linear-gradient(145deg, #0d1b38 0%, #060d1d 100%);
-  border: 1px solid var(--border-blue);
-  border-radius: 8px;
-  padding: 56px 40px;
-  text-align: center;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-}
-
-.lp-brand-box img {
-  height: 90px;
-  width: auto;
-  margin: 0 auto 24px;
-  filter: drop-shadow(0 0 24px var(--primary-blue-glow));
-}
-
-.lp-brand-box h3 {
-  font-family: var(--font-heading);
-  font-size: 26px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--text-white);
-  margin-bottom: 8px;
-}
-
-.lp-brand-box p {
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-
-/* ============================================================
-   MÓDULOS
-   ============================================================ */
-.lp-module-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  margin-top: 16px;
-}
-
-.lp-module-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--text-muted);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  padding-bottom: 8px;
-}
-
-.lp-module-list li:last-child {
-  border-bottom: none;
-}
-
-.lp-module-list li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--primary-blue);
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   IMPLANTAÇÃO
-   ============================================================ */
-.lp-steps-col {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
-.lp-step-row {
+.lp-footer-copy {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.lp-footer-links {
   display: flex;
-  align-items: flex-start;
   gap: 24px;
-  padding: 24px;
-  background: var(--bg-dark-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  transition: all 0.2s ease;
 }
 
-.lp-step-row:hover {
-  border-color: var(--border-blue);
+.lp-footer-links a {
+  font-size: 13px;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
 }
 
-.lp-step-badge {
-  font-family: var(--font-heading);
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--primary-blue-light);
-  line-height: 1;
-  min-width: 44px;
-}
-
-.lp-step-info h4 {
-  font-family: var(--font-heading);
-  font-size: 17px;
-  font-weight: 700;
+.lp-footer-links a:hover {
   color: var(--text-white);
-  margin-bottom: 4px;
-}
-
-.lp-step-info p {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.55;
 }
 
 /* ============================================================
-   WHATSAPP FLUTUANTE COM BALÃO DE FALA INTERATIVO
+   WHATSAPP FLUTUANTE COM BALÃO DE FALA
    ============================================================ */
 .lp-wa-wrapper {
   position: fixed;
@@ -868,7 +1068,6 @@ img {
   pointer-events: none;
 }
 
-/* Balão de Fala Branco (Conforme Exemplo) */
 .lp-wa-bubble {
   position: relative;
   background: #ffffff;
@@ -899,7 +1098,6 @@ img {
   }
 }
 
-/* Botão Fechar (X) no topo esquerdo do balão */
 .lp-wa-bubble-close {
   position: absolute;
   top: -9px;
@@ -930,7 +1128,6 @@ img {
   transform: scale(1.15);
 }
 
-/* Link e Conteúdo do Balão */
 .lp-wa-bubble-content {
   display: flex;
   align-items: flex-start;
@@ -972,7 +1169,6 @@ img {
   color: #0052cc;
 }
 
-/* Seta do balão apontando para o botão verde */
 .lp-wa-bubble-arrow {
   position: absolute;
   top: 50%;
@@ -985,7 +1181,6 @@ img {
   border-left: 8px solid #ffffff;
 }
 
-/* Botão WhatsApp Flutuante com Badge */
 .lp-whatsapp {
   position: relative;
   width: 60px;
@@ -1012,7 +1207,6 @@ img {
   height: 32px;
 }
 
-/* Badge de Notificação "1" */
 .lp-wa-badge {
   position: absolute;
   top: -2px;
@@ -1039,86 +1233,38 @@ img {
 }
 
 /* ============================================================
-   FOOTER MÍNIMO
-   ============================================================ */
-.lp-footer {
-  background: #02050b;
-  border-top: 1px solid var(--border-subtle);
-  padding: 32px 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.lp-footer-copy {
-  font-size: 13px;
-  color: var(--text-dim);
-}
-
-.lp-footer-links {
-  display: flex;
-  gap: 24px;
-}
-
-.lp-footer-links a {
-  font-size: 13px;
-  color: var(--text-dim);
-  transition: color 0.2s ease;
-}
-
-.lp-footer-links a:hover {
-  color: var(--text-white);
-}
-
-/* Reveal Animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ============================================================
    RESPONSIVO
    ============================================================ */
 @media (max-width: 1024px) {
   .lp-header {
     padding: 24px 36px;
   }
-  .lp-header.scrolled {
-    padding: 14px 36px;
-  }
   .lp-header-logo img {
     height: 64px;
-  }
-  .lp-header.scrolled .lp-header-logo img {
-    height: 48px;
   }
   .lp-hero {
     padding: 120px 36px 50px;
   }
+  .lp-segments-section,
+  .lp-why-section,
+  .lp-steps-section,
   .lp-form-section {
-    padding: 80px 36px;
+    padding: 70px 36px;
+  }
+  .lp-segment-card {
+    min-width: calc((100% - 22px) / 2);
+  }
+  .lp-carousel-nav-btn.prev { left: -14px; }
+  .lp-carousel-nav-btn.next { right: -14px; }
+  .lp-why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lp-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   .lp-form-section-grid {
     grid-template-columns: 1fr;
     gap: 48px;
-  }
-  .lp-split {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-  .lp-grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .lp-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1127,7 +1273,8 @@ img {
     padding: 110px 24px 50px;
     min-height: auto;
   }
-  .lp-hero-overlay {
+  .lp-hero-overlay,
+  .lp-dark-video-overlay {
     background: 
       linear-gradient(
         to bottom,
@@ -1149,14 +1296,8 @@ img {
   .lp-header {
     padding: 18px 20px;
   }
-  .lp-header.scrolled {
-    padding: 12px 20px;
-  }
   .lp-header-logo img {
     height: 56px;
-  }
-  .lp-header.scrolled .lp-header-logo img {
-    height: 44px;
   }
   .lp-hero {
     padding: 100px 20px 48px;
@@ -1172,24 +1313,32 @@ img {
     font-size: 15px;
     margin-bottom: 24px;
   }
+  .lp-segments-section,
+  .lp-why-section,
+  .lp-steps-section,
   .lp-form-section {
     padding: 60px 20px;
   }
-  .lp-form-card-elevated {
-    padding: 24px 18px;
+  .lp-segment-card {
+    min-width: 86%;
+    height: 400px;
+  }
+  .lp-carousel-nav-btn {
+    display: none;
+  }
+  .lp-why-grid {
+    grid-template-columns: 1fr;
+  }
+  .lp-steps-grid {
+    grid-template-columns: 1fr;
   }
   .lp-form-row {
     grid-template-columns: 1fr;
-    gap: 12px;
   }
   .lp-footer {
     padding: 24px 20px;
     flex-direction: column;
-    text-align: center;
-    gap: 14px;
-  }
-  .lp-footer-links {
-    justify-content: center;
+    align-items: flex-start;
   }
 }
 
