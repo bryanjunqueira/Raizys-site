@@ -3,6 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
+    <!-- Google tag (gtag.js) - Google Ads AW-18428599318 -->
+    <script src="/tracking.js?v=1.0"></script>
+
+    <!-- Widget de atendimento WTS Chat: substitui os links diretos de
+         WhatsApp desta LP para que o lead seja registrado com origem. -->
+    <script
+      type="application/javascript"
+      src="https://cdn.wts.chat/scripts/widget/v2/h-widget-min.js"
+      data-companyid="0a202094-7991-4fa4-9370-3f9b6244b6b4"
+      data-widgetid="843f556d-d5ad-406a-808e-18c5742d80fa"
+    ></script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   
   <!-- ============================================================
@@ -1269,6 +1281,19 @@
       border-left: 8px solid #ffffff;
     }
 
+    /* Widget WTS Chat: a bolha flutuante nativa do widget e ocultada
+       porque quem abre o atendimento aqui e o botao verde abaixo.
+       Sem isso, as duas bolhas ficariam sobrepostas no canto da tela. */
+    .h-widget-float {
+      display: none !important;
+    }
+
+    /* Os gatilhos do widget sao <a> sem href, entao o cursor de mao
+       precisa ser declarado. */
+    .h-widget-trigger {
+      cursor: pointer;
+    }
+
     .lp-whatsapp {
       position: relative;
       width: 60px;
@@ -1965,7 +1990,7 @@
         <div class="lp-footer-links">
           <a href="politica-privacidade" title="Política de Privacidade">Política de Privacidade</a>
           <a href="termos-condicoes" title="Termos de Uso">Termos de Uso</a>
-          <a href="https://wa.me/5511918970770" target="_blank" rel="noopener">Atendimento</a>
+          <a class="h-widget-trigger" role="button" tabindex="0">Atendimento</a>
         </div>
       </footer>
     </div>
@@ -1978,7 +2003,7 @@
       <button type="button" class="lp-wa-bubble-close" id="lpWaBubbleClose" title="Fechar" aria-label="Fechar balão de mensagem">
         <span>✕</span>
       </button>
-      <a href="https://wa.me/5511918970770?text=Ol%C3%A1!%20Quer%20ajuda%20para%20encontrar%20o%20sistema%20de%20gest%C3%A3o%20ideal%20para%20o%20seu%20neg%C3%B3cio%3F" target="_blank" rel="noopener" class="lp-wa-bubble-content" aria-label="Conversar no WhatsApp">
+      <a class="lp-wa-bubble-content h-widget-trigger" role="button" tabindex="0" aria-label="Conversar com um especialista">
         <span class="lp-wa-bubble-wave">💬</span>
         <span class="lp-wa-bubble-text">
           Olá! Quer ajuda para encontrar o sistema de gestão ideal para o seu negócio?
@@ -1988,7 +2013,7 @@
     </div>
 
     <!-- Botão WhatsApp com Badge de Notificação "1" -->
-    <a href="https://wa.me/5511918970770?text=Ol%C3%A1!%20Quer%20ajuda%20para%20encontrar%20o%20sistema%20de%20gest%C3%A3o%20ideal%20para%20o%20seu%20neg%C3%B3cio%3F" class="lp-whatsapp" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" title="Atendimento WhatsApp Raizys">
+    <a class="lp-whatsapp h-widget-trigger" role="button" tabindex="0" aria-label="Fale conosco pelo WhatsApp" title="Atendimento WhatsApp Raizys">
       <span class="lp-wa-badge">1</span>
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Ícone WhatsApp" width="32" height="32" loading="lazy">
     </a>
