@@ -63,23 +63,29 @@
 
   <!-- Estilos inline garantindo 100% de imunidade a cache de CDN/Navegador em produção -->
   <style>
+    /* Paleta: navy profundo + amarelo de destaque (a mesma do layout
+       feito no Claude Design). O vídeo continua atrás, mas desfocado e
+       coberto de navy, então ele só dá movimento sem competir com o texto. */
     :root {
-      --primary-blue: #0066FF;
-      --primary-blue-hover: #0052CC;
-      --primary-blue-glow: rgba(0, 102, 255, 0.35);
-      --primary-blue-light: #388BFF;
-      --bg-dark: #040914;
-      --bg-dark-card: #081226;
-      --bg-dark-elevated: #0d1b38;
-      --bg-light: #f8fafc;
-      --bg-light-alt: #f1f5f9;
+      --accent: #FFD43B;
+      --accent-hover: #FFDD5E;
+      --accent-ink: #0A1233;
+      --accent-glow: rgba(255, 212, 59, 0.35);
+      --accent-soft: rgba(255, 212, 59, 0.12);
+      --bg-dark: #070D26;
+      --bg-deep: #05091C;
+      --bg-dark-card: #0B1331;
+      --bg-dark-elevated: #101A40;
       --text-white: #FFFFFF;
-      --text-muted: rgba(255, 255, 255, 0.88);
-      --text-dim: rgba(255, 255, 255, 0.55);
-      --text-dark: #0a1428;
-      --text-dark-muted: #475569;
-      --border-subtle: rgba(255, 255, 255, 0.12);
-      --border-light: rgba(0, 0, 0, 0.08);
+      --text-muted: #C2CAE3;
+      --text-dim: rgba(194, 202, 227, 0.6);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      /* Recuo lateral compartilhado por .lp-header e .lp-hero: é o que
+         mantém o logo alinhado com o texto do hero. Os breakpoints
+         mudam só esta variável, nunca o padding lateral de um dos dois.
+         Fica colado à esquerda de propósito: um recuo proporcional maior
+         deixava o bloco com cara de centralizado nos notebooks. */
+      --hero-gutter: clamp(20px, 4vw, 100px);
       --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -126,7 +132,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      padding: 30px 56px;
+      padding: 30px var(--hero-gutter);
       background: transparent;
     }
 
@@ -155,9 +161,15 @@
       align-items: center;
       justify-content: flex-start;
       overflow: hidden;
-      padding: 130px 56px 60px;
+      /* Padding simétrico centraliza o bloco na tela. Antes o bloco era
+         subido com translateY, que em telas baixas jogava o título por
+         cima do logo; com padding ele nunca passa do topo reservado. */
+      padding: 130px var(--hero-gutter);
+      background: var(--bg-dark);
     }
 
+    /* Vídeo ofuscado: desfocado, dessaturado e escurecido. O scale
+       esconde a borda clara que o blur cria nas laterais. */
     .lp-hero-video {
       position: absolute;
       inset: 0;
@@ -167,34 +179,45 @@
       object-position: center right;
       z-index: 0;
       pointer-events: none;
+      filter: blur(4px) grayscale(0.35) brightness(0.85);
+      transform: scale(1.05);
     }
 
-    /* Overlay de Iluminação Hero: Esquerda escura p/ texto e Direita aberta/translúcida p/ vídeo */
+    /* Véu navy: quase opaco à esquerda (texto) e mais aberto à
+       direita, onde o vídeo aparece como movimento de fundo. */
     .lp-hero-overlay {
       position: absolute;
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      background: 
+      background:
         linear-gradient(
           to right,
-          rgba(4, 9, 20, 0.98) 0%,
-          rgba(4, 9, 20, 0.92) 26%,
-          rgba(4, 9, 20, 0.60) 45%,
-          rgba(4, 9, 20, 0.15) 60%,
-          rgba(4, 9, 20, 0.0) 75%,
-          rgba(4, 9, 20, 0.0) 100%
+          rgba(7, 13, 38, 0.95) 0%,
+          rgba(7, 13, 38, 0.88) 35%,
+          rgba(7, 13, 38, 0.68) 65%,
+          rgba(7, 13, 38, 0.58) 100%
         ),
         linear-gradient(
           to top,
-          rgba(4, 9, 20, 0.70) 0%,
-          transparent 18%
-        ),
-        linear-gradient(
-          to bottom,
-          rgba(4, 9, 20, 0.50) 0%,
-          transparent 14%
+          rgba(5, 9, 28, 0.95) 0%,
+          transparent 22%
         );
+    }
+
+    /* Brilho amarelo no canto superior esquerdo */
+    .lp-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(
+        620px 460px at 11% 0%,
+        rgba(255, 212, 59, 0.32) 0%,
+        rgba(255, 212, 59, 0.11) 42%,
+        transparent 72%
+      );
     }
 
     .lp-hero-container {
@@ -214,61 +237,71 @@
     }
 
     .lp-hero-content {
-      max-width: 580px;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       text-align: left;
-      transform: translateY(-35px);
+      transform: none;
     }
 
+    /* Tipografia fluida: cresce com a tela, então não precisa de um
+       tamanho fixo por breakpoint. O max-width em `em` mantém a mesma
+       quebra de linha em qualquer largura. */
     .lp-hero-title {
       font-family: var(--font-heading);
-      font-size: 38px;
-      font-weight: 700;
-      line-height: 1.25;
+      font-size: clamp(34px, min(5.2vw, 9vh), 84px);
+      font-weight: 800;
+      line-height: 1.08;
       color: var(--text-white);
       text-transform: none;
-      letter-spacing: -0.02em;
-      margin-bottom: 18px;
-      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+      letter-spacing: -0.025em;
+      max-width: 13.5em;
+      margin-bottom: 0.45em;
+      text-shadow: none;
+    }
+
+    /* Palavra em destaque nos títulos (hero e seções) */
+    .lp-hl {
+      color: var(--accent);
     }
 
     .lp-hero-subtitle {
       font-family: var(--font-body);
-      font-size: 17px;
+      font-size: clamp(16px, 1.55vw, 23px);
       font-weight: 400;
       color: var(--text-muted);
-      line-height: 1.65;
-      max-width: 530px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      line-height: 1.7;
+      max-width: 36em;
+      margin-bottom: 0;
+      text-shadow: none;
     }
 
     .lp-hero-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--primary-blue);
-      color: var(--text-white);
+      background-color: var(--accent);
+      color: var(--accent-ink);
       font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 600;
+      font-size: clamp(15px, 1.38vw, 19px);
+      font-weight: 700;
       text-transform: none;
-      letter-spacing: 0.2px;
-      padding: 15px 32px;
-      border-radius: 6px;
+      letter-spacing: 0;
+      padding: 1.2em 2.1em;
+      border-radius: 10px;
       border: none;
       cursor: pointer;
-      margin-top: 26px;
+      margin-top: 2.1em;
       transition: all 0.25s ease;
-      box-shadow: 0 4px 20px var(--primary-blue-glow);
+      box-shadow: 0 10px 36px rgba(255, 212, 59, 0.28);
       text-decoration: none;
     }
 
     .lp-hero-btn:hover {
-      background-color: var(--primary-blue-hover);
+      background-color: var(--accent-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(0, 102, 255, 0.55);
+      box-shadow: 0 14px 44px rgba(255, 212, 59, 0.42);
     }
 
     /* ============================================================
@@ -276,8 +309,8 @@
        (Sem botão/link de ação ao clicar — Apenas texto explicativo no hover)
        ============================================================ */
     .lp-segments-section {
-      background: #f8fafc;
-      color: var(--text-dark);
+      background: var(--bg-deep);
+      color: var(--text-white);
       padding: 100px 56px 90px;
       position: relative;
       z-index: 5;
@@ -298,16 +331,16 @@
       font-family: var(--font-heading);
       font-size: clamp(28px, 3.2vw, 38px);
       font-weight: 800;
-      color: #0b192e;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
+      color: var(--text-white);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
       margin-bottom: 14px;
     }
 
     .lp-section-subtitle {
       font-size: 16.5px;
-      color: var(--text-dark-muted);
-      line-height: 1.6;
+      color: var(--text-muted);
+      line-height: 1.65;
     }
 
     /* ============================================================
@@ -347,16 +380,18 @@
       border-radius: 20px;
       overflow: hidden;
       flex-shrink: 0;
-      background: #091326;
+      background: var(--bg-dark-card);
+      border: 1px solid var(--border-subtle);
       cursor: default;
       user-select: none;
-      box-shadow: 0 10px 30px rgba(11, 25, 46, 0.12);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
     .lp-segment-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(11, 25, 46, 0.20);
+      border-color: rgba(255, 212, 59, 0.35);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
     }
 
     /* Foto de Fundo do Card */
@@ -456,9 +491,9 @@
       padding: 26px 24px;
       background: linear-gradient(
         to top,
-        rgba(4, 12, 26, 0.96) 0%,
-        rgba(4, 12, 26, 0.85) 38%,
-        rgba(4, 12, 26, 0.40) 65%,
+        rgba(5, 9, 28, 0.96) 0%,
+        rgba(5, 9, 28, 0.85) 38%,
+        rgba(5, 9, 28, 0.40) 65%,
         transparent 100%
       );
       transition: opacity 0.35s ease, transform 0.35s ease;
@@ -511,7 +546,7 @@
 
     .lp-segment-list li::before {
       content: "•";
-      color: #ffffff;
+      color: var(--accent);
       font-size: 14px;
       line-height: 1;
     }
@@ -522,12 +557,12 @@
       height: 38px;
       min-width: 38px;
       border-radius: 50%;
-      background: #ffffff;
-      color: #0b192e;
+      background: var(--accent);
+      color: var(--accent-ink);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 14px rgba(255, 212, 59, 0.3);
       flex-shrink: 0;
       transition: transform 0.25s ease, background-color 0.25s ease;
     }
@@ -545,7 +580,7 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 26px 24px;
-      background: rgba(6, 17, 34, 0.94);
+      background: rgba(7, 13, 38, 0.94);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       opacity: 0;
@@ -586,14 +621,14 @@
       width: 46px;
       height: 46px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 1.5px solid #cbd5e1;
-      color: #0b192e;
+      background: var(--bg-dark-card);
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      color: var(--text-white);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
       transition: all 0.25s ease;
     }
 
@@ -606,11 +641,11 @@
     }
 
     .lp-carousel-nav-btn:hover {
-      background: var(--primary-blue);
-      color: #ffffff;
-      border-color: var(--primary-blue);
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
       transform: translateY(-50%) scale(1.08);
-      box-shadow: 0 6px 20px rgba(0, 102, 255, 0.35);
+      box-shadow: 0 6px 20px var(--accent-glow);
     }
 
     .lp-carousel-nav-btn:disabled {
@@ -631,7 +666,7 @@
       height: 9px;
       width: 9px;
       border-radius: 50%;
-      background: #cbd5e1;
+      background: rgba(255, 255, 255, 0.22);
       border: none;
       padding: 0;
       cursor: pointer;
@@ -641,17 +676,17 @@
     .lp-carousel-dot.active {
       width: 40px;
       border-radius: 999px;
-      background: #0b192e;
+      background: var(--accent);
     }
 
     /* ============================================================
        SEÇÃO VANTAGENS / POR QUE A RAIZYS — DIDÁTICA E CLARA
        ============================================================ */
     .lp-why-section {
-      background: #ffffff;
-      color: var(--text-dark);
+      background: var(--bg-dark);
+      color: var(--text-white);
       padding: 90px 56px 100px;
-      border-top: 1px solid var(--border-light);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       position: relative;
       z-index: 5;
     }
@@ -668,8 +703,8 @@
     }
 
     .lp-why-card {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+      background: var(--bg-dark-card);
+      border: 1px solid var(--border-subtle);
       border-radius: 16px;
       padding: 32px 28px;
       transition: all 0.3s ease;
@@ -679,18 +714,18 @@
     }
 
     .lp-why-card:hover {
-      border-color: #93c5fd;
-      background: #f0f7ff;
+      border-color: rgba(255, 212, 59, 0.4);
+      background: var(--bg-dark-elevated);
       transform: translateY(-4px);
-      box-shadow: 0 12px 28px rgba(0, 102, 255, 0.08);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
     }
 
     .lp-why-icon {
       width: 52px;
       height: 52px;
       border-radius: 12px;
-      background: rgba(0, 102, 255, 0.12);
-      color: var(--primary-blue);
+      background: var(--accent-soft);
+      color: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -702,13 +737,13 @@
       font-family: var(--font-heading);
       font-size: 19px;
       font-weight: 700;
-      color: #0b192e;
+      color: var(--text-white);
       margin-bottom: 10px;
     }
 
     .lp-why-card p {
       font-size: 14.5px;
-      color: var(--text-dark-muted);
+      color: var(--text-muted);
       line-height: 1.6;
     }
 
@@ -718,7 +753,7 @@
        ============================================================ */
     .lp-dark-video-wrapper {
       position: relative;
-      background: #040914;
+      background: var(--bg-dark);
       clip-path: inset(0 0 0 0);
       -webkit-clip-path: inset(0 0 0 0);
       overflow: hidden;
@@ -735,9 +770,12 @@
       z-index: 0;
       pointer-events: none;
       opacity: 1;
+      filter: blur(4px) grayscale(0.35) brightness(0.85);
+      transform: scale(1.05);
     }
 
-    /* Overlay 100% IDÊNTICO AO HERO */
+    /* Mesmo véu navy do hero. Aqui o conteúdo ocupa a largura toda
+       (cards e formulário), então a direita fecha um pouco mais. */
     .lp-dark-video-overlay {
       position: fixed;
       top: 0;
@@ -746,25 +784,12 @@
       height: 100vh;
       z-index: 1;
       pointer-events: none;
-      background: 
+      background:
         linear-gradient(
           to right,
-          rgba(4, 9, 20, 0.98) 0%,
-          rgba(4, 9, 20, 0.92) 26%,
-          rgba(4, 9, 20, 0.60) 45%,
-          rgba(4, 9, 20, 0.15) 60%,
-          rgba(4, 9, 20, 0.0) 75%,
-          rgba(4, 9, 20, 0.0) 100%
-        ),
-        linear-gradient(
-          to top,
-          rgba(4, 9, 20, 0.70) 0%,
-          transparent 18%
-        ),
-        linear-gradient(
-          to bottom,
-          rgba(4, 9, 20, 0.50) 0%,
-          transparent 14%
+          rgba(7, 13, 38, 0.93) 0%,
+          rgba(7, 13, 38, 0.84) 45%,
+          rgba(7, 13, 38, 0.72) 100%
         );
     }
 
@@ -797,20 +822,20 @@
     }
 
     .lp-step-card {
-      background: rgba(8, 18, 38, 0.85);
+      background: rgba(11, 19, 49, 0.78);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 16px;
       padding: 30px 24px;
       position: relative;
       transition: all 0.3s ease;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
     }
 
     .lp-step-card:hover {
-      border-color: var(--primary-blue-light);
-      background: rgba(13, 27, 56, 0.95);
+      border-color: rgba(255, 212, 59, 0.45);
+      background: rgba(16, 26, 64, 0.92);
       transform: translateY(-4px);
     }
 
@@ -818,7 +843,7 @@
       font-family: var(--font-heading);
       font-size: 32px;
       font-weight: 800;
-      color: var(--primary-blue-light);
+      color: var(--accent);
       margin-bottom: 14px;
       display: inline-block;
     }
@@ -847,9 +872,25 @@
       position: relative;
     }
 
+    /* Brilho amarelo atrás do formulário, repetindo o do hero para
+       puxar o olho para o ponto de conversão. */
+    .lp-form-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        640px 480px at 78% 40%,
+        rgba(255, 212, 59, 0.12) 0%,
+        rgba(255, 212, 59, 0.04) 45%,
+        transparent 72%
+      );
+    }
+
     .lp-form-section-container {
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
     }
 
     .lp-form-section-grid {
@@ -871,21 +912,21 @@
       font-weight: 800;
       line-height: 1.2;
       color: var(--text-white);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.015em;
       margin-bottom: 16px;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+      text-shadow: none;
     }
 
     .lp-form-main-desc {
       font-size: 16px;
       color: var(--text-muted);
-      line-height: 1.65;
+      line-height: 1.7;
       margin-bottom: 30px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      text-shadow: none;
     }
 
     .lp-form-main-desc strong {
-      color: var(--primary-blue-light);
+      color: var(--accent);
     }
 
     /* Cards de Benefícios Limpos (Sem ícones) */
@@ -911,7 +952,7 @@
     }
 
     .lp-form-benefit-item:hover {
-      border-color: rgba(0, 102, 255, 0.45);
+      border-color: rgba(255, 212, 59, 0.45);
       background: rgba(13, 27, 56, 0.95);
       transform: translateX(4px);
     }
@@ -937,13 +978,13 @@
     }
 
     .lp-hero-form-card {
-      background: rgba(8, 18, 38, 0.90);
+      background: rgba(11, 19, 49, 0.88);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
       padding: 32px 30px 28px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
     }
 
     .lp-form-header-card {
@@ -997,9 +1038,9 @@
     }
 
     .lp-form-group input {
-      background: rgba(4, 9, 20, 0.7);
+      background: rgba(5, 9, 28, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 12px 14px;
       color: var(--text-white);
       font-family: var(--font-body);
@@ -1008,10 +1049,14 @@
       transition: all 0.2s ease;
     }
 
+    .lp-form-group input::placeholder {
+      color: rgba(194, 202, 227, 0.45);
+    }
+
     .lp-form-group input:focus {
-      border-color: var(--primary-blue);
-      box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.25);
-      background: rgba(4, 9, 20, 0.9);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 212, 59, 0.2);
+      background: rgba(5, 9, 28, 0.9);
     }
 
     .lp-form-consent {
@@ -1030,14 +1075,14 @@
 
     .lp-checkbox-label input[type="checkbox"] {
       margin-top: 3px;
-      accent-color: var(--primary-blue);
+      accent-color: var(--accent);
     }
 
     .lp-hero-form-submit {
-      background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
-      color: var(--text-white);
+      background: var(--accent);
+      color: var(--accent-ink);
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 15px 20px;
       font-family: var(--font-heading);
       font-size: 15px;
@@ -1049,7 +1094,7 @@
       justify-content: center;
       gap: 9px;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 18px rgba(0, 102, 255, 0.45), inset 0 1px 0 rgba(255,255,255,0.12);
+      box-shadow: 0 8px 28px rgba(255, 212, 59, 0.28);
       margin-top: 6px;
       position: relative;
       overflow: hidden;
@@ -1059,15 +1104,15 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+      background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 60%);
       opacity: 0;
       transition: opacity 0.25s ease;
     }
 
     .lp-hero-form-submit:hover {
-      background: linear-gradient(135deg, #1a7aff 0%, #0066FF 100%);
+      background: var(--accent-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(0, 102, 255, 0.6), inset 0 1px 0 rgba(255,255,255,0.18);
+      box-shadow: 0 12px 36px rgba(255, 212, 59, 0.42);
     }
 
     .lp-hero-form-submit:hover::before {
@@ -1075,7 +1120,7 @@
     }
 
     .lp-hero-form-submit:disabled {
-      background: linear-gradient(135deg, #1a4a8a 0%, #0d2d5e 100%);
+      background: rgba(255, 212, 59, 0.55);
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
@@ -1096,7 +1141,7 @@
       width: 6px;
       height: 6px;
       border-radius: 2px;
-      background: #7ab8ff;
+      background: var(--accent-ink);
       animation: lp-dot-pulse 1.1s infinite ease-in-out;
     }
 
@@ -1157,7 +1202,7 @@
     }
 
     .lp-footer-links a:hover {
-      color: var(--text-white);
+      color: var(--accent);
     }
 
     /* ============================================================
@@ -1272,7 +1317,7 @@
     }
 
     .lp-wa-bubble-content:hover .lp-wa-bubble-text {
-      color: #0052cc;
+      color: var(--accent-ink);
     }
 
     .lp-wa-bubble-arrow {
@@ -1355,14 +1400,8 @@
        RESPONSIVO
        ============================================================ */
     @media (max-width: 1024px) {
-      .lp-header {
-        padding: 24px 36px;
-      }
       .lp-header-logo img {
         height: 64px;
-      }
-      .lp-hero {
-        padding: 120px 36px 50px;
       }
       .lp-segments-section,
       .lp-why-section,
@@ -1388,49 +1427,49 @@
     }
 
     @media (max-width: 900px) {
+      :root {
+        --hero-gutter: 24px;
+      }
+      .lp-header {
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
       .lp-hero {
-        padding: 110px 24px 50px;
+        padding-top: 110px;
+        padding-bottom: 50px;
         min-height: auto;
       }
       .lp-hero-overlay,
       .lp-dark-video-overlay {
-        background: 
+        background:
           linear-gradient(
             to bottom,
-            rgba(4, 9, 20, 0.94) 0%,
-            rgba(4, 9, 20, 0.82) 50%,
-            rgba(4, 9, 20, 0.60) 80%,
-            rgba(4, 9, 20, 0.90) 100%
+            rgba(7, 13, 38, 0.92) 0%,
+            rgba(7, 13, 38, 0.82) 50%,
+            rgba(7, 13, 38, 0.74) 80%,
+            rgba(5, 9, 28, 0.95) 100%
           );
-      }
-      .lp-hero-content {
-        max-width: 100%;
-      }
-      .lp-hero-title {
-        font-size: 32px;
       }
     }
 
     @media (max-width: 768px) {
+      :root {
+        --hero-gutter: 20px;
+      }
       .lp-header {
-        padding: 18px 20px;
+        padding-top: 18px;
+        padding-bottom: 18px;
       }
       .lp-header-logo img {
         height: 56px;
       }
       .lp-hero {
-        padding: 100px 20px 48px;
-      }
-      .lp-hero-content {
-        transform: translateY(0);
+        padding-top: 100px;
+        padding-bottom: 48px;
       }
       .lp-hero-title {
-        font-size: 28px;
-        line-height: 1.25;
-      }
-      .lp-hero-subtitle {
-        font-size: 15px;
-        margin-bottom: 24px;
+        font-size: clamp(30px, 8.8vw, 40px);
+        line-height: 1.12;
       }
       .lp-segments-section,
       .lp-why-section,
@@ -1487,84 +1526,28 @@
     /* ============================================================
        MONITORES GRANDES (min-width)
        ------------------------------------------------------------
-       O restante do CSS foi escrito para notebook (~1440px) e nao
-       tinha nenhuma regra acima disso. Em um monitor grande o hero
-       continuava com tipografia de notebook, ficando pequeno e
-       perdido no meio da tela. Aqui o texto cresce junto com a tela
-       e a margem esquerda acompanha, mantendo a mesma presenca.
+       Tamanho de fonte e recuo lateral do hero já crescem sozinhos
+       (clamp + --hero-gutter). Aqui só aumenta o respiro vertical
+       para o bloco não ficar colado no topo em telas altas.
        ============================================================ */
-    /* A partir daqui o bloco esta ancorado a esquerda, entao a margem
-       passa a vir do padding. 100px em 1440px reproduz exatamente o
-       recuo que o notebook tinha antes (56px de padding + 44px que
-       sobravam da centralizacao). Dai para cima cresce junto com a
-       tela, mantendo a proporcao. */
-    @media (min-width: 1200px) {
-      .lp-hero {
-        padding: 130px 100px 60px;
-      }
-    }
-
     @media (min-width: 1600px) {
       .lp-hero {
-        padding: 150px 120px 70px;
-      }
-      .lp-hero-content {
-        max-width: 660px;
-      }
-      .lp-hero-title {
-        font-size: 46px;
-      }
-      .lp-hero-subtitle {
-        font-size: 19px;
-        max-width: 600px;
-      }
-      .lp-hero-btn {
-        font-size: 16px;
-        padding: 17px 36px;
+        padding-top: 150px;
+        padding-bottom: 150px;
       }
     }
 
     @media (min-width: 1920px) {
       .lp-hero {
-        padding: 170px 150px 80px;
-      }
-      .lp-hero-content {
-        max-width: 760px;
-        transform: translateY(-45px);
-      }
-      .lp-hero-title {
-        font-size: 54px;
-      }
-      .lp-hero-subtitle {
-        font-size: 20px;
-        max-width: 680px;
-      }
-      .lp-hero-btn {
-        font-size: 17px;
-        padding: 18px 40px;
-        margin-top: 32px;
+        padding-top: 170px;
+        padding-bottom: 170px;
       }
     }
 
     @media (min-width: 2400px) {
       .lp-hero {
-        padding: 190px 190px 90px;
-      }
-      .lp-hero-content {
-        max-width: 880px;
-        transform: translateY(-55px);
-      }
-      .lp-hero-title {
-        font-size: 62px;
-      }
-      .lp-hero-subtitle {
-        font-size: 22px;
-        max-width: 780px;
-      }
-      .lp-hero-btn {
-        font-size: 18px;
-        padding: 20px 44px;
-        margin-top: 36px;
+        padding-top: 190px;
+        padding-bottom: 190px;
       }
     }
   </style>
@@ -1592,7 +1575,7 @@
       <div class="lp-hero-container">
         <!-- Coluna Esquerda: Mensagem Principal + Botão -->
         <div class="lp-hero-content">
-          <h1 class="lp-hero-title">Conheça o sistema de gestão que simplifica sua empresa</h1>
+          <h1 class="lp-hero-title">Conheça o sistema de gestão que <span class="lp-hl">simplifica</span> seu negócio<span class="lp-hl">.</span></h1>
           <p class="lp-hero-subtitle">
             Tenha tudo o que sua empresa precisa para organizar, controlar e acelerar o negócio em um único sistema em nuvem, acessível de qualquer lugar.
           </p>
@@ -1607,7 +1590,7 @@
     <section class="lp-segments-section" id="segmentos" aria-label="Segmentos de Negócio">
       <div class="lp-segments-container">
         <div class="lp-section-header">
-          <h2 class="lp-section-title">Um sistema para cada negócio. Resultados reais em qualquer segmento.</h2>
+          <h2 class="lp-section-title">Um sistema para cada negócio. <span class="lp-hl">Resultados reais</span> em qualquer segmento.</h2>
           <p class="lp-section-subtitle">
             Escolha seu mercado e veja como a Raizys transforma operações em crescimento — com mais controle, menos custo e vendas que escalam.
           </p>
@@ -1895,7 +1878,7 @@
     <section class="lp-why-section" id="vantagens" aria-label="Por que escolher a Raizys">
       <div class="lp-why-container">
         <div class="lp-section-header">
-          <h2 class="lp-section-title">Por que escolher a Raizys para o seu negócio?</h2>
+          <h2 class="lp-section-title">Por que escolher a <span class="lp-hl">Raizys</span> para o seu negócio?</h2>
           <p class="lp-section-subtitle">
             Tecnologia de ponta aliada a um atendimento próximo para que sua empresa ganhe tempo, reduza custos e tome decisões mais inteligentes.
           </p>
@@ -1954,7 +1937,7 @@
       <section class="lp-steps-section" id="como-funciona" aria-label="Como funciona a implantação">
         <div class="lp-steps-container">
           <div class="lp-section-header">
-            <h2 class="lp-section-title" style="color: #ffffff;">Como funciona o seu início com a Raizys</h2>
+            <h2 class="lp-section-title">Como funciona o seu início com a <span class="lp-hl">Raizys</span></h2>
             <p class="lp-section-subtitle" style="color: var(--text-muted);">
               Uma jornada transparente e guiada para transformar a gestão da sua empresa sem complicações.
             </p>
@@ -1994,7 +1977,7 @@
           <div class="lp-form-section-grid">
             <!-- Coluna Esquerda: Apresentação & Proposta de Valor (Sem ícones) -->
             <div class="lp-form-info-col">
-              <h2 class="lp-form-main-title">Pronto para transformar a gestão do seu negócio?</h2>
+              <h2 class="lp-form-main-title">Pronto para <span class="lp-hl">transformar</span> a gestão do seu negócio?</h2>
               <p class="lp-form-main-desc">
                 Preencha o formulário e nossos especialistas entrarão em contato para apresentar uma visão completa e personalizada do <strong>Sistema Raizys</strong>, desenhada para a realidade da sua empresa.
               </p>
