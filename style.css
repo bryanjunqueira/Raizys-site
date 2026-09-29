@@ -896,6 +896,23 @@ iframe {
 }
 
 
+/* ============================================================
+   WIDGET WTS CHAT
+   ------------------------------------------------------------
+   A bolha flutuante nativa do widget fica oculta: quem abre o
+   atendimento sao os botoes verdes do proprio site. Sem isso as
+   duas bolhas ficariam sobrepostas no canto da tela.
+   Os gatilhos sao <a> sem href, entao o cursor de mao precisa
+   ser declarado.
+   ============================================================ */
+.h-widget-float {
+    display: none !important;
+}
+
+.h-widget-trigger {
+    cursor: pointer;
+}
+
 .whatsapp-float {
     position: fixed;
     width: 60px;

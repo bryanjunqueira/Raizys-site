@@ -3,6 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Widget de atendimento WTS Chat: substitui os links diretos de
+         WhatsApp para que o lead seja registrado com origem. -->
+    <script
+      type="application/javascript"
+      src="https://cdn.wts.chat/scripts/widget/v2/h-widget-min.js"
+      data-companyid="0a202094-7991-4fa4-9370-3f9b6244b6b4"
+      data-widgetid="843f556d-d5ad-406a-808e-18c5742d80fa"
+    ></script>
+    <script src="/wts-widget.js?v=1.0" defer></script>
     <!-- Google tag (gtag.js) - Google Ads AW-18428599318 -->
     <script src="/tracking.js?v=1.0"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -215,7 +224,7 @@
                 <div class="hero-visual">
                     <img src="assets/Raizys - Logo 10 (1).png" alt="Raizys Agro Shield"
                         class="hero-logo-img agro-hero-logo">
-                    <a href="https://wa.me/5511918970770" target="_blank" class="cta-button agro-cta-button">Fale com um consultor</a>
+                    <a role="button" tabindex="0" class="cta-button agro-cta-button h-widget-trigger">Fale com um consultor</a>
                 </div>
             </div>
         </section>
@@ -543,12 +552,12 @@
                     </div>
                 </div>
                 <div class="section-cta-container reveal-item">
-                    <a href="https://wa.me/5511918970770" target="_blank" class="cta-button agro-cta-button">Fale com um consultor</a>
+                    <a role="button" tabindex="0" class="cta-button agro-cta-button h-widget-trigger">Fale com um consultor</a>
                 </div>
             </div>
         </section>
     </main>
-    <a href="https://wa.me/5511918970770" class="whatsapp-float" target="_blank">
+    <a role="button" tabindex="0" class="whatsapp-float h-widget-trigger">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
     
