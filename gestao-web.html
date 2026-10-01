@@ -71,6 +71,9 @@
       --accent-hover: #FFDD5E;
       --accent-ink: #0A1233;
       --accent-glow: rgba(255, 212, 59, 0.35);
+      /* Roxo da identidade Izys (mesmos tons de izys.html) */
+      --izys-purple: #7C3AED;
+      --izys-purple-hover: #8B5CF6;
       --accent-soft: rgba(255, 212, 59, 0.12);
       --bg-dark: #070D26;
       --bg-deep: #05091C;
@@ -302,6 +305,36 @@
       background-color: var(--accent-hover);
       transform: translateY(-2px);
       box-shadow: 0 14px 44px rgba(255, 212, 59, 0.42);
+    }
+
+    /* Linha de botoes do hero. A margem superior sai dos botoes e vem
+       para o container, senao os dois empilhariam margem. */
+    .lp-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85em;
+      margin-top: 2.1em;
+    }
+
+    .lp-hero-actions .lp-hero-btn {
+      margin-top: 0;
+    }
+
+    /* Botao do atendimento por webchat (CRM). Roxo da identidade Izys,
+       para diferenciar do CTA principal amarelo.
+       Regras depois de .lp-hero-btn:hover de proposito: mesma
+       especificidade, entao quem vem por ultimo vence. */
+    .lp-hero-btn-izys {
+      background-color: var(--izys-purple);
+      color: #FFFFFF;
+      box-shadow: 0 10px 36px rgba(124, 58, 237, 0.32);
+    }
+
+    .lp-hero-btn-izys:hover {
+      background-color: var(--izys-purple-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 44px rgba(124, 58, 237, 0.45);
     }
 
     /* ============================================================
@@ -1579,9 +1612,24 @@
           <p class="lp-hero-subtitle">
             Tenha tudo o que sua empresa precisa para organizar, controlar e acelerar o negócio em um único sistema em nuvem, acessível de qualquer lugar.
           </p>
-          <a href="#solicitar-demonstracao" class="lp-hero-btn" id="hero-cta-btn" aria-label="Conheça o ERP Raizys" title="Conheça o ERP Raizys">
-            Conheça o ERP Raizys
-          </a>
+          <div class="lp-hero-actions">
+            <a href="#solicitar-demonstracao" class="lp-hero-btn" id="hero-cta-btn" aria-label="Conheça o ERP Raizys" title="Conheça o ERP Raizys">
+              Conheça o ERP Raizys
+            </a>
+
+            <!-- Atendimento por webchat (CRM Izys).
+                 Usa o Link Publico do widget, e NAO o script v3: o script
+                 v3 usa a mesma classe .h-widget-trigger e a mesma variavel
+                 window.hWidget do widget de WhatsApp (v2) que ja roda nesta
+                 pagina — carregar os dois faria um sobrescrever o outro e os
+                 botoes de WhatsApp passariam a abrir o webchat. -->
+            <a href="https://wshort.me/86cC" target="_blank" rel="noopener"
+               class="lp-hero-btn lp-hero-btn-izys" id="hero-chat-btn"
+               aria-label="Fale com o consultor agora pelo chat"
+               title="Fale com o consultor agora">
+              Fale com o Consultor AGORA
+            </a>
+          </div>
         </div>
       </div>
     </section>
