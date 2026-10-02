@@ -1,0 +1,1161 @@
+/* ============================================================
+   RAIZYS GESTÃO DE TRANSPORTADORAS
+   ------------------------------------------------------------
+   A página é um percurso. Uma estrada com faixas de sinalização
+   atravessa tudo POR BAIXO: ela mergulha sob cada painel de
+   conteúdo e reaparece no vão seguinte, onde está o marco da
+   etapa — que acende quando a luz chega nele.
+
+   Por isso os painéis são opacos: é o fundo sólido deles que
+   esconde a estrada e cria o efeito de mergulho.
+
+   Tipografia na referência Sankhya: Work Sans, títulos em caixa
+   alta com peso médio e entrelinha curta.
+
+   Prefixo `tr-` em tudo, para não colidir com style.css.
+   ============================================================ */
+
+/* Rolagem suave para as âncoras da página. O scroll-margin tira o
+   alvo de debaixo do cabeçalho fixo. */
+html:has(.tr-page-theme) { scroll-behavior: smooth; }
+
+#video { scroll-margin-top: 110px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.tr-page-theme) { scroll-behavior: auto; }
+}
+
+.tr-page-theme {
+  --tr-asphalt: #070B18;
+  --tr-asphalt-2: #0C1226;
+  --tr-line: #FFD43B;
+  --tr-line-2: #FFE37A;
+  --tr-glow: rgba(255, 212, 59, 0.55);
+  --tr-off: rgba(255, 255, 255, 0.13);
+  --tr-ink: #0A1026;
+  --tr-white: #F7F9FF;
+  --tr-muted: #9DAAC9;
+  --tr-muted-2: #6F7E9F;
+  --tr-rule: rgba(255, 255, 255, 0.09);
+  --tr-stroke: #222F5E;
+  --tr-head: 'Work Sans', sans-serif;
+  --tr-body: 'Work Sans', sans-serif;
+  background: var(--tr-asphalt);
+}
+
+.tr-main {
+  position: relative;
+  background: var(--tr-asphalt);
+  color: var(--tr-white);
+  font-family: var(--tr-body);
+  overflow-x: clip;
+}
+
+.tr-main ::selection { background: var(--tr-line); color: var(--tr-ink); }
+
+.tr-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* No hero o wrap precisa esticar e virar coluna: é ele que dá o
+   espaço livre para as margens automáticas repartirem. */
+/* O wrap centraliza o bloco de texto na área útil (abaixo do
+   cabeçalho fixo), sem nada ancorado no pé. */
+.tr-hero > .tr-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+/* ============================================================
+   TRILHA — portada do design "Trilha Azul"
+   ------------------------------------------------------------
+   Paleta, medidas e estrutura seguem a referência. O traçado é
+   calculado por JS a partir da posição real das paradas, então
+   passa pelo centro dos círculos em qualquer largura.
+
+   O que foi acrescentado em cima da referência (que é estática):
+   as faixas correm, a trilha se revela conforme a rolagem e cada
+   parada acende quando a luz chega nela.
+   ============================================================ */
+
+.tr-road {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: #080C18;
+  padding: 40px 0 160px;
+}
+
+.tr-road-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---------- O traçado ---------- */
+
+.tr-trail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.tr-trail-base,
+.tr-trail-fill {
+  fill: none;
+  stroke-width: 5;
+  stroke-dasharray: 16 12;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+
+.tr-trail-base { stroke: #24305E; }
+
+.tr-trail-fill {
+  stroke: #FFD43B;
+  filter: drop-shadow(0 0 9px rgba(255, 212, 59, 0.45));
+  animation: tr-corre 1.5s linear infinite;
+}
+
+@keyframes tr-corre {
+  to { stroke-dashoffset: -28; }
+}
+
+/* Ponta luminosa correndo à frente da trilha */
+.tr-trail-head {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: #FFF6D6;
+  box-shadow: 0 0 12px 4px rgba(255, 212, 59, 0.55), 0 0 38px 12px rgba(255, 212, 59, 0.3);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.tr-trail-head.is-on { opacity: 1; }
+
+/* ---------- Linhas ---------- */
+
+.tr-row {
+  position: relative;
+  padding: 150px 0 240px;
+}
+
+.tr-row--ultima { padding: 150px 0 80px; }
+
+.tr-row-in {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Inverte a ordem: ilustração à esquerda, texto à direita. */
+.tr-row-in--inv { flex-wrap: wrap-reverse; }
+
+.tr-col-txt {
+  flex: 1 1 360px;
+  max-width: 500px;
+}
+
+.tr-col-art {
+  flex: 1 1 420px;
+  position: relative;
+  min-width: 0;
+}
+
+.tr-col-txt h2 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+  text-wrap: balance;
+  text-transform: none;
+  color: #FFFFFF;
+}
+
+.tr-col-txt p {
+  font-size: 19px;
+  line-height: 1.55;
+  color: #A9B3D1;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ---------- A parada ---------- */
+
+.tr-stop {
+  position: absolute;
+  top: 60px;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* acima da trilha: é o círculo que esconde a emenda do traçado */
+  z-index: 3;
+  background: #0E1634;
+  border: 1px solid #24305E;
+  color: #3A4366;
+  transition:
+    background-color 0.5s cubic-bezier(0.2, 0.8, 0.3, 1),
+    color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.6s ease,
+    transform 0.5s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+
+.tr-stop svg { width: 52px; height: 52px; }
+
+.tr-stop.is-lit {
+  background: #FFD43B;
+  border-color: #FFD43B;
+  color: #0B1020;
+  transform: translate(-50%, -50%) scale(1.02);
+  box-shadow: 0 0 0 14px rgba(255, 212, 59, 0.12), 0 0 70px rgba(255, 212, 59, 0.35);
+}
+
+.tr-stop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #FFD43B;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tr-stop.is-lit::after {
+  animation: tr-estouro 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) 1 forwards;
+}
+
+@keyframes tr-estouro {
+  0%   { transform: scale(1); opacity: 0.85; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+/* ---------- Cartões e peças ---------- */
+
+.tr-card {
+  position: absolute;
+  background: #111A3A;
+  border: 1px solid #24305E;
+  border-radius: 16px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  color: #FFFFFF;
+}
+
+.tr-card--rota { top: 30px; left: 6%; right: 4%; }
+.tr-card--viagem { top: 120px; right: 0; width: 68%; min-width: 280px; }
+
+.tr-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #24305E;
+}
+
+.tr-card-title { font-weight: 700; font-size: 15px; }
+
+.tr-chip {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFD43B;
+  background: #1C2752;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.tr-chip--ok {
+  color: #3FD69A;
+  background: rgba(31, 167, 114, 0.16);
+}
+
+.tr-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px 20px;
+}
+
+.tr-campo {
+  border: 1px solid #24305E;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.tr-campo span {
+  display: block;
+  font-size: 11px;
+  color: #8C98BF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.tr-campo b {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.tr-mapa {
+  position: relative;
+  height: 190px;
+  margin: 0 20px 20px;
+  border-radius: 12px;
+  background-color: #0E1634;
+  background-image:
+    linear-gradient(#1B2550 1px, transparent 1px),
+    linear-gradient(90deg, #1B2550 1px, transparent 1px);
+  background-size: 36px 36px;
+  overflow: hidden;
+}
+
+.tr-mapa svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.tr-pino-ini {
+  position: absolute;
+  left: 6%;
+  bottom: 22px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0E1634;
+  border: 4px solid #FFD43B;
+  box-sizing: border-box;
+}
+
+.tr-pino-fim {
+  position: absolute;
+  right: 8%;
+  top: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: #FFD43B;
+  box-shadow: 0 0 0 4px #0E1634;
+}
+
+.tr-float {
+  position: absolute;
+  background: #111A3A;
+  border: 1px solid #24305E;
+  border-radius: 14px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  padding: 14px 18px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+
+.tr-float--km { bottom: 20px; left: 0; gap: 18px; }
+.tr-float--toast { bottom: 20px; right: 6%; gap: 12px; }
+
+.tr-num {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: #FFD43B;
+}
+
+.tr-sub { font-size: 12px; color: #8C98BF; font-weight: 600; }
+.tr-forte { font-size: 15px; font-weight: 700; }
+.tr-ok { font-size: 11px; color: #3FD69A; font-weight: 700; }
+.tr-div { width: 1px; align-self: stretch; background: #24305E; }
+
+.tr-check {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #22B07A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tr-check svg { width: 20px; height: 20px; }
+
+/* Linhas do cartão de viagem */
+.tr-linhas { display: flex; flex-direction: column; }
+
+.tr-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid #1E2850;
+}
+
+.tr-linha--ultima { border-bottom: none; }
+.tr-linha-txt { flex: 1; min-width: 0; }
+
+.tr-ava {
+  width: 36px;
+  height: 36px;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tr-ava--quad { border-radius: 10px; background: #1C2752; color: #FFD43B; }
+.tr-ava--redondo { border-radius: 50%; background: #FFD43B; color: #0B1020; }
+
+.tr-tag { font-size: 12px; font-weight: 700; color: #8C98BF; }
+.tr-tag--ok { color: #3FD69A; }
+
+/* Espaço reservado para foto */
+/* As fotos são <img> recortadas no lugar do espaço reservado. */
+.tr-foto {
+  position: absolute;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+}
+
+.tr-foto--caminhao { top: 40px; left: 0; width: 62%; height: 300px; }
+.tr-foto--motorista { top: 40px; right: 0; width: 60%; height: 280px; }
+
+/* Celular */
+.tr-fone {
+  position: absolute;
+  top: 100px;
+  left: 4%;
+  width: 260px;
+  background: #111A3A;
+  border: 8px solid #1E2A55;
+  border-radius: 30px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55);
+  color: #FFFFFF;
+  overflow: hidden;
+}
+
+.tr-fone-top { background: #1A2450; padding: 18px 16px 14px; }
+.tr-fone-sub { font-size: 12px; opacity: 0.85; font-weight: 600; }
+
+.tr-fone-tit {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.tr-fone-lista { display: flex; flex-direction: column; padding: 6px 0; }
+
+.tr-fone-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #1E2850;
+}
+
+.tr-fone-item--ultimo { border-bottom: none; }
+.tr-fone-nome { font-size: 14px; font-weight: 700; }
+.tr-fone-val { font-size: 14px; font-weight: 700; }
+
+.tr-fone-btn {
+  margin: 4px 16px 18px;
+  background: #FFD43B;
+  color: #0B1020;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ---------- Linha central: vídeo do módulo ---------- */
+
+/* A linha central é mais curta no topo: a parada desce e fica
+   encostada no texto, não flutuando longe dele. */
+.tr-row--centro {
+  text-align: center;
+  padding-top: 230px;
+}
+
+.tr-row--centro .tr-stop { top: 148px; }
+
+.tr-centro {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* O texto nasce cinza-claro e vai acendendo palavra por palavra,
+   no instante em que a faixa passa por cima — o mesmo gesto dos
+   círculos da trilha. */
+/* Mesma tipografia do hero: Work Sans em caixa alta, peso médio e
+   entrelinha curta. Antes era 800 sem caixa alta e destoava. */
+.tr-acende {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.1;
+  letter-spacing: 0;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+
+.tr-acende span {
+  color: #A9B3D1;
+  transition: color 0.4s ease, text-shadow 0.5s ease;
+}
+
+/* Escalonamento: a luz chega no círculo e escorre palavra a palavra. */
+.tr-acende span:nth-child(1) { transition-delay: 0.00s; }
+.tr-acende span:nth-child(2) { transition-delay: 0.09s; }
+.tr-acende span:nth-child(3) { transition-delay: 0.18s; }
+.tr-acende span:nth-child(4) { transition-delay: 0.27s; }
+.tr-acende span:nth-child(5) { transition-delay: 0.36s; }
+.tr-acende span:nth-child(6) { transition-delay: 0.45s; }
+
+/* O parágrafo acende logo depois do título, fechando o bloco. */
+.tr-acende-sub {
+  transition: color 0.45s ease, text-shadow 0.55s ease;
+  transition-delay: 0.54s;
+}
+
+.tr-row--centro > .tr-centro > p.tr-acende-sub.is-lit {
+  color: #FFD43B;
+  text-shadow: 0 0 22px rgba(255, 212, 59, 0.3);
+}
+
+.tr-acende span.is-lit {
+  color: #FFD43B;
+  text-shadow: 0 0 26px rgba(255, 212, 59, 0.45);
+}
+
+.tr-row--centro > .tr-centro > p {
+  font-size: 19px;
+  line-height: 1.55;
+  color: #A9B3D1;
+  margin: 0 auto;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.tr-video {
+  position: relative;
+  margin-top: 44px;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  border: 1px solid #24305E;
+  background: #0E1634;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tr-row.is-in .tr-video { opacity: 1; transform: none; }
+
+.tr-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #0E1634;
+  border: 0;
+}
+
+/* ---------- Peças da composição ----------
+   Cada peça cresce de leve ao passar o mouse e vem para a frente
+   ao ser clicada. A mesma regra vale para a foto e para a
+   ilustração: quem foi clicado por último fica por cima.
+
+   O transform base de cada peça fica em --tr-base: sem isso o
+   scale do hover apagaria a inclinação do celular. */
+.tr-peca {
+  cursor: pointer;
+  transform: var(--tr-base, none);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.38s ease;
+}
+
+.tr-peca:hover {
+  transform: var(--tr-base, ) scale(1.035);
+  box-shadow: 0 48px 96px rgba(0, 0, 0, 0.6);
+}
+
+/* A peça clicada sobe acima das irmãs. */
+.tr-peca.is-frente {
+  z-index: 6;
+  box-shadow: 0 48px 96px rgba(0, 0, 0, 0.62);
+}
+
+.tr-peca.is-frente:hover { transform: var(--tr-base, ) scale(1.045); }
+
+/* O celular entra torto: a inclinação precisa sobreviver ao scale. */
+.tr-fone { --tr-base: rotate(-4deg); }
+
+/* A foto nasce por cima do cartão. */
+.tr-foto { z-index: 4; }
+.tr-card, .tr-fone, .tr-float { z-index: 3; }
+
+/* ---------- Entrada ---------- */
+
+.tr-row .tr-col-txt,
+.tr-row .tr-col-art,
+.tr-row--centro .tr-acende,
+.tr-row--centro > .tr-centro > p {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tr-row.is-in .tr-col-txt,
+.tr-row.is-in .tr-col-art,
+.tr-row--centro.is-in .tr-acende,
+.tr-row--centro.is-in > .tr-centro > p { opacity: 1; transform: none; }
+.tr-row.is-in .tr-col-art { transition-delay: 0.1s; }
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 900px) {
+  /* Empilhado, as colunas ocupam a largura toda e qualquer traçado
+     entre as paradas passaria por cima do texto. A trilha é um
+     recurso de tela larga: aqui ficam só as paradas, que continuam
+     acendendo conforme a rolagem. */
+  .tr-trail,
+  .tr-trail-head { display: none; }
+
+  .tr-stop {
+    position: relative;
+    top: 0;
+    left: 0 !important;
+    transform: none;
+    margin: 0 0 28px;
+  }
+
+  .tr-stop.is-lit { transform: scale(1.02); }
+
+  .tr-row--centro { text-align: left; padding-top: 110px; }
+  .tr-row--centro .tr-stop { top: 0; }
+  .tr-video { margin-top: 32px; }
+
+  .tr-road { padding: 20px 0 100px; }
+  .tr-road-wrap { padding: 0 22px; }
+  .tr-row { padding: 110px 0 150px; }
+  .tr-row--ultima { padding: 110px 0 60px; }
+  .tr-row-in { gap: 44px; }
+  .tr-stop { width: 92px; height: 92px; top: 46px; }
+  .tr-stop svg { width: 40px; height: 40px; }
+}
+
+@media (max-width: 640px) {
+  .tr-col-txt h2 { font-size: 32px; }
+  .tr-acende { font-size: 26px; }
+  .tr-col-txt p { font-size: 17px; }
+  .tr-col-art { height: 380px !important; }
+  .tr-fone { width: 220px; }
+  .tr-card--viagem { width: 86%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Fora: movimento grande, contínuo e não pedido. */
+  .tr-trail-fill { animation: none; }
+  .tr-cta-road { animation: none; }
+  .tr-stop::after { animation: none; }
+
+  /* Fica: transição de cor, hover e entrada — só mais curtas. */
+  .tr-stop { transition-duration: 0.2s; }
+  .tr-acende span,
+  .tr-acende-sub { transition-duration: 0.2s; }
+  .tr-peca { transition-duration: 0.2s; }
+
+  .tr-row .tr-col-txt,
+  .tr-row .tr-col-art,
+  .tr-video,
+  .tr-gauge,
+  .tr-placa {
+    transition-duration: 0.25s;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.tr-hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: clamp(120px, 14vh, 164px) 6vw clamp(70px, 9vh, 120px);
+  overflow: hidden;
+  background: var(--tr-asphalt);
+}
+
+/* Vídeo ofuscado no lado direito, entrando por trás do conteúdo.
+   As máscaras dissolvem as bordas para ele virar atmosfera, não
+   um retângulo colado na página. */
+.tr-hero-video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 62%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.52;
+  filter: saturate(0.78) contrast(1.02);
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 42%),
+    linear-gradient(to bottom, transparent 2%, #000 26%, #000 72%, transparent 99%);
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 42%),
+    linear-gradient(to bottom, transparent 2%, #000 26%, #000 72%, transparent 99%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+}
+
+.tr-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 50% at 88% 12%, rgba(255, 212, 59, 0.10) 0%, transparent 62%),
+    radial-gradient(80% 60% at 4% 96%, rgba(42, 86, 196, 0.16) 0%, transparent 62%),
+    linear-gradient(100deg, var(--tr-asphalt) 20%, rgba(7, 11, 24, 0.58) 48%, rgba(7, 11, 24, 0.12) 100%);
+  pointer-events: none;
+}
+
+/* O texto ocupa pouco mais da metade e o resto fica para o vídeo
+   respirar. Antes as duas colunas tinham quase o mesmo peso e tudo
+   ficava grudado no centro. */
+.tr-hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(0, 0.42fr);
+  align-items: center;
+}
+
+.tr-hero h1 {
+  font-size: clamp(34px, 4vw, 58px);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.tr-hl { color: var(--tr-line); }
+
+.tr-hero-sub {
+  margin: clamp(26px, 3.4vh, 42px) 0 0;
+  max-width: 54ch;
+  font-size: clamp(15px, 1.2vw, 18px);
+  color: var(--tr-muted);
+}
+
+.tr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(34px, 4.4vh, 56px);
+}
+
+.tr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 17px 34px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--tr-head);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tr-btn-primary {
+  background: var(--tr-line);
+  color: var(--tr-ink);
+  box-shadow: 0 10px 32px rgba(255, 212, 59, 0.22);
+}
+
+.tr-btn-primary:hover {
+  background: var(--tr-line-2);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(255, 212, 59, 0.34);
+}
+
+/* Roxo da identidade Izys, o mesmo da LP Gestão Web: este botão
+   leva ao webchat, não ao atendimento por WhatsApp. */
+.tr-btn-izys {
+  background: #7C3AED;
+  color: #FFFFFF;
+  box-shadow: 0 10px 32px rgba(124, 58, 237, 0.3);
+}
+
+.tr-btn-izys:hover {
+  background: #8B5CF6;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 42px rgba(124, 58, 237, 0.42);
+}
+
+.tr-btn-ghost {
+  background: transparent;
+  color: var(--tr-white);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.tr-btn-ghost:hover {
+  border-color: var(--tr-line);
+  color: var(--tr-line);
+  transform: translateY(-2px);
+}
+
+@keyframes tr-sobe {
+  from { opacity: 0; transform: translateY(26px); }
+}
+
+/* ============================================================
+   O PERCURSO — painéis opacos com a estrada passando por baixo
+   ============================================================ */
+
+.tr-road {
+  padding: clamp(40px, 6vw, 80px) 6vw clamp(70px, 9vw, 120px);
+}
+
+@keyframes tr-bloom {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+
+.tr-lead {
+  margin: clamp(20px, 2.2vw, 28px) 0 0;
+  max-width: 44ch;
+  font-size: clamp(15px, 1.12vw, 17.5px);
+  color: var(--tr-muted);
+}
+
+/* ============================================================
+   PAINEL DE BORDO — seis leituras
+   ============================================================ */
+
+.tr-result {
+  padding: clamp(80px, 9vw, 130px) 6vw;
+  background: var(--tr-asphalt-2);
+  border-top: 1px solid var(--tr-rule);
+}
+
+.tr-h2 {
+  font-size: clamp(25px, 2.6vw, 40px);
+  margin: 0;
+  max-width: 20ch;
+}
+
+.tr-result .tr-h2 { max-width: 24ch; }
+
+.tr-cluster {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: clamp(44px, 5vw, 72px);
+  border-top: 1px solid var(--tr-stroke);
+  border-bottom: 1px solid var(--tr-stroke);
+}
+
+.tr-gauge {
+  padding: clamp(26px, 2.6vw, 38px) clamp(16px, 1.6vw, 24px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.tr-gauge.is-in { opacity: 1; }
+.tr-gauge + .tr-gauge { border-left: 1px solid var(--tr-stroke); }
+
+.tr-gauge b {
+  display: block;
+  font-family: var(--tr-head);
+  font-size: clamp(30px, 3vw, 46px);
+  font-weight: 300;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--tr-line);
+}
+
+.tr-gauge h3 {
+  font-size: 15.5px;
+  margin: 18px 0 0;
+  line-height: 1.35;
+}
+
+.tr-gauge p {
+  margin: 10px 0 0;
+  font-size: 13.4px;
+  color: var(--tr-muted);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   PLACAS DE SINALIZAÇÃO
+   ============================================================ */
+
+.tr-care {
+  padding: clamp(80px, 9vw, 130px) 6vw;
+  background: var(--tr-asphalt);
+  border-top: 1px solid var(--tr-rule);
+  text-align: center;
+}
+
+.tr-care .tr-h2 { margin: 0 auto; max-width: 22ch; }
+
+.tr-placas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(26px, 3vw, 46px);
+  margin-top: clamp(46px, 5vw, 72px);
+  text-align: left;
+}
+
+.tr-placa {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.tr-placa.is-in { opacity: 1; }
+
+.tr-placa svg {
+  display: block;
+  width: 56px;
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 8px 20px rgba(255, 212, 59, 0.22));
+}
+
+.tr-placa p {
+  margin: 0;
+  font-size: 14.4px;
+  line-height: 1.68;
+  color: var(--tr-muted);
+}
+
+.tr-placa strong { color: var(--tr-white); font-weight: 600; }
+
+/* ============================================================
+   FAIXA CLARA — painel de bordo e placas
+   ------------------------------------------------------------
+   Branco para quebrar o escuro do percurso e dar um respiro
+   neutro. A cor dominante da página continua sendo a do hero;
+   esta faixa é o contraponto.
+   ============================================================ */
+
+.tr-claro {
+  --tr-white: #0C1226;
+  --tr-muted: #55617F;
+  --tr-muted-2: #8C96AE;
+  --tr-rule: rgba(12, 18, 38, 0.10);
+  --tr-stroke: rgba(12, 18, 38, 0.12);
+  color: #0C1226;
+}
+
+.tr-result {
+  background: #FFFFFF;
+  border-top: none;
+}
+
+.tr-care {
+  background: #F2F5FC;
+  border-top: 1px solid rgba(12, 18, 38, 0.07);
+  text-align: left;
+}
+
+.tr-result .tr-h2,
+.tr-care .tr-h2 { color: #0C1226; }
+
+/* O número vazado some no branco: no claro ele vira sólido e menor,
+   com uma régua amarela por cima para marcar a leitura. */
+.tr-gauge {
+  position: relative;
+  padding-top: clamp(30px, 3vw, 44px);
+}
+
+.tr-gauge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 3px;
+  background: var(--tr-line);
+}
+
+.tr-claro .tr-gauge b {
+  color: #0C1226;
+  -webkit-text-stroke: 0;
+  font-weight: 200;
+  opacity: 0.22;
+}
+
+.tr-claro .tr-gauge h3 { color: #0C1226; }
+.tr-claro .tr-gauge p,
+.tr-claro .tr-placa p { color: #55617F; }
+.tr-claro .tr-placa strong { color: #0C1226; }
+
+.tr-claro .tr-cluster {
+  border-top: 1px solid rgba(12, 18, 38, 0.12);
+  border-bottom: 1px solid rgba(12, 18, 38, 0.12);
+}
+
+.tr-claro .tr-gauge + .tr-gauge { border-left: 1px solid rgba(12, 18, 38, 0.10); }
+
+.tr-care .tr-h2 { margin: 0; max-width: 24ch; }
+.tr-claro .tr-lead--centro { margin-left: 0; text-align: left; max-width: 58ch; }
+
+.tr-placa svg { filter: drop-shadow(0 10px 22px rgba(12, 18, 38, 0.14)); }
+
+/* ============================================================
+   CHAMADA FINAL
+   ============================================================ */
+
+.tr-cta {
+  padding: clamp(90px, 10vw, 150px) 6vw clamp(120px, 13vw, 190px);
+  background: var(--tr-asphalt);
+  border-top: 1px solid var(--tr-rule);
+  overflow: hidden;
+}
+
+/* Último trecho de pista correndo no pé da página */
+.tr-cta-road {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: 52px;
+  height: 9px;
+  background: repeating-linear-gradient(90deg, var(--tr-line) 0 30px, transparent 30px 52px);
+  opacity: 0.3;
+  animation: tr-pista 1.6s linear infinite;
+}
+
+@keyframes tr-pista {
+  to { transform: translateX(52px); }
+}
+
+.tr-cta-inner { max-width: 760px; }
+
+.tr-cta p {
+  margin: 20px 0 0;
+  max-width: 52ch;
+  font-size: clamp(15px, 1.15vw, 17px);
+  color: var(--tr-muted);
+}
+
+/* ============================================================
+   MOVIMENTO ALTERNADO
+   ------------------------------------------------------------
+   Flutuação contínua e lenta: as colunas ímpares sobem enquanto a
+   par desce, e vice-versa. Numa fileira de três isso deixa o meio
+   sempre no contratempo das pontas.
+
+   É animação contínua, não parallax de rolagem — preso à rolagem
+   o movimento só existia enquanto a página andava, e parado
+   parecia que nada se mexia.
+   ============================================================ */
+.tr-desliza > * {
+  animation: tr-flutua 6.5s ease-in-out infinite;
+}
+
+.tr-desliza > *:nth-child(even) {
+  animation-name: tr-flutua-inv;
+}
+
+@keyframes tr-flutua {
+  0%, 100% { transform: translateY(14px); }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes tr-flutua-inv {
+  0%, 100% { transform: translateY(-14px); }
+  50%      { transform: translateY(14px); }
+}
+
+/* ============================================================
+   TIPOGRAFIA — referência Sankhya
+   Títulos em caixa alta, peso médio e entrelinha curta
+   (lá: 48px / 53px / font-medium / uppercase).
+   ============================================================ */
+
+.tr-hero h1,
+.tr-h2 {
+  font-family: var(--tr-head);
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.tr-hero-sub,
+.tr-lead,
+.tr-gauge p,
+.tr-placa p,
+.tr-cta p {
+  font-weight: 400;
+  line-height: 1.62;
+}
+
+.tr-gauge h3 {
+  font-family: var(--tr-head);
+  font-weight: 500;
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+
+@media (max-width: 1040px) {
+  .tr-hero { padding: 130px 22px 64px; }
+  .tr-hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .tr-hero-video { width: 100%; opacity: 0.3; }
+
+  .tr-road { padding: 30px 22px 70px; }
+
+  .tr-cluster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tr-gauge:nth-child(odd) { border-left: none; }
+  .tr-gauge { border-top: 1px solid var(--tr-stroke); }
+
+  .tr-result, .tr-care, .tr-cta { padding-left: 22px; padding-right: 22px; }
+}
+
+@media (max-width: 600px) {
+  .tr-btn { width: 100%; }
+  .tr-cluster { grid-template-columns: minmax(0, 1fr); }
+  .tr-gauge { border-left: none !important; }
+}
+
+/* ============================================================
+   MENOS MOVIMENTO
+   ============================================================ */
+
