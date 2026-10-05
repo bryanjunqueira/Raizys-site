@@ -94,6 +94,16 @@
     if (enviados[assinatura]) return;
     enviados[assinatura] = true;
 
+    /* Aqui e o momento real do lead: o visitante preencheu e enviou.
+       O tracking.js escuta este evento para contar a conversao no
+       Google Ads. Avisa antes do e-mail de proposito: a conversao
+       nao pode depender do nosso servidor de e-mail ter respondido. */
+    try {
+      window.dispatchEvent(new CustomEvent('raizys:lead-widget', { detail: campos }));
+    } catch (err) {
+      console.warn('[Raizys] nao deu para avisar o tracking:', err);
+    }
+
     var body = new FormData();
     Object.keys(campos).forEach(function (k) { body.append(k, campos[k]); });
     body.append('_pagina', window.location.pathname);

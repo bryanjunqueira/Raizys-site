@@ -650,36 +650,80 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   .tr-trail,
   .tr-trail-head { display: none; }
 
-  .tr-stop {
+  .tr-road { padding: 20px 0 90px; }
+  .tr-road-wrap { padding: 0 22px; }
+  .tr-row { padding: 60px 0 70px; }
+  .tr-row--ultima { padding: 60px 0 40px; }
+  .tr-row-in { gap: 36px; }
+
+  /* A parada entra no fluxo, acima do título. O `top: 46px` que
+     existia aqui empurrava o círculo PARA BAIXO sem liberar o
+     espaço — ele acabava escrito por cima da manchete. */
+  .tr-stop,
+  .tr-row--centro .tr-stop {
     position: relative;
     top: 0;
     left: 0 !important;
+    right: auto !important;
     transform: none;
-    margin: 0 0 28px;
+    width: 76px;
+    height: 76px;
+    margin: 0 0 24px;
   }
 
   .tr-stop.is-lit { transform: scale(1.02); }
+  .tr-stop svg { width: 34px; height: 34px; }
 
-  .tr-row--centro { text-align: left; padding-top: 110px; }
-  .tr-row--centro .tr-stop { top: 0; }
-  .tr-video { margin-top: 32px; }
+  /* A composição da ilustração é montada com posição absoluta para
+     a tela larga. No celular isso vazava para fora do viewport, com
+     o cartão cortado pela borda. Aqui ela vira uma pilha simples. */
+  .tr-col-art {
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
 
-  .tr-road { padding: 20px 0 100px; }
-  .tr-road-wrap { padding: 0 22px; }
-  .tr-row { padding: 110px 0 150px; }
-  .tr-row--ultima { padding: 110px 0 60px; }
-  .tr-row-in { gap: 44px; }
-  .tr-stop { width: 92px; height: 92px; top: 46px; }
-  .tr-stop svg { width: 40px; height: 40px; }
+  .tr-col-art > .tr-foto,
+  .tr-col-art > .tr-card,
+  .tr-col-art > .tr-float,
+  .tr-col-art > .tr-fone {
+    position: relative;
+    inset: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .tr-col-art > .tr-foto {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  /* O celular da ilustração continua torto, mas centrado e menor. */
+  .tr-col-art > .tr-fone {
+    width: 230px;
+    align-self: center;
+  }
+
+  .tr-row--centro { text-align: left; padding-top: 60px; }
+  .tr-video { margin-top: 28px; }
 }
 
+
 @media (max-width: 640px) {
-  .tr-col-txt h2 { font-size: 32px; }
-  .tr-acende { font-size: 26px; }
-  .tr-col-txt p { font-size: 17px; }
-  .tr-col-art { height: 380px !important; }
-  .tr-fone { width: 220px; }
-  .tr-card--viagem { width: 86%; }
+  .tr-col-txt h2 { font-size: 30px; }
+  .tr-acende { font-size: 25px; }
+  .tr-col-txt p,
+  .tr-row--centro > .tr-centro > p { font-size: 16.5px; }
+  .tr-stop, .tr-row--centro .tr-stop { width: 68px; height: 68px; }
+  .tr-stop svg { width: 30px; height: 30px; }
+  .tr-col-art > .tr-fone { width: 210px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1136,9 +1180,44 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
    ============================================================ */
 
 @media (max-width: 1040px) {
-  .tr-hero { padding: 130px 22px 64px; }
+  .tr-hero { padding: 120px 22px 48px; min-height: 100svh; }
   .tr-hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .tr-hero-video { width: 100%; opacity: 0.3; }
+  /* No retrato, `cover` corta as laterais e sobra so a pessoa no
+     centro — a frota atras some. Aqui o video entra no FLUXO, logo
+     depois dos botoes, com a mesma proporcao do arquivo (16:9): o
+     quadro aparece inteiro e nunca fica preso abaixo da dobra.
+
+     Antes ele era absoluto no pe do hero. Em tela baixa o conteudo
+     passava de 100vh, o hero crescia e a faixa sumia fora da tela. */
+  .tr-hero-video {
+    position: static;
+    order: 2;
+    width: auto;
+    align-self: stretch;
+    /* O style.css do site tem `video { max-width: 100% }` global:
+       sem liberar aqui, as margens negativas nao conseguiam levar a
+       faixa ate as bordas da tela. */
+    max-width: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    max-height: none;
+    /* Sangra ate as bordas da tela e dissolve no topo: volta a ler
+       como fundo, e nao como um cartao de video solto. */
+    margin: clamp(26px, 4vh, 48px) -22px -48px;
+    opacity: 0.58;
+    object-position: 50% 50%;
+    filter: saturate(0.95) contrast(1.02) brightness(1.1);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
+    mask-composite: add;
+    -webkit-mask-composite: source-over;
+  }
+
+  .tr-hero-bg {
+    background:
+      radial-gradient(70% 40% at 50% 6%, rgba(255, 212, 59, 0.08) 0%, transparent 60%),
+      linear-gradient(to bottom, var(--tr-asphalt) 30%, rgba(7, 11, 24, 0.55) 62%, rgba(7, 11, 24, 0.25) 100%);
+  }
 
   .tr-road { padding: 30px 22px 70px; }
 

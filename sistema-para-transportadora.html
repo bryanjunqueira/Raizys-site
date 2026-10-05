@@ -11,9 +11,9 @@
       data-companyid="0a202094-7991-4fa4-9370-3f9b6244b6b4"
       data-widgetid="843f556d-d5ad-406a-808e-18c5742d80fa"
     ></script>
-    <script src="/wts-widget.js?v=1.0" defer></script>
+    <script src="/wts-widget.js?v=2.0" defer></script>
     <!-- Google tag (gtag.js) - Google Ads AW-18428599318 -->
-    <script src="/tracking.js?v=1.0"></script>
+    <script src="/tracking.js?v=2.0"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,7 +47,7 @@
         href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
     <link rel="stylesheet" href="style.css?v=7.0">
     <link rel="stylesheet" href="header.css?v=5.0">
-    <link rel="stylesheet" href="sistema-para-transportadora.css?v=1.0">
+    <link rel="stylesheet" href="sistema-para-transportadora.css?v=2.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -282,7 +282,20 @@
 
               <div class="tr-actions">
                 <a href="#video" class="tr-btn tr-btn-primary">Ver o módulo funcionando</a>
-                <a href="https://wshort.me/86cC" target="_blank" rel="noopener"
+                <!-- Webchat do CRM, widget "webchat-transportes-3b152f" (o que o
+                     cliente criou para transportadora). Abre pelo Link Publico do
+                     proprio widget, e NAO pelo script v3.
+
+                     Motivo: o script v3 declara a mesma variavel global hWidget e
+                     amarra a mesma classe .h-widget-trigger que o widget v2 de
+                     WhatsApp, que ja roda nesta pagina. Carregando os dois, o
+                     segundo sobrescreve o primeiro e os botoes de WhatsApp (que
+                     alimentam o e-mail do lead) passam a abrir o webchat.
+
+                     Embutir num iframe tambem nao resolve: o webchat responde com
+                     Content-Security-Policy frame-ancestors liberando so
+                     www.raizys.com.br, entao quebraria em raizys.com.br. -->
+                <a href="https://wshort.me/lQdV" target="_blank" rel="noopener"
                    class="tr-btn tr-btn-izys"
                    aria-label="Falar com um consultor pelo chat">Falar com um consultor</a>
               </div>
