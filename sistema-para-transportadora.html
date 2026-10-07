@@ -3,6 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <script>
+      /* Hero sem piscar: o porquê está no sistema-para-transportadora.css */
+      document.documentElement.className += " tr-pre";
+      setTimeout(function () {
+        document.documentElement.classList.remove("tr-pre");
+      }, 2000);
+    </script>
     <!-- Widget de atendimento WTS Chat: substitui os links diretos de
          WhatsApp para que o lead seja registrado com origem. -->
     <script
@@ -13,14 +20,14 @@
     ></script>
     <script src="/wts-widget.js?v=2.0" defer></script>
     <!-- Google tag (gtag.js) - Google Ads AW-18428599318 -->
-    <script src="/tracking.js?v=2.0"></script>
+    <script src="/tracking.js?v=3.0"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <title>Raizys Gestão de Transportadoras | Rotas, Viagens, Frota e Custos no ERP</title>
+    <title>Sistema para Transportadora | Viagens, Frota, CT-e e Custos | Raizys</title>
     <meta name="description"
-        content="Módulo integrado ao ERP Raizys para transportadoras: cadastro de rotas e roteiros, controle de viagens, frota própria e de terceiros, despesas, abastecimentos, consumo, acerto de motorista e resultado financeiro por viagem.">
+        content="Sistema para transportadora com controle de viagens, frota, abastecimento, acerto de motorista, CT-e e MDF-e. Veja o lucro real de cada viagem. Agende uma demonstração.">
     <meta name="keywords"
         content="sistema para transportadora, gestão de transporte, controle de frota, gestão de viagens, cadastro de rotas, tabela de frete, CT-e, acerto de motorista, controle de abastecimento, consumo de combustível, custo por viagem, ERP transportadora, Raizys">
     <meta name="author" content="Raizys Consultoria &amp; Tecnologia">
@@ -31,23 +38,25 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Raizys">
     <meta property="og:url" content="https://raizys.com.br/sistema-para-transportadora">
-    <meta property="og:title" content="Raizys Gestão de Transportadoras | Rotas, Viagens, Frota e Custos">
+    <meta property="og:title" content="Sistema para Transportadora | Viagens, Frota, CT-e e Custos">
     <meta property="og:description"
-        content="Do cadastro de rotas ao resultado financeiro da viagem: frota, motoristas, despesas, abastecimentos, consumo e acertos em um único ambiente.">
+        content="Rotas, viagens, frota, abastecimentos, CT-e, MDF-e e acerto de motorista em um único sistema. Veja o lucro real de cada viagem.">
     <meta property="og:image" content="https://raizys.com.br/assets/Raizys - Logo 10 (1).png">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://raizys.com.br/sistema-para-transportadora">
-    <meta property="twitter:title" content="Raizys Gestão de Transportadoras">
+    <meta property="twitter:title" content="Sistema para Transportadora | Raizys">
     <meta property="twitter:description"
-        content="Do cadastro de rotas ao resultado financeiro da viagem: frota, motoristas, despesas, abastecimentos, consumo e acertos em um único ambiente.">
+        content="Rotas, viagens, frota, abastecimentos, CT-e, MDF-e e acerto de motorista em um único sistema. Veja o lucro real de cada viagem.">
     <meta property="twitter:image" content="https://raizys.com.br/assets/Raizys - Logo 10 (1).png">
 
     <link rel="icon" type="image/png"
         href="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png">
     <link rel="stylesheet" href="style.css?v=7.0">
     <link rel="stylesheet" href="header.css?v=5.0">
-    <link rel="stylesheet" href="sistema-para-transportadora.css?v=2.0">
+    <link rel="stylesheet" href="sistema-para-transportadora.css?v=17.0">
+    <link rel="preload" href="vendor/gsap.min.js" as="script">
+    <link rel="preload" href="vendor/ScrollTrigger.min.js" as="script">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -75,193 +84,24 @@
 </head>
 
 <body class="tr-page-theme theme-dark-hero">
-        <!-- ===== TOPBAR ===== -->
-    <div class="rz-topbar">
-        <div class="rz-topbar-inner">
-            <div class="rz-topbar-socials">
-                <a href="https://www.instagram.com/raizysoficial?stkn=MTNvcWd4NnlsMTlj" target="_blank" aria-label="Instagram" class="rz-topbar-social-link"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn" class="rz-topbar-social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube" class="rz-topbar-social-link"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== FLOATING GLASS HEADER (Sankhya Style) ===== -->
-    <div class="rz-header-wrapper">
-        <header class="rz-header" id="rz-header">
-            <div class="rz-header-inner">
-                <a href="home" class="rz-logo">
-                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys Logo">
-                </a>
-                <nav class="rz-nav">
-                    <div class="rz-nav-link rz-nav-solutions-trigger">
-                        <span>Solu&#231;&#245;es</span>
-                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
-                    </div>
-                    <a href="sobre-nos" class="rz-nav-link" data-page="sobre-nos">Sobre</a>
-                    <a href="contato" class="rz-nav-link" data-page="contato">Contato</a>
-                    <div class="rz-nav-link rz-nav-partners-trigger">
-                        <span>Parceiros</span>
-                        <i class="fas fa-chevron-down rz-chevron-icon"></i>
-                    </div>
-                    <a href="trabalhe-conosco" class="rz-nav-link" data-page="trabalhe-conosco">Trabalhe Conosco</a>
-                </nav>
-                <a href="contato" class="rz-header-cta">VAMOS CONVERSAR</a>
-                <button class="rz-mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-            </div>
-
-            <!-- MEGA-MENU SOLUÃ‡Ã•ES (Dropdown with Sector Raizys Logos) -->
-            <div class="rz-solutions-mega">
-                <div class="rz-mega-title">Nossas Solu&#231;&#245;es Corporativas</div>
-                <div class="rz-mega-grid">
-                    <a href="web" class="rz-mega-card" data-solution="web">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-blue.png" alt="Web" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Web Empresarial</div>
-                            <div class="rz-mega-card-desc">Gest&#227;o completa de processos e ERP para m&#233;dias empresas.</div>
-                        </div>
-                    </a>
-                    <a href="agro" class="rz-mega-card" data-solution="agro">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-green.png" alt="Agro" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Agro &amp; Campo</div>
-                            <div class="rz-mega-card-desc">Controle de safra, insumos e rastreabilidade no campo.</div>
-                        </div>
-                    </a>
-                    <a href="food" class="rz-mega-card" data-solution="food">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-orange.png" alt="Food" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Food Service</div>
-                            <div class="rz-mega-card-desc">Automa&#231;&#227;o de restaurantes, cozinhas e franquias.</div>
-                        </div>
-                    </a>
-                    <a href="clinicas" class="rz-mega-card" data-solution="clinicas">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-blue.png" alt="Cl&#237;nicas" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Cl&#237;nicas &amp; Sa&#250;de</div>
-                            <div class="rz-mega-card-desc">Agendamento, prontu&#225;rio e gest&#227;o m&#233;dica integrada.</div>
-                        </div>
-                    </a>
-                    <a href="pet" class="rz-mega-card" data-solution="pet">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-yellow.png" alt="Pet" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Pet &amp; Vet</div>
-                            <div class="rz-mega-card-desc">Controle de banho e tosa, veterin&#225;ria e pet shop.</div>
-                        </div>
-                    </a>
-                    <a href="agenda" class="rz-mega-card" data-solution="agenda">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-dark.png" alt="Agenda" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Agenda Inteligente</div>
-                            <div class="rz-mega-card-desc">Gest&#227;o de hor&#225;rios, servi&#231;os e lembretes autom&#225;ticos.</div>
-                        </div>
-                    </a>
-                    <a href="sistema-para-transportadora" class="rz-mega-card" data-solution="sistema-para-transportadora">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-yellow.png" alt="Transportadoras" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Gest&#227;o de Transportadoras</div>
-                            <div class="rz-mega-card-desc">Rotas, viagens, frota, abastecimentos e custo por viagem.</div>
-                        </div>
-                    </a>
-                    <a href="sap" class="rz-mega-card" data-solution="sap">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/shield-green.png" alt="SAP" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Consultoria SAP</div>
-                            <div class="rz-mega-card-desc">Implanta&#231;&#227;o, migra&#231;&#227;o e governan&#231;a SAP B1 / S4 HANA.</div>
-                        </div>
-                    </a>
-                    <a href="izys" class="rz-mega-card" data-solution="izys">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="fotos/Isys - Logo 3.png" alt="IZYS AI CRM" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">IZYS AI CRM</div>
-                            <div class="rz-mega-card-desc">Atendimento, CRM, automa&#231;&#245;es e Agentes de IA em um &#250;nico lugar.</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- MEGA-MENU PARCEIROS (Dropdown) -->
-            <div class="rz-partners-mega">
-                <div class="rz-mega-title">Programa de Parceiros</div>
-                <div class="rz-partners-grid">
-                    <a href="indicacao" class="rz-mega-card" data-partner="indicacao">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Indicação" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Cadastrar Indica&#231;&#227;o</div>
-                            <div class="rz-mega-card-desc">Indique uma empresa e acompanhe o status da sua indica&#231;&#227;o.</div>
-                        </div>
-                    </a>
-                    <a href="parceiro-indicador" class="rz-mega-card" data-partner="parceiro">
-                        <div class="rz-mega-card-logo-wrap">
-                            <img src="assets/Airbrush-IMAGE-ENHANCER-1769599028582-1769599028582-removebg-preview.png" alt="Parceiro Indicador" class="rz-mega-card-logo-img">
-                        </div>
-                        <div class="rz-mega-card-info">
-                            <div class="rz-mega-card-name">Parceiro Indicador</div>
-                            <div class="rz-mega-card-desc">Seja um parceiro indicador oficial e amplie seus ganhos.</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </header>
-    </div>
-    <div class="rz-mega-overlay"></div>
-
-    <!-- ===== MOBILE DRAWER ===== -->
-    <div class="rz-mobile-overlay"></div>
-    <div class="rz-mobile-drawer">
-        <button class="rz-drawer-close" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
-        <div class="rz-mobile-section">
-            <div class="rz-mobile-section-title">Navega&#231;&#227;o</div>
-            <a href="sobre-nos" class="rz-mobile-link" data-page="sobre-nos"><i class="fas fa-info-circle"></i> Sobre N&#243;s</a>
-            <a href="contato" class="rz-mobile-link" data-page="contato"><i class="fas fa-envelope"></i> Contato</a>
-            <a href="indicacao" class="rz-mobile-link" data-page="indicacao"><i class="fas fa-user-plus"></i> Cadastrar Indica&#231;&#227;o</a>
-            <a href="parceiro-indicador" class="rz-mobile-link" data-page="parceiro-indicador"><i class="fas fa-handshake"></i> Parceiro Indicador</a>
-            <a href="trabalhe-conosco" class="rz-mobile-link" data-page="trabalhe-conosco"><i class="fas fa-briefcase"></i> Trabalhe Conosco</a>
-        </div>
-        <div class="rz-mobile-divider"></div>
-        <div class="rz-mobile-section">
-            <div class="rz-mobile-section-title">Solu&#231;&#245;es Corporativas</div>
-            <a href="web" class="rz-mobile-link" data-page="web"><img src="assets/shield-blue.png" alt="Raizys"> Web Empresarial</a>
-            <a href="agro" class="rz-mobile-link" data-page="agro"><img src="assets/shield-green.png" alt="Raizys"> Agro &amp; Campo</a>
-            <a href="food" class="rz-mobile-link" data-page="food"><img src="assets/shield-orange.png" alt="Raizys"> Food Service</a>
-            <a href="clinicas" class="rz-mobile-link" data-page="clinicas"><img src="assets/shield-blue.png" alt="Raizys"> Cl&#237;nicas &amp; Sa&#250;de</a>
-            <a href="pet" class="rz-mobile-link" data-page="pet"><img src="assets/shield-yellow.png" alt="Raizys"> Pet &amp; Vet</a>
-            <a href="agenda" class="rz-mobile-link" data-page="agenda"><img src="assets/shield-dark.png" alt="Raizys"> Agenda Inteligente</a>
-            <a href="sistema-para-transportadora" class="rz-mobile-link" data-page="sistema-para-transportadora"><img src="assets/shield-yellow.png" alt="Raizys"> Gest&#227;o de Transportadoras</a>
-            <a href="sap" class="rz-mobile-link" data-page="sap"><img src="assets/shield-green.png" alt="Raizys"> Consultoria SAP</a>
-            <a href="izys" class="rz-mobile-link" data-page="izys"><img src="fotos/Isys - Logo 3.png" alt="IZYS" style="height:18px;width:auto;"> IZYS AI CRM</a>
-        </div>
-        <div class="rz-mobile-divider"></div>
-        <div class="rz-mobile-section">
-            <a href="contato" class="rz-header-cta" style="width:100%;justify-content:center;margin:0;margin-top:8px;">VAMOS CONVERSAR</a>
-        </div>
-    </div>
-    
-
-
+    <!-- ============ CABEÇALHO ============
+         Só o escudo, como na gestão web. Numa página de campanha o
+         menu é saída: quem chega do anúncio tem um caminho só.
+         Fica absoluto e sem fundo — o hero passa por baixo dele. -->
     <main class="tr-main">
 
+      <!-- ============ A PASSAGEM ============
+           Hero e dores vivem no mesmo palco. Dentro dele o hero fica
+           grudado no topo enquanto a seção de dores passa por cima,
+           entrando pela direita. Quando o palco acaba, o hero se
+           solta e some junto com o resto da rolagem.
 
-      <!-- ===================== HERO ===================== -->
+           O palco é o que LIMITA o grude: sem ele, o hero ficaria
+           preso no topo pela página inteira, com um vídeo rodando
+           atrás de tudo à toa.                                     -->
+      <div class="tr-passagem">
+
+      <!-- ============ 2 · PRIMEIRA TELA ============ -->
       <section class="tr-hero">
         <video class="tr-hero-video" autoplay muted loop playsinline webkit-playsinline
                preload="metadata" poster="video/hero-people-poster.webp" aria-hidden="true">
@@ -269,46 +109,197 @@
         </video>
         <div class="tr-hero-bg" aria-hidden="true"></div>
 
+        <!-- A mancha. Três borrões amarelos muito fracos que se
+             sobrepõem: de perto é só um clarão, mas é o que tira a
+             tela do "fundo preto com texto". Ela anda ao contrário do
+             mouse, o que dá a profundidade. -->
+        <div class="tr-mancha" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+
+        <!-- O pincel: um borrão amarelo que segue o cursor com atraso,
+             como tinta sendo passada. Fica atrás do texto. -->
+        <div class="tr-pincel" aria-hidden="true"></div>
+
         <div class="tr-wrap">
-          <div class="tr-hero-grid">
-            <div>
-              <h1>Toda a <span class="tr-hl">estrada</span><br>em um sistema só</h1>
+            <header class="tr-marca">
+              <span class="tr-marca-logo" aria-label="Raizys">
+                <img src="fotos/Logo raizys branca.png" alt="Raizys" width="1254" height="454" loading="eager">
+              </span>
 
-              <p class="tr-hero-sub">
-                Do cadastro de rotas, veículos e motoristas até o acompanhamento das viagens,
-                despesas, abastecimentos, documentos fiscais, manutenção preventiva, acertos e
-                resultados financeiros — tudo em um único ambiente.
-              </p>
+              <!-- As mesmas redes do cabeçalho padrão do site, sem o resto
+                   do cabeçalho. Precisam de pointer-events próprios: a barra
+                   inteira é transparente ao clique para o hero passar por
+                   baixo dela. -->
+              <nav class="tr-redes" aria-label="Redes sociais da Raizys">
+                <a href="https://www.instagram.com/raizysoficial?stkn=MTNvcWd4NnlsMTlj" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/raizys" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </nav>
+            </header>
 
-              <div class="tr-actions">
-                <a href="#video" class="tr-btn tr-btn-primary">Ver o módulo funcionando</a>
-                <!-- Webchat do CRM, widget "webchat-transportes-3b152f" (o que o
-                     cliente criou para transportadora). Abre pelo Link Publico do
-                     proprio widget, e NAO pelo script v3.
+          <div class="tr-hero-centro">
+            <h1><span class="tr-cam">Sistema para transportadora que mostra o <span class="tr-hl">lucro real</span> de cada viagem</span></h1>
 
-                     Motivo: o script v3 declara a mesma variavel global hWidget e
-                     amarra a mesma classe .h-widget-trigger que o widget v2 de
-                     WhatsApp, que ja roda nesta pagina. Carregando os dois, o
-                     segundo sobrescreve o primeiro e os botoes de WhatsApp (que
-                     alimentam o e-mail do lead) passam a abrir o webchat.
+            <p class="tr-hero-sub">
+              Rotas, viagens, frota, abastecimentos, CT-e, MDF-e e acerto de motorista em um
+              único sistema, configurado por um consultor para a sua operação.
+            </p>
 
-                     Embutir num iframe tambem nao resolve: o webchat responde com
-                     Content-Security-Policy frame-ancestors liberando so
-                     www.raizys.com.br, entao quebraria em raizys.com.br. -->
-                <a href="https://wshort.me/lQdV" target="_blank" rel="noopener"
-                   class="tr-btn tr-btn-izys"
-                   aria-label="Falar com um consultor pelo chat">Falar com um consultor</a>
-              </div>
+            <div class="tr-actions">
+              <a href="#agendar" class="tr-btn tr-btn-primary">Agendar demonstração</a>
+
+              <!-- Webchat do CRM, widget "webchat-transportes-3b152f" (o que o
+                   cliente criou para transportadora). Abre pelo Link Publico do
+                   proprio widget, e NAO pelo script v3.
+
+                   Motivo: o script v3 declara a mesma variavel global hWidget e
+                   amarra a mesma classe .h-widget-trigger que o widget v2 de
+                   WhatsApp, que ja roda nesta pagina. Carregando os dois, o
+                   segundo sobrescreve o primeiro e os botoes de WhatsApp (que
+                   alimentam o e-mail do lead) passam a abrir o webchat.
+
+                   Embutir num iframe tambem nao resolve: o webchat responde com
+                   Content-Security-Policy frame-ancestors liberando so
+                   www.raizys.com.br, entao quebraria em raizys.com.br. -->
+              <a href="https://wshort.me/lQdV" target="_blank" rel="noopener"
+                 class="tr-btn tr-btn-izys"
+                 aria-label="Falar com um consultor pelo chat">Falar com um consultor</a>
             </div>
 
+            <ul class="tr-selos">
+              <li>Frota própria e de terceiros</li>
+              <li>CT-e, MDF-e e CIOT</li>
+              <li>Aplicativo do motorista</li>
+            </ul>
           </div>
-
-
-
         </div>
       </section>
 
-      <!-- ===================== TRILHA ===================== -->
+      <!-- ============ 3 · DORES DA TRANSPORTADORA ============
+           Quem vem do hero encontra primeiro o cupom: um resultado de
+           viagem impresso em que a linha que importa está em branco.
+           Ele entra sozinho, sangrando pela esquerda, e só depois o
+           texto aparece à direita — é a ordem da leitura virando
+           movimento. Os outros três problemas ficam na lista abaixo.
+
+           O cupom é ilustração: fica fora da árvore de acessibilidade
+           para o leitor de tela não anunciar números de mentira.    -->
+      <!-- O invólucro é o que fica preso no topo; a seção desliza
+           dentro dele. Prender e animar o MESMO elemento não funciona:
+           o pin reescreve a posição e apaga o transform. -->
+      <div class="tr-folha">
+      <section class="tr-dores" aria-label="Problemas que o sistema resolve">
+
+        <!-- A passagem. Uma faixa de asfalto com as marcações da
+             pista atravessa o topo da seção: ela é a emenda entre o
+             hero e o que vem depois. As marcações correm, então a
+             chegada da seção parece trecho de estrada passando. -->
+        <div class="tr-asfalto" aria-hidden="true">
+          <i class="tr-asfalto-faixa"></i>
+        </div>
+
+        <div class="tr-wrap">
+
+          <div class="tr-dores-topo">
+            <div class="tr-dores-txt">
+              <h2 class="tr-h2-nv">Sua transportadora passa <span class="tr-am">por isso?</span></h2>
+              <span class="tr-traco" aria-hidden="true"></span>
+              <h3>Fecha o mês sem saber qual viagem deu lucro</h3>
+              <p>O frete entra, as despesas saem e o resultado por viagem fica no achismo.</p>
+            </div>
+
+            <figure class="tr-cupom" aria-hidden="true">
+              <div class="tr-cupom-cab">
+                <span>Viagem #4821 · Resultado</span>
+                <i class="tr-cupom-ponto"></i>
+              </div>
+              <div class="tr-cupom-papel">
+                <div class="tr-cupom-linha">
+                  <span>Receita do frete</span>
+                  <b class="tr-cupom-valor">R$ 8.400</b>
+                </div>
+                <div class="tr-cupom-linha">
+                  <span>Despesas lançadas</span>
+                  <em class="tr-cupom-selo">Parcial</em>
+                </div>
+                <div class="tr-cupom-linha tr-cupom-linha--fim">
+                  <strong>Resultado</strong>
+                  <b class="tr-cupom-vazio">— ? —</b>
+                </div>
+              </div>
+            </figure>
+          </div>
+
+        </div>
+
+        <!-- Os outros três problemas em três pistas, separadas pelas
+             mesmas marcações da estrada. -->
+        <div class="tr-pistas">
+          <div class="tr-wrap">
+            <ul class="tr-dor-lista">
+              <li class="tr-dor-item">
+                <span class="tr-dor-cx" aria-hidden="true"></span>
+                <b>Acerto de motorista em planilha e caderno</b>
+                <p>Comissão, adiantamento e despesa conferidos à mão, com erro e discussão.</p>
+              </li>
+              <li class="tr-dor-item">
+                <span class="tr-dor-cx" aria-hidden="true"></span>
+                <b>Consumo do caminhão é estimativa</b>
+                <p>Sem o KM real e o tanque cheio registrados, ninguém sabe a média de cada veículo.</p>
+              </li>
+              <li class="tr-dor-item">
+                <span class="tr-dor-cx" aria-hidden="true"></span>
+                <b>CT-e em um sistema, financeiro em outro</b>
+                <p>A mesma informação é digitada duas ou três vezes.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tr-wrap">
+          <p class="tr-pilula">
+            Com a Raizys, cada viagem fecha com <strong>custo, receita e resultado</strong>.
+            <span aria-hidden="true">→</span>
+          </p>
+        </div>
+
+      </section>
+      </div><!-- /tr-folha -->
+
+      </div><!-- /tr-passagem -->
+
+      <!-- ============ 4 · PAINEL DE BORDO ============ -->
+      <section class="tr-result tr-claro">
+        <div class="tr-wrap">
+          <h2 class="tr-h2">Seis números que deixam de ser estimativa</h2>
+
+          <div class="tr-cluster tr-desliza">
+            <div class="tr-gauge"><b>01</b><h3>Custo real da viagem</h3><p>Somando apenas as despesas aprovadas, pelo valor efetivamente realizado.</p></div>
+            <div class="tr-gauge"><b>02</b><h3>Receita da operação</h3><p>O frete da viagem, calculado pela tabela vinculada à rota ou informado direto.</p></div>
+            <div class="tr-gauge"><b>03</b><h3>Resultado financeiro</h3><p>O encontro entre o que entrou e o que saiu naquele trajeto específico.</p></div>
+            <div class="tr-gauge"><b>04</b><h3>Consumo do veículo</h3><p>Apurado entre tanques cheios, com o KM real lido no hodômetro.</p></div>
+            <div class="tr-gauge"><b>05</b><h3>Acerto do motorista</h3><p>Comissão, adiantamentos e as despesas que o tipo manda entrar no acerto.</p></div>
+            <div class="tr-gauge"><b>06</b><h3>Valores ao transportador</h3><p>Separados automaticamente quando o veículo da viagem é de terceiro.</p></div>
+          </div>
+
+          <div class="tr-acao-centro">
+            <a href="#agendar" class="tr-btn tr-btn-escuro">Agendar demonstração</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ A SEGUNDA PASSAGEM ============
+           Trilha e fiscal dividem um palco. Dentro dele a trilha
+           gruda pelo PÉ: quando o fim dela encosta na base da tela,
+           ela para de rolar e fica ali, parada. É sobre essa imagem
+           congelada que a seção fiscal atravessa.
+
+           O palco é o que limita o grude: sem ele a trilha ficaria
+           presa atrás da página inteira.                          -->
+      <div class="tr-passagem2">
+
+      <!-- ============ 5, 6, 7 e 10 · A TRILHA ============ -->
       <section class="tr-road" id="percurso" aria-label="O percurso da operação">
 
         <!-- O traçado é calculado por JS a partir da posição real das
@@ -334,7 +325,7 @@
 
         <div class="tr-road-wrap">
 
-          <!-- ---------- 1 ---------- -->
+          <!-- ---------- 5 ---------- -->
           <div class="tr-row" data-row="1">
             <div class="tr-stop" data-stop="1" style="left:64%">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><circle cx="36" cy="36" r="5"></circle><path d="M12 17v4c0 4 3 6 7 6h10c4 0 7 2 7 5"></path></svg>
@@ -372,7 +363,7 @@
             </div>
           </div>
 
-          <!-- ---------- 2 ---------- -->
+          <!-- ---------- 6 ---------- -->
           <div class="tr-row" data-row="2">
             <div class="tr-stop" data-stop="2" style="left:14%">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="24" height="20" rx="2"></rect><path d="M28 18h8l6 7v7H28z"></path><circle cx="13" cy="36" r="4"></circle><circle cx="35" cy="36" r="4"></circle></svg>
@@ -380,7 +371,6 @@
 
             <div class="tr-row-in tr-row-in--inv">
               <div class="tr-col-art" style="height:460px">
-                <!-- ESPAÇO PARA FOTO — caminhão / carreta na estrada -->
                 <img class="tr-foto tr-foto--caminhao tr-peca" src="fotos/tr-caminhao.webp" alt="Carreta branca cruzando uma ponte ao entardecer" width="1100" height="733" loading="lazy" decoding="async">
 
                 <div class="tr-card tr-card--viagem tr-peca">
@@ -410,12 +400,12 @@
 
               <div class="tr-col-txt">
                 <h2>Veículo, motorista e carga na mesma tela</h2>
-                <p>Frota própria ou de terceiro, carretas, comissão e previsão de saída. O sistema reconhece a origem do veículo, sugere a quilometragem inicial e organiza os trechos num ciclo só.</p>
+                <p>Frota própria ou de terceiro, carretas, comissão e previsão de saída. O sistema reconhece a origem do veículo, sugere a quilometragem inicial e organiza os trechos num ciclo só. Atende viagem de trecho simples e roteiros com vários trechos.</p>
               </div>
             </div>
           </div>
 
-          <!-- ---------- 3 ---------- -->
+          <!-- ---------- 7 ---------- -->
           <div class="tr-row" data-row="3">
             <div class="tr-stop" data-stop="3" style="left:84%">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4h28v40l-5-3-5 3-4-3-5 3-4-3-5 3z"></path><path d="M17 14h14M17 21h14M17 28h8"></path></svg>
@@ -424,11 +414,16 @@
             <div class="tr-row-in">
               <div class="tr-col-txt">
                 <h2>O que acontece na estrada vira número</h2>
-                <p>Despesas com comprovante e conferência, abastecimentos com tanque cheio e adiantamentos do motorista. Tudo preso à viagem que gerou — inclusive no aplicativo que ele usa na estrada.</p>
+                <p>Pelo aplicativo, o motorista lança abastecimento, pedágio e despesas e envia a foto do comprovante direto da estrada. O escritório confere e aprova, e tudo fica preso à viagem que gerou o gasto.</p>
+
+                <ul class="tr-destaques">
+                  <li>Aplicativo do motorista</li>
+                  <li>Comprovante por foto</li>
+                  <li>Adiantamentos controlados</li>
+                </ul>
               </div>
 
               <div class="tr-col-art" style="height:480px">
-                <!-- ESPAÇO PARA FOTO — motorista com celular / posto -->
                 <img class="tr-foto tr-foto--motorista tr-peca" src="fotos/tr-motorista.webp" alt="Motorista consultando a navegação no tablet dentro da cabine" width="1100" height="734" loading="lazy" decoding="async">
 
                 <div class="tr-fone tr-peca">
@@ -461,8 +456,7 @@
             </div>
           </div>
 
-
-          <!-- ---------- 4 · centro ---------- -->
+          <!-- ---------- 10 · centro ---------- -->
           <div class="tr-row tr-row--centro tr-row--ultima" data-row="4" id="video">
             <div class="tr-stop" data-stop="4" style="left:50%">
               <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="38" height="26" rx="4"></rect><path d="M20 18l10 6-10 6z"></path><path d="M16 43h16"></path></svg>
@@ -485,75 +479,452 @@
                   <source src="video/erp-transportadora.mp4" type="video/mp4">
                 </video>
               </div>
+
+              <div class="tr-acao-centro">
+                <a href="#agendar" class="tr-btn tr-btn-primary">Quero ver com os dados da minha operação</a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ===================== PAINEL DE BORDO ===================== -->
-      <section class="tr-result tr-claro">
-        <div class="tr-wrap">
-          <h2 class="tr-h2">Seis números que deixam de ser estimativa</h2>
+      <!-- ============ 8 · DOCUMENTOS FISCAIS ============
+           A estrada atravessa a seção e os três documentos pousam
+           sobre ela, na ordem em que um gera o outro. O número do
+           modelo fica gigante atrás de cada papel, bem apagado — é
+           textura, não informação. Os papéis são desenhados em CSS:
+           nenhuma imagem a produzir.                               -->
+      <!-- O corredor é o que fica preso no topo; a seção desliza
+           dentro dele. Prender e animar o MESMO elemento não funciona:
+           o pin reescreve a posição e apaga o transform. -->
+      <div class="tr-corredor">
+      <section class="tr-fiscal" aria-label="Documentos fiscais do transporte">
 
-          <div class="tr-cluster tr-desliza">
-            <div class="tr-gauge"><b>01</b><h3>Custo real da viagem</h3><p>Somando apenas as despesas aprovadas, pelo valor efetivamente realizado.</p></div>
-            <div class="tr-gauge"><b>02</b><h3>Receita da operação</h3><p>O frete da viagem, calculado pela tabela vinculada à rota ou informado direto.</p></div>
-            <div class="tr-gauge"><b>03</b><h3>Resultado financeiro</h3><p>O encontro entre o que entrou e o que saiu naquele trajeto específico.</p></div>
-            <div class="tr-gauge"><b>04</b><h3>Consumo do veículo</h3><p>Apurado entre tanques cheios, com o KM real lido no hodômetro.</p></div>
-            <div class="tr-gauge"><b>05</b><h3>Acerto do motorista</h3><p>Comissão, adiantamentos e as despesas que o tipo manda entrar no acerto.</p></div>
-            <div class="tr-gauge"><b>06</b><h3>Valores ao transportador</h3><p>Separados automaticamente quando o veículo da viagem é de terceiro.</p></div>
+        <!-- A beira da pista, na frente da seção: ela atravessa a tela
+             junto e é o que dá o aspecto de estrada à passagem. -->
+        <div class="tr-beira" aria-hidden="true">
+          <i class="tr-beira-faixa"></i>
+        </div>
+
+        <div class="tr-wrap">
+
+          <div class="tr-fiscal-cab">
+            <div>
+              <p class="tr-eyebrow">Documentos fiscais</p>
+              <h2 class="tr-h2-nv">Do XML da nota ao MDF&#8209;e, <span class="tr-vazado">sem redigitar</span></h2>
+            </div>
+            <p class="tr-fiscal-lead">
+              Importe o XML da NF-e para gerar o CT-e e use os CT-e emitidos para montar o
+              MDF-e. Os documentos da viagem nascem no mesmo sistema que controla o custo dela.
+            </p>
+          </div>
+
+          <div class="tr-fx">
+            <div class="tr-fx-estrada" aria-hidden="true">
+              <i class="tr-fx-estrada-cheia"></i>
+            </div>
+
+            <div class="tr-fx-col">
+              <span class="tr-fx-tag tr-fx-tag--entra">Entra</span>
+              <div class="tr-fx-doc">
+                <span class="tr-fx-mod" aria-hidden="true">55</span>
+                <div class="tr-fx-papel tr-fx-papel--nfe">
+                  <div class="tr-fx-papel-cab"><b>NF-e</b><span>mod. 55</span></div>
+                  <div class="tr-fx-papel-linhas" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <div class="tr-fx-papel-barras" aria-hidden="true"></div>
+                </div>
+              </div>
+              <h3>NF-e do cliente</h3>
+              <p>XML importado</p>
+            </div>
+
+            <div class="tr-fx-col">
+              <span class="tr-fx-tag tr-fx-tag--gera">Gera</span>
+              <div class="tr-fx-doc">
+                <span class="tr-fx-mod" aria-hidden="true">57</span>
+                <div class="tr-fx-papel tr-fx-papel--cte">
+                  <div class="tr-fx-papel-cab"><b>CT-e</b><span>mod. 57</span></div>
+                  <div class="tr-fx-papel-linhas" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <div class="tr-fx-papel-barras" aria-hidden="true"></div>
+                </div>
+              </div>
+              <h3>CT-e</h3>
+              <p>Conhecimento de transporte</p>
+            </div>
+
+            <div class="tr-fx-col">
+              <span class="tr-fx-tag tr-fx-tag--monta">Monta</span>
+              <div class="tr-fx-doc">
+                <span class="tr-fx-mod" aria-hidden="true">58</span>
+                <div class="tr-fx-papel tr-fx-papel--mdfe">
+                  <div class="tr-fx-papel-cab"><b>MDF-e</b><span>mod. 58</span></div>
+                  <div class="tr-fx-papel-linhas" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                  <div class="tr-fx-papel-barras" aria-hidden="true"></div>
+                </div>
+              </div>
+              <h3 class="tr-am">MDF-e</h3>
+              <p>Manifesto da viagem</p>
+            </div>
+          </div>
+
+          <ul class="tr-fx-selos">
+            <li>CT-e e CT-e OS</li>
+            <li>MDF-e</li>
+            <li>CIOT</li>
+            <li>Averbação de carga</li>
+            <li>Subcontratação, redespacho e CT-e globalizado</li>
+            <li>Carta de correção, cancelamento e evento de insucesso na entrega</li>
+          </ul>
+
+        </div>
+      </section>
+      </div><!-- /tr-corredor -->
+      </div><!-- /tr-passagem2 -->
+
+      <!-- ============ 9 · FROTA E MANUTENÇÃO ============
+           "PARAR" dentro de uma placa de pare, e à direita a tela do
+           sistema inclinada sobre um bloco amarelo torto. A barra de
+           óleo é segmentada, como mostrador de painel.             -->
+      <section class="tr-frota" aria-label="Frota e manutenção">
+        <div class="tr-wrap">
+          <div class="tr-frota-grid">
+
+            <div class="tr-frota-txt">
+              <h2 class="tr-h2-nv tr-h2-nv--claro">A frota avisa antes de <span class="tr-placa-pare">parar</span></h2>
+              <p>
+                Programe a manutenção preventiva por veículo, registre os serviços de oficina por
+                ordem de serviço e lance peças pela nota de entrada, com o custo rateado no veículo
+                certo. Multas também ficam registradas e vinculadas.
+              </p>
+              <ul class="tr-chips">
+                <li class="tr-chip-cheio">Manutenção preventiva</li>
+                <li>Custo por veículo</li>
+                <li>Controle de multas</li>
+              </ul>
+            </div>
+
+            <div class="tr-frota-art">
+              <div class="tr-frota-bloco" aria-hidden="true"></div>
+
+              <div class="tr-painel">
+                <div class="tr-painel-cab">
+                  <div class="tr-painel-veic">
+                    <span>Carreta LS ·</span>
+                    <span class="tr-placa-mercosul">ABC-1D23</span>
+                  </div>
+                  <span class="tr-painel-badge">Revisão em 1.200 km</span>
+                </div>
+
+                <div class="tr-painel-km">
+                  <div class="tr-painel-km-topo">
+                    <span>Troca de óleo</span>
+                    <span><b>184.220</b> / 185.420 km</span>
+                  </div>
+                  <div class="tr-barra" aria-hidden="true"><i style="width:82%"></i></div>
+                </div>
+
+                <div class="tr-painel-linha">
+                  <span class="tr-painel-ico tr-painel-ico--os">OS</span>
+                  <div class="tr-painel-txt">
+                    <span>Ordem de serviço 2214</span>
+                    <b>Freios · eixo traseiro</b>
+                  </div>
+                  <span class="tr-painel-ok">Concluída</span>
+                </div>
+
+                <div class="tr-painel-linha">
+                  <span class="tr-painel-ico">NF</span>
+                  <div class="tr-painel-txt">
+                    <span>Peças pela entrada de nota</span>
+                    <b>Rateado neste veículo</b>
+                  </div>
+                  <span class="tr-painel-val">R$ 3.180</span>
+                </div>
+
+                <div class="tr-painel-linha tr-painel-linha--fim">
+                  <span class="tr-painel-ico tr-painel-ico--mu">MU</span>
+                  <div class="tr-painel-txt">
+                    <span>Multa vinculada</span>
+                    <b>Excesso de velocidade</b>
+                  </div>
+                  <span class="tr-painel-nota">Motorista notificado</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      <!-- ===================== PLACAS DE SINALIZAÇÃO ===================== -->
-      <section class="tr-care tr-claro">
+      <!-- ============ 11 · INTEGRAÇÃO COM O FINANCEIRO ============
+           Bento de quatro peças de tamanhos diferentes: o que o
+           financeiro recebe em destaque, dois cartões brancos no meio
+           e o acesso do contador numa faixa amarela.               -->
+      <section class="tr-fin" aria-label="Integração com o financeiro e o contador">
         <div class="tr-wrap">
-          <h2 class="tr-h2">Cinco cuidados que mantêm o custo confiável</h2>
-          <p class="tr-lead tr-lead--centro">
-            O sistema calcula bem o que recebe bem. São estes os pontos em que um lançamento descuidado
-            distorce o custo do veículo.
+          <div class="tr-fin-grid">
+
+            <div class="tr-fin-txt">
+              <h2 class="tr-h2-nv tr-h2-nv--claro">A viagem fecha e o <span class="tr-az">financeiro já sabe</span></h2>
+              <p>
+                O módulo de transporte faz parte do <strong>ERP Raizys</strong>. O que acontece na
+                viagem chega ao financeiro e ao fiscal sem lançamento duplicado.
+              </p>
+              <div class="tr-conector" aria-hidden="true">
+                <i class="tr-conector-ponto"></i>
+                <i class="tr-conector-linha"></i>
+                <i class="tr-conector-seta"></i>
+              </div>
+            </div>
+
+            <div class="tr-bento">
+              <article class="tr-bento-cel tr-bento-cel--larga tr-bento-cel--navy">
+                <span class="tr-bento-anel" aria-hidden="true"></span>
+                <h3>Contas a pagar e a receber</h3>
+                <p>Fretes, despesas e acertos geram os lançamentos financeiros.</p>
+              </article>
+
+              <article class="tr-bento-cel">
+                <span class="tr-bento-marca tr-bento-marca--quad" aria-hidden="true"></span>
+                <h3>Boleto e PIX integrados</h3>
+                <p>Cobrança do cliente emitida pelo sistema, com baixa no financeiro.</p>
+              </article>
+
+              <article class="tr-bento-cel">
+                <span class="tr-bento-marca tr-bento-marca--losango" aria-hidden="true"></span>
+                <h3>Resultado e relatórios</h3>
+                <p>Painel de transporte, DRE e centro de custos para enxergar a operação.</p>
+              </article>
+
+              <article class="tr-bento-cel tr-bento-cel--larga tr-bento-cel--amarela">
+                <h3>Acesso do contador</h3>
+                <p>Painel do Contador e arquivos fiscais sem troca de planilhas.</p>
+              </article>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 12 · COMO COMEÇA ============
+           A única seção amarela da página, para marcar a virada: daqui
+           em diante é sobre contratar, não mais sobre o produto. A
+           linha da base se desenha e os números preenchem.         -->
+      <section class="tr-passos" aria-label="Como funciona o início com a Raizys">
+        <div class="tr-wrap">
+          <h2 class="tr-h2-nv tr-h2-nv--escuro">Como funciona o início <span class="tr-grifo">com a Raizys</span></h2>
+
+          <ol class="tr-linha-tempo">
+            <li class="tr-etapa">
+              <b>01</b>
+              <h3>Diagnóstico da operação</h3>
+              <p>Entendemos sua frota, seus tipos de viagem e como o acerto é feito hoje.</p>
+              <i class="tr-etapa-ponto" aria-hidden="true"></i>
+            </li>
+            <li class="tr-etapa tr-etapa--baixa">
+              <b>02</b>
+              <h3>Demonstração com os seus cenários</h3>
+              <p>Mostramos o módulo com frota própria, terceiros e roteiros parecidos com os seus.</p>
+              <i class="tr-etapa-ponto" aria-hidden="true"></i>
+            </li>
+            <li class="tr-etapa">
+              <b>03</b>
+              <h3>Implantação e treinamento</h3>
+              <p>Cadastramos a base com você e treinamos o escritório e os motoristas.</p>
+              <i class="tr-etapa-ponto" aria-hidden="true"></i>
+            </li>
+            <li class="tr-etapa">
+              <b>04</b>
+              <h3>Acompanhamento</h3>
+              <p>Suporte por WhatsApp com quem conhece a sua operação.</p>
+              <i class="tr-etapa-ponto" aria-hidden="true"></i>
+            </li>
+            <i class="tr-linha-tempo-trilho" aria-hidden="true"></i>
+          </ol>
+
+          <p class="tr-passos-preco">
+            O plano é definido conforme o tamanho da frota e os recursos que a sua transportadora
+            vai usar. <strong>Você recebe a proposta depois do diagnóstico.</strong>
           </p>
-
-          <div class="tr-placas tr-desliza">
-            <div class="tr-placa">
-              <svg viewBox="0 0 64 56" aria-hidden="true"><path d="M32 4 61 52H3z" fill="#FFD43B"/><path d="M32 20v16M32 42v2" stroke="#0A1026" stroke-width="4.4" stroke-linecap="round"/></svg>
-              <p><strong>Informe sempre o KM real do hodômetro.</strong> Essa informação influencia o controle de consumo e todos os relatórios de custo do veículo.</p>
-            </div>
-            <div class="tr-placa">
-              <svg viewBox="0 0 64 56" aria-hidden="true"><path d="M32 4 61 52H3z" fill="#FFD43B"/><circle cx="32" cy="34" r="11" fill="none" stroke="#0A1026" stroke-width="4"/><path d="M32 28v6l4 4" stroke="#0A1026" stroke-width="4" stroke-linecap="round" fill="none"/></svg>
-              <p><strong>O abastecimento avulso nasce pendente de conferência</strong> e é considerado uma despesa da empresa até ser conferido.</p>
-            </div>
-            <div class="tr-placa">
-              <svg viewBox="0 0 64 56" aria-hidden="true"><path d="M32 4 61 52H3z" fill="#FFD43B"/><path d="M22 42h20M32 20v16m0 0-7-7m7 7 7-7" stroke="#0A1026" stroke-width="4" stroke-linecap="round" fill="none"/></svg>
-              <p><strong>Peças e insumos com nota fiscal entram pela Entrada de Nota</strong>, com rateio por veículo — não como despesa solta.</p>
-            </div>
-            <div class="tr-placa">
-              <svg viewBox="0 0 64 56" aria-hidden="true"><path d="M32 4 61 52H3z" fill="#FFD43B"/><path d="M26 42l14-14M24 26a7 7 0 0 1 10-9l-5 5 4 4 5-5a7 7 0 0 1-9 10z" stroke="#0A1026" stroke-width="3.4" stroke-linejoin="round" fill="none"/></svg>
-              <p><strong>Serviços de oficina são registrados pela Ordem de Serviço</strong>, que é o caminho próprio para manutenção.</p>
-            </div>
-            <div class="tr-placa">
-              <svg viewBox="0 0 64 56" aria-hidden="true"><path d="M32 4 61 52H3z" fill="#FFD43B"/><rect x="21" y="24" width="16" height="18" rx="2" fill="none" stroke="#0A1026" stroke-width="3.6"/><path d="M27 24v-4h16v18h-4" fill="none" stroke="#0A1026" stroke-width="3.6"/></svg>
-              <p><strong>Evite lançar o mesmo gasto em mais de um lugar.</strong> A duplicidade infla o custo do veículo e compromete a comparação entre viagens.</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      <!-- ===================== CHAMADA FINAL ===================== -->
-      <section class="tr-cta" id="falar">
+      <!-- ============ 13 · PROVA SOCIAL ============
+           Bloco fora do ar por decisão do próprio descritivo: só entra
+           com depoimento real de transportadora cliente (nome, cargo,
+           empresa e cidade), de preferência com um número. Não publicar
+           depoimento inventado. Quando houver o caso, este é o lugar. -->
+
+      <!-- ============ 14 · PERGUNTAS FREQUENTES ============ -->
+      <section class="tr-faq tr-claro" aria-label="Perguntas frequentes">
+        <div class="tr-wrap">
+          <h2 class="tr-h2 tr-h2--centro">Perguntas frequentes</h2>
+
+          <div class="tr-faq-lista">
+            <details class="tr-faq-item">
+              <summary>Funciona para frota de terceiros e agregados?</summary>
+              <div class="tr-faq-corpo">
+                <p>Sim. O sistema separa os valores devidos ao transportador quando o veículo da viagem é de terceiro.</p>
+              </div>
+            </details>
+
+            <details class="tr-faq-item">
+              <summary>Preciso contratar o ERP completo?</summary>
+              <div class="tr-faq-corpo">
+                <p>O módulo de transporte funciona dentro do ERP Raizys, junto com financeiro e fiscal.</p>
+              </div>
+            </details>
+
+            <details class="tr-faq-item">
+              <summary>Vocês trazem os dados do meu sistema atual?</summary>
+              <div class="tr-faq-corpo">
+                <p>Sim, a equipe apoia a importação dos cadastros.</p>
+              </div>
+            </details>
+
+            <details class="tr-faq-item">
+              <summary>Como é o preço?</summary>
+              <div class="tr-faq-corpo">
+                <p>O valor é montado conforme a frota e os recursos usados, depois do diagnóstico.</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- PERGUNTAS AINDA SEM RESPOSTA CONFIRMADA — não publicar sem revisão.
+               Basta colar cada uma no formato acima quando a Raizys confirmar:
+
+               · Para qual tamanho de frota o sistema serve?
+                 (informar a faixa de veículos em que a Raizys atende melhor)
+
+               · O motorista precisa de internet para usar o aplicativo?
+                 (comportamento do aplicativo sem sinal)
+
+               · Quanto tempo leva a implantação?
+                 (prazo médio, em dias ou semanas)
+
+               E dois complementos de respostas já publicadas:
+               · "Preciso contratar o ERP completo?" — confirmar se há contratação só do módulo.
+               · "Vocês trazem os dados do meu sistema atual?" — confirmar o que é possível migrar. -->
+        </div>
+      </section>
+
+      <!-- ============ 15 · CHAMADA FINAL E FORMULÁRIO ============ -->
+      <section class="tr-cta" id="agendar">
         <div class="tr-cta-road" aria-hidden="true"></div>
         <div class="tr-wrap">
-          <div class="tr-cta-inner">
-            <h2 class="tr-h2">Vamos mapear a rota<br>da sua transportadora</h2>
-            <p>
-              Um especialista da Raizys apresenta o módulo com os cenários da sua operação: frota
-              própria, terceiros, ciclos com vários trechos, acerto de motorista e apuração de consumo.
-            </p>
-            <div class="tr-actions">
-              <a role="button" tabindex="0" class="tr-btn tr-btn-primary h-widget-trigger">Falar com um especialista</a>
-              <a href="contato" class="tr-btn tr-btn-ghost">Preencher o formulário</a>
+          <div class="tr-cta-grid">
+
+            <div class="tr-cta-txt">
+              <h2 class="tr-h2">Vamos mapear a rota<br>da sua transportadora</h2>
+              <p>
+                Um especialista da Raizys apresenta o módulo com os cenários da sua operação: frota
+                própria, terceiros, roteiros com vários trechos, acerto de motorista e apuração de
+                consumo.
+              </p>
+              <p class="tr-assinatura">Toda a estrada em um sistema só.</p>
+
             </div>
+
+            <!-- O formulário posta no mesmo send_mail.php que os outros
+                 do site; não mexi no destino de ninguém. A conversão do
+                 Google Ads dispara na mensagem de sucesso (e não no
+                 clique em Enviar), por isso o data-conversao. -->
+            <div class="tr-form-card">
+              <h3 class="tr-form-tit">Agende uma demonstração gratuita</h3>
+
+              <form id="trForm" class="tr-form" action="send_mail.php" method="POST"
+                    data-conversao="sucesso" novalidate>
+                <input type="hidden" name="_subject" value="Lead — Sistema para Transportadora">
+                <input type="hidden" name="_autoresponse"
+                       value="Recebemos seu pedido de demonstração. Um especialista em transportadoras entrará em contato pelo WhatsApp.">
+                <input type="hidden" name="origem_pagina" value="sistema-para-transportadora">
+                <input type="hidden" name="origem_campanha" id="trOrigemCampanha" value="">
+                <input type="hidden" name="origem_grupo" id="trOrigemGrupo" value="">
+                <input type="hidden" name="origem_palavra" id="trOrigemPalavra" value="">
+                <input type="hidden" name="origem_gclid" id="trOrigemGclid" value="">
+                <input type="hidden" name="origem_referencia" id="trOrigemRef" value="">
+
+                <div class="tr-campo-form">
+                  <label for="trNome">Nome completo *</label>
+                  <input type="text" id="trNome" name="nome" required autocomplete="name">
+                </div>
+
+                <div class="tr-campo-form tr-campo-form--par">
+                  <div>
+                    <label for="trWhats">Telefone / WhatsApp *</label>
+                    <input type="tel" id="trWhats" name="whatsapp" required inputmode="tel"
+                           autocomplete="tel" placeholder="(11) 99999-9999" maxlength="15">
+                  </div>
+                  <div>
+                    <label for="trEmail">E-mail *</label>
+                    <input type="email" id="trEmail" name="email" required autocomplete="email">
+                  </div>
+                </div>
+
+                <div class="tr-campo-form">
+                  <label for="trEmpresa">Nome da transportadora *</label>
+                  <input type="text" id="trEmpresa" name="transportadora" required autocomplete="organization">
+                </div>
+
+                <div class="tr-campo-form tr-campo-form--par">
+                  <div>
+                    <label for="trVeiculos">Quantidade de veículos *</label>
+                    <select id="trVeiculos" name="veiculos" required>
+                      <option value="">Selecione</option>
+                      <option>1 a 5</option>
+                      <option>6 a 20</option>
+                      <option>21 a 50</option>
+                      <option>Mais de 50</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="trFrota">Tipo de frota *</label>
+                    <select id="trFrota" name="tipo_frota" required>
+                      <option value="">Selecione</option>
+                      <option>Própria</option>
+                      <option>Terceiros</option>
+                      <option>As duas</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="tr-campo-form">
+                  <label for="trCte">Como emite CT-e hoje? *</label>
+                  <select id="trCte" name="emite_cte" required>
+                    <option value="">Selecione</option>
+                    <option>Ainda não emito</option>
+                    <option>Emissor gratuito</option>
+                    <option>Outro sistema</option>
+                  </select>
+                </div>
+
+                <div class="tr-campo-form">
+                  <label for="trDesafio">Qual o principal desafio hoje?</label>
+                  <textarea id="trDesafio" name="desafio" rows="3"></textarea>
+                </div>
+
+                <label class="tr-aceite">
+                  <input type="checkbox" id="trAceite" name="aceite_contato" value="Sim" required>
+                  <span>Autorizo a Raizys a entrar em contato comigo sobre esta solicitação.</span>
+                </label>
+
+                <button type="submit" class="tr-btn tr-btn-primary tr-form-btn" id="trEnviar">
+                  Agendar demonstração
+                </button>
+
+                <p class="tr-form-erro" id="trErro" role="alert" hidden></p>
+              </form>
+
+              <!-- [confirmar] o prazo de retorno prometido aqui. -->
+              <div class="tr-form-ok" id="trSucesso" hidden>
+                <div class="tr-check tr-check--grande">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg>
+                </div>
+                <h3>Recebemos seu pedido</h3>
+                <p>Um especialista em transportadoras entrará em contato pelo WhatsApp em até um dia útil.</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -561,68 +932,74 @@
     </main>
 
 
-    <a role="button" tabindex="0" class="whatsapp-float h-widget-trigger">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
+    <!-- Mesmo par da gestão-web: botão redondo e balão de fala com
+         fechar. O balão guarda o "fechei" na sessão para não voltar
+         a cada rolagem. -->
+    <div class="tr-wa-wrapper" id="trWaWrapper">
+      <div class="tr-wa-bubble" id="trWaBubble">
+        <button type="button" class="tr-wa-bubble-close" id="trWaBubbleClose"
+                title="Fechar" aria-label="Fechar balão de mensagem"><span>✕</span></button>
 
-    
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-col brand-col">
-                <a href="home">
-                    <img src="assets/Raizys - Logo 2 (1).png" alt="Raizys" class="footer-logo">
-                </a>
-                <p>Consultoria especializada em implantação de sistemas empresariais.</p>
-                <div class="contact-info">
-                    <p style="margin-bottom: 8px;"><a href="mailto:contato@raizys.com.br"><i class="fas fa-envelope"></i> contato@raizys.com.br</a></p>
-                    <p style="margin-bottom: 8px;"><a href="tel:+551150264939"><i class="fas fa-phone"></i> +55 11 5026-4939</a></p>
-                    <p style="margin-bottom: 8px;"><a href="https://wa.me/5535998727254" target="_blank"><i class="fab fa-whatsapp"></i> +55 35 99872-7254</a></p>
-                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #c2e2bd;">
-                        <p style="margin-bottom: 12px; line-height: 1.55;"><span><i class="fas fa-map-marker-alt" style="color:#4a6d3c;"></i> <strong>Endereço Sede:</strong> R. Alvarenga Peixoto, 83 - Vila Rica, Guaxupé - MG, 37800-000</span></p>
-                        <p style="line-height: 1.55;"><span><i class="fas fa-building" style="color:#4a6d3c;"></i> <strong>Escritório Comercial São Paulo:</strong> Av. Pres. Tancredo de Almeida Neves, 759 - Bl b loja 7 - Macedo, Guarulhos - SP, 07112-070</span></p>
-                    </div>
-                </div>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/raizysoficial?stkn=MTNvcWd4NnlsMTlj" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/raizys" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.youtube.com/@RaizysTecnologia" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Institucional</h4>
-                <ul>
-                    <li><a href="sobre-nos">Sobre Nós</a></li>
-                    <li><a href="trabalhe-conosco">Trabalhe conosco</a></li>
-                </ul>
-                <h4 style="margin-top: 28px;">Termos</h4>
-                <ul>
-                    <li><a href="termos-condicoes">Termos e Condições</a></li>
-                    <li><a href="politica-privacidade">Política de Privacidade</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Parceiros</h4>
-                <ul>
-                    <li><a href="parceiro-indicador">Parceiro Indicador</a></li>
-                    <li><a href="indicacao">Cadastrar Indicação</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Ajuda</h4>
-                <ul>
-                    <li><a href="contato">Fale Conosco</a></li>
-                    <li><a href="perguntas-frequentes">Perguntas Frequentes</a></li>
-                </ul>
-            </div>
+        <a class="tr-wa-bubble-content h-widget-trigger" role="button" tabindex="0"
+           aria-label="Falar com um especialista em transporte">
+          <span class="tr-wa-bubble-wave">💬</span>
+          <span class="tr-wa-bubble-text">
+            Olá! Fale com um <strong>especialista em transporte</strong> e veja o módulo com os dados da sua frota.
+          </span>
+        </a>
+
+        <div class="tr-wa-bubble-arrow" aria-hidden="true"></div>
+      </div>
+
+      <!-- Exatamente o mesmo botão das outras páginas: mesma classe,
+           mesma imagem, mesmo hover e mesmo balanço do style.css. O
+           balão ao lado é que carrega a frase que o descritivo pede. -->
+      <a role="button" tabindex="0" class="whatsapp-float h-widget-trigger"
+         aria-label="Fale conosco pelo WhatsApp" title="Atendimento WhatsApp Raizys">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      </a>
+    </div>
+
+    <!-- ============ RODAPÉ ENXUTO ============
+         Sem links para as outras soluções, parceiros, newsletter e
+         trabalhe conosco: nesta página de campanha a única saída
+         desejada é o formulário. -->
+    <footer class="trf">
+      <div class="trf-in">
+        <div class="trf-marca">
+          <img src="fotos/Logo raizys branca.png" alt="Raizys" class="trf-logo" width="1254" height="454">
+          <p>Consultoria especializada em implantação de sistemas empresariais.</p>
         </div>
-        <div class="footer-bottom">
-            <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+
+        <div class="trf-col">
+          <h4>Contato</h4>
+          <p><a href="mailto:contato@raizys.com.br">contato@raizys.com.br</a></p>
+          <p><a href="tel:+551150264939">+55 11 5026-4939</a></p>
         </div>
+
+        <div class="trf-col">
+          <h4>Endereços</h4>
+          <p><strong>Sede</strong><br>R. Alvarenga Peixoto, 83 — Vila Rica<br>Guaxupé, MG · 37800-000</p>
+          <p><strong>Escritório comercial</strong><br>Av. Pres. Tancredo de Almeida Neves, 759 — Bl. B, loja 7<br>Guarulhos, SP · 07112-070</p>
+        </div>
+      </div>
+
+      <div class="trf-fim">
+        <p>RAIZYS &copy; 2026. Todos os direitos reservados.</p>
+        <p class="trf-legais">
+          <a href="politica-privacidade">Política de Privacidade</a>
+          <a href="termos-condicoes">Termos de Uso</a>
+        </p>
+      </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="header.js?v=5.0"></script>
-    <script src="sistema-para-transportadora.js?v=1.0" defer></script>
+    <!-- GSAP servido pelo próprio site (instalado por npm, copiado
+         para /vendor). Entra antes do script da página, que só usa
+         o que existir: sem GSAP a página continua funcionando. -->
+    <script src="vendor/gsap.min.js" defer></script>
+    <script src="vendor/ScrollTrigger.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="sistema-para-transportadora.js?v=14.0" defer></script>
 </body>
 
 </html>

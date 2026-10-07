@@ -19,7 +19,7 @@
    alvo de debaixo do cabeçalho fixo. */
 html:has(.tr-page-theme) { scroll-behavior: smooth; }
 
-#video { scroll-margin-top: 110px; }
+#video { scroll-margin-top: 132px; }
 
 @media (prefers-reduced-motion: reduce) {
   html:has(.tr-page-theme) { scroll-behavior: auto; }
@@ -61,8 +61,9 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 
 /* No hero o wrap precisa esticar e virar coluna: é ele que dá o
    espaço livre para as margens automáticas repartirem. */
-/* O wrap centraliza o bloco de texto na área útil (abaixo do
-   cabeçalho fixo), sem nada ancorado no pé. */
+/* O wrap centraliza o GRUPO inteiro — escudo, redes e texto. É por
+   isso que o escudo saiu do canto da tela e desceu: ele viaja junto
+   com a escrita, em vez de ficar preso no alto. */
 .tr-hero > .tr-wrap {
   display: flex;
   flex-direction: column;
@@ -742,7 +743,7 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   .tr-row .tr-col-art,
   .tr-video,
   .tr-gauge,
-  .tr-placa {
+  .tr-sobe {
     transition-duration: 0.25s;
     transform: none;
   }
@@ -752,9 +753,20 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
    HERO
    ============================================================ */
 
+/* ---------- A passagem ----------
+   O hero fica grudado no topo do palco. Não é truque de rolagem
+   programada: é sticky puro, que o navegador resolve sozinho e não
+   quebra em celular nem briga com a trilha mais abaixo.
+
+   O palco termina no pé da seção de dores: dali em diante o hero
+   se solta e sobe junto com a página. */
+
+.tr-passagem { position: relative; }
+
 .tr-hero {
-  position: relative;
-  z-index: 1;
+  position: sticky;
+  top: 0;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -769,57 +781,84 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
    um retângulo colado na página. */
 .tr-hero-video {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 62%;
+  inset: 0;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.52;
-  filter: saturate(0.78) contrast(1.02);
-  mask-image:
-    linear-gradient(to right, transparent 0%, #000 42%),
-    linear-gradient(to bottom, transparent 2%, #000 26%, #000 72%, transparent 99%);
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 42%),
-    linear-gradient(to bottom, transparent 2%, #000 26%, #000 72%, transparent 99%);
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
+  opacity: 0.55;
+  filter: saturate(0.7) contrast(1.04);
+  /* Dissolvido nas quatro bordas: vira atmosfera, não um retângulo
+     de vídeo colado na página. */
+  mask-image: radial-gradient(118% 108% at 50% 42%, #000 32%, transparent 86%);
+  -webkit-mask-image: radial-gradient(118% 108% at 50% 42%, #000 32%, transparent 86%);
   pointer-events: none;
 }
 
+/* Vinheta: escurece as bordas para o texto do centro ter contraste
+   sem precisar de uma tarja por cima do vídeo. */
 .tr-hero-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(60% 50% at 88% 12%, rgba(255, 212, 59, 0.10) 0%, transparent 62%),
-    radial-gradient(80% 60% at 4% 96%, rgba(42, 86, 196, 0.16) 0%, transparent 62%),
-    linear-gradient(100deg, var(--tr-asphalt) 20%, rgba(7, 11, 24, 0.58) 48%, rgba(7, 11, 24, 0.12) 100%);
+    radial-gradient(78% 64% at 50% 44%, rgba(7, 11, 24, 0.5) 0%, rgba(7, 11, 24, 0.78) 62%, var(--tr-asphalt) 100%),
+    linear-gradient(180deg, rgba(7, 11, 24, 0.7) 0%, rgba(7, 11, 24, 0.25) 30%, rgba(7, 11, 24, 0.3) 66%, rgba(7, 11, 24, 0.9) 100%);
   pointer-events: none;
 }
 
-/* O texto ocupa pouco mais da metade e o resto fica para o vídeo
-   respirar. Antes as duas colunas tinham quase o mesmo peso e tudo
-   ficava grudado no centro. */
-.tr-hero-grid {
+/* ---------- O hero centralizado ----------
+   A perspectiva no pai é o que transforma uma rotação de 3 graus em
+   sensação de profundidade: sem ela a frase só escorrega de lado. */
+.tr-hero-centro {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 0.58fr) minmax(0, 0.42fr);
-  align-items: center;
+  z-index: 2;
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  perspective: 1000px;
 }
 
 .tr-hero h1 {
-  font-size: clamp(34px, 4vw, 58px);
+  font-size: clamp(36px, 5.4vw, 84px);
   margin: 0;
+  /* Em 500 a manchete pedia licença. */
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
   text-wrap: balance;
+  /* Branco puro e uma sombra curta: sobre vídeo, texto sem sombra
+     lê como apagado mesmo estando claro. */
+  color: #FFFFFF;
+  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.6);
+}
+
+/* O amarelo acende de verdade: sem o brilho ele some no meio do
+   branco, que é mais luminoso que ele. */
+.tr-hero .tr-hl {
+  color: var(--tr-line);
+  text-shadow:
+    0 0 30px rgba(255, 212, 59, 0.45),
+    0 2px 26px rgba(0, 0, 0, 0.5);
+}
+
+/* A camada que responde ao mouse. Fica separada do <h1> de propósito:
+   a entrada da página anima o h1, e duas animações na mesma
+   propriedade do mesmo elemento é o jeito mais rápido de uma delas
+   zerar a outra. */
+.tr-cam {
+  display: block;
+  will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .tr-hl { color: var(--tr-line); }
 
 .tr-hero-sub {
-  margin: clamp(26px, 3.4vh, 42px) 0 0;
-  max-width: 54ch;
-  font-size: clamp(15px, 1.2vw, 18px);
-  color: var(--tr-muted);
+  margin: clamp(22px, 2.8vh, 34px) auto 0;
+  max-width: 58ch;
+  font-size: clamp(15.5px, 1.25vw, 19px);
+  font-weight: 400;
+  color: #D5DCEE;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.55);
 }
 
 .tr-actions {
@@ -968,47 +1007,6 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
    PLACAS DE SINALIZAÇÃO
    ============================================================ */
 
-.tr-care {
-  padding: clamp(80px, 9vw, 130px) 6vw;
-  background: var(--tr-asphalt);
-  border-top: 1px solid var(--tr-rule);
-  text-align: center;
-}
-
-.tr-care .tr-h2 { margin: 0 auto; max-width: 22ch; }
-
-.tr-placas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: clamp(26px, 3vw, 46px);
-  margin-top: clamp(46px, 5vw, 72px);
-  text-align: left;
-}
-
-.tr-placa {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.tr-placa.is-in { opacity: 1; }
-
-.tr-placa svg {
-  display: block;
-  width: 56px;
-  height: auto;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 8px 20px rgba(255, 212, 59, 0.22));
-}
-
-.tr-placa p {
-  margin: 0;
-  font-size: 14.4px;
-  line-height: 1.68;
-  color: var(--tr-muted);
-}
-
-.tr-placa strong { color: var(--tr-white); font-weight: 600; }
-
 /* ============================================================
    FAIXA CLARA — painel de bordo e placas
    ------------------------------------------------------------
@@ -1031,14 +1029,7 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   border-top: none;
 }
 
-.tr-care {
-  background: #F2F5FC;
-  border-top: 1px solid rgba(12, 18, 38, 0.07);
-  text-align: left;
-}
-
-.tr-result .tr-h2,
-.tr-care .tr-h2 { color: #0C1226; }
+.tr-claro .tr-h2 { color: #0C1226; }
 
 /* O número vazado some no branco: no claro ele vira sólido e menor,
    com uma régua amarela por cima para marcar a leitura. */
@@ -1065,9 +1056,7 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 }
 
 .tr-claro .tr-gauge h3 { color: #0C1226; }
-.tr-claro .tr-gauge p,
-.tr-claro .tr-placa p { color: #55617F; }
-.tr-claro .tr-placa strong { color: #0C1226; }
+.tr-claro .tr-gauge p { color: #55617F; }
 
 .tr-claro .tr-cluster {
   border-top: 1px solid rgba(12, 18, 38, 0.12);
@@ -1076,10 +1065,7 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 
 .tr-claro .tr-gauge + .tr-gauge { border-left: 1px solid rgba(12, 18, 38, 0.10); }
 
-.tr-care .tr-h2 { margin: 0; max-width: 24ch; }
-.tr-claro .tr-lead--centro { margin-left: 0; text-align: left; max-width: 58ch; }
-
-.tr-placa svg { filter: drop-shadow(0 10px 22px rgba(12, 18, 38, 0.14)); }
+.tr-claro .tr-lead--centro { margin-left: auto; margin-right: auto; text-align: center; max-width: 58ch; }
 
 /* ============================================================
    CHAMADA FINAL
@@ -1164,7 +1150,6 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 .tr-hero-sub,
 .tr-lead,
 .tr-gauge p,
-.tr-placa p,
 .tr-cta p {
   font-weight: 400;
   line-height: 1.62;
@@ -1181,6 +1166,7 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 
 @media (max-width: 1040px) {
   .tr-hero { padding: 120px 22px 48px; min-height: 100svh; }
+
   .tr-hero-grid { grid-template-columns: minmax(0, 1fr); }
   /* No retrato, `cover` corta as laterais e sobra so a pessoa no
      centro — a frota atras some. Aqui o video entra no FLUXO, logo
@@ -1225,7 +1211,8 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   .tr-gauge:nth-child(odd) { border-left: none; }
   .tr-gauge { border-top: 1px solid var(--tr-stroke); }
 
-  .tr-result, .tr-care, .tr-cta { padding-left: 22px; padding-right: 22px; }
+  .tr-result, .tr-dores, .tr-fiscal, .tr-frota,
+  .tr-fin, .tr-passos, .tr-faq, .tr-cta { padding-left: 22px; padding-right: 22px; }
 }
 
 @media (max-width: 600px) {
@@ -1238,3 +1225,2036 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
    MENOS MOVIMENTO
    ============================================================ */
 
+
+/* ============================================================
+   BLOCOS DA PÁGINA DE CAMPANHA
+   ------------------------------------------------------------
+   Tudo abaixo entrou com o descritivo de 5/10/2026: cabeçalho
+   enxuto, dores, documentos fiscais, frota, financeiro, passos,
+   perguntas frequentes, formulário e rodapé curto.
+
+   Reaproveita os tokens já existentes (--tr-*), para que uma
+   seção clara e uma escura usem as mesmas regras.
+   ============================================================ */
+
+/* ---------- 2 · Primeira tela ---------- */
+
+/* A manchete do descritivo é longa; no tamanho antigo (58px) ela
+   tomava a tela inteira. */
+.tr-hero h1 { font-size: clamp(29px, 3.2vw, 46px); }
+
+.tr-selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: clamp(26px, 3.4vh, 40px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tr-selos li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tr-white);
+}
+
+.tr-selos li::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 13px;
+  height: 7px;
+  border: 2px solid var(--tr-line);
+  border-top: 0;
+  border-right: 0;
+  transform: translateY(-70%) rotate(-45deg);
+}
+
+/* ---------- Peças compartilhadas ---------- */
+
+.tr-h2--centro {
+  max-width: 22ch;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.tr-acao-centro {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(38px, 5vh, 62px);
+}
+
+.tr-btn-escuro {
+  background: var(--tr-ink);
+  color: #FFF;
+}
+
+.tr-btn-escuro:hover { background: #16204A; transform: translateY(-1px); }
+
+/* Entrada dos blocos novos, no mesmo gesto dos medidores. */
+.tr-sobe {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tr-sobe.is-in { opacity: 1; transform: none; }
+
+.tr-destaques {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tr-destaques li {
+  padding: 8px 15px;
+  border: 1px solid var(--tr-stroke);
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--tr-white);
+}
+
+.tr-destaques--claro li {
+  border-color: rgba(12, 18, 38, 0.16);
+  background: #FFF;
+}
+
+/* ---------- 14 · Perguntas frequentes ---------- */
+
+.tr-faq {
+  padding: clamp(74px, 10vh, 118px) 6vw;
+  background: #FFF;
+}
+
+.tr-faq-lista {
+  max-width: 860px;
+  margin: clamp(40px, 5vh, 58px) auto 0;
+}
+
+.tr-faq-item {
+  border-bottom: 1px solid rgba(12, 18, 38, 0.12);
+}
+
+.tr-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 0;
+  font-family: var(--tr-head);
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #0C1226;
+  cursor: pointer;
+  list-style: none;
+}
+
+.tr-faq-item summary::-webkit-details-marker { display: none; }
+
+/* O sinal de mais vira menos quando a pergunta abre. */
+.tr-faq-item summary::after {
+  content: '';
+  flex: none;
+  width: 17px;
+  height: 17px;
+  background:
+    linear-gradient(currentColor, currentColor) center/100% 2.4px no-repeat,
+    linear-gradient(currentColor, currentColor) center/2.4px 100% no-repeat;
+  color: #55617F;
+  transition: transform 0.25s ease;
+}
+
+.tr-faq-item[open] summary::after {
+  background: linear-gradient(currentColor, currentColor) center/100% 2.4px no-repeat;
+  transform: rotate(180deg);
+}
+
+.tr-faq-item summary:hover { color: #2B3A6B; }
+
+.tr-faq-corpo {
+  padding: 0 0 26px;
+  max-width: 72ch;
+}
+
+.tr-faq-corpo p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #55617F;
+}
+
+/* ---------- 15 · Chamada final e formulário ---------- */
+
+.tr-cta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(40px, 5vw, 76px);
+  align-items: start;
+  text-align: left;
+}
+
+.tr-cta-txt p {
+  margin: 26px 0 0;
+  font-size: clamp(15px, 1.2vw, 17.5px);
+  line-height: 1.6;
+  color: var(--tr-muted);
+}
+
+.tr-assinatura {
+  font-family: var(--tr-head);
+  font-size: 18px !important;
+  font-weight: 600;
+  color: var(--tr-line) !important;
+}
+
+.tr-form-card {
+  padding: clamp(26px, 3vw, 38px);
+  border: 1px solid var(--tr-stroke);
+  border-radius: 16px;
+  background: #111A3A;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+
+.tr-form-tit {
+  margin: 0 0 24px;
+  font-family: var(--tr-head);
+  font-size: clamp(19px, 1.9vw, 23px);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--tr-white);
+}
+
+.tr-campo-form { margin-bottom: 16px; }
+
+.tr-campo-form--par {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tr-campo-form label,
+.tr-aceite span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tr-muted);
+}
+
+.tr-campo-form input,
+.tr-campo-form select,
+.tr-campo-form textarea {
+  display: block;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--tr-stroke);
+  border-radius: 9px;
+  background: #0C1226;
+  font-family: var(--tr-body);
+  font-size: 15px;
+  color: var(--tr-white);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tr-campo-form textarea { resize: vertical; min-height: 84px; }
+
+.tr-campo-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%239DAAC9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5 7 7.5l6-6'/%3E%3C/svg%3E");
+  background-position: calc(100% - 15px) center;
+  background-repeat: no-repeat;
+}
+
+.tr-campo-form input:focus,
+.tr-campo-form select:focus,
+.tr-campo-form textarea:focus {
+  outline: none;
+  border-color: var(--tr-line);
+  box-shadow: 0 0 0 3px rgba(255, 212, 59, 0.16);
+}
+
+/* Campo que o navegador reprovou na validação. Marcar só depois de
+   uma tentativa de envio evita pintar de vermelho quem ainda está
+   preenchendo. */
+.tr-form.foi-enviado input:invalid,
+.tr-form.foi-enviado select:invalid,
+.tr-form.foi-enviado textarea:invalid { border-color: #E06A5A; }
+
+.tr-aceite {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin: 20px 0 24px;
+  cursor: pointer;
+}
+
+.tr-aceite input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--tr-line);
+}
+
+.tr-aceite span { margin: 0; line-height: 1.45; }
+
+.tr-form-btn { width: 100%; }
+
+.tr-form-erro {
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #FF9E8F;
+}
+
+.tr-form-ok { text-align: center; padding: 20px 0 10px; }
+
+.tr-check--grande {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 22px;
+}
+
+.tr-check--grande svg { width: 28px; height: 28px; }
+
+.tr-form-ok h3 {
+  margin: 0 0 10px;
+  font-family: var(--tr-head);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--tr-white);
+}
+
+.tr-form-ok p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--tr-muted);
+}
+
+/* ---------- Rodapé enxuto ---------- */
+
+.trf {
+  padding: clamp(54px, 7vh, 80px) 6vw clamp(26px, 3vh, 36px);
+  background: #0C1226;
+  border-top: 1px solid var(--tr-rule);
+}
+
+.trf-in {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(30px, 4vw, 60px);
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.trf-logo { display: block; width: auto; height: 42px; margin-bottom: 18px; }
+
+.trf-marca p {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--tr-muted);
+}
+
+.trf-col h4 {
+  margin: 0 0 16px;
+  font-family: var(--tr-head);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tr-white);
+}
+
+.trf-col p {
+  margin: 0 0 12px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--tr-muted);
+}
+
+.trf-col strong { color: var(--tr-white); font-weight: 600; }
+.trf-col a { color: var(--tr-muted); text-decoration: none; }
+.trf-col a:hover { color: var(--tr-line); }
+
+.trf-fim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  max-width: 1240px;
+  margin: clamp(38px, 5vh, 56px) auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--tr-rule);
+}
+
+.trf-fim p { margin: 0; font-size: 13px; color: var(--tr-muted-2); }
+
+.trf-legais { display: flex; gap: 22px; }
+.trf-legais a { color: var(--tr-muted-2); text-decoration: none; }
+.trf-legais a:hover { color: var(--tr-line); }
+
+/* ---------- Âncoras ---------- */
+
+#agendar { scroll-margin-top: 132px; }
+
+/* ============================================================
+   RESPONSIVO DOS BLOCOS NOVOS
+   ============================================================ */
+
+@media (max-width: 980px) {
+  .tr-cta-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+}
+
+@media (max-width: 760px) {
+
+
+
+  .tr-campo-form--par { grid-template-columns: minmax(0, 1fr); }
+
+  .trf-in { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .trf-fim { justify-content: flex-start; }
+
+}
+
+
+
+/* ============================================================
+   RODADA DE 07/10 — DESENHO
+   ============================================================ */
+
+/* ---------- Flutuante: botão redondo + balão ----------
+   Mesmo par da gestão-web. */
+
+.tr-wa-wrapper {
+  position: fixed;
+  z-index: 55;
+  right: 28px;
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Na altura do formulário e do rodapé o canto tapava o botão de
+   enviar e os links de privacidade e termos. */
+.tr-wa-wrapper.is-off {
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none !important;
+}
+
+.tr-wa-bubble {
+  position: relative;
+  max-width: 290px;
+  padding: 14px 18px 14px 16px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.12);
+  pointer-events: auto;
+  animation: tr-balao-entra 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s backwards;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.tr-wa-bubble.esta-fechado {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(14px) scale(0.92);
+  pointer-events: none;
+}
+
+@keyframes tr-balao-entra {
+  from { opacity: 0; transform: translateX(24px) scale(0.9); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.tr-wa-bubble-close {
+  position: absolute;
+  z-index: 2;
+  top: -9px;
+  left: -9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 2px solid #FFF;
+  border-radius: 50%;
+  background: rgba(30, 41, 59, 0.88);
+  color: #FFF;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tr-wa-bubble-close:hover { background: #0F172A; transform: scale(1.15); }
+
+.tr-wa-bubble-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tr-wa-bubble-wave {
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  transform-origin: 70% 70%;
+  animation: tr-acena 2.4s infinite;
+}
+
+@keyframes tr-acena {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(14deg); }
+  20%, 40% { transform: rotate(-14deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.tr-wa-bubble-text {
+  font-family: var(--tr-body);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #1E293B;
+}
+
+.tr-wa-bubble-text strong { font-weight: 600; color: #0F172A; }
+.tr-wa-bubble-content:hover .tr-wa-bubble-text { color: #0B6B33; }
+
+.tr-wa-bubble-arrow {
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #FFF;
+  transform: translateY(-50%);
+}
+
+/* O .whatsapp-float do style.css é fixo no canto por conta própria.
+   Aqui ele é o segundo item de um par (balão + botão), então volta
+   ao fluxo e quem posiciona é o wrapper. O desenho — tamanho, verde,
+   sombra, hover e o balanço — continua sendo o do site. */
+.tr-wa-wrapper .whatsapp-float {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  z-index: auto;
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+
+@media (max-width: 760px) {
+  /* O balão ao lado do botão não cabe na largura do celular. */
+  .tr-wa-wrapper { right: 18px; bottom: 18px; gap: 10px; }
+  .tr-wa-bubble { display: none; }
+  .tr-wa-wrapper .whatsapp-float { width: 54px; height: 54px; }
+  .tr-wa-wrapper .whatsapp-float img { width: 30px; height: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr-wa-bubble-wave { animation: none; }
+  .tr-wa-bubble { animation-duration: 0.01s; }
+}
+
+
+
+/* ============================================================
+   RODADA DE 07/10 (2ª) — SEÇÕES REDESENHADAS
+   ============================================================ */
+
+/* ---------- Hero sem piscar ----------
+   O script da página é defer: numa página com vídeo ele só rodava
+   uns 2s depois da primeira pintura. Resultado: o visitante lia a
+   manchete, ela sumia (o gsap.from zerava a opacidade) e voltava
+   animando. Um piscão.
+
+   A marca tr-pre entra no <html> por um script no <head>, antes
+   da primeira pintura, e esconde as peças do hero desde o começo.
+   Quem tira a marca é o próprio script da página, junto com a
+   animação — ou o setTimeout do <head>, se o JS falhar. Em nenhum
+   caminho o hero fica escondido para sempre. */
+
+.tr-pre .tr-hero h1,
+.tr-pre .tr-hero-sub,
+.tr-pre .tr-actions,
+.tr-pre .tr-selos { opacity: 0; }
+
+/* ---------- Topo de seção ---------- */
+
+.tr-topo-secao {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tr-tag-secao {
+  margin: 0 0 16px;
+  font-family: var(--tr-head);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tr-line);
+}
+
+.tr-tag-secao--alerta { color: #E8705C; }
+
+.tr-topo-secao .tr-lead { margin-top: 22px; }
+.tr-topo-secao .tr-h2--centro { max-width: 26ch; }
+
+/* ---------- Flutuante parado ----------
+   O .whatsapp-float do site balança para sempre (whatsapp-slide no
+   style.css). Ao lado do balão ele encostava nele a cada volta. */
+.tr-wa-wrapper .whatsapp-float { animation: none; }
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+
+
+/* ============================================================
+   REDESENHO DAS 5 SEÇÕES — 07/10
+   ------------------------------------------------------------
+   Identidade: estrada, documento e placa. Sem cantos arredondados
+   genéricos: o que é papel tem canto reto e dobra, o que é placa
+   tem a forma da placa.
+
+   O amarelo continua sendo o --tr-line (#FFD43B) da página inteira
+   e não o #FFD23F do protótipo: dois amarelos a dois dígitos de
+   distância no mesmo site é diferença que ninguém vê e inconsistência
+   que todo mundo herda.
+   ============================================================ */
+
+.tr-page-theme {
+  --nv-fundo-1: #080C1C;
+  --nv-fundo-2: #05070F;
+  --nv-card: #0B1024;
+  --nv-card-2: #121A3D;
+  --nv-card-3: #18204A;
+  --nv-borda: #2A3570;
+  --nv-borda-2: #222C5A;
+  --nv-texto: #9AA6D6;
+  --nv-texto-claro: #4A5378;
+  --nv-azul: #2B3FD6;
+  --nv-papel: #F4F0E6;
+  --nv-vermelho: #D9372B;
+  --nv-alerta: #FF5A4E;
+  --nv-verde: #3DDC97;
+  --nv-claro: #EEF0F6;
+  --nv-am-claro: #FFE58A;
+}
+
+/* ---------- peças compartilhadas do redesenho ---------- */
+
+.tr-eyebrow {
+  margin: 0 0 18px;
+  font-family: var(--tr-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tr-line);
+}
+
+.tr-eyebrow--alerta { color: var(--nv-alerta); }
+
+.tr-h2-nv {
+  margin: 0;
+  font-family: var(--tr-head);
+  font-size: clamp(34px, 3.6vw, 60px);
+  font-weight: 600;
+  line-height: 1.02;
+  text-transform: uppercase;
+  color: #FFF;
+}
+
+.tr-h2-nv--claro { color: var(--nv-card); }
+.tr-h2-nv--escuro { color: #080C1C; }
+
+.tr-am { color: var(--tr-line); }
+.tr-az { color: var(--nv-azul); }
+
+/* Vazado: só o contorno da letra. */
+.tr-vazado {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--tr-line);
+  text-stroke: 1.5px var(--tr-line);
+}
+
+.tr-traco {
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 26px 0;
+  background: var(--tr-line);
+}
+
+/* ============================================================
+   01 · DORES
+   ============================================================ */
+
+/* A folha que cobre. z-index acima do hero, fundo opaco: o que
+   estava embaixo some de verdade. O invólucro leva o empilhamento
+   porque é ele que o ScrollTrigger prende. */
+.tr-folha { position: relative; z-index: 2; }
+
+.tr-dores {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--nv-fundo-1);
+}
+
+/* Grade de 64px e um brilho azul no alto — textura, bem apagada. */
+.tr-dores::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(43, 63, 214, 0.22) 0%, transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 100% 64px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 64px 100%;
+}
+
+.tr-dores > * { position: relative; }
+
+/* ---------- o cupom ---------- */
+
+/* O cupom passou para a direita e sangra por aquela borda. */
+.tr-cupom {
+  width: min(760px, 118%);
+  margin: 0 -14% 0 0;
+  transform: rotate(2.5deg);
+  filter: drop-shadow(0 50px 70px rgba(0, 0, 0, 0.75));
+}
+
+.tr-cupom-cab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px clamp(22px, 3vw, 40px);
+  background: var(--nv-card);
+  font-family: var(--tr-head);
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #E7ECFF;
+}
+
+.tr-cupom-ponto {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--nv-vermelho);
+}
+
+/* O papel. A borda de baixo é serrilhada por recorte, como cupom
+   destacado do bloco. */
+.tr-cupom-papel {
+  padding: clamp(14px, 2vw, 26px) clamp(22px, 3vw, 40px) clamp(30px, 4vw, 48px);
+  background: var(--nv-papel);
+  clip-path: polygon(
+    0 0, 100% 0, 100% calc(100% - 14px),
+    97.5% 100%, 95% calc(100% - 14px), 92.5% 100%, 90% calc(100% - 14px),
+    87.5% 100%, 85% calc(100% - 14px), 82.5% 100%, 80% calc(100% - 14px),
+    77.5% 100%, 75% calc(100% - 14px), 72.5% 100%, 70% calc(100% - 14px),
+    67.5% 100%, 65% calc(100% - 14px), 62.5% 100%, 60% calc(100% - 14px),
+    57.5% 100%, 55% calc(100% - 14px), 52.5% 100%, 50% calc(100% - 14px),
+    47.5% 100%, 45% calc(100% - 14px), 42.5% 100%, 40% calc(100% - 14px),
+    37.5% 100%, 35% calc(100% - 14px), 32.5% 100%, 30% calc(100% - 14px),
+    27.5% 100%, 25% calc(100% - 14px), 22.5% 100%, 20% calc(100% - 14px),
+    17.5% 100%, 15% calc(100% - 14px), 12.5% 100%, 10% calc(100% - 14px),
+    7.5% 100%, 5% calc(100% - 14px), 2.5% 100%, 0 calc(100% - 14px)
+  );
+}
+
+.tr-cupom-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: clamp(16px, 2vw, 26px) 0;
+  border-bottom: 1.5px dashed #B9B2A1;
+  font-family: var(--tr-body);
+  font-size: clamp(14px, 1.3vw, 18px);
+  color: #2A2823;
+}
+
+.tr-cupom-linha--fim { border-bottom: 0; padding-bottom: 0; }
+.tr-cupom-linha strong { font-weight: 700; color: #16140F; }
+
+.tr-cupom-valor {
+  font-family: var(--tr-head);
+  font-size: clamp(19px, 1.9vw, 26px);
+  font-weight: 700;
+  color: #16140F;
+}
+
+/* O carimbo. */
+.tr-cupom-selo {
+  padding: 6px 14px;
+  border: 2px solid var(--nv-vermelho);
+  font-family: var(--tr-head);
+  font-size: clamp(11px, 1.1vw, 15px);
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nv-vermelho);
+  transform: rotate(-4deg);
+}
+
+.tr-cupom-vazio {
+  font-family: var(--tr-head);
+  font-size: clamp(34px, 4.4vw, 62px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--nv-vermelho);
+}
+
+/* ---------- o texto ao lado ---------- */
+
+.tr-dores-txt { max-width: 640px; }
+
+.tr-dores-txt h3 {
+  margin: 0 0 14px;
+  font-family: var(--tr-head);
+  font-size: clamp(26px, 2.8vw, 44px);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #FFF;
+}
+
+.tr-dores-txt > p {
+  margin: 0;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.6;
+  color: var(--nv-texto);
+}
+
+/* ---------- a lista dos outros três ---------- */
+
+.tr-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.tr-dor-lista {
+  margin: clamp(56px, 8vw, 104px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tr-dor-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 34px);
+  padding: clamp(20px, 2.4vw, 30px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tr-dor-cx {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--tr-line);
+}
+
+.tr-dor-cx::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 11px;
+  height: 6px;
+  border: 2px solid var(--tr-line);
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(-45deg);
+}
+
+.tr-dor-item b {
+  font-family: var(--tr-head);
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFF;
+}
+
+.tr-dor-item p {
+  margin: 0;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.55;
+  color: var(--nv-texto);
+}
+
+.tr-pilula {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: clamp(44px, 6vw, 72px) auto 0;
+  padding: clamp(18px, 2.2vw, 26px) clamp(26px, 4vw, 52px);
+  border-radius: 999px;
+  background: var(--tr-line);
+  font-family: var(--tr-head);
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  color: #080C1C;
+}
+
+.tr-pilula strong { font-weight: 700; }
+.tr-pilula span { font-size: 1.2em; }
+
+/* ============================================================
+   02 · DOCUMENTOS FISCAIS
+   ============================================================ */
+
+.tr-fiscal {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--nv-fundo-2);
+  border-top: 0;
+}
+
+.tr-fiscal-cab {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: end;
+}
+
+.tr-fiscal-lead {
+  margin: 0;
+  padding-left: 24px;
+  border-left: 2px solid var(--tr-line);
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.6;
+  color: var(--nv-texto);
+}
+
+/* ---------- o fluxo ---------- */
+
+.tr-fx {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 32px);
+  margin-top: clamp(56px, 8vw, 110px);
+}
+
+/* A estrada atravessa a seção inteira, por baixo dos papéis. */
+.tr-fx-estrada {
+  position: absolute;
+  z-index: 0;
+  top: 54%;
+  right: -6vw;
+  left: -6vw;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, var(--tr-line) 0 36px, transparent 36px 64px);
+  opacity: 0.22;
+}
+
+/* O trecho já percorrido, em cima do apagado. */
+.tr-fx-estrada-cheia {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background: repeating-linear-gradient(90deg, var(--tr-line) 0 36px, transparent 36px 64px);
+  background-attachment: local;
+  box-shadow: 0 0 22px 3px rgba(255, 212, 59, 0.35);
+}
+
+.tr-fx-estrada::after {
+  content: '';
+  position: absolute;
+  inset: -18px 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 212, 59, 0.06) 20%, rgba(255, 212, 59, 0.06) 80%, transparent);
+}
+
+.tr-fx-col {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tr-fx-tag {
+  padding: 6px 15px;
+  font-family: var(--tr-head);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #080C1C;
+}
+
+.tr-fx-tag--entra { background: var(--nv-texto); }
+.tr-fx-tag--gera { background: var(--nv-am-claro); }
+.tr-fx-tag--monta { background: var(--tr-line); }
+
+.tr-fx-doc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin: clamp(18px, 2.4vw, 32px) 0 clamp(18px, 2.4vw, 30px);
+}
+
+/* O número do modelo, gigante e quase apagado, atrás do papel. */
+.tr-fx-mod {
+  position: absolute;
+  z-index: 0;
+  font-family: var(--tr-head);
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 900;
+  line-height: 1;
+  color: #FFF;
+  opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* O papel, com o canto dobrado por recorte. */
+.tr-fx-papel {
+  position: relative;
+  z-index: 1;
+  width: min(230px, 100%);
+  padding: 16px 18px 18px;
+  clip-path: polygon(0 0, calc(100% - 26px) 0, 100% 26px, 100% 100%, 0 100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Os três nascem iguais e apagados. O amarelo virou ESTADO: a
+   estrada avança e acende um de cada vez. */
+.tr-fx-papel--nfe { background: var(--nv-card-2); transform: rotate(-4deg); }
+.tr-fx-papel--cte { background: var(--nv-card-2); transform: rotate(1.5deg); }
+.tr-fx-papel--mdfe { background: var(--nv-card-2); transform: rotate(-1.5deg); }
+
+.tr-fx-papel {
+  transition: background-color 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease;
+}
+
+.tr-fx-papel.is-aceso {
+  background: var(--tr-line);
+  filter: drop-shadow(0 30px 50px rgba(255, 210, 63, 0.35));
+}
+
+.tr-fx-col:hover .tr-fx-papel { transform: rotate(0deg) translateY(-8px); }
+
+.tr-fx-papel-cab {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  margin-bottom: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  text-align: left;
+}
+
+.tr-fx-papel-cab b {
+  font-family: var(--tr-head);
+  font-size: 19px;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.tr-fx-papel-cab span { font-size: 11px; color: var(--nv-texto); }
+
+.tr-fx-papel.is-aceso .tr-fx-papel-cab { border-bottom-color: rgba(8, 12, 28, 0.2); }
+.tr-fx-papel.is-aceso .tr-fx-papel-cab b { color: #080C1C; }
+.tr-fx-papel.is-aceso .tr-fx-papel-cab span { color: rgba(8, 12, 28, 0.6); }
+
+.tr-fx-papel-linhas { display: grid; gap: 7px; }
+
+.tr-fx-papel-linhas i {
+  display: block;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.tr-fx-papel.is-aceso .tr-fx-papel-linhas i { background: rgba(8, 12, 28, 0.22); }
+
+.tr-fx-papel-linhas i:nth-child(2) { width: 85%; }
+.tr-fx-papel-linhas i:nth-child(3) { width: 65%; }
+.tr-fx-papel-linhas i:nth-child(4) { width: 78%; }
+
+.tr-fx-papel-barras {
+  height: 26px;
+  margin-top: 15px;
+  background: repeating-linear-gradient(90deg,
+    rgba(255, 255, 255, 0.55) 0 2px, transparent 2px 4px,
+    rgba(255, 255, 255, 0.55) 4px 5px, transparent 5px 9px,
+    rgba(255, 255, 255, 0.55) 9px 12px, transparent 12px 14px);
+}
+
+.tr-fx-papel.is-aceso .tr-fx-papel-barras {
+  background: repeating-linear-gradient(90deg,
+    rgba(8, 12, 28, 0.75) 0 2px, transparent 2px 4px,
+    rgba(8, 12, 28, 0.75) 4px 5px, transparent 5px 9px,
+    rgba(8, 12, 28, 0.75) 9px 12px, transparent 12px 14px);
+}
+
+.tr-fx-col h3 { transition: color 0.45s ease; }
+.tr-fx-col.is-aceso h3 { color: var(--tr-line); }
+
+.tr-fx-col h3 {
+  margin: 0 0 6px;
+  font-family: var(--tr-head);
+  font-size: clamp(17px, 1.7vw, 22px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFF;
+}
+
+.tr-fx-col > p {
+  margin: 0;
+  font-size: clamp(12.5px, 1.1vw, 14.5px);
+  line-height: 1.45;
+  color: var(--nv-texto);
+}
+
+.tr-fx-selos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: clamp(56px, 8vw, 100px) 0 0;
+  padding: clamp(36px, 5vw, 56px) 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  list-style: none;
+}
+
+.tr-fx-selos li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border: 1px solid var(--nv-borda);
+  font-size: 13.5px;
+  color: var(--nv-texto);
+}
+
+.tr-fx-selos li::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background: var(--tr-line);
+}
+
+/* ============================================================
+   03 · COMO FUNCIONA (amarelo)
+   ============================================================ */
+
+.tr-passos {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--tr-line);
+  border-top: 0;
+}
+
+.tr-grifo {
+  background: #080C1C;
+  color: var(--tr-line);
+  padding: 0 0.18em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.tr-linha-tempo {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  align-items: end;
+  margin: clamp(56px, 8vw, 100px) 0 0;
+  padding: 0 0 46px;
+  list-style: none;
+}
+
+/* O trilho corre na base, e cada passo marca o seu ponto. */
+.tr-linha-tempo-trilho {
+  position: absolute;
+  right: 0;
+  bottom: 38px;
+  left: 0;
+  height: 3px;
+  background: #080C1C;
+  transform-origin: left center;
+}
+
+.tr-etapa { position: relative; padding-bottom: 42px; }
+.tr-etapa--baixa { padding-bottom: 2px; }
+
+.tr-etapa b {
+  display: block;
+  margin-bottom: 18px;
+  font-family: var(--tr-head);
+  font-size: clamp(72px, 8vw, 120px);
+  font-weight: 800;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 2px #080C1C;
+  text-stroke: 2px #080C1C;
+}
+
+.tr-etapa h3 {
+  margin: 0 0 10px;
+  font-family: var(--tr-head);
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #080C1C;
+}
+
+.tr-etapa p {
+  margin: 0;
+  font-size: clamp(13.5px, 1.2vw, 15.5px);
+  line-height: 1.55;
+  color: #3A3415;
+}
+
+.tr-etapa-ponto {
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #080C1C;
+}
+
+/* O cartão navy não mora mais no 04: ele ANDA. Começa no 01 e passa
+   para o seguinte conforme a pessoa rola, como quem percorre as
+   etapas. */
+.tr-etapa {
+  padding: clamp(16px, 2vw, 24px);
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+.tr-etapa.is-ativa {
+  background: #080C1C;
+  transform: translateY(-6px);
+}
+
+.tr-etapa b,
+.tr-etapa h3,
+.tr-etapa p { transition: color 0.4s ease, -webkit-text-stroke-color 0.4s ease; }
+
+.tr-etapa.is-ativa b { color: var(--tr-line); -webkit-text-stroke: 0; text-stroke: 0; }
+.tr-etapa.is-ativa h3 { color: #FFF; }
+.tr-etapa.is-ativa p { color: #C3CBEC; }
+
+.tr-passos-preco {
+  max-width: 620px;
+  margin: clamp(44px, 6vw, 72px) 0 0 auto;
+  padding-top: 24px;
+  border-top: 3px solid #080C1C;
+  font-size: clamp(14.5px, 1.3vw, 17px);
+  line-height: 1.6;
+  color: #3A3415;
+}
+
+.tr-passos-preco strong { color: #080C1C; font-weight: 700; }
+
+/* ============================================================
+   04 · FINANCEIRO
+   ============================================================ */
+
+.tr-fin {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--nv-claro);
+}
+
+.tr-fin-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(36px, 5vw, 76px);
+  align-items: center;
+}
+
+.tr-fin-txt > p {
+  margin: 26px 0 0;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.6;
+  color: var(--nv-texto-claro);
+}
+
+.tr-fin-txt strong { color: var(--nv-card); font-weight: 700; }
+
+.tr-conector {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.tr-conector-ponto {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--nv-card);
+}
+
+.tr-conector-linha {
+  flex: 1 1 auto;
+  max-width: 320px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--nv-card) 0 9px, transparent 9px 17px);
+  transform-origin: left center;
+}
+
+.tr-conector-seta {
+  flex: none;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid var(--nv-card);
+}
+
+.tr-bento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tr-bento-cel {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(22px, 2.6vw, 32px);
+  background: #FFF;
+}
+
+.tr-bento-cel--larga { grid-column: 1 / -1; }
+
+.tr-bento-cel--navy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 220px;
+  background: var(--nv-card);
+}
+
+.tr-bento-cel--amarela {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 2.4vw, 34px);
+  background: var(--tr-line);
+}
+
+/* O anel azul sai pelo canto. */
+.tr-bento-anel {
+  position: absolute;
+  top: -70px;
+  right: -60px;
+  width: 190px;
+  height: 190px;
+  border: 28px solid var(--nv-azul);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.tr-bento-marca {
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 18px;
+}
+
+.tr-bento-marca--quad { background: var(--tr-line); }
+.tr-bento-marca--losango { background: var(--nv-azul); transform: rotate(45deg); }
+
+.tr-bento-cel h3 {
+  position: relative;
+  margin: 0 0 9px;
+  font-family: var(--tr-head);
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--nv-card);
+}
+
+.tr-bento-cel p {
+  position: relative;
+  margin: 0;
+  font-size: clamp(13.5px, 1.2vw, 15px);
+  line-height: 1.55;
+  color: var(--nv-texto-claro);
+}
+
+.tr-bento-cel--navy h3 { color: #FFF; }
+.tr-bento-cel--navy p { color: var(--nv-texto); }
+.tr-bento-cel--amarela h3 { margin: 0; }
+.tr-bento-cel--amarela p { color: #3A3415; }
+
+/* ============================================================
+   05 · FROTA
+   ============================================================ */
+
+.tr-frota {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: #FFF;
+}
+
+.tr-frota-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: clamp(40px, 5vw, 70px);
+  align-items: center;
+}
+
+/* "PARAR" dentro de uma placa de pare. */
+.tr-placa-pare {
+  display: inline-block;
+  padding: 0.08em 0.42em;
+  background: var(--nv-card);
+  color: var(--tr-line);
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px),
+                     calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+}
+
+.tr-frota-txt > p {
+  margin: 26px 0 0;
+  font-size: clamp(15px, 1.3vw, 17.5px);
+  line-height: 1.65;
+  color: var(--nv-texto-claro);
+}
+
+.tr-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tr-chips li {
+  padding: 11px 18px;
+  border: 2px solid var(--nv-card);
+  font-family: var(--tr-head);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--nv-card);
+}
+
+.tr-chips .tr-chip-cheio { background: var(--nv-card); color: #FFF; }
+
+.tr-frota-art { position: relative; }
+
+/* O bloco amarelo torto atrás, sangrando para a direita. */
+.tr-frota-bloco {
+  position: absolute;
+  top: -8%;
+  right: -14vw;
+  bottom: -8%;
+  left: 14%;
+  background: var(--tr-line);
+  transform: skewX(-12deg);
+}
+
+.tr-painel {
+  position: relative;
+  background: var(--nv-card);
+  transform: rotate(-1.5deg);
+  box-shadow: 0 40px 70px -20px rgba(8, 16, 36, 0.55);
+}
+
+.tr-painel-cab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--nv-borda-2);
+}
+
+.tr-painel-veic {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--tr-head);
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFF;
+}
+
+/* Placa no padrão Mercosul: tarja azul em cima. */
+.tr-placa-mercosul {
+  padding: 3px 9px 2px;
+  border-top: 4px solid var(--nv-azul);
+  background: #FFF;
+  font-family: var(--tr-head);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--nv-card);
+}
+
+.tr-painel-badge {
+  flex: none;
+  padding: 6px 12px;
+  background: var(--tr-line);
+  font-family: var(--tr-head);
+  font-size: 12px;
+  font-weight: 700;
+  color: #080C1C;
+}
+
+.tr-painel-km { padding: 20px 22px 22px; border-bottom: 1px solid var(--nv-borda-2); }
+
+.tr-painel-km-topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+  font-size: 13.5px;
+  color: var(--nv-texto);
+}
+
+.tr-painel-km-topo b {
+  font-family: var(--tr-head);
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #FFF;
+}
+
+/* Barra segmentada, como mostrador de painel. */
+.tr-barra {
+  position: relative;
+  height: 20px;
+  background: repeating-linear-gradient(90deg,
+    rgba(255, 255, 255, 0.14) 0 6px, transparent 6px 10px);
+}
+
+.tr-barra i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: block;
+  background: repeating-linear-gradient(90deg, var(--tr-line) 0 6px, transparent 6px 10px);
+}
+
+.tr-painel-linha {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--nv-borda-2);
+}
+
+.tr-painel-linha--fim { border-bottom: 0; }
+
+.tr-painel-ico {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: #1C2550;
+  font-family: var(--tr-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nv-texto);
+}
+
+.tr-painel-ico--os { color: var(--tr-line); }
+
+.tr-painel-ico--mu {
+  background: var(--tr-line);
+  color: #080C1C;
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+}
+
+.tr-painel-txt { display: grid; gap: 3px; min-width: 0; }
+.tr-painel-txt span { font-size: 12.5px; color: var(--nv-texto); }
+
+.tr-painel-txt b {
+  font-family: var(--tr-head);
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFF;
+}
+
+.tr-painel-ok {
+  padding: 5px 11px;
+  background: var(--nv-verde);
+  font-family: var(--tr-head);
+  font-size: 12px;
+  font-weight: 700;
+  color: #06301F;
+}
+
+.tr-painel-val {
+  font-family: var(--tr-head);
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.tr-painel-nota { font-size: 12.5px; color: var(--nv-texto); }
+
+/* ============================================================
+   RESPONSIVO DAS 5 SEÇÕES
+   ============================================================ */
+
+@media (max-width: 1040px) {
+  .tr-fiscal-cab { grid-template-columns: minmax(0, 1fr); }
+  .tr-fin-grid,
+  .tr-frota-grid { grid-template-columns: minmax(0, 1fr); }
+  .tr-frota-bloco { right: -10vw; left: 6%; }
+
+  .tr-dor-item { grid-template-columns: auto minmax(0, 1fr); }
+  .tr-dor-item p { grid-column: 2; }
+
+  .tr-etapa--baixa { padding-bottom: 0; }
+  .tr-linha-tempo-trilho { display: none; }
+  .tr-etapa-ponto { display: none; }
+  .tr-etapa { padding-bottom: 12px; }
+  .tr-passos-preco { margin-left: 0; }
+}
+
+@media (max-width: 760px) {
+  /* O cupom deixa de sangrar: no celular ele é a própria seção. */
+  .tr-cupom { margin-left: -12px; transform: rotate(-1.5deg); }
+  .tr-dores-cena { gap: 34px; padding-right: 20px; }
+  .tr-dores-txt { padding-left: 20px; }
+
+  /* Três papéis lado a lado não cabem; viram uma coluna e a estrada
+     deixa de atravessar (ela cruzaria os nomes dos documentos). */
+  .tr-fx { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+  .tr-fx-estrada { display: none; }
+  .tr-fx-papel { transform: none !important; }
+
+  .tr-fx-selos { justify-content: flex-start; }
+  .tr-bento { grid-template-columns: minmax(0, 1fr); }
+  .tr-bento-cel--amarela { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .tr-frota-bloco { right: -8vw; left: 0; top: -4%; bottom: -4%; }
+  .tr-painel { transform: none; }
+  .tr-painel-cab { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr-fx-papel { transition-duration: 0.2s; }
+}
+
+/* ============================================================
+   A PASSAGEM PELA ESTRADA  +  NOVO ARRANJO DAS DORES
+   ------------------------------------------------------------
+   Nada de arrastar painel. A seção sobe por cima do hero (que fica
+   grudado atrás) e a emenda entre os dois é uma faixa de asfalto
+   com as marcações da pista correndo: trecho de estrada passando.
+   ============================================================ */
+
+/* A faixa de asfalto no topo da seção. */
+.tr-asfalto {
+  position: relative;
+  height: clamp(64px, 8vw, 104px);
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 60%),
+    repeating-linear-gradient(90deg, #14161C 0 3px, #101217 3px 7px);
+  box-shadow: inset 0 14px 26px -12px rgba(0, 0, 0, 0.9);
+}
+
+/* As marcações da pista, correndo. */
+.tr-asfalto-faixa {
+  position: absolute;
+  top: 50%;
+  right: -60%;
+  left: -60%;
+  height: 7px;
+  margin-top: -3.5px;
+  background: repeating-linear-gradient(90deg,
+    var(--tr-line) 0 58px, transparent 58px 110px);
+  opacity: 0.9;
+  animation: tr-pista-corre 1.6s linear infinite;
+}
+
+@keyframes tr-pista-corre {
+  from { transform: translateX(0); }
+  to { transform: translateX(-110px); }
+}
+
+/* Uma sombra logo abaixo da faixa, como asfalto novo sob o sol. */
+.tr-asfalto::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 18px;
+  background: linear-gradient(180deg, transparent, var(--nv-fundo-1));
+}
+
+.tr-dores { padding-top: 0; }
+
+.tr-dores-topo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(30px, 4vw, 60px);
+  align-items: center;
+  padding-top: clamp(50px, 7vw, 92px);
+}
+
+/* ---------- as três pistas ---------- */
+
+.tr-pistas {
+  margin-top: clamp(50px, 7vw, 90px);
+  padding: clamp(34px, 4vw, 52px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.tr-dor-lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A divisa entre as pistas é a marcação da estrada. */
+.tr-dor-item + .tr-dor-item {
+  border-left: 3px dashed rgba(255, 212, 59, 0.35);
+}
+
+.tr-dor-item {
+  display: block;
+  padding: 4px clamp(18px, 2.4vw, 34px);
+  border-bottom: 0;
+}
+
+.tr-dor-item:first-child { padding-left: 0; }
+.tr-dor-item:last-child { padding-right: 0; }
+
+/* Em pistas o pai é block, então o quadrado precisa deixar de ser
+   inline — senão ele colapsa num traço. */
+.tr-dor-cx { display: block; margin-bottom: 18px; }
+
+.tr-dor-item b {
+  display: block;
+  margin-bottom: 9px;
+  font-family: var(--tr-head);
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFF;
+}
+
+.tr-dor-item p {
+  margin: 0;
+  font-size: clamp(13.5px, 1.2vw, 15px);
+  line-height: 1.55;
+  color: var(--nv-texto);
+}
+
+.tr-pilula { margin-top: clamp(44px, 6vw, 72px); }
+
+/* ============================================================
+   A CORTINA SOBRE A TRILHA
+   ------------------------------------------------------------
+   A seção fiscal desce por cima do fim da trilha. Onde ela ainda
+   não desceu fica transparente, então o que aparece atrás é a
+   própria trilha, parada: a cortina fechando o trecho.
+   ============================================================ */
+
+.tr-fiscal { position: relative; z-index: 3; }
+
+@media (max-width: 1000px) {
+  .tr-dores-topo { grid-template-columns: minmax(0, 1fr); }
+  .tr-cupom { width: 112%; margin: 0 -6% 0 0; }
+  .tr-dor-lista { grid-template-columns: minmax(0, 1fr); }
+
+  .tr-dor-item + .tr-dor-item {
+    border-left: 0;
+    border-top: 3px dashed rgba(255, 212, 59, 0.35);
+    margin-top: 26px;
+    padding-top: 26px;
+  }
+
+  .tr-dor-item { padding-left: 0 !important; padding-right: 0 !important; }
+}
+
+/* ---------- A beira da pista ----------
+   A seção fiscal entra pela direita e leva na frente uma faixa de
+   asfalto em pé, com as marcações descendo: é a beira da estrada
+   atravessando a tela. Mesma linguagem da emenda horizontal lá em
+   cima, virada 90 graus. */
+
+/* Como a trilha fica parada enquanto a fiscal atravessa.
+
+   A primeira tentativa foi `position: sticky; bottom: 0` na trilha.
+   Não pegou: os ancestrais usam `overflow-x: clip` e isso tira a
+   referência de rolagem que o sticky precisa.
+
+   O que funciona é sobrepor: a fiscal sobe uma tela inteira e passa
+   a ocupar o mesmo espaço do último quadro da trilha. Quando ela
+   chega ao topo — e é prendida ali —, a trilha está logo atrás, no
+   lugar, e é ela que aparece no espaço ainda não coberto. */
+.tr-passagem2 { position: relative; }
+
+.tr-corredor {
+  position: relative;
+  z-index: 3;
+  margin-top: -100vh;
+}
+
+@media (max-width: 900px) {
+  /* Sem pin no celular, a sobreposição só comeria conteúdo. */
+  .tr-corredor { margin-top: 0; }
+}
+
+.tr-beira {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: clamp(40px, 4vw, 64px);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55), transparent 70%),
+    repeating-linear-gradient(0deg, #14161C 0 3px, #101217 3px 7px);
+  box-shadow: 14px 0 26px -12px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+}
+
+.tr-beira-faixa {
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: 50%;
+  width: 7px;
+  margin-left: -3.5px;
+  background: repeating-linear-gradient(180deg,
+    var(--tr-line) 0 58px, transparent 58px 110px);
+  opacity: 0.9;
+  animation: tr-beira-corre 1.6s linear infinite;
+}
+
+@keyframes tr-beira-corre {
+  from { transform: translateY(0); }
+  to { transform: translateY(110px); }
+}
+
+/* A manchete das dores: "TRANSPORTADORA" é longa e, no corpo antigo,
+   empurrava "SUA" sozinha para a primeira linha. Menor e equilibrada,
+   as duas cabem juntas. */
+.tr-dores-txt .tr-h2-nv {
+  font-size: clamp(29px, 3vw, 46px);
+  text-wrap: balance;
+}
+
+.tr-dores-topo { grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr); }
+
+/* ============================================================
+   HERO: CABEÇALHO SÓ COM O ESCUDO, CENTRO E MANCHA
+   ============================================================ */
+
+/* O escudo e as redes sobem para o topo, mas mantendo exatamente a
+   mesma caixa horizontal do conteúdo: 6vw de margem até 1240px
+   centralizados — a mesma conta do .tr-wrap. Por isso continuam
+   alinhados com a manchete, um em cada ponta. */
+.tr-marca {
+  position: absolute;
+  z-index: 40;
+  top: clamp(22px, 3.2vh, 38px);
+  right: 6vw;
+  left: 6vw;
+  max-width: 1240px;
+  margin: 0 auto;
+  /* O mesmo respiro lateral que o .tr-wrap usa, senão o escudo
+     desalinha da manchete por 64px. */
+  padding: 0 clamp(20px, 5vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.tr-marca-logo { display: inline-flex; align-items: center; }
+
+.tr-marca img {
+  width: auto;
+  height: clamp(40px, 4.2vw, 58px);
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.7));
+}
+
+.tr-redes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.tr-redes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFF;
+  font-size: 14px;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.tr-redes a:hover {
+  background: var(--tr-line);
+  color: var(--tr-ink);
+  transform: translateY(-2px);
+}
+
+/* Sem cabeçalho fixo, o hero não precisa mais reservar espaço para
+   ele — só o suficiente para o escudo não encostar na manchete. */
+.tr-page-theme { --tr-marca-vao: calc(clamp(40px, 4.2vw, 58px) + clamp(34px, 5vh, 62px)); }
+
+.tr-hero { padding-top: calc(clamp(70px, 8vh, 104px) + var(--tr-marca-vao)); }
+
+.tr-hero .tr-actions { justify-content: center; }
+.tr-hero .tr-selos { justify-content: center; }
+
+/* ---------- A mancha ----------
+   Três borrões amarelos muito fracos, sobrepostos e desfocados. O
+   amarelo é o da estrada, mas em 7% de opacidade: de perto não se
+   enxerga a forma, só o clarão. */
+
+.tr-mancha {
+  position: absolute;
+  inset: -10%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tr-mancha i {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(70px);
+  will-change: transform;
+}
+
+.tr-mancha i:nth-child(1) {
+  top: 6%;
+  left: 8%;
+  width: 46vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(255, 212, 59, 0.22), transparent 68%);
+}
+
+.tr-mancha i:nth-child(2) {
+  top: 28%;
+  right: 4%;
+  width: 52vw;
+  height: 44vw;
+  background: radial-gradient(circle, rgba(255, 212, 59, 0.17), transparent 70%);
+}
+
+.tr-mancha i:nth-child(3) {
+  bottom: 2%;
+  left: 34%;
+  width: 38vw;
+  height: 30vw;
+  background: radial-gradient(circle, rgba(255, 227, 122, 0.14), transparent 72%);
+}
+
+/* ---------- Âncoras ----------
+   O cabeçalho não é mais fixo: não há nada cobrindo o alvo. */
+#agendar { scroll-margin-top: 28px; }
+#video { scroll-margin-top: 28px; }
+
+@media (max-width: 900px) {
+  .tr-hero { padding-top: calc(clamp(62px, 8vh, 88px) + var(--tr-marca-vao)); }
+
+  /* Toque não tem mouse: a camada fica parada e o texto respira. */
+  .tr-cam { transform: none !important; }
+  .tr-mancha i { filter: blur(50px); }
+}
+
+/* ---------- O pincel ----------
+   Um borrão amarelo que segue o cursor com atraso, como tinta sendo
+   passada. Fica entre o vídeo e o texto, e só existe onde há mouse
+   de verdade — em toque ele nunca aparece. */
+
+.tr-pincel {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 640px;
+  margin: -320px 0 0 -320px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255, 212, 59, 0.3) 0%,
+    rgba(255, 212, 59, 0.16) 34%,
+    rgba(255, 227, 122, 0.06) 58%,
+    transparent 72%);
+  filter: blur(46px);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@media (max-width: 900px) {
+  .tr-pincel { display: none; }
+}
+
+/* Abaixo de 1040px o hero troca o respiro lateral de 6vw para 22px.
+   A marca tem de acompanhar, senão desalinha da manchete. Esta regra
+   precisa vir DEPOIS da base — mesma especificidade, a última vale. */
+@media (max-width: 1040px) {
+  .tr-marca { left: 22px; right: 22px; }
+}

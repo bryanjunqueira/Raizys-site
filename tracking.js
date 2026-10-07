@@ -153,6 +153,12 @@
     var acao = (form.getAttribute('action') || '').toLowerCase();
     if (acao.indexOf('send_mail.php') === -1) return;
 
+    /* Formulario marcado com data-conversao="sucesso" so conta quando
+       o servidor confirma: ele avisa pelo evento raizys:lead-form, logo
+       abaixo. Contar no clique em Enviar incluiria quem desistiu no
+       meio ou teve o envio recusado. */
+    if (form.getAttribute('data-conversao') === 'sucesso') return;
+
     conversao(LEAD_LABEL || CLIQUE_LABEL, {
       pagina: window.location.pathname,
       formulario: form.id || 'sem id'
@@ -169,11 +175,30 @@
     });
   });
 
+  /* Formulario da propria pagina que confirmou o envio. */
+  window.addEventListener('raizys:lead-form', function (e) {
+    conversao(LEAD_LABEL || CLIQUE_LABEL, {
+      pagina: window.location.pathname,
+      formulario: (e && e.detail && e.detail.formulario) || 'formulario'
+    });
+  });
+
   /* ---------- HELPER PARA OUTRAS CONVERSOES ---------- */
 
   // Uso: RaizysTracking.conversao('ROTULO_DA_ACAO', { event_label: 'formulario' })
   window.RaizysTracking = {
     conversao: function (label, extras) { conversao(label, extras); },
+
+    /* Evento comum, sem rotulo de conversao: serve para publico de
+       remarketing e para saber qual bloco da pagina convence. Nao
+       aparece como conversao no relatorio, e nao deve mesmo. */
+    evento: function (nome, dados) {
+      if (!nome) return;
+      var p = dados || {};
+      p.send_to = AW_ID;
+      window.gtag('event', nome, p);
+    },
+
     rotulos: { clique: CLIQUE_LABEL, lead: LEAD_LABEL }
   };
 })();
