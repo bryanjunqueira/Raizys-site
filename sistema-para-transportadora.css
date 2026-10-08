@@ -123,9 +123,22 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 
 .tr-trail-fill {
   stroke: #FFD43B;
-  filter: drop-shadow(0 0 9px rgba(255, 212, 59, 0.45));
   animation: tr-corre 1.5s linear infinite;
 }
+
+/* Aqui havia um drop-shadow para dar halo ao traço. Saiu, e nada
+   tomou o lugar dele — qualquer substituto sairia mais caro.
+
+   O traço tem uma animação INFINITA de stroke-dashoffset e ainda
+   mora dentro de uma máscara, então o navegador redesenhava o grupo
+   inteiro a cada quadro, para sempre, não só durante a rolagem. Com
+   o filtro em cima disso, 7 a 10 quadros em 115 estouravam os 20ms;
+   sem ele, 0 a 2.
+
+   Tentei trocar o filtro por dois traços largos e translúcidos por
+   baixo. Ficou MUITO pior — 71 quadros lentos em 115: dentro de uma
+   máscara cada traço a mais multiplica o redesenho. A ponta luminosa
+   (.tr-trail-head) continua dando o brilho da frente. */
 
 @keyframes tr-corre {
   to { stroke-dashoffset: -28; }
@@ -2149,6 +2162,17 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   padding: clamp(72px, 10vw, 140px) 0;
   background: var(--nv-fundo-2);
   border-top: 0;
+
+  /* Ela atravessa a tela cobrindo tudo, então precisa ser pelo
+     menos do tamanho da janela. Em tela alta e estreita (tablet em
+     pe) o conteudo sozinho dava 954px contra 1180 de janela e
+     sobrava uma faixa da secao seguinte embaixo.
+
+     lvh e a altura da janela com a barra do navegador RECOLHIDA, a
+     maior que ela chega a ter: cobre nos dois estados, enquanto vh
+     no celular mede o estado que da na hora. */
+  min-height: 100vh;
+  min-height: 100lvh;
 }
 
 .tr-fiscal-cab {
@@ -2933,7 +2957,7 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 
 .tr-dores-topo {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
   gap: clamp(30px, 4vw, 60px);
   align-items: center;
   padding-top: clamp(50px, 7vw, 92px);
@@ -3044,10 +3068,10 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   margin-top: -100vh;
 }
 
-@media (max-width: 900px) {
-  /* Sem pin no celular, a sobreposição só comeria conteúdo. */
-  .tr-corredor { margin-top: 0; }
-}
+/* O recuo acima vale em toda tela: é ele que faz a seção pousar
+   sobre a última tela da trilha em vez de abrir espaço em branco.
+   Ele só pode existir junto com o pin — e agora o pin existe
+   também no celular. */
 
 .tr-beira {
   position: absolute;
@@ -3055,7 +3079,12 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   top: 0;
   bottom: 0;
   left: 0;
-  width: clamp(40px, 4vw, 64px);
+  /* O piso de 40px era maior que o respiro lateral do texto no
+     celular (20px), então a faixa ficava EM CIMA das letras: o
+     "DO" de DOCUMENTOS e o "R" de REDIGITAR sumiam. Com piso de
+     12px o 4vw manda em toda tela estreita e a faixa sempre cabe
+     antes do texto — 14px contra 20px a 360, 30px contra 38 a 760. */
+  width: clamp(12px, 4vw, 64px);
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.55), transparent 70%),
@@ -3089,8 +3118,6 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   font-size: clamp(29px, 3vw, 46px);
   text-wrap: balance;
 }
-
-.tr-dores-topo { grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr); }
 
 /* ============================================================
    HERO: CABEÇALHO SÓ COM O ESCUDO, CENTRO E MANCHA
@@ -3257,4 +3284,39 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
    precisa vir DEPOIS da base — mesma especificidade, a última vale. */
 @media (max-width: 1040px) {
   .tr-marca { left: 22px; right: 22px; }
+}
+
+/* ============================================================
+   RESPONSIVO — ÚLTIMA PALAVRA
+   ------------------------------------------------------------
+   Toda regra base escrita depois de um media query vence o media
+   query: mesma especificidade, a última ganha. Já aconteceu três
+   vezes neste arquivo, sempre com o mesmo estrago — a seção parava
+   de empilhar no celular e os blocos se sobrepunham.
+
+   Este bloco é o último do arquivo de propósito: é a palavra final
+   sobre o que empilha e quando. Se algo aqui precisar mudar, mude
+   AQUI, não acrescente outra regra depois.
+   ============================================================ */
+
+@media (max-width: 1040px) {
+  .tr-fiscal-cab,
+  .tr-fin-grid,
+  .tr-frota-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 1000px) {
+  .tr-dores-topo { grid-template-columns: minmax(0, 1fr); }
+  .tr-dor-lista { grid-template-columns: minmax(0, 1fr); }
+  .tr-cupom { width: 112%; margin: 0 -6% 0 0; }
+}
+
+@media (max-width: 980px) {
+  .tr-cta-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .tr-fx { grid-template-columns: minmax(0, 1fr); }
+  .tr-bento { grid-template-columns: minmax(0, 1fr); }
+  .tr-cupom { margin-left: -12px; margin-right: -6%; transform: rotate(-1.5deg); }
 }

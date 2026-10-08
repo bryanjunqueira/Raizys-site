@@ -660,6 +660,49 @@
 
 
 /* ============================================================
+   RAIZYS — O VÍDEO DO HERO TEM DE TOCAR
+   ------------------------------------------------------------
+   `autoplay muted playsinline` basta na maioria dos casos, mas não
+   em todos: economia de bateria, "reduzir movimento" do sistema e
+   algumas versões de navegador recusam o play automático. Quando
+   recusam, o que sobra na tela é um retângulo parado com o botão de
+   play — foi o que apareceu no ar.
+
+   Aqui o play é pedido de novo quando a aba volta a ficar visível e
+   no primeiro toque ou rolagem da pessoa, que é quando o navegador
+   passa a permitir. Se mesmo assim não tocar, o pôster continua lá:
+   nada quebra.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var video = document.querySelector('.tr-hero-video');
+  if (!video) return;
+
+  var tentando = false;
+
+  function tocar() {
+    if (tentando || !video.paused) return;
+    tentando = true;
+    var t = video.play();
+    if (t && typeof t.catch === 'function') t.catch(function () {});
+    setTimeout(function () { tentando = false; }, 400);
+  }
+
+  tocar();
+  window.addEventListener('load', tocar);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) tocar();
+  });
+
+  /* O primeiro gesto da pessoa libera o play em qualquer navegador. */
+  ['touchstart', 'pointerdown', 'scroll', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, tocar, { once: true, passive: true });
+  });
+})();
+
+
+/* ============================================================
    RAIZYS — BALÃO DE FALA DO WHATSAPP
    ------------------------------------------------------------
    Mesmo comportamento da gestão-web: o balão aparece sozinho e,
@@ -961,23 +1004,24 @@
   }
 
   /* ---------- 02 · a travessia e o acendimento ----------
-     UMA linha do tempo presa, com duas fases em ordem:
 
-       0  → 0.42   a seção atravessa da direita e cobre a tela
-       0.5 → 1     a estrada avança e acende as notas, uma a uma
+     A seção vem da direita, COBRINDO A TELA INTEIRA, com a trilha
+     parada atrás. Uma linha do tempo presa, duas fases em ordem:
 
-     O acendimento só começa depois que a seção está inteira à
-     vista — antes disso a pessoa veria notas mudando de cor numa
-     seção que ainda está entrando.
+       0   → 0.42   a seção atravessa e cobre a tela
+       0.5 → 1      a estrada avança e acende as notas, uma a uma
 
-     Quem é PRESO é o palco inteiro (trilha + corredor), não a seção.
-     Dois motivos: o pin reescreve posição e apagaria o transform de
-     quem ele segura; e prendendo o palco, a trilha congela junto,
-     sem precisar de um segundo pin. Era o segundo pin que fazia a
-     rolagem travar e deixava o título do vídeo aparecendo na volta.
+     Quem é PRESO é o palco inteiro (trilha + corredor), não a seção:
+     o pin reescreve posição e apagaria o transform de quem segura;
+     e prendendo o palco a trilha congela junto, sem um segundo pin.
 
-     No celular não prendo nada (pin em tela de toque engasga): lá a
-     seção entra com a rolagem normal e as notas acendem depois.   */
+     Isso vale em TODA tela, inclusive celular. Eu tinha deixado o
+     celular de fora achando que pin em tela de toque engasga, e o
+     resultado foi o defeito: sem o pin a seção não cobria nada, ela
+     só deslizava de lado no lugar onde já estava, com a seção
+     anterior aparecendo por cima. Pin no celular funciona; o que
+     atrapalha lá é a barra do navegador aparecendo e sumindo, e
+     para isso existe o ignoreMobileResize logo abaixo.           */
   var fiscal = document.querySelector('.tr-fiscal');
   var corredor = document.querySelector('.tr-corredor');
   var palco2 = document.querySelector('.tr-passagem2');
@@ -985,66 +1029,100 @@
   var cheia = fx && fx.querySelector('.tr-fx-estrada-cheia');
   var colunas = fx ? Array.prototype.slice.call(fx.querySelectorAll('.tr-fx-col')) : [];
 
-  function acender(p) {
+  /* Os centros das colunas são medidos UMA vez por refresh.
+
+     Antes eu lia getBoundingClientRect() da seção e de cada coluna
+     dentro do onUpdate: quatro leituras de layout por quadro, logo
+     depois de o GSAP ter escrito estilo. Ler depois de escrever
+     obriga o navegador a refazer o layout na hora, todo quadro —
+     era daí que vinha o engasgo. Agora o onUpdate não lê nada. */
+  var centros = [];
+  var acesa = [];
+  function medir() {
+    centros = [];
     if (!fx || !colunas.length) return;
     var rf = fx.getBoundingClientRect();
-    colunas.forEach(function (col, k) {
+    if (!rf.width || !rf.height) return;
+
+    /* Lado a lado a ordem é da esquerda para a direita; empilhadas,
+       de cima para baixo. Sem isso, no celular as três notas têm o
+       mesmo centro horizontal e acendem todas no mesmo instante. */
+    var empilhado = colunas.length > 1 &&
+      Math.abs(colunas[1].getBoundingClientRect().left -
+               colunas[0].getBoundingClientRect().left) < 2;
+
+    colunas.forEach(function (col) {
       var r = col.getBoundingClientRect();
-      var centro = (r.left + r.width / 2 - rf.left) / rf.width;
-      var deve = p >= centro;
-      col.classList.toggle('is-aceso', deve);
-      var papel = col.querySelector('.tr-fx-papel');
-      if (papel) papel.classList.toggle('is-aceso', deve);
+      centros.push(empilhado
+        ? (r.top + r.height / 2 - rf.top) / rf.height
+        : (r.left + r.width / 2 - rf.left) / rf.width);
     });
   }
 
-  if (fiscal && corredor && temST) {
-    var prendeFiscal = window.matchMedia('(min-width: 901px)').matches && !!palco2;
+  function acender(p) {
+    for (var k = 0; k < centros.length; k++) {
+      var deve = p >= centros[k];
+      if (acesa[k] === deve) continue;      // só escreve quando muda
+      acesa[k] = deve;
+      colunas[k].classList.toggle('is-aceso', deve);
+      var papel = colunas[k].querySelector('.tr-fx-papel');
+      if (papel) papel.classList.toggle('is-aceso', deve);
+    }
+  }
+
+  /* Um só ponto escreve o avanço da estrada: uma escrita, zero
+     leituras. É isso que faz o scrub ficar liso. */
+  var marcha = { p: 0 };
+  function marchar() {
+    if (cheia) cheia.style.width = (marcha.p * 100).toFixed(2) + '%';
+    acender(marcha.p);
+  }
+
+  if (fiscal && corredor && palco2 && temST) {
+    /* A barra de endereço do celular aparece e some enquanto a
+       pessoa rola. Isso dispara um resize, o ScrollTrigger refaz as
+       contas no meio da travessia e o conteúdo pula. */
+    window.ScrollTrigger.config({ ignoreMobileResize: true });
+
+    var estreito = window.matchMedia('(max-width: 900px)').matches;
+
+    gsap.set(fiscal, { xPercent: 100, force3D: true });
+    marchar();
+    window.ScrollTrigger.addEventListener('refresh', medir);
+    medir();
 
     var tlFiscal = gsap.timeline({
-      scrollTrigger: prendeFiscal
-        ? {
-            trigger: corredor,
-            pin: palco2,
-            start: 'top top',
-            end: function () { return '+=' + Math.round(window.innerHeight * 1.35); },
-            pinSpacing: true,
-            scrub: curto ? 0.2 : 0.5,
-            invalidateOnRefresh: true
-          }
-        : {
-            trigger: fiscal,
-            start: 'top bottom',
-            end: 'bottom 70%',
-            scrub: curto ? 0.2 : 0.5,
-            invalidateOnRefresh: true
-          }
+      scrollTrigger: {
+        trigger: corredor,
+        pin: palco2,
+        start: 'top top',
+        /* No celular a travessia é mais curta: o mesmo trecho pedido
+           no PC viraria um arrastar longo demais no dedo. */
+        end: function () {
+          return '+=' + Math.round(window.innerHeight *
+            (window.matchMedia('(max-width: 900px)').matches ? 1 : 1.35));
+        },
+        pinSpacing: true,
+        anticipatePin: 1,
+        fastScrollEnd: true,
+        scrub: curto ? 0.2 : 0.25,
+        invalidateOnRefresh: true,
+        /* Avisa o navegador só enquanto a travessia acontece:
+           will-change ligado o tempo todo custa memória à toa. */
+        onToggle: function (s) {
+          fiscal.style.willChange = s.isActive ? 'transform' : '';
+        }
+      }
     });
 
-    gsap.set(fiscal, { xPercent: 100 });
-    if (cheia) gsap.set(cheia, { width: '0%' });
-
     tlFiscal.to(fiscal, { xPercent: 0, ease: 'none', duration: 0.42 }, 0);
-
-    if (cheia) {
-      tlFiscal.to(cheia, {
-        width: '100%',
-        ease: 'none',
-        duration: 0.5,
-        onUpdate: function () {
-          acender(parseFloat(cheia.style.width) / 100 || 0);
-        }
-      }, 0.5);
-    }
+    tlFiscal.to(marcha, { p: 1, ease: 'none', duration: 0.5, onUpdate: marchar }, 0.5);
 
     var selos = document.querySelectorAll('.tr-fx-selos li');
     if (selos.length) {
       gsap.from(selos, {
         y: 16, opacity: 0, duration: 0.45 * f, ease: 'power2.out', stagger: 0.045 * f,
-        scrollTrigger: {
-          trigger: selos[0], start: 'top 92%', once: true,
-          pinnedContainer: prendeFiscal ? palco2 : undefined
-        }
+        scrollTrigger: { trigger: selos[0], start: 'top 92%', once: true, pinnedContainer: palco2 }
       });
     }
   }
