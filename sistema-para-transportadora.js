@@ -656,6 +656,23 @@
   }, { threshold: 0 });
 
   zonas.forEach(function (z) { obs.observe(z); });
+
+  /* O VÍDEO é caso à parte: ali não dá para recolher o botão inteiro
+     (ele é a conversão da página), mas o BALÃO ao lado dele avança
+     para a esquerda e pousa justamente em cima do som e da tela
+     cheia do vídeo, que ficam na borda direita dos controles.
+     Medido em 1440x900: os dois botões ficavam inalcançáveis.
+
+     Então, enquanto o vídeo está à vista, só o balão se recolhe. O
+     círculo verde continua no canto, e ele é estreito demais para
+     alcançar o vídeo. */
+  var balao = document.querySelector('.tr-wa-bubble');
+  var cena = document.querySelector('.tr-video');
+  if (balao && cena) {
+    new IntersectionObserver(function (entradas) {
+      balao.classList.toggle('esta-fechado', entradas[0].isIntersecting);
+    }, { threshold: 0 }).observe(cena);
+  }
 })();
 
 

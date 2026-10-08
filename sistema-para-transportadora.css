@@ -1181,41 +1181,59 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   .tr-hero { padding: 120px 22px 48px; min-height: 100svh; }
 
   .tr-hero-grid { grid-template-columns: minmax(0, 1fr); }
-  /* No retrato, `cover` corta as laterais e sobra so a pessoa no
-     centro — a frota atras some. Aqui o video entra no FLUXO, logo
-     depois dos botoes, com a mesma proporcao do arquivo (16:9): o
-     quadro aparece inteiro e nunca fica preso abaixo da dobra.
+  /* O vídeo cobre o HERO INTEIRO, de borda a borda.
 
-     Antes ele era absoluto no pe do hero. Em tela baixa o conteudo
-     passava de 100vh, o hero crescia e a faixa sumia fora da tela. */
+     Em retrato isso custa largura: a tela tem 390 de largo e 844 de
+     alto, então o quadro escala para 1502 de largura e só 26% dele
+     cabe. Não existe posição que mostre a pessoa E a frota juntas —
+     elas ocupam de 0% a 80% da largura ao longo dos 21s. Vale a regra
+     dada: ficam os caminhões.
+
+     A janela em 12% mostra de 9% a 35% do quadro, e é aí que a cabine
+     da frente fica do primeiro ao último segundo (os caminhões andam
+     de 0%-39% para 0%-50%).
+
+     Opacidade mais baixa que a da faixa anterior porque agora o vídeo
+     passa POR TRÁS DA MANCHETE, não só dos botões. */
   .tr-hero-video {
-    position: static;
-    order: 2;
-    width: auto;
-    align-self: stretch;
-    /* O style.css do site tem `video { max-width: 100% }` global:
-       sem liberar aqui, as margens negativas nao conseguiam levar a
-       faixa ate as bordas da tela. */
+    position: absolute;
+    inset: 0;
+    width: 100%;
     max-width: none;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    max-height: none;
-    /* Sangra ate as bordas da tela e dissolve no topo: volta a ler
-       como fundo, e nao como um cartao de video solto. */
-    margin: clamp(26px, 4vh, 48px) -22px -48px;
-    opacity: 0.58;
-    object-position: 50% 50%;
-    filter: saturate(0.95) contrast(1.02) brightness(1.1);
-    mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
-    mask-composite: add;
-    -webkit-mask-composite: source-over;
+    height: 100%;
+    object-fit: cover;
+    object-position: 12% 50%;
+    /* 0,42 com a vinheta forte deixava o caminhão quase invisível
+       (amplitude de luz 21 na zona dele). Medi cinco combinações: em
+       0,72 a amplitude sobe para ~52 e o texto AINDA fica em 10:1,
+       muito acima dos 4,5:1 mínimos. Estava escurecendo à toa. */
+    opacity: 0.72;
+    filter: saturate(0.92) contrast(1.03) brightness(1.04);
+    /* Dissolvido nas bordas, como no computador: vira atmosfera e não
+       um retângulo de vídeo colado na tela. */
+    mask-image: radial-gradient(135% 102% at 50% 52%, #000 38%, transparent 94%);
+    -webkit-mask-image: radial-gradient(135% 102% at 50% 52%, #000 38%, transparent 94%);
   }
 
+  /* Com o vídeo cobrindo o hero inteiro, a vinheta volta a ter o
+     trabalho que tem no computador: segurar o contraste da manchete
+     sem precisar de uma tarja por cima do vídeo. */
   .tr-hero-bg {
     background:
-      radial-gradient(70% 40% at 50% 6%, rgba(255, 212, 59, 0.08) 0%, transparent 60%),
-      linear-gradient(to bottom, var(--tr-asphalt) 30%, rgba(7, 11, 24, 0.55) 62%, rgba(7, 11, 24, 0.25) 100%);
+      radial-gradient(70% 34% at 50% 6%, rgba(255, 212, 59, 0.08) 0%, transparent 60%),
+
+      /* Aqui eu cheguei a por um escurecimento so para a faixa da
+         manchete, achando que o contraste la estava em 2,4:1. Estava
+         errado: o pixel claro que eu media era o VERDE DO BOTAO do
+         WhatsApp, que fica fixo sobre o hero e o meu teste nao estava
+         conseguindo esconder.
+
+         Medido direito, com o botao fora do caminho: o titulo fica em
+         7,5:1 sem escurecimento nenhum — bem acima dos 4,5:1 minimos.
+         E o escurecimento custava caro: derrubava a amplitude de luz
+         do video de 68 para 38, quase metade. Saiu. */
+      radial-gradient(96% 56% at 50% 40%, rgba(7, 11, 24, 0.3) 0%, rgba(7, 11, 24, 0.4) 60%, rgba(7, 11, 24, 0.52) 100%),
+      linear-gradient(to bottom, rgba(7, 11, 24, 0.82) 0%, rgba(7, 11, 24, 0.36) 34%, rgba(7, 11, 24, 0.44) 72%, rgba(7, 11, 24, 0.86) 100%);
   }
 
   .tr-road { padding: 30px 22px 70px; }
@@ -1769,6 +1787,18 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   transform: translateY(-50%);
 }
 
+/* O glifo do WhatsApp e desenhado inline no HTML, em BRANCO.
+   Antes era a WhatsApp.svg da Wikipedia, que nao e um glifo: e o logo
+   inteiro, um balao VERDE com anel branco. Em cima do nosso circulo
+   verde, e como o balao tem rabinho e nao e redondo, o verde de tras
+   aparecia so de um lado e lia como dois botoes sobrepostos. */
+.tr-wa-wrapper .whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  color: #FFFFFF;
+  display: block;
+}
+
 /* O .whatsapp-float do style.css é fixo no canto por conta própria.
    Aqui ele é o segundo item de um par (balão + botão), então volta
    ao fluxo e quem posiciona é o wrapper. O desenho — tamanho, verde,
@@ -1787,7 +1817,7 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
   .tr-wa-wrapper { right: 18px; bottom: 18px; gap: 10px; }
   .tr-wa-bubble { display: none; }
   .tr-wa-wrapper .whatsapp-float { width: 54px; height: 54px; }
-  .tr-wa-wrapper .whatsapp-float img { width: 30px; height: 30px; }
+  .tr-wa-wrapper .whatsapp-float svg { width: 28px; height: 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3065,8 +3095,36 @@ html:has(.tr-page-theme) { scroll-behavior: smooth; }
 .tr-corredor {
   position: relative;
   z-index: 3;
-  margin-top: -100vh;
+  /* Este recuo faz a seção fiscal pousar sobre o fim da trilha, e é
+     ele que decide QUANDO a travessia começa.
+
+     Era -100vh, e com isso a travessia começava com o VÍDEO do
+     módulo ainda na tela: em 32 de 40 posições de rolagem com o
+     vídeo 80% visível, a seção fiscal estava por cima dele. No
+     computador também, 22 de 35. Resultado: não dava para tirar o
+     mudo nem usar a tela cheia, que ficam na borda direita.
+
+     Medi o limite: até -40vh o vídeo fica livre em todas as
+     posições; a partir de -45vh volta a ser coberto. -35vh deixa
+     uma folga para o vídeo e a tela mudarem de tamanho.
+
+     O preço é que o fundo congelado atrás da travessia mostra o fim
+     da trilha (o botão) em vez do vídeo. Preferi assim: o vídeo tem
+     de funcionar. */
+  margin-top: -35vh;
+
+  /* O recuo acima faz este bloco pousar sobre a ÚLTIMA TELA DA
+     TRILHA — e é exatamente ali que mora o vídeo do módulo. O
+     corredor ficava por cima dele, invisível e vazio, engolindo
+     todo clique: não dava para dar play, arrastar a barra de tempo
+     nem tirar o mudo. No computador também, não só no celular.
+
+     A área vazia do corredor passa a deixar o clique atravessar; a
+     seção fiscal, que é o conteúdo de verdade, volta a receber. */
+  pointer-events: none;
 }
+
+.tr-corredor > * { pointer-events: auto; }
 
 /* O recuo acima vale em toda tela: é ele que faz a seção pousar
    sobre a última tela da trilha em vez de abrir espaço em branco.
